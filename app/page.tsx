@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import ReactDOM from "react-dom";
 import HeroSection from "@/components/HeroSection";
 
 export const metadata: Metadata = {
@@ -275,6 +276,11 @@ const CLIENTS = [
    PAGE
 ═══════════════════════════════════════════════════════════ */
 export default function HomePage() {
+  // Preload high-fidelity 3D assets immediately in the HTML head
+  ReactDOM.preload("/models/brass_component_1.glb", { as: "fetch", crossOrigin: "anonymous" });
+  ReactDOM.preload("/models/bolt_and_nut.glb", { as: "fetch", crossOrigin: "anonymous" });
+  ReactDOM.preload("/hdr/studio.exr", { as: "fetch", crossOrigin: "anonymous" });
+
   return (
     <>
       {/* 1. HERO */}
@@ -294,7 +300,7 @@ export default function HomePage() {
               <p className="text-sm text-zinc-600 leading-relaxed mb-4">
                 <strong>New Perfect Incorporation</strong> manufactures precision brass and
                 copper-alloy components from a 10,000&nbsp;sq.m. ISO-certified facility in
-                Jamnagar, Gujarat — India's Brass City. Established in 2007, the company
+                Jamnagar, Gujarat — India&apos;s Brass City. Established in 2007, the company
                 supplies custom-engineered parts for electrical, plumbing, automotive,
                 aerospace, medical, sanitary, hardware, marine, fastener, and general
                 industrial applications.

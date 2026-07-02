@@ -3,25 +3,19 @@
 /**
  * HeroSection
  *
- * Scroll-driven 3-slide hero with:
- * - React Three Fiber 3D backgrounds (lazy-loaded per slide)
- * - GSAP slide transitions (opacity + vertical translate)
- * - Scroll-hijack while hero is in viewport
- * - Autoplay on last slide
- * - Keyboard + touch + mouse-wheel navigation
- * - Accessible, SEO-friendly, respects prefers-reduced-motion
+ * Slide-hijacked scroll-locked hero with:
+ * - Full-screen background 3D Canvas (HeroScene) behind a subtle dark overlay
+ * - Native wheel, touch-swipe, and keyboard arrow locked navigation (useHeroScroll)
+ * - Auto-slide cycle triggered on the final slide with interactive overrides (useAutoPlay)
+ * - Apple-style staggered text animations using GSAP on slide change
+ * - Seamless release of scroll lock upon completing the slide deck
  */
 
 import { useRef, useCallback, useEffect, useState } from "react";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import { gsap } from "gsap";
-import { useHeroScroll, useAutoPlay } from "@/hooks/useHeroScroll";
-
-// Dynamic import for the R3F Canvas wrapper (client-only to prevent SSR canvas issues)
-const HeroScene = dynamic(() => import("@/components/hero/HeroScene"), {
-  ssr: false,
-});
+import HeroScene from "@/components/hero/HeroScene";
+import { useAutoPlay, useHeroScroll } from "@/hooks/useHeroScroll";
 
 /* ─── SLIDE DATA ──────────────────────────────────────────── */
 const SLIDES = [
@@ -45,7 +39,7 @@ const SLIDES = [
       { label: "View Quality System", href: "/quality", primary: true },
       { label: "Contact Sales", href: "/contact", primary: false },
     ],
-    modelPath: "/models/brass_component_1.glb", // Reuse first model for slide 2 for now
+    modelPath: "/models/bolt_and_nut.glb",
   },
   {
     badge: "CNC · Machined · Plated · Export-Ready",
@@ -56,7 +50,7 @@ const SLIDES = [
       { label: "View Products", href: "/products", primary: true },
       { label: "Send Enquiry", href: "/contact", primary: false },
     ],
-    modelPath: "/models/brass_component_1.glb", // Reuse first model for slide 3 for now
+    modelPath: "/models/brass_component_1.glb",
   },
 ];
 
@@ -67,165 +61,100 @@ const STATS = [
   { val: "ISO 9001:2015", label: "Certified" },
 ];
 
-/* ─── SLIDE CONTENT PANEL ──────────────────────────────────
-   Identical markup/classes to original — with grid for 3D model
-──────────────────────────────────────────────────────────── */
-interface SlideContentProps {
-  slide: (typeof SLIDES)[number];
-  contentRef: React.RefObject<HTMLDivElement | null>;
-  slideIndex: number;
-}
-
-function SlideContent({ slide, contentRef, slideIndex }: SlideContentProps) {
-  return (
-    <div
-      ref={contentRef}
-      className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center w-full"
-    >
-      {/* Left side: Text Column */}
-      <div className="lg:col-span-7 space-y-6">
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 border border-accent-gold/40 bg-accent-gold/10 px-4 py-1.5 rounded-sm mb-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-accent-gold animate-pulse" />
-          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent-gold">
-            {slide.badge}
-          </span>
-        </div>
-
-        {/* Headline */}
-        <h1
-          className="text-5xl sm:text-7xl lg:text-8xl font-black uppercase leading-none tracking-tight text-white"
-          style={{ fontFamily: "var(--font-serif-display)" }}
-        >
-          {slide.headline.split("\n").map((line, i) => (
-            <span key={i} className="block">
-              {i === 1 ? <span className="text-accent-gold">{line}</span> : line}
-            </span>
-          ))}
-        </h1>
-
-        {/* Accent line */}
-        <div className="flex items-center gap-3">
-          <div className="w-12 h-0.5 bg-accent-gold shrink-0" />
-          <p className="text-sm sm:text-base font-semibold text-white/90 leading-snug">
-            {slide.sub}
-          </p>
-        </div>
-
-        <p className="text-sm text-zinc-400 leading-relaxed max-w-xl">{slide.body}</p>
-
-        {/* CTAs */}
-        <div className="flex flex-wrap gap-4 pt-2">
-          {slide.ctas.map((c) =>
-            c.primary ? (
-              <Link
-                key={c.label}
-                href={c.href}
-                className="px-8 py-3.5 text-xs font-black uppercase tracking-widest text-white bg-accent-gold hover:bg-accent-gold-hover transition-colors border border-accent-gold hover:shadow-lg hover:shadow-accent-gold/30"
-              >
-                {c.label}
-              </Link>
-            ) : (
-              <Link
-                key={c.label}
-                href={c.href}
-                className="px-8 py-3.5 text-xs font-black uppercase tracking-widest text-white border border-white/40 hover:border-accent-gold hover:text-accent-gold transition-colors"
-              >
-                {c.label}
-              </Link>
-            )
-          )}
-        </div>
-      </div>
-
-      {/* Right side: 3D Model Column */}
-      <div className="lg:col-span-5 w-full h-[320px] sm:h-[450px] lg:h-[550px] flex items-center justify-center pointer-events-none relative">
-        <HeroScene modelPath={slide.modelPath} slideIndex={slideIndex} />
-      </div>
-    </div>
-  );
-}
-
-/* ─── MAIN COMPONENT ────────────────────────────────────── */
 export default function HeroSection() {
   const heroRef = useRef<HTMLElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const isAnimating = useRef(false);
+  const textRef = useRef<HTMLDivElement>(null);
+  const stopAutoPlayRef = useRef(() => {});
+  const [mounted, setMounted] = useState(false);
 
-  const [current, setCurrent] = useState(0);
-  const currentRef = useRef(0);
-
-  // Keep currentRef in sync
+  // Set mounted true on client
   useEffect(() => {
-    currentRef.current = current;
-  }, [current]);
-
-  /** Called by useHeroScroll when the active slide changes */
-  const handleSlideChange = useCallback((idx: number) => {
-    if (isAnimating.current) return;
-    isAnimating.current = true;
-
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (prefersReduced) {
-      // No animation — instant switch
-      setCurrent(idx);
-      isAnimating.current = false;
-      return;
-    }
-
-    // GSAP: fade out content, swap, fade in
-    const tl = gsap.timeline({
-      onComplete: () => {
-        isAnimating.current = false;
-      },
-    });
-
-    // Fade out current content
-    tl.to(contentRef.current, {
-      opacity: 0,
-      y: -20,
-      duration: 0.3,
-      ease: "power2.in",
-    });
-
-    // Switch React state
-    tl.call(() => {
-      setCurrent(idx);
-      currentRef.current = idx;
-    });
-
-    // Fade in new content
-    tl.fromTo(
-      contentRef.current,
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }
-    );
+    setMounted(true);
   }, []);
 
-  const { goTo } = useHeroScroll({
+  /** Staggered Apple-style text element animations on slide change */
+  const handleSlideChange = useCallback((idx: number) => {
+    void idx;
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) return;
+
+    if (textRef.current) {
+      const badge = textRef.current.querySelector(".slide-badge");
+      const title = textRef.current.querySelector(".slide-title");
+      const accent = textRef.current.querySelector(".slide-accent");
+      const body = textRef.current.querySelector(".slide-body");
+      const ctas = textRef.current.querySelector(".slide-ctas");
+
+      // Kill previous tweens to prevent overlapping animations
+      gsap.killTweensOf([badge, title, accent, body, ctas]);
+
+      const tl = gsap.timeline();
+      tl.fromTo(
+        badge,
+        { opacity: 0, y: 15 },
+        { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }
+      )
+        .fromTo(
+          title,
+          { opacity: 0, y: 15 },
+          { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" },
+          "-=0.28"
+        )
+        .fromTo(
+          accent,
+          { opacity: 0, y: 15 },
+          { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" },
+          "-=0.28"
+        )
+        .fromTo(
+          body,
+          { opacity: 0, y: 15 },
+          { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" },
+          "-=0.28"
+        )
+        .fromTo(
+          ctas,
+          { opacity: 0, y: 15 },
+          { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" },
+          "-=0.28"
+        );
+    }
+  }, []);
+
+  // Hook scroll hijacked events to slide transitions
+  const { current, goTo, isHeroActive } = useHeroScroll({
     slideCount: SLIDES.length,
-    heroRef: heroRef as React.RefObject<HTMLElement>,
+    heroRef,
     onSlideChange: handleSlideChange,
-    throttleMs: 700,
+    onHeroLeave: () => stopAutoPlayRef.current(),
+    onUserInteract: () => stopAutoPlayRef.current(),
+    throttleMs: 750,
   });
 
+  // Cycle automatically after 2s on the last slide, stopping on user input
   const { stopAutoPlay } = useAutoPlay({
     current,
     slideCount: SLIDES.length,
-    goTo: handleSlideChange,
+    goTo,
+    enabled: isHeroActive,
     initialDelay: 2000,
-    interval: 3500,
+    interval: 3600,
   });
 
-  /** Manual navigation (dots) — also stops autoplay */
-  const handleManualGoTo = useCallback(
-    (idx: number) => {
-      stopAutoPlay();
-      handleSlideChange(idx);
-    },
-    [stopAutoPlay, handleSlideChange]
-  );
+  // Sync autoplay ref
+  useEffect(() => {
+    stopAutoPlayRef.current = stopAutoPlay;
+  }, [stopAutoPlay]);
+
+  /** Manual indicator click jumps dot and moves scroll view back to lock area */
+  const handleManualGoTo = useCallback((idx: number) => {
+    stopAutoPlay();
+    goTo(idx);
+    if (heroRef.current) {
+      const top = window.scrollY + heroRef.current.getBoundingClientRect().top;
+      window.scrollTo(0, top);
+    }
+  }, [goTo, stopAutoPlay]);
 
   const slide = SLIDES[current];
 
@@ -235,21 +164,86 @@ export default function HeroSection() {
       className="relative w-full min-h-screen flex flex-col bg-primary-dark overflow-hidden"
       aria-label="Hero section"
     >
-      {/* ── BACKGROUND GRADIENT OVERLAYS ── */}
-      <div className="absolute inset-0 bg-gradient-to-r from-primary-dark/98 via-primary-dark/90 to-primary-dark/80" />
-      <div className="absolute inset-0 bg-gradient-to-t from-primary-dark via-transparent to-primary-dark/40" />
+      {/* ── BACKGROUND FULL-SIZE 3D CANVAS & OVERLAYS ── */}
+      <div className="relative lg:absolute w-full h-[280px] lg:h-full lg:inset-0 z-10 lg:z-0 overflow-hidden pointer-events-auto bg-primary-dark mt-14 lg:mt-0">
+        {/* Subtle dark gradient overlay rendered on the bottom layer (hidden on mobile) */}
+        <div className="absolute inset-0 bg-gradient-to-r from-primary-dark/95 via-primary-dark/85 to-primary-dark/45 z-0 hidden lg:block" />
+        <div className="absolute inset-0 bg-gradient-to-t from-primary-dark via-transparent to-primary-dark/35 z-0 hidden lg:block" />
 
-      {/* ── DECORATIVE VERTICAL LINES ── */}
-      <div className="absolute inset-y-0 left-[33%] w-px bg-white/5 hidden xl:block" aria-hidden="true" />
-      <div className="absolute inset-y-0 left-[66%] w-px bg-white/5 hidden xl:block" aria-hidden="true" />
+        {/* 3D Canvas rendered on top of overlays (but beneath foreground content z-20) */}
+        <div className="absolute inset-0 w-full h-full z-10">
+          {mounted && <HeroScene modelPath={slide.modelPath} slideIndex={current} />}
+        </div>
+      </div>
 
-      {/* ── SLIDE CONTENT ── */}
-      <div className="relative z-10 flex-1 flex items-center">
-        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-28 pb-12">
-          <SlideContent slide={slide} contentRef={contentRef} slideIndex={current} />
+      {/* ── SLIDE FOREGROUND CONTENT ── */}
+      <div className="relative z-20 flex-1 flex items-center pointer-events-none">
+        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-4 lg:pt-20 pb-4">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center w-full relative">
+            
+            {/* Left side: Stagger-animated text blocks */}
+            <div ref={textRef} className="lg:col-span-7 space-y-4 z-20 relative pointer-events-auto">
+              {/* Badge */}
+              <div className="slide-badge inline-flex items-center gap-2 border border-accent-gold/40 bg-accent-gold/10 px-4 py-1 rounded-sm mb-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent-gold animate-pulse" />
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent-gold">
+                  {slide.badge}
+                </span>
+              </div>
+
+              {/* Headline */}
+              <h1
+                className="slide-title text-5xl sm:text-7xl lg:text-8xl font-black uppercase leading-none tracking-tight text-white"
+                style={{ fontFamily: "var(--font-serif-display)" }}
+              >
+                {slide.headline.split("\n").map((line, i) => (
+                  <span key={i} className="block">
+                    {i === 1 ? <span className="text-accent-gold">{line}</span> : line}
+                  </span>
+                ))}
+              </h1>
+
+              {/* Accent line */}
+              <div className="slide-accent flex items-center gap-3 py-1">
+                <div className="w-12 h-0.5 bg-accent-gold shrink-0" />
+                <p className="text-sm sm:text-base font-semibold text-white/90 leading-snug">
+                  {slide.sub}
+                </p>
+              </div>
+
+              {/* Description */}
+              <p className="slide-body text-sm text-zinc-400 leading-relaxed max-w-xl pb-2">{slide.body}</p>
+
+              {/* CTAs */}
+              <div className="slide-ctas flex flex-wrap gap-4">
+                {slide.ctas.map((c) =>
+                  c.primary ? (
+                    <Link
+                      key={c.label}
+                      href={c.href}
+                      className="px-8 py-3.5 text-xs font-black uppercase tracking-widest text-white bg-accent-gold hover:bg-accent-gold-hover transition-colors border border-accent-gold hover:shadow-lg hover:shadow-accent-gold/30"
+                    >
+                      {c.label}
+                    </Link>
+                  ) : (
+                    <Link
+                      key={c.label}
+                      href={c.href}
+                      className="px-8 py-3.5 text-xs font-black uppercase tracking-widest text-white border border-white/40 hover:border-accent-gold hover:text-accent-gold transition-colors"
+                    >
+                      {c.label}
+                    </Link>
+                  )
+                )}
+              </div>
+            </div>
+            
+            {/* Right side spacer to balance layout grid */}
+            <div className="hidden lg:block lg:col-span-5 h-[350px] pointer-events-none" />
+          </div>
 
           {/* ── SLIDE INDICATORS ── */}
-          <div className="flex items-center gap-3 mt-16" role="tablist" aria-label="Hero slides">
+          <div className="flex items-center gap-3 mt-6 z-20 relative pointer-events-auto" role="tablist" aria-label="Hero slides">
             {SLIDES.map((_, i) => (
               <button
                 key={i}
@@ -272,7 +266,7 @@ export default function HeroSection() {
       </div>
 
       {/* ── STAT BAR ── */}
-      <div className="relative z-10 border-t border-white/10 bg-primary-dark/80 backdrop-blur-sm">
+      <div className="relative z-20 border-t border-white/10 bg-primary-dark/85 backdrop-blur-sm shrink-0 pointer-events-auto">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-white/10">
             {STATS.map((s) => (

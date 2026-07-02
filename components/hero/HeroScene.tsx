@@ -1,38 +1,28 @@
 "use client";
 
-import { Canvas, useThree } from "@react-three/fiber";
-import { Suspense, useRef, useEffect, useState, useMemo } from "react";
-import { Center, Environment, ContactShadows } from "@react-three/drei";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Suspense, useCallback, useRef, useEffect, useState, useMemo } from "react";
+import { Center, Environment } from "@react-three/drei";
 import gsap from "gsap";
 import * as THREE from "three";
-import { fitCameraToModel } from "@/utils/threeHelpers";
 import HeroModel from "./HeroModel";
 import FloatingModel from "./FloatingModel";
+
+const PRIMARY_DARK = "#062F3A";
+
+const canvasStyle = {
+  width: "100%",
+  height: "100%",
+  position: "absolute",
+  top: 0,
+  left: 0,
+  pointerEvents: "auto",
+  transition: "opacity 420ms ease-out",
+} as const;
 
 interface HeroSceneProps {
   modelPath?: string;
   slideIndex: number;
-}
-
-// Controller component to dynamically adjust camera focal length based on bounding box
-function CameraController({ modelSize }: { modelSize: THREE.Vector3 }) {
-  const { camera } = useThree();
-
-  useEffect(() => {
-    if (modelSize.length() === 0) return;
-
-    // Calculate distance needed to fit model vertically within 35 deg FOV
-    // Target ratio set to 0.75 to ensure the model occupies ~75% of height and leaves padding
-    const distance = fitCameraToModel(modelSize, 35, 0.75);
-
-    camera.position.set(0, 0, Math.max(distance, 4.0));
-    camera.near = 0.1;
-    camera.far = 1000;
-    camera.lookAt(new THREE.Vector3(0, 0, 0));
-    camera.updateProjectionMatrix();
-  }, [camera, modelSize]);
-
-  return null;
 }
 
 // Internal wrapper to manage responsive scale and position offsets
@@ -45,17 +35,17 @@ function SceneWrapper({
 }) {
   const { size: canvasSize } = useThree();
 
-  // Responsive scale factor based on screen size width
+  // Responsive scale factors to make the brass component act as a balanced background element
   const responsiveScale = useMemo(() => {
-    if (canvasSize.width < 640) return 1.4; // Mobile
-    if (canvasSize.width < 1024) return 1.8; // Tablet
-    return 2.3; // Desktop
+    if (canvasSize.width < 640) return 8.0; // Mobile scale
+    if (canvasSize.width < 1024) return 4.2; // Tablet scale
+    return 5.6; // Desktop scale
   }, [canvasSize.width]);
 
-  // Position coordinates: shift to right on desktop/tablet, center on mobile
+  // Position coordinates: shift to the right side (1.15) and center/up (-0.05) to balance composition
   const positionOffset = useMemo(() => {
-    if (canvasSize.width < 768) return [0, -0.15, 0] as [number, number, number]; // Centered on mobile
-    return [1.4, -0.15, 0] as [number, number, number]; // Shifted right on desktop/tablet
+    if (canvasSize.width < 768) return [0, -0.05, 0] as [number, number, number]; // Centered on mobile
+    return [1.15, -0.05, 0] as [number, number, number]; // Shifted right on desktop/tablet
   }, [canvasSize.width]);
 
   return (
@@ -69,12 +59,34 @@ function SceneWrapper({
   );
 }
 
+function CameraRig() {
+  const { camera } = useThree();
+
+  useFrame((state) => {
+    const t = state.clock.getElapsedTime();
+    // R3F expects imperative Three.js mutations inside the render loop.
+    // eslint-disable-next-line react-hooks/immutability
+    camera.position.x = THREE.MathUtils.lerp(camera.position.x, Math.sin(t * 0.28) * 0.08, 0.025);
+    camera.position.y = THREE.MathUtils.lerp(camera.position.y, Math.cos(t * 0.22) * 0.05, 0.025);
+    camera.lookAt(0, -0.05, 0);
+  });
+
+  return null;
+}
+
 export default function HeroScene({
   modelPath = "/models/brass_component_1.glb",
   slideIndex,
 }: HeroSceneProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [modelSize, setModelSize] = useState<THREE.Vector3>(new THREE.Vector3(0, 0, 0));
+  const [loadedPath, setLoadedPath] = useState<string | null>(null);
+  const isModelLoaded = loadedPath === modelPath;
+
+  const handleModelLoaded = useCallback((size: THREE.Vector3) => {
+    if (size.length() > 0) {
+      setLoadedPath(modelPath);
+    }
+  }, [modelPath]);
 
   // GSAP entrance animation for canvas container on load/slide transition
   useEffect(() => {
@@ -83,14 +95,14 @@ export default function HeroScene({
     gsap.fromTo(
       containerRef.current,
       {
-        opacity: 0,
-        scale: 0.95,
+        opacity: 0.5,
+        scale: 0.96,
       },
       {
         opacity: 1,
         scale: 1,
-        duration: 1.2,
-        ease: "power3.out",
+        duration: 0.85,
+        ease: "power2.out",
       }
     );
   }, [slideIndex]);
@@ -98,66 +110,81 @@ export default function HeroScene({
   return (
     <div
       ref={containerRef}
-      className="absolute inset-0 w-full h-full pointer-events-none flex items-center justify-center"
+      className="hero-scene-stage absolute inset-0 w-full h-full pointer-events-auto flex items-center justify-center overflow-hidden bg-transparent border-0 outline-0"
     >
+      <div
+        className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ease-out ${isModelLoaded ? "opacity-0" : "opacity-100"
+          }`}
+        aria-hidden="true"
+      >
+        <div className="relative h-52 w-52 sm:h-64 sm:w-64">
+          <div className="absolute inset-0 rounded-full bg-accent-gold/10 blur-3xl" />
+          <div className="absolute inset-8 rounded-full border border-accent-gold/25" />
+          <div className="absolute inset-16 rounded-full bg-accent-gold/20 blur-xl" />
+        </div>
+      </div>
       <Canvas
-        shadows
-        dpr={[1, 2]} // Cap device pixel ratio at 2.0 for performance
+        dpr={[1, 1.5]} // Cap device pixel ratio for faster first paint on dense screens
         frameloop="always"
+        performance={{ min: 0.6 }}
+        onCreated={({ gl }) => {
+          gl.setClearColor(0x000000, 0); // Set transparent clear color (alpha = 0)
+        }}
         gl={{
           antialias: true,
           powerPreference: "high-performance",
-          alpha: true, // Transparent background to blend into dark teal hero
+          alpha: true, // Transparent WebGL context enabled
           toneMapping: THREE.ACESFilmicToneMapping,
-          toneMappingExposure: 1.2,
+          toneMappingExposure: 1.25, // Exposure target = 1.25
         }}
-        camera={{ position: [0, 0, 5], fov: 35 }}
+        camera={{ position: [0, 0, 4.4], fov: 32, near: 0.1, far: 1000 }} // Camera Z offset at 4.4 to accommodate large scale without clipping
         style={{
-          width: "100%",
-          height: "100%",
-          position: "absolute",
-          top: 0,
-          left: 0,
-          pointerEvents: "none", // Prevent Canvas from trapping cursor clicks
+          ...canvasStyle,
+          opacity: isModelLoaded ? 1 : 0,
         }}
       >
-        {/* Lights setup as per requested premium studio specs */}
-        <ambientLight color="#ffffff" intensity={1.2} />
-        
+        {/* Professional Studio Product Lighting Setup */}
+        <CameraRig />
+
+        {/* Soft global ambient fill to eliminate shadows on brass crevices */}
+        <ambientLight color="#ffffff" intensity={2.2} />
+
+        {/* Key Light: Large soft warm light, upper left */}
+        <directionalLight
+          color="#fffcf0" // Warm champagne tint
+          intensity={4.5}
+          position={[-6, 8, 4]}
+        />
+
+        {/* Fill Light: Soft neutral light, front right to eliminate dark reflections */}
+        <directionalLight
+          color="#ffffff"
+          intensity={3.5}
+          position={[6, 3, 5]}
+        />
+
+        {/* Front Soft Light: Soft direct fill to keep front face fully illuminated */}
+        <directionalLight
+          color="#fff8e7"
+          intensity={2.5}
+          position={[0, 0, 8]}
+        />
+
+        {/* Rim Light: Back right to create beautiful champagne edge highlights */}
         <directionalLight
           color="#ffffff"
           intensity={2.5}
-          position={[6, 8, 6]}
-          castShadow
-          shadow-mapSize={[1024, 1024]}
-        />
-        
-        <directionalLight
-          color="#ffffff"
-          intensity={1.2}
-          position={[-6, 4, 5]}
+          position={[6, 6, -6]}
         />
 
-        {/* Dynamic camera adapter */}
-        <CameraController modelSize={modelSize} />
-
-        {/* 3D Environment HDRI reflection mapping from studio preset */}
+        {/* 3D Environment HDRI reflection mapping from local high-speed EXR file */}
         <Suspense fallback={null}>
-          <Environment preset="studio" />
+          <Environment files="/hdr/studio.exr" />
         </Suspense>
 
         {/* Model, positioning, scale, and dynamic group animations */}
         <Suspense fallback={null}>
-          <SceneWrapper modelPath={modelPath} onLoaded={setModelSize} />
-
-          {/* Soft contact shadow underneath the floating object */}
-          <ContactShadows
-            position={[0, -1.2, 0]}
-            opacity={0.25}
-            scale={10}
-            blur={2.0}
-            far={5.0}
-          />
+          <SceneWrapper modelPath={modelPath} onLoaded={handleModelLoaded} />
         </Suspense>
       </Canvas>
     </div>

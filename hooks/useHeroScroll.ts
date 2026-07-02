@@ -13,10 +13,10 @@ import { useEffect, useRef, useCallback, useState } from "react";
 
 interface UseHeroScrollOptions {
   slideCount: number;
-  /** px threshold to detect hero is "in view" at the top */
   heroRef: React.RefObject<HTMLElement | null>;
   onSlideChange: (index: number) => void;
-  /** ms throttle between slide changes */
+  onUserInteract?: () => void;
+  onHeroLeave?: () => void;
   throttleMs?: number;
 }
 
@@ -24,28 +24,27 @@ export function useHeroScroll({
   slideCount,
   heroRef,
   onSlideChange,
+  onUserInteract,
+  onHeroLeave,
   throttleMs = 700,
 }: UseHeroScrollOptions) {
   const [current, setCurrent] = useState(0);
-  const [locked, setLocked] = useState(false);
+  const [isHeroActive, setIsHeroActive] = useState(false);
 
-  // Refs to avoid stale closures inside event handlers
   const currentRef = useRef(0);
-  const lockedRef = useRef(false);
+  const isHeroActiveRef = useRef(false);
   const lastScrollTime = useRef(0);
-  // Touch tracking
   const touchStartY = useRef<number | null>(null);
+  const hasReleasedAfterLast = useRef(false);
 
-  // Keep refs in sync with state
   useEffect(() => {
     currentRef.current = current;
   }, [current]);
 
   useEffect(() => {
-    lockedRef.current = locked;
-  }, [locked]);
+    isHeroActiveRef.current = isHeroActive;
+  }, [isHeroActive]);
 
-  /** Navigate to an absolute slide index */
   const goTo = useCallback(
     (idx: number) => {
       const clamped = Math.max(0, Math.min(slideCount - 1, idx));
@@ -57,82 +56,102 @@ export function useHeroScroll({
     [slideCount, onSlideChange]
   );
 
-  /** Move forward or backward by delta (±1) — returns whether consumed */
+  const isHeroInViewport = useCallback((): boolean => {
+    if (!heroRef.current) return false;
+    const rect = heroRef.current.getBoundingClientRect();
+    return rect.top < window.innerHeight && rect.bottom > 0;
+  }, [heroRef]);
+
+  const isHeroPrimaryViewport = useCallback((): boolean => {
+    if (!heroRef.current) return false;
+    const rect = heroRef.current.getBoundingClientRect();
+    return rect.top <= window.innerHeight * 0.35 && rect.bottom >= window.innerHeight * 0.35;
+  }, [heroRef]);
+
+  const anchorHero = useCallback(() => {
+    if (!heroRef.current) return;
+    const top = window.scrollY + heroRef.current.getBoundingClientRect().top;
+    window.scrollTo(0, top);
+  }, [heroRef]);
+
+  const activateHero = useCallback(() => {
+    if (isHeroActiveRef.current) return;
+    setIsHeroActive(true);
+    isHeroActiveRef.current = true;
+  }, []);
+
+  const deactivateHero = useCallback(() => {
+    if (!isHeroActiveRef.current) return;
+    setIsHeroActive(false);
+    isHeroActiveRef.current = false;
+  }, []);
+
   const step = useCallback(
     (delta: number): boolean => {
       const now = Date.now();
-      if (now - lastScrollTime.current < throttleMs) return lockedRef.current;
+      if (now - lastScrollTime.current < throttleMs) return true;
       lastScrollTime.current = now;
 
+      onUserInteract?.();
       const next = currentRef.current + delta;
 
       if (next < 0) {
-        // Already on first slide — release upward scroll
+        deactivateHero();
         return false;
       }
 
       if (next >= slideCount) {
-        // Past last slide — unlock so page scrolls
-        setLocked(false);
-        lockedRef.current = false;
+        hasReleasedAfterLast.current = true;
+        deactivateHero();
         return false;
       }
 
       goTo(next);
       return true; // consumed
     },
-    [slideCount, goTo, throttleMs]
+    [deactivateHero, goTo, onUserInteract, slideCount, throttleMs]
   );
 
-  /** Detect whether the hero section occupies the top of the viewport */
-  const isHeroAtTop = useCallback((): boolean => {
-    if (!heroRef.current) return false;
-    const rect = heroRef.current.getBoundingClientRect();
-    // Hero is "at top" when its top edge is within 1px of the viewport top
-    return rect.top <= 1 && rect.bottom > 0;
-  }, [heroRef]);
-
   useEffect(() => {
-    // Respect prefers-reduced-motion — disable scroll hijack entirely
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    /** Wheel handler */
     const onWheel = (e: WheelEvent) => {
       if (prefersReduced) return;
-      if (!isHeroAtTop()) return;
+      if (!isHeroPrimaryViewport()) return;
 
       const delta = e.deltaY > 0 ? 1 : -1;
 
-      // If not locked yet and user scrolls down into hero from position 0, engage
-      if (!lockedRef.current && delta > 0 && window.scrollY <= 1) {
-        setLocked(true);
-        lockedRef.current = true;
+      if (!isHeroActiveRef.current) {
+        if (delta < 0 && hasReleasedAfterLast.current) {
+          hasReleasedAfterLast.current = false;
+          goTo(slideCount - 1);
+          activateHero();
+          e.preventDefault();
+          return;
+        }
+
+        if (delta > 0 && !hasReleasedAfterLast.current) {
+          activateHero();
+        }
       }
 
-      // Also re-engage if user scrolls up and we're on first slide at page top
-      if (!lockedRef.current && delta < 0 && window.scrollY <= 1 && currentRef.current > 0) {
-        setLocked(true);
-        lockedRef.current = true;
-      }
-
-      if (!lockedRef.current) return;
+      if (!isHeroActiveRef.current) return;
 
       const consumed = step(delta);
       if (consumed) {
         e.preventDefault();
         e.stopPropagation();
+        anchorHero();
       }
     };
 
-    /** Touch start handler */
     const onTouchStart = (e: TouchEvent) => {
       touchStartY.current = e.touches[0].clientY;
     };
 
-    /** Touch end handler */
     const onTouchEnd = (e: TouchEvent) => {
       if (prefersReduced) return;
-      if (!isHeroAtTop()) return;
+      if (!isHeroPrimaryViewport()) return;
       if (touchStartY.current === null) return;
 
       const diff = touchStartY.current - e.changedTouches[0].clientY;
@@ -143,45 +162,56 @@ export function useHeroScroll({
 
       const delta = diff > 0 ? 1 : -1;
 
-      if (!lockedRef.current && delta > 0 && window.scrollY <= 1) {
-        setLocked(true);
-        lockedRef.current = true;
+      if (!isHeroActiveRef.current) {
+        if (delta < 0 && hasReleasedAfterLast.current) {
+          hasReleasedAfterLast.current = false;
+          goTo(slideCount - 1);
+          activateHero();
+          return;
+        }
+
+        if (delta > 0 && !hasReleasedAfterLast.current) {
+          activateHero();
+        }
       }
 
-      if (lockedRef.current) {
-        step(delta);
+      if (isHeroActiveRef.current) {
+        if (step(delta)) anchorHero();
       }
     };
 
-    /** Scroll handler — detect when user scrolled away from hero and reset */
     const onScroll = () => {
-      if (!heroRef.current) return;
-      const rect = heroRef.current.getBoundingClientRect();
-      // If hero completely above viewport, unlock and reset
-      if (rect.bottom <= 0) {
-        setLocked(false);
-        lockedRef.current = false;
-      }
-      // If hero comes back to top and user is on first slide, re-lock on next scroll
-      if (rect.top >= 0 && currentRef.current === slideCount - 1) {
-        // will re-lock on next wheel event
+      if (!isHeroInViewport()) {
+        deactivateHero();
+        onHeroLeave?.();
       }
     };
 
-    /** Keyboard navigation */
     const onKeyDown = (e: KeyboardEvent) => {
-      if (!lockedRef.current) return;
-      if (!isHeroAtTop()) return;
+      if (!isHeroPrimaryViewport()) return;
       if (e.key === "ArrowDown" || e.key === "PageDown") {
-        step(1);
-        e.preventDefault();
+        activateHero();
+        if (step(1)) {
+          e.preventDefault();
+          anchorHero();
+        }
       } else if (e.key === "ArrowUp" || e.key === "PageUp") {
-        step(-1);
-        e.preventDefault();
+        activateHero();
+        if (step(-1)) {
+          e.preventDefault();
+          anchorHero();
+        }
+      } else if (e.key === "Home") {
+        onUserInteract?.();
+        activateHero();
+        goTo(0);
+      } else if (e.key === "End") {
+        onUserInteract?.();
+        activateHero();
+        goTo(slideCount - 1);
       }
     };
 
-    // passive: false required so we can call preventDefault on wheel
     window.addEventListener("wheel", onWheel, { passive: false });
     window.addEventListener("touchstart", onTouchStart, { passive: true });
     window.addEventListener("touchend", onTouchEnd, { passive: true });
@@ -195,9 +225,20 @@ export function useHeroScroll({
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("keydown", onKeyDown);
     };
-  }, [isHeroAtTop, step, heroRef, slideCount]);
+  }, [
+    activateHero,
+    anchorHero,
+    deactivateHero,
+    goTo,
+    isHeroInViewport,
+    isHeroPrimaryViewport,
+    onHeroLeave,
+    onUserInteract,
+    slideCount,
+    step,
+  ]);
 
-  return { current, goTo, locked };
+  return { current, goTo, isHeroActive };
 }
 
 /**
@@ -209,12 +250,14 @@ export function useAutoPlay({
   current,
   slideCount,
   goTo,
+  enabled = true,
   initialDelay = 2000,
   interval = 3500,
 }: {
   current: number;
   slideCount: number;
   goTo: (idx: number) => void;
+  enabled?: boolean;
   initialDelay?: number;
   interval?: number;
 }) {
@@ -231,14 +274,13 @@ export function useAutoPlay({
   }, []);
 
   useEffect(() => {
-    // Start autoplay only when on last slide
-    if (current !== slideCount - 1) {
+    if (!enabled) {
       stopAutoPlay();
       return;
     }
 
-    // Already running
     if (activeRef.current) return;
+    if (current !== slideCount - 1) return;
 
     activeRef.current = true;
 
@@ -253,7 +295,7 @@ export function useAutoPlay({
     }, initialDelay);
 
     return () => stopAutoPlay();
-  }, [current, slideCount, goTo, initialDelay, interval, stopAutoPlay]);
+  }, [current, enabled, slideCount, goTo, initialDelay, interval, stopAutoPlay]);
 
   return { stopAutoPlay };
 }

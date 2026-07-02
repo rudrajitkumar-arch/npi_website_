@@ -24,3 +24,6 @@ body {
   font-family: var(--font-sans), sans-serif;
 }
 
+.hero-scene-stage canvas {
+  background-color: var(--color-primary-dark) !important;
+}
