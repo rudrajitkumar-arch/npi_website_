@@ -265,7 +265,7 @@ export default function ContactPage() {
             {/* Google Map iframe */}
             <iframe
               title="New Perfect Incorporation Location"
-              src="https://maps.google.com/maps?q=Plot%20No.%204145,%20GIDC%20Phase%203,%20Dared,%20Jamnagar,%20Gujarat%20361004&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              src="https://maps.google.com/maps?q=Plot%20No.%204145,%20GIDC%20Phase%203,%20Dared,%20Jamnagar,%20Gujarat%20361004&t=&z=15&ie=UTF8&iwloc=B&output=embed"
               className="w-full h-full border-0"
               allowFullScreen
               loading="lazy"
@@ -273,7 +273,7 @@ export default function ContactPage() {
             />
 
             {/* Floating Info Box */}
-            <div className="absolute top-4 left-4 sm:top-6 sm:left-6 max-w-xs sm:max-w-sm w-[calc(100%-2rem)] bg-white/95 backdrop-blur-md p-5 sm:p-6 rounded-xl shadow-xl border border-zinc-200 z-10 space-y-3">
+            <div className="absolute top-3 left-3 sm:top-5 sm:left-5 max-w-xs sm:max-w-sm w-[calc(100%-1.5rem)] bg-white p-5 sm:p-6 rounded-xl shadow-2xl border border-zinc-200 z-20 space-y-3">
               <div>
                 <h3
                   className="text-base sm:text-lg font-black uppercase text-primary-dark leading-snug"
