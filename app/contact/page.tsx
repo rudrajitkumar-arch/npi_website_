@@ -273,7 +273,7 @@ export default function ContactPage() {
             />
 
             {/* Floating Info Box */}
-            <div className="absolute top-3 left-3 sm:top-5 sm:left-5 max-w-xs sm:max-w-sm w-[calc(100%-1.5rem)] bg-white p-5 sm:p-6 rounded-xl shadow-2xl border border-zinc-200 z-20 space-y-3">
+            <div className="absolute top-0 left-0 max-w-xs sm:max-w-sm w-full bg-white p-5 sm:p-7 rounded-br-2xl rounded-tl-2xl sm:rounded-tl-3xl shadow-2xl border-r border-b border-zinc-200 z-20 space-y-3">
               <div>
                 <h3
                   className="text-base sm:text-lg font-black uppercase text-primary-dark leading-snug"
