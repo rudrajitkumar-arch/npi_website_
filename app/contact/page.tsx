@@ -195,7 +195,7 @@ export default function ContactPage() {
                 Registered Office Address
               </span>
               <p className="text-xs text-zinc-600 leading-relaxed">
-                Plot No. 4145, GIDC Phase 3, Dared, Jamnagar, Gujarat, India - 361004
+                P-4145, GIDC Phase III, GIDC Phase-2, Dared, Jamnagar, Gujarat - 361006
               </p>
             </div>
           </div>
@@ -265,7 +265,7 @@ export default function ContactPage() {
             {/* Google Map iframe */}
             <iframe
               title="New Perfect Incorporation Location"
-              src="https://maps.google.com/maps?q=Plot%20No.%204145,%20GIDC%20Phase%203,%20Dared,%20Jamnagar,%20Gujarat%20361004&t=&z=15&ie=UTF8&iwloc=B&output=embed"
+              src="https://maps.google.com/maps?q=New%20Perfect%20Incorporation,%20Dared,%20Jamnagar,%20Gujarat&t=&z=16&ie=UTF8&iwloc=B&output=embed"
               className="w-full h-full border-0"
               allowFullScreen
               loading="lazy"
@@ -282,19 +282,19 @@ export default function ContactPage() {
                   New Perfect Incorporation
                 </h3>
                 <p className="text-xs text-zinc-500 mt-1 leading-relaxed">
-                  Plot No. 4145, Phase 3, GIDC, Dared, Jamnagar, Gujarat 361004
+                  P-4145, GIDC Phase III, GIDC Phase-2, Dared, Jamnagar, Gujarat 361006
                 </p>
               </div>
 
               <div className="flex items-center gap-1.5 text-xs text-amber-600 font-bold">
                 <span>5.0</span>
                 <div className="flex text-amber-400 text-sm">★★★★★</div>
-                <span className="text-zinc-400 font-normal text-[11px]">(ISO 9001:2015 Certified)</span>
+                <span className="text-zinc-400 font-normal text-[11px]">(7 Reviews on Google)</span>
               </div>
 
               <div className="pt-1 flex items-center gap-2">
                 <a
-                  href="https://maps.google.com/maps?q=Plot+No.+4145,+GIDC+Phase+3,+Dared,+Jamnagar,+Gujarat+361004"
+                  href="https://maps.app.goo.gl/vSrZ6MaU2pysBcNQ8"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary-dark hover:bg-accent-gold text-white text-xs font-black uppercase tracking-widest rounded-lg shadow transition-all hover:scale-[1.02]"
