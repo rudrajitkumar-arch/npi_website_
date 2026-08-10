@@ -5,9 +5,9 @@ import ReactDOM from "react-dom";
 import HeroSection from "@/components/HeroSection";
 
 export const metadata: Metadata = {
-  title: "New Perfect Incorporation | Precision Brass & Copper Components – Jamnagar, India",
+  title: "New Perfect Incorporation | Every Precision Components – Jamnagar, India",
   description:
-    "ISO 9001:2015 certified manufacturer, exporter & supplier of precision brass and copper components. CNC turned parts, fittings, fasteners, inserts, and custom components from Jamnagar, Gujarat.",
+    "ISO 9001:2015 certified manufacturer, exporter & supplier of Every Precision Components. CNC turned parts, fittings, fasteners, inserts, and custom components from Jamnagar, Gujarat",
   keywords: [
     "brass components manufacturer",
     "copper components",
@@ -46,18 +46,16 @@ function SectionHead({
     <div className={`mb-12 ${center ? "text-center" : ""}`}>
       {tag && <Tag>{tag}</Tag>}
       <h2
-        className={`mt-4 text-3xl sm:text-4xl font-black uppercase leading-tight tracking-tight ${
-          light ? "text-white" : "text-primary-dark"
-        }`}
+        className={`mt-4 text-3xl sm:text-4xl font-black uppercase leading-tight tracking-tight ${light ? "text-white" : "text-primary-dark"
+          }`}
         style={{ fontFamily: "var(--font-serif-display)" }}
       >
         {title}
       </h2>
       {sub && (
         <p
-          className={`mt-3 text-sm ${
-            light ? "text-zinc-400" : "text-zinc-500"
-          } max-w-2xl ${center ? "mx-auto" : ""}`}
+          className={`mt-3 text-sm ${light ? "text-zinc-400" : "text-zinc-500"
+            } max-w-2xl ${center ? "mx-auto" : ""}`}
         >
           {sub}
         </p>
@@ -72,52 +70,52 @@ const INDUSTRIES = [
   {
     icon: "⚡",
     title: "Electrical & Electronics",
-    desc: "Terminal blocks, pins, socket contacts, neutral links, earthing components.",
+    desc: "Terminal blocks, pins, socket contacts, neutral links, earthing components",
   },
   {
     icon: "🚗",
     title: "Automobiles",
-    desc: "Sensor housings, fuel connectors, fasteners, structural brass components.",
+    desc: "Sensor housings, fuel connectors, fasteners, structural brass components",
   },
   {
     icon: "✈️",
     title: "Aerospace",
-    desc: "High-tolerance components built to stringent aerospace material specs.",
+    desc: "High-tolerance components built to stringent aerospace material specs",
   },
   {
     icon: "🏥",
     title: "Medical",
-    desc: "Micro-machined brass parts with precision finishes for medical devices.",
+    desc: "Micro-machined brass parts with precision finishes for medical devices",
   },
   {
     icon: "🧩",
     title: "Plastic & Rubber Molding",
-    desc: "Threaded inserts, knurled fittings, and mold-in components for polymers.",
+    desc: "Threaded inserts, knurled fittings, and mold-in components for polymers",
   },
   {
     icon: "🚿",
     title: "Sanitary & Hardware",
-    desc: "Lead-free compression fittings, angles, adapters, valves, and couplings.",
+    desc: "Lead-free compression fittings, angles, adapters, valves, and couplings",
   },
   {
     icon: "🔥",
     title: "Gas, CNG & LPG",
-    desc: "Zero-leak forged valve bodies, injectors, and high-pressure brass fittings.",
+    desc: "Zero-leak forged valve bodies, injectors, and high-pressure brass fittings",
   },
   {
     icon: "⚓",
     title: "Marine",
-    desc: "Naval brass fasteners and fittings resistant to saltwater corrosion.",
+    desc: "Naval brass fasteners and fittings resistant to saltwater corrosion",
   },
   {
     icon: "🔩",
     title: "Fasteners",
-    desc: "Precision brass bolts, studs, nuts, washers, and specialty fixings.",
+    desc: "Precision brass bolts, studs, nuts, washers, and specialty fixings",
   },
   {
     icon: "🏭",
     title: "General Industrial",
-    desc: "Custom-machined brass and copper parts for general engineering.",
+    desc: "Custom-machined every precision components parts for general engineering",
   },
 ];
 
@@ -126,7 +124,7 @@ const CAPABILITIES = [
   {
     num: "01",
     title: "High-Volume Precision Machining",
-    desc: "Economical, high-quality CNC-machined metal components at any volume — from prototype batches to multi-million-piece runs.",
+    desc: "Economical, high-quality CNC-machined metal components at any volume — from prototype batches to multi-million-piece runs",
     items: [
       "CNC & VMC turning centres",
       "Auto bar-fed multi-spindle",
@@ -137,7 +135,7 @@ const CAPABILITIES = [
   {
     num: "02",
     title: "Full Secondary Operations",
-    desc: "Complete in-house secondary work eliminating subcontracting delays and quality gaps.",
+    desc: "Complete in-house secondary work eliminating subcontracting delays and quality gaps",
     items: [
       "Drilling, tapping, threading",
       "Slotting & broaching",
@@ -148,7 +146,7 @@ const CAPABILITIES = [
   {
     num: "03",
     title: "Surface Treatment & Plating",
-    desc: "Wide spectrum of surface finishes applied in-house for functional and decorative requirements.",
+    desc: "Wide spectrum of surface finishes applied in-house for functional and decorative requirements",
     items: [
       "Silver, gold, nickel, chrome, tin",
       "Zinc, copper plating",
@@ -167,7 +165,7 @@ const MACHINES = [
   { val: "10", label: "Secondary Operations Units" },
   { val: "8", label: "Automatic Threading Machines" },
   { val: "5", label: "Sliding Head Machines" },
-  { val: "3", label: "Tool Grinders" },
+  { val: "3", label: "Power Press" },
 ];
 
 /* ─── Products ──────────────────────────────────────────── */
@@ -175,42 +173,42 @@ const PRODUCTS = [
   {
     img: "/images/brass-components.jpg",
     title: "Brass Inserts",
-    desc: "Heat-set, ultrasonic & moulded inserts for polymer applications with precision knurling.",
+    desc: "Heat-set, ultrasonic & moulded inserts for polymer applications with precision knurling",
   },
   {
     img: "/images/product-portfolio.jpg",
     title: "Brass Fittings",
-    desc: "Compression, push-fit, and threaded fittings for plumbing, gas, and hydraulic lines.",
+    desc: "Compression, push-fit, and threaded fittings for plumbing, gas, and hydraulic lines",
   },
   {
     img: "/images/shop-floor.jpg",
     title: "Brass Fasteners & Fixings",
-    desc: "Hex bolts, studs, nuts, washers, and specialty screws in all thread standards.",
+    desc: "Hex bolts, studs, nuts, washers, and specialty screws in all thread standards",
   },
   {
     img: "/images/factory-floor.jpg",
     title: "Brass Cable Glands",
-    desc: "EMC, metric, NPT, and armoured cable gland assemblies with accessories.",
+    desc: "EMC, metric, NPT, and armoured cable gland assemblies with accessories",
   },
   {
     img: "/images/cnc-machine.jpg",
     title: "CNC Turned Parts",
-    desc: "Complex custom components from drawings — prototype to high-volume production.",
+    desc: "Complex custom components from drawings — prototype to high-volume production",
   },
   {
     img: "/images/raw-material.jpg",
     title: "Copper / Bronze / Gunmetal",
-    desc: "Precision-machined copper and bronze alloy components for electrical & marine uses.",
+    desc: "Precision-machined copper and bronze alloy components for electrical & marine uses",
   },
   {
     img: "/images/inspection.jpg",
     title: "Earthing & Lightning Protection",
-    desc: "Earth rods, clamps, bonding conductors, and lightning protection hardware.",
+    desc: "Earth rods, clamps, bonding conductors, and lightning protection hardware",
   },
   {
     img: "/images/team-office.jpg",
     title: "Brass Forging & Casting",
-    desc: "High-density forged and cast brass components for structural and valve applications.",
+    desc: "High-density forged and cast brass components for structural and valve applications",
   },
 ];
 
@@ -219,22 +217,22 @@ const QUALITY_CARDS = [
   {
     icon: "🔍",
     title: "In-Process Inspection",
-    desc: "Cross-checks at every stage, from raw material intake to final dispatch.",
+    desc: "Cross-checks at every stage, from raw material intake to final dispatch",
   },
   {
     icon: "✅",
     title: "100% Visual Inspection",
-    desc: "Every component individually checked — defect-free is the only standard.",
+    desc: "Every component individually checked — defect-free is the only standard",
   },
   {
     icon: "📐",
     title: "Calibrated Instruments",
-    desc: "Strict calibration schedules for all measurement equipment and gauges.",
+    desc: "Strict calibration schedules for all measurement equipment and gauges",
   },
   {
     icon: "🔬",
     title: "Advanced Metrology",
-    desc: "Continuously upgraded checking technology and precision measurement systems.",
+    desc: "Continuously upgraded checking technology and precision measurement systems",
   },
 ];
 
@@ -298,15 +296,15 @@ export default function HomePage() {
                 center={false}
               />
               <p className="text-sm text-zinc-600 leading-relaxed mb-4">
-                <strong>New Perfect Incorporation</strong> manufactures precision brass and
-                copper-alloy components from a 10,000&nbsp;sq.m. ISO-certified facility in
+                <strong>New Perfect Incorporation</strong>{" "}
+                manufactures precision components from a 50,000 sq.f. ISO-certified facility in
                 Jamnagar, Gujarat — India&apos;s Brass City. Established in 2007, the company
-                supplies custom-engineered parts for electrical, plumbing, automotive,
+                supplies custom-engineered parts for electrical, fittings, plumbing, automotive,
                 aerospace, medical, sanitary, hardware, marine, fastener, and general
                 industrial applications.
               </p>
               <p className="text-sm text-zinc-500 leading-relaxed mb-8">
-                With 110+ machines across 11 specialised categories, rigorous in-process
+                With 110+ machines across all categories, rigorous in-process
                 inspection, and ISO 9001:2015 certified systems, we deliver consistent
                 quality to international buyers and OEMs across the globe.
               </p>
@@ -361,7 +359,7 @@ export default function HomePage() {
           <SectionHead
             tag="Sectors"
             title="Industries We Serve"
-            sub="One alloying capability. Ten industries trust the result."
+            sub="One alloying capability. Ten industries trust the result"
           />
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             {INDUSTRIES.map((ind) => (
@@ -386,7 +384,7 @@ export default function HomePage() {
           <SectionHead
             tag="Manufacturing"
             title="Manufacturing Capability"
-            sub="Anything in precision components — to your exact specification."
+            sub="Anything in precision components — to your exact specification"
           />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {CAPABILITIES.map((cap) => (
@@ -439,7 +437,7 @@ export default function HomePage() {
           <SectionHead
             tag="Infrastructure"
             title="Our Machinery Fleet"
-            sub="110+ machines across 11 specialised categories."
+            sub="110+ machines across all categories"
             light
           />
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-white/10">
@@ -462,7 +460,7 @@ export default function HomePage() {
           </div>
           <p className="mt-8 text-center text-xs text-zinc-400 max-w-xl mx-auto leading-relaxed">
             Plus automatic profile drawing, in-house tool making, and vibrator slot
-            units — fully equipped for end-to-end production.
+            units — fully equipped for end-to-end production
           </p>
           <div className="mt-8 text-center">
             <Link
@@ -481,7 +479,7 @@ export default function HomePage() {
           <SectionHead
             tag="Products"
             title="Our Product Portfolio"
-            sub="Turned components, fittings, fasteners, electricals, and custom brass/copper parts."
+            sub="Turned components, fittings, fasteners, electricals, and custom brass/copper parts"
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {PRODUCTS.map((p) => (
@@ -534,7 +532,7 @@ export default function HomePage() {
           <SectionHead
             tag="Quality Assurance"
             title="Quality You Can Measure"
-            sub="100% visual inspection. Zero compromise on defects."
+            sub="100% visual inspection. Zero compromise on defects"
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
             {QUALITY_CARDS.map((q) => (
@@ -658,11 +656,11 @@ export default function HomePage() {
             style={{ fontFamily: "var(--font-serif-display)" }}
           >
             Let&apos;s Build Something{" "}
-            <span className="text-accent-gold">Precise,</span> Together.
+            <span className="text-accent-gold">Precise,</span> Together
           </h2>
           <p className="mt-5 text-sm text-zinc-400 max-w-xl mx-auto leading-relaxed">
             Share your drawing, sample, or technical requirement. Our team will respond
-            with a fast, transparent quotation.
+            with a fast, transparent quotation
           </p>
           <div className="mt-10 flex flex-wrap gap-4 justify-center">
             <Link

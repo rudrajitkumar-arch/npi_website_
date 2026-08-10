@@ -33,10 +33,10 @@ export default function ContactForm() {
 
         <div className="space-y-8 relative z-10">
           <div>
-            <span className="text-xs font-bold uppercase tracking-widest text-accent-gold block mb-2">
+            <span className="text-xs font-bold uppercase tracking-widest text-accent-gold block mb-2 font-mono">
               GET IN TOUCH
             </span>
-            <h3 className="text-2xl font-serif font-bold uppercase tracking-wide">
+            <h3 className="text-2xl font-display font-bold uppercase tracking-wide">
               OUR JAMNAGAR HEADQUARTERS
             </h3>
             <div className="w-12 h-0.5 bg-accent-gold mt-4" />
@@ -96,7 +96,7 @@ export default function ContactForm() {
               Request Submitted Successfully
             </h3>
             <p className="text-sm text-zinc-500 max-w-md">
-              Thank you for contacting New Perfect Incorporation. Our engineering department will review your specifications and get in touch within 24 business hours.
+              Thank you for contacting New Perfect Incorporation. Our engineering department will review your specifications and get in touch within 24 business hours
             </p>
             <button
               onClick={() => {
@@ -119,7 +119,7 @@ export default function ContactForm() {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-6">
-            <h4 className="text-lg font-serif font-bold text-primary-dark uppercase tracking-wide border-b border-zinc-100 pb-3 mb-6">
+            <h4 className="text-lg font-display font-bold text-primary-dark uppercase tracking-wide border-b border-zinc-100 pb-3 mb-6">
               RFQ (Request for Quote) & Technical Specifications
             </h4>
 
@@ -269,7 +269,7 @@ export default function ContactForm() {
             <div>
               <button
                 type="submit"
-                className="w-full bg-primary-dark hover:bg-accent-gold text-white text-xs font-bold uppercase tracking-widest py-4 transition-colors duration-300 hover:shadow-lg"
+                className="w-full bg-primary-dark hover:bg-accent-gold text-white text-xs font-bold uppercase tracking-widest py-4 transition-colors duration-300 hover:shadow-lg font-mono"
               >
                 Submit Request for Quote
               </button>

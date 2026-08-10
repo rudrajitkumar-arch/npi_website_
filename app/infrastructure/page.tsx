@@ -5,7 +5,7 @@ import Image from "next/image";
 export const metadata: Metadata = {
   title: "Infrastructure & Facility",
   description:
-    "Explore New Perfect Incorporation's 10,000 sq.m. manufacturing campus in Jamnagar, Gujarat. Equipped with 110+ advanced machines, QA inspection labs, tool rooms, and office setups.",
+    "Explore New Perfect Incorporation's 50,000 Sq Ft manufacturing campus in Jamnagar, Gujarat. Equipped with 110+ advanced machines, QA inspection labs, tool rooms, and office setups",
   keywords: [
     "brass component factory",
     "Jamnagar manufacturing unit",
@@ -43,18 +43,16 @@ function SectionHead({
     <div className={`mb-12 ${center ? "text-center" : ""}`}>
       {tag && <Tag>{tag}</Tag>}
       <h2
-        className={`mt-4 text-3xl sm:text-4xl font-black uppercase leading-tight tracking-tight ${
-          light ? "text-white" : "text-primary-dark"
-        }`}
+        className={`mt-4 text-3xl sm:text-4xl font-black uppercase leading-tight tracking-tight ${light ? "text-white" : "text-primary-dark"
+          }`}
         style={{ fontFamily: "var(--font-serif-display)" }}
       >
         {title}
       </h2>
       {sub && (
         <p
-          className={`mt-3 text-sm max-w-2xl leading-relaxed ${
-            light ? "text-zinc-400" : "text-zinc-500"
-          } ${center ? "mx-auto" : ""}`}
+          className={`mt-3 text-sm max-w-2xl leading-relaxed ${light ? "text-zinc-400" : "text-zinc-500"
+            } ${center ? "mx-auto" : ""}`}
         >
           {sub}
         </p>
@@ -66,7 +64,7 @@ function SectionHead({
 
 /* ─── DATA ───────────────────────────────────────────────── */
 const OVERVIEW_STATS = [
-  { val: "10,000", label: "sq.m. Facility" },
+  { val: "50,000", label: "Sq Ft Facility" },
   { val: "110+", label: "Machinery Fleet" },
   { val: "ISO 9001", label: "Quality certified" },
   { val: "End-to-End", label: "Production Flow" },
@@ -76,56 +74,56 @@ const GALLERY_ITEMS = [
   {
     img: "/images/factory-floor.jpg",
     title: "Automated Shop Floor",
-    desc: "Machinery cells feeding high-volume brass extrusion rods and components.",
+    desc: "Machinery cells feeding high-volume brass extrusion rods and components",
   },
   {
     img: "/images/team-office.jpg",
     title: "Modern Administration",
-    desc: "Executive offices supporting sales, finance, accounts, and client relations.",
+    desc: "Executive offices supporting sales, finance, accounts, and client relations",
   },
   {
     img: "/images/raw-material.jpg",
     title: "Traceable Raw Material",
-    desc: "Verified brass and copper stock with certified alloy verification.",
+    desc: "Verified brass, copper & steel stock with certified alloy verification",
   },
   {
     img: "/images/cnc-machine.jpg",
     title: "CNC Machining Area",
-    desc: "Precision turning centers processing complex components to specs.",
+    desc: "Precision turning centers processing complex components to specs",
   },
   {
     img: "/images/cnc-machine.jpg",
     title: "Tool Making Area",
-    desc: "Dedicated tool room fabricating specific fixtures, stamps, and tooling.",
+    desc: "Dedicated tool room fabricating specific fixtures, stamps, and tooling",
   },
   {
     img: "/images/inspection.jpg",
     title: "Inspection Area",
-    desc: "Quality labs verifying tolerances via digital projectors and gauging.",
+    desc: "Quality labs verifying tolerances via digital projectors and gauging",
   },
   {
     img: "/images/brass-components.jpg",
     title: "Packaging & Dispatch",
-    desc: "Custom sorting, barcoded labelling, and sea-worthy logistics preparation.",
+    desc: "Custom sorting, barcoded labelling, and sea-worthy logistics preparation",
   },
 ];
 
 const FEATURE_CARDS = [
   {
     title: "Automated Shop Floor",
-    desc: "Mechanized lines from raw stock to finished parts, optimizing scaling throughput.",
+    desc: "Mechanized lines from raw stock to finished parts, optimizing scaling throughput",
   },
   {
     title: "Modern Administration",
-    desc: "Professional offices supporting design, sales, finance, and client relations.",
+    desc: "Professional offices supporting design, sales, finance, and client relations",
   },
   {
     title: "Traceable Raw Material",
-    desc: "Quality-sourced brass and copper material with certificates for controlled production.",
+    desc: "Quality-sourced brass,copper & steel material with certificates for controlled production",
   },
   {
     title: "End-to-End Production",
-    desc: "Machining, secondary operations, surface treatment, inspection, packaging, and dispatch.",
+    desc: "Machining, secondary operations, surface treatment, inspection, packaging, and dispatch",
   },
 ];
 
@@ -165,13 +163,13 @@ export default function InfrastructurePage() {
             <div className="flex items-center gap-3">
               <div className="w-10 h-0.5 bg-accent-gold shrink-0" />
               <p className="text-sm sm:text-base font-semibold text-white/90">
-                Modern offices, automated shop floors, and quality-sourced raw material.
+                Modern offices, automated shop floors, and quality-sourced raw material
               </p>
             </div>
             <p className="text-sm text-zinc-400 leading-relaxed max-w-xl">
-              New Perfect Incorporation operates from a 10,000 sq.m. ISO-certified facility
-              in Jamnagar, Gujarat, equipped for end-to-end brass and copper component
-              manufacturing.
+              New Perfect Incorporation operates from a 50,000 Sq Ft ISO-certified facility
+              in Jamnagar, Gujarat, equipped for end-to-end every precision component
+              manufacturing
             </p>
             <Link
               href="/capabilities"
@@ -191,18 +189,18 @@ export default function InfrastructurePage() {
             <div className="lg:col-span-7 space-y-6">
               <SectionHead
                 tag="Industrial Campus"
-                title="10,000 sq.m. Manufacturing Campus"
+                title="50,000 Sq Ft Manufacturing Campus"
                 center={false}
               />
               <p className="text-sm text-zinc-600 leading-relaxed">
                 Our Jamnagar facility supports machining, secondary operations, surface treatment
                 coordination, inspection, packaging, dispatch, engineering, administration,
-                sales, and client communication.
+                sales, and client communication
               </p>
               <p className="text-xs text-zinc-500 leading-relaxed">
                 By housing our complete technical operations under a single roof, we ensure strict
                 custody of raw metals, eliminate intermediate logistical delays, and apply quality
-                oversight from custom metallurgy specs to final custom B2B packaging.
+                oversight from custom metallurgy specs to final custom B2B packaging
               </p>
             </div>
 
@@ -236,7 +234,7 @@ export default function InfrastructurePage() {
           <SectionHead
             tag="Visual Tour"
             title="Infrastructure Gallery"
-            sub="Step inside our Jamnagar facility — where metal is machined into precision OEM parts."
+            sub="Step inside our Jamnagar facility — where metal is machined into precision OEM parts"
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -277,7 +275,7 @@ export default function InfrastructurePage() {
           <SectionHead
             tag="Operations Pillars"
             title="Campus Features"
-            sub="Engineered spaces layout prioritizing production speed and safety rules."
+            sub="Engineered spaces layout prioritizing production speed and safety rules"
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -357,7 +355,7 @@ export default function InfrastructurePage() {
           <div className="w-14 h-1 bg-accent-gold mx-auto" />
           <p className="text-sm text-zinc-500 leading-relaxed max-w-xl mx-auto">
             Speak with our team about production capacity, material handling, inspection, and
-            long-term supply. We welcome client visits to our Jamnagar site.
+            long-term supply. We welcome client visits to our Jamnagar site
           </p>
           <Link
             href="/contact"

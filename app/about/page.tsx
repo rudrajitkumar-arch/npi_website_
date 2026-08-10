@@ -5,7 +5,7 @@ import Image from "next/image";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "New Perfect Incorporation — ISO 9001:2015 certified precision brass & copper components manufacturer in Jamnagar, Gujarat since 2007. Learn about our journey, leadership, and manufacturing capabilities.",
+    "New Perfect Incorporation — ISO 9001:2015 certified every precision components manufacturer in Jamnagar, Gujarat since 2007. Learn about our journey, leadership, and manufacturing capabilities",
   keywords: [
     "about New Perfect Incorporation",
     "brass manufacturer Jamnagar",
@@ -42,18 +42,16 @@ function SectionHead({
     <div className={`mb-12 ${center ? "text-center" : ""}`}>
       {tag && <Tag>{tag}</Tag>}
       <h2
-        className={`mt-4 text-3xl sm:text-4xl font-black uppercase leading-tight tracking-tight ${
-          light ? "text-white" : "text-primary-dark"
-        }`}
+        className={`mt-4 text-3xl sm:text-4xl font-black uppercase leading-tight tracking-tight ${light ? "text-white" : "text-primary-dark"
+          }`}
         style={{ fontFamily: "var(--font-serif-display)" }}
       >
         {title}
       </h2>
       {sub && (
         <p
-          className={`mt-3 text-sm max-w-2xl leading-relaxed ${
-            light ? "text-zinc-400" : "text-zinc-500"
-          } ${center ? "mx-auto" : ""}`}
+          className={`mt-3 text-sm max-w-2xl leading-relaxed ${light ? "text-zinc-400" : "text-zinc-500"
+            } ${center ? "mx-auto" : ""}`}
         >
           {sub}
         </p>
@@ -66,10 +64,10 @@ function SectionHead({
 /* ─── DATA ───────────────────────────────────────────────── */
 const STATS = [
   { val: "2007", label: "Year Founded" },
-  { val: "10,000", label: "sq.m. Facility" },
+  { val: "50,000", label: "Sq Ft Facility" },
   { val: "ISO 9001:2015", label: "Certified" },
   { val: "110+", label: "Machines" },
-  { val: "₹14.85 Cr", label: "Annual Turnover" },
+  { val: "₹50 Cr+", label: "Annual Turnover" },
   { val: "10+", label: "Industrial Sectors" },
 ];
 
@@ -77,29 +75,29 @@ const TIMELINE = [
   {
     year: "2007",
     title: "Foundation",
-    desc: "Founded by Mr. Chimanbhai Patel. Brass component manufacturing begins with modest infrastructure and strong ambition.",
+    desc: "Founded by Mr. Chimanbhai Patel. Brass component manufacturing begins with modest infrastructure and strong ambition",
   },
   {
     year: "2015",
     title: "ISO Certified",
-    desc: "Quality systems formalized; the factory earns ISO 9001:2015 accreditation.",
+    desc: "Quality systems formalized; the factory earns ISO 9001:2015 accreditation",
   },
   {
     year: "2020",
     title: "New Leadership",
-    desc: "Mr. Meet Patel takes the reins, expanding capability and market reach.",
+    desc: "Mr. Meet Patel takes the reins, expanding capability and market reach",
   },
   {
     year: "Today",
-    title: "10,000 sq.m. Campus",
-    desc: "Thousands of product variants delivered across aerospace, medical, electrical, automotive, and industrial sectors.",
+    title: "50,000 Sq Ft Campus",
+    desc: "Thousands of product variants delivered across aerospace, medical, electrical, automotive, and industrial sectors",
   },
 ];
 
 const DEPARTMENTS = [
   {
     head: "Chimanbhai Patel",
-    role: "Founder & CEO",
+    role: "Finance Head, Founder & CEO",
     type: "founder",
     responsibilities: [],
   },
@@ -115,13 +113,13 @@ const DEPARTMENTS = [
     ],
   },
   {
-    head: "Dipakbhai Ajudiya",
-    role: "Finance Head",
+    head: "Jeet Ajudiya",
+    role: "Quality Head",
     type: "dept",
     responsibilities: [
-      "Financial Manager",
-      "Accounts Receivable",
-      "Payment Management",
+      "Quality Control & Metrology",
+      "100% Visual Inspection",
+      "ISO & Compliance Audits",
     ],
   },
   {
@@ -140,32 +138,32 @@ const WHY_CARDS = [
   {
     icon: "⚙️",
     title: "Precision Manufacturing",
-    desc: "Tolerances down to ±0.01 mm across all CNC and VMC operations.",
+    desc: "Tolerances down to ±0.01 mm across all CNC and VMC operations",
   },
   {
     icon: "🔧",
     title: "Custom Component Development",
-    desc: "From drawings or samples to production-ready parts, fully in-house.",
+    desc: "From drawings or samples to production-ready parts, fully in-house",
   },
   {
     icon: "📋",
     title: "Transparent Pricing",
-    desc: "Clear, itemised quotations with no hidden costs or revision surprises.",
+    desc: "Clear, itemised quotations with no hidden costs or revision surprises",
   },
   {
     icon: "🛠️",
     title: "In-House Tool Making",
-    desc: "Dedicated tool room for jigs, fixtures, and custom tooling — zero delay.",
+    desc: "Dedicated tool room for jigs, fixtures, and custom tooling — zero delay",
   },
   {
     icon: "✅",
     title: "Strict Quality Control",
-    desc: "100% visual inspection and calibrated metrology at every production stage.",
+    desc: "100% visual inspection and calibrated metrology at every production stage",
   },
   {
     icon: "🌍",
     title: "Export-Ready Supply",
-    desc: "Packaging, documentation, and compliance for international shipments.",
+    desc: "Packaging, documentation, and compliance for international shipments",
   },
 ];
 
@@ -199,13 +197,13 @@ export default function AboutPage() {
             <div className="flex items-center gap-3">
               <div className="w-10 h-0.5 bg-accent-gold shrink-0" />
               <p className="text-sm sm:text-base font-semibold text-white/90">
-                Precision brass and copper-alloy manufacturing from Jamnagar, Gujarat since 2007.
+                Every Precision Components manufacturing from Jamnagar, Gujarat since 2007.
               </p>
             </div>
             <p className="text-sm text-zinc-400 leading-relaxed max-w-xl">
               New Perfect Incorporation manufactures precision components for electrical,
               plumbing, automotive, aerospace, medical, sanitary, hardware, marine,
-              fastener, and industrial supply chains.
+              fastener, and industrial supply chains
             </p>
             <Link
               href="/capabilities"
@@ -225,16 +223,17 @@ export default function AboutPage() {
             <div>
               <SectionHead tag="Company Overview" title="Who We Are" center={false} />
               <p className="text-sm text-zinc-600 leading-relaxed mb-4">
-                <strong>New Perfect Incorporation</strong> manufactures precision brass and
-                copper-alloy components from a 10,000&nbsp;sq.m. ISO-certified facility in
-                Jamnagar — India&apos;s Brass City. Our alloying and machining expertise turns raw
-                brass and copper into components trusted across industrial supply chains.
+                <strong>New Perfect Incorporation</strong>{" "}
+                manufactures precision components from a 50,000 sq.f. ISO-certified facility in
+                Jamnagar, Gujarat — India&apos;s Brass City. Established in 2007, the company
+                supplies custom-engineered parts for electrical, fittings, plumbing, automotive,
+                aerospace, medical, sanitary, hardware, marine, fastener, and general
+                industrial applications.
               </p>
               <p className="text-sm text-zinc-500 leading-relaxed mb-6">
-                With over 110 machines across 11 specialised categories, a rigorous
-                in-process inspection regime, and ISO 9001:2015 certified quality
-                management, we deliver consistent precision to OEMs and buyers across
-                the globe.
+                With 110+ machines across all categories, rigorous in-process
+                inspection, and ISO 9001:2015 certified systems, we deliver consistent
+                quality to international buyers and OEMs across the globe.
               </p>
               {/* Credential badges */}
               <div className="flex flex-wrap gap-2 pt-2">
@@ -316,7 +315,7 @@ export default function AboutPage() {
           <SectionHead
             tag="Our Story"
             title="Our Journey"
-            sub="From a small workshop in Jamnagar to a 10,000 sq.m. precision manufacturing campus."
+            sub="From a small workshop in Jamnagar to a 50,000 Sq Ft precision manufacturing campus"
           />
 
           {/* Desktop timeline: horizontal */}
@@ -380,7 +379,7 @@ export default function AboutPage() {
           <SectionHead
             tag="Leadership"
             title="Team Structure"
-            sub="Experienced leadership driving precision manufacturing and global supply."
+            sub="Experienced leadership driving precision manufacturing and global supply"
           />
 
           {/* Founder card — centered, prominent */}
@@ -397,7 +396,7 @@ export default function AboutPage() {
                 Chimanbhai Patel
               </h3>
               <p className="text-[10px] font-bold uppercase tracking-widest text-accent-gold mt-1">
-                Founder &amp; CEO
+                Finance Head, Founder &amp; CEO
               </p>
             </div>
           </div>
@@ -457,7 +456,7 @@ export default function AboutPage() {
           <SectionHead
             tag="Why Choose Us"
             title="Why New Perfect"
-            sub="Six reasons manufacturing buyers and OEMs choose us as their long-term supply partner."
+            sub="Six reasons manufacturing buyers and OEMs choose us as their long-term supply partner"
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {WHY_CARDS.map((c) => (
@@ -503,7 +502,7 @@ export default function AboutPage() {
           </h2>
           <p className="text-sm text-zinc-400 leading-relaxed max-w-xl mx-auto">
             Send your drawing, sample, or specification and our team will respond with a
-            clear manufacturing approach.
+            clear manufacturing approach
           </p>
           <Link
             href="/contact?action=upload"

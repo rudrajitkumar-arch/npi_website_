@@ -29,7 +29,7 @@ export default function CapabilityCard({
 
       {/* Content Text Section */}
       <div className="lg:col-span-7 p-6 sm:p-10 flex flex-col justify-center">
-        <h3 className="text-xl sm:text-2xl font-serif font-bold text-primary-dark uppercase tracking-wide mb-4">
+        <h3 className="text-xl sm:text-2xl font-display font-bold text-primary-dark uppercase tracking-wide mb-4">
           {title}
         </h3>
         <p className="text-sm text-zinc-600 leading-relaxed mb-6">
@@ -37,7 +37,7 @@ export default function CapabilityCard({
         </p>
 
         <div className="border-t border-zinc-100 pt-6">
-          <h4 className="text-xs font-bold uppercase tracking-wider text-accent-gold mb-3">
+          <h4 className="text-xs font-bold uppercase tracking-wider text-accent-gold mb-3 font-mono">
             Specifications / Capacity
           </h4>
           <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">

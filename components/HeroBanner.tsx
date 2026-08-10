@@ -16,17 +16,17 @@ interface Slide {
 const slides: Slide[] = [
   {
     id: 1,
-    title: "PRECISION BRASS & COPPER COMPONENTS",
+    title: "EVERY PRECISION COMPONENTS",
     subtitle: "EXPORTING QUALITY SINCE 2007",
-    description: "ISO 9001:2015 Certified manufacturer and global exporter of high-grade copper and brass fasteners, fittings, and machined parts based in Jamnagar, India.",
+    description: "ISO 9001:2015 Certified manufacturer and global exporter of high-grade copper and brass fasteners, fittings, and machined parts based in Jamnagar, India",
     image: "/images/factory-floor.jpg",
     badge: "ISO 9001:2015 CERTIFIED"
   },
   {
     id: 2,
-    title: "10,000 SQ.M. MANUFACTURING FACILITY",
+    title: "50,000 SQ FT MANUFACTURING FACILITY",
     subtitle: "STATE-OF-THE-ART INFRASTRUCTURE",
-    description: "Equipped with 110+ advanced CNC, VMC, and automatic lathe machines to deliver complex geometric components with tolerances up to +/- 0.01 mm.",
+    description: "Equipped with 110+ advanced CNC, VMC, and automatic lathe machines to deliver complex geometric components with tolerances up to +/- 0.01 mm",
     image: "/images/cnc-machine.jpg",
     badge: "110+ ADVANCED MACHINES"
   },
@@ -34,7 +34,7 @@ const slides: Slide[] = [
     id: 3,
     title: "CUSTOM B2B ENGINEERING SOLUTIONS",
     subtitle: "GLOBAL SECTOR SPECIFIC SUPPLIER",
-    description: "Reliable OEM supplier to electrical, automotive, aerospace, plumbing, medical, and marine industries across international markets.",
+    description: "Reliable OEM supplier to electrical, automotive, aerospace, plumbing, medical, and marine industries across international markets",
     image: "/images/raw-material.jpg",
     badge: "RoHS & COMPLIANCE COMPATIBLE"
   }

@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Capabilities",
   description:
-    "New Perfect Incorporation's full manufacturing capability — CNC turning, secondary operations, surface plating, in-house tooling, and engineering support for precision brass & copper components.",
+    "New Perfect Incorporation's full manufacturing capability — CNC turning, secondary operations, surface plating, in-house tooling, and engineering support for every precision components",
   keywords: [
     "CNC turning brass",
     "precision machining Jamnagar",
@@ -42,18 +42,16 @@ function SectionHead({
     <div className={`mb-12 ${center ? "text-center" : ""}`}>
       {tag && <Tag>{tag}</Tag>}
       <h2
-        className={`mt-4 text-3xl sm:text-4xl font-black uppercase leading-tight tracking-tight ${
-          light ? "text-white" : "text-primary-dark"
-        }`}
+        className={`mt-4 text-3xl sm:text-4xl font-black uppercase leading-tight tracking-tight ${light ? "text-white" : "text-primary-dark"
+          }`}
         style={{ fontFamily: "var(--font-serif-display)" }}
       >
         {title}
       </h2>
       {sub && (
         <p
-          className={`mt-3 text-sm max-w-2xl leading-relaxed ${
-            light ? "text-zinc-400" : "text-zinc-500"
-          } ${center ? "mx-auto" : ""}`}
+          className={`mt-3 text-sm max-w-2xl leading-relaxed ${light ? "text-zinc-400" : "text-zinc-500"
+            } ${center ? "mx-auto" : ""}`}
         >
           {sub}
         </p>
@@ -68,7 +66,7 @@ const CAP_CARDS = [
   {
     num: "01",
     title: "High-Volume Precision Machining",
-    desc: "Economical, high-quality CNC-machined metal components at any volume — from prototype batches to multi-million-piece runs.",
+    desc: "Economical, high-quality CNC-machined metal components at any volume — from prototype batches to multi-million-piece runs",
     items: [
       "Multi-axis CNC & VMC turning centres",
       "Automatic bar-fed multi-spindle lathes",
@@ -80,7 +78,7 @@ const CAP_CARDS = [
   {
     num: "02",
     title: "Full Secondary Operations",
-    desc: "Complete in-house secondary work eliminating subcontracting delays and quality gaps.",
+    desc: "Complete in-house secondary work eliminating subcontracting delays and quality gaps",
     items: [
       "Drilling, tapping & threading",
       "Slotting & broaching",
@@ -92,7 +90,7 @@ const CAP_CARDS = [
   {
     num: "03",
     title: "Surface Treatment & Plating",
-    desc: "Wide spectrum of functional and decorative surface finishes applied in-house.",
+    desc: "Wide spectrum of functional and decorative surface finishes applied in-house",
     items: [
       "Silver, gold, nickel, chrome, tin plating",
       "Zinc, copper plating",
@@ -104,7 +102,7 @@ const CAP_CARDS = [
   {
     num: "04",
     title: "Engineering Support",
-    desc: "Technical expertise built into every project — from DFM review to final PPAP documentation.",
+    desc: "Technical expertise built into every project — from DFM review to final PPAP documentation",
     items: [
       "AutoCAD 3D design software",
       "Master sample maintenance",
@@ -129,14 +127,14 @@ const SERVICES = [
 ];
 
 const MACHINES = [
-  { val: "35", label: "Automatic Traub Machines", icon: "⚙️" },
-  { val: "20", label: "Drilling & Milling Machines", icon: "🔩" },
-  { val: "14", label: "CNC Turning Machines", icon: "🔄" },
-  { val: "12", label: "Semi-Automated Machines", icon: "🏭" },
-  { val: "10", label: "Secondary Operations Units", icon: "🛠️" },
-  { val: "8", label: "Automatic Threading Machines", icon: "🔧" },
-  { val: "5", label: "Sliding Head Machines", icon: "📏" },
-  { val: "3", label: "Tool Grinders", icon: "⚡" },
+  { val: "35", label: "Automatic Traub Machines" },
+  { val: "20", label: "Drilling & Milling Machines" },
+  { val: "14", label: "CNC Turning Machines" },
+  { val: "12", label: "Semi-Automated Machines" },
+  { val: "10", label: "Secondary Operations Units" },
+  { val: "8", label: "Automatic Threading Machines" },
+  { val: "5", label: "Sliding Head Machines" },
+  { val: "3", label: "Power Press" },
 ];
 
 const ALSO_EQUIPPED = [
@@ -197,13 +195,13 @@ export default function CapabilitiesPage() {
             <div className="flex items-center gap-3">
               <div className="w-10 h-0.5 bg-accent-gold shrink-0" />
               <p className="text-sm sm:text-base font-semibold text-white/90">
-                Anything in precision components — to your exact specification.
+                Anything in precision components — to your exact specification
               </p>
             </div>
             <p className="text-sm text-zinc-400 leading-relaxed max-w-xl">
               From CNC turning and custom screw machining to secondary operations, plating,
               assembly, and packaging — New Perfect Incorporation is equipped for end-to-end
-              brass and copper component production.
+              every precision component production
             </p>
             <Link
               href="/contact"
@@ -221,7 +219,7 @@ export default function CapabilitiesPage() {
           <SectionHead
             tag="Core Capabilities"
             title="What We Do"
-            sub="Four end-to-end capability pillars covering every stage of component production."
+            sub="Four end-to-end capability pillars covering every stage of component production"
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {CAP_CARDS.map((c) => (
@@ -274,7 +272,7 @@ export default function CapabilitiesPage() {
           <SectionHead
             tag="Services"
             title="Services We Provide"
-            sub="Comprehensive manufacturing services from raw bar stock to finished, dispatched components."
+            sub="Comprehensive manufacturing services from raw bar stock to finished, dispatched components"
           />
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-px bg-zinc-100">
             {SERVICES.map((s, i) => (
@@ -303,7 +301,7 @@ export default function CapabilitiesPage() {
           <SectionHead
             tag="Infrastructure"
             title="Our Machinery Fleet"
-            sub="110+ machines across specialised production categories."
+            sub="110+ machines across specialised production categories"
             light
           />
 
@@ -314,7 +312,6 @@ export default function CapabilitiesPage() {
                 key={m.label}
                 className="bg-primary-dark hover:bg-primary-light px-6 py-8 flex flex-col items-center text-center transition-colors duration-300 group"
               >
-                <span className="text-2xl mb-2">{m.icon}</span>
                 <span
                   className="text-3xl sm:text-4xl font-black text-accent-gold leading-none"
                   style={{ fontFamily: "var(--font-serif-display)" }}
@@ -362,7 +359,7 @@ export default function CapabilitiesPage() {
           <SectionHead
             tag="Engineering & Pricing"
             title="Engineering That Pays For Itself"
-            sub="Technical expertise and transparent pricing — built into every project."
+            sub="Technical expertise and transparent pricing — built into every project"
           />
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -381,7 +378,7 @@ export default function CapabilitiesPage() {
                 </h3>
                 <p className="text-sm text-zinc-500 leading-relaxed mb-6">
                   Our engineers drive continuous improvement, maintain master samples of every
-                  product, and redesign customer parts for greater cost efficiency.
+                  product, and redesign customer parts for greater cost efficiency
                 </p>
                 <ul className="space-y-2">
                   {ENG_LEFT.map((item) => (
@@ -409,7 +406,7 @@ export default function CapabilitiesPage() {
                 </h3>
                 <p className="text-sm text-zinc-400 leading-relaxed mb-6">
                   A transparent, uncomplicated price structure with rapid responses to every
-                  enquiry. Quotes stay competitive without compromising quality.
+                  enquiry. Quotes stay competitive without compromising quality
                 </p>
                 <ul className="space-y-2">
                   {ENG_RIGHT.map((item) => (
@@ -492,8 +489,8 @@ export default function CapabilitiesPage() {
             <span className="text-accent-gold">Brass or Copper</span> Components?
           </h2>
           <p className="text-sm text-zinc-400 leading-relaxed max-w-xl mx-auto">
-            Share your drawing, target material, quantity, and finishing requirement.
-            Our team will provide a practical manufacturing response.
+            Share your drawing, target material, quantity, and finishing requirement
+            Our team will provide a practical manufacturing response
           </p>
           <Link
             href="/contact"

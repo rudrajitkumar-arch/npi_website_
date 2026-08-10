@@ -11,7 +11,7 @@ interface CTASectionProps {
 export default function CTASection({
   title = "SUBMIT YOUR TECHNICAL DRAWINGS & RECEIVE A QUOTE",
   subtitle = "CUSTOM PRECISION MACHINING SOLUTIONS",
-  description = "Our engineering team reviews standard blueprints, CAD models, and technical drawings to deliver optimized quotes matching international quality tolerances.",
+  description = "Our engineering team reviews standard blueprints, CAD models, and technical drawings to deliver optimized quotes matching international quality tolerances",
   backgroundImage = "/images/contact-bg.jpg",
 }: CTASectionProps) {
   return (
@@ -33,10 +33,10 @@ export default function CTASection({
       <div className="absolute inset-y-0 right-[15%] w-[1px] bg-white/5 pointer-events-none hidden lg:block z-15" />
 
       <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-        <span className="text-xs sm:text-sm font-bold uppercase tracking-[0.25em] text-accent-gold block">
+        <span className="text-xs sm:text-sm font-bold uppercase tracking-[0.25em] text-accent-gold block font-mono">
           {subtitle}
         </span>
-        <h2 className="text-3xl sm:text-5xl font-serif font-black uppercase tracking-wide leading-tight max-w-4xl mx-auto">
+        <h2 className="text-3xl sm:text-5xl font-display font-black uppercase tracking-wide leading-tight max-w-4xl mx-auto">
           {title}
         </h2>
         <p className="text-sm sm:text-base text-zinc-300 leading-relaxed max-w-2xl mx-auto font-sans">
@@ -46,13 +46,13 @@ export default function CTASection({
         <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
           <Link
             href="/contact?action=upload"
-            className="inline-flex items-center justify-center px-8 py-3.5 border border-accent-gold bg-accent-gold hover:bg-accent-gold-hover text-white text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:shadow-lg hover:shadow-accent-gold/20"
+            className="inline-flex items-center justify-center px-8 py-3.5 border border-accent-gold bg-accent-gold hover:bg-accent-gold-hover text-white text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:shadow-lg hover:shadow-accent-gold/20 font-mono"
           >
             Upload Technical Specifications
           </Link>
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center px-8 py-3.5 border border-white hover:border-accent-gold hover:bg-accent-gold text-white text-xs font-bold uppercase tracking-wider transition-all duration-300"
+            className="inline-flex items-center justify-center px-8 py-3.5 border border-white hover:border-accent-gold hover:bg-accent-gold text-white text-xs font-bold uppercase tracking-wider transition-all duration-300 font-mono"
           >
             Contact Jamnagar Office
           </Link>

@@ -44,8 +44,8 @@ export default function Header() {
           >
             New Perfect
           </span>
-          <span className="text-[10px] font-semibold tracking-[0.22em] uppercase text-accent-gold mt-0.5">
-            Precision Brass &amp; Copper Components
+          <span className="text-[10px] font-semibold tracking-[0.22em] uppercase text-accent-gold mt-0.5 font-mono">
+            Every Precision Components
           </span>
         </Link>
 
@@ -55,7 +55,7 @@ export default function Header() {
             <Link
               key={n.href}
               href={n.href}
-              className={`px-2 py-1.5 text-[10px] font-black uppercase tracking-widest transition-colors ${
+              className={`px-2 py-1.5 text-[10px] font-black uppercase tracking-widest transition-colors font-mono ${
                 pathname === n.href
                   ? "text-accent-gold"
                   : "text-zinc-300 hover:text-white"
@@ -70,7 +70,7 @@ export default function Header() {
         <div className="hidden xl:block shrink-0">
           <Link
             href="/contact"
-            className="px-4 py-2 text-[10px] font-black uppercase tracking-widest text-white bg-accent-gold hover:bg-accent-gold-hover transition-colors border border-accent-gold"
+            className="px-4 py-2 text-[10px] font-black uppercase tracking-widest text-white bg-accent-gold hover:bg-accent-gold-hover transition-colors border border-accent-gold font-mono"
           >
             Get Quote
           </Link>
@@ -102,7 +102,7 @@ export default function Header() {
               key={n.href}
               href={n.href}
               onClick={() => setOpen(false)}
-              className={`block px-3 py-2.5 text-sm font-bold uppercase tracking-widest rounded ${
+              className={`block px-3 py-2.5 text-sm font-bold uppercase tracking-widest rounded font-mono ${
                 pathname === n.href
                   ? "text-accent-gold bg-white/5"
                   : "text-zinc-300 hover:text-white hover:bg-white/5"
@@ -115,7 +115,7 @@ export default function Header() {
             <Link
               href="/contact"
               onClick={() => setOpen(false)}
-              className="block text-center px-4 py-3 text-sm font-black uppercase tracking-widest text-white bg-accent-gold hover:bg-accent-gold-hover rounded"
+              className="block text-center px-4 py-3 text-sm font-black uppercase tracking-widest text-white bg-accent-gold hover:bg-accent-gold-hover rounded font-mono"
             >
               Get Quote
             </Link>

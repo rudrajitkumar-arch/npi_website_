@@ -21,7 +21,7 @@ export default function SectionHeading({
     <div className={`flex flex-col mb-12 sm:mb-16 ${alignmentClass}`}>
       {subtitle && (
         <span
-          className={`text-xs sm:text-sm font-bold uppercase tracking-[0.25em] mb-3 ${
+          className={`text-xs sm:text-sm font-bold uppercase tracking-[0.25em] mb-3 font-mono ${
             dark ? "text-accent-gold" : "text-accent-gold"
           }`}
         >
@@ -29,7 +29,7 @@ export default function SectionHeading({
         </span>
       )}
       <h2
-        className={`text-2xl sm:text-4xl font-serif font-bold uppercase tracking-wide leading-tight ${
+        className={`text-2xl sm:text-4xl font-display font-bold uppercase tracking-wide leading-tight ${
           dark ? "text-white" : "text-primary-dark"
         }`}
       >

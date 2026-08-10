@@ -5,7 +5,7 @@ import ContactFormWrapper from "./ContactFormWrapper";
 export const metadata: Metadata = {
   title: "Contact & RFQ",
   description:
-    "Request a manufacturing quote from New Perfect Incorporation. Submit your technical drawings, material grades, and specifications for custom brass & copper components.",
+    "Request a manufacturing quote from New Perfect Incorporation. Submit your technical drawings, material grades, and specifications for custom every precision components",
   keywords: [
     "contact New Perfect Incorporation",
     "RFQ brass components",
@@ -66,8 +66,6 @@ function SectionHead({
 /* ─── DATA ───────────────────────────────────────────────── */
 const CONTACTS = [
   { name: "Meet Patel", label: "Sales & Technical Enquiries", phone: "+91 78179 42727" },
-  { name: "Chimanbhai Ajudiya", label: "Founder & Administration", phone: "+91 90994 21887" },
-  { name: "Dipakbhai Ajudiya", label: "Production & Finance", phone: "+91 94269 27274" },
 ];
 
 const HELPER_LIST = [
@@ -103,17 +101,17 @@ export default function ContactPage() {
               className="text-4xl sm:text-6xl font-black uppercase leading-none tracking-tight text-white"
               style={{ fontFamily: "var(--font-serif-display)" }}
             >
-              Let&apos;s Build Something <span className="text-accent-gold">Precise,</span> Together.
+              Let&apos;s Build Something <span className="text-accent-gold">Precise,</span> Together
             </h1>
             <div className="flex items-center gap-3">
               <div className="w-10 h-0.5 bg-accent-gold shrink-0" />
               <p className="text-sm sm:text-base font-semibold text-white/90">
-                Share your drawing, sample, or requirement. Our team will respond with a fast and transparent quotation.
+                Share your drawing, sample, or requirement. Our team will respond with a fast and transparent quotation
               </p>
             </div>
             <p className="text-sm text-zinc-400 leading-relaxed max-w-xl">
               For brass, copper, bronze, gunmetal, CNC turned, forged, cast, plated,
-              assembled, or custom precision components, contact New Perfect Incorporation.
+              assembled, or custom precision components, contact New Perfect Incorporation
             </p>
             <a
               href="#rfq-section"
@@ -131,28 +129,30 @@ export default function ContactPage() {
           <SectionHead
             tag="Corporate Contacts"
             title="Contact Information"
-            sub="Get in touch directly with our leadership team and engineering heads."
+            sub="Get in touch directly with our leadership team and engineering heads"
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          <div className="w-full mb-6">
             {CONTACTS.map((person) => (
               <div
                 key={person.name}
-                className="bg-white border border-zinc-200 hover:border-accent-gold p-6 transition-all duration-300 relative group overflow-hidden"
+                className="bg-white border border-zinc-200 hover:border-accent-gold p-6 sm:p-8 transition-all duration-300 relative group overflow-hidden flex flex-col sm:flex-row sm:items-center justify-between gap-4"
               >
                 <div className="absolute top-0 left-0 w-0 h-1 bg-accent-gold group-hover:w-full transition-all duration-500" />
-                <h3
-                  className="text-base font-black uppercase text-primary-dark group-hover:text-accent-gold transition-colors mb-1"
-                  style={{ fontFamily: "var(--font-serif-display)" }}
-                >
-                  {person.name}
-                </h3>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 block mb-4">
-                  {person.label}
-                </span>
+                <div>
+                  <h3
+                    className="text-lg sm:text-xl font-black uppercase text-primary-dark group-hover:text-accent-gold transition-colors mb-1"
+                    style={{ fontFamily: "var(--font-serif-display)" }}
+                  >
+                    {person.name}
+                  </h3>
+                  <span className="text-xs font-bold uppercase tracking-wider text-zinc-400 block">
+                    {person.label}
+                  </span>
+                </div>
                 <a
                   href={`tel:${person.phone.replace(/\s/g, "")}`}
-                  className="text-sm font-bold text-primary-dark group-hover:text-accent-gold transition-colors flex items-center gap-2"
+                  className="inline-flex items-center gap-3 px-6 py-3 bg-bg-warm group-hover:bg-primary-dark text-primary-dark group-hover:text-accent-gold border border-zinc-200 group-hover:border-primary-dark transition-all text-sm font-bold shrink-0 self-start sm:self-auto"
                 >
                   <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -237,7 +237,7 @@ export default function ContactPage() {
                   Quote Turnaround
                 </span>
                 <p className="text-[10px] text-zinc-400 leading-relaxed">
-                  Basic drawing enquiries are processed within 24 hours. Custom alloy forging designs or multi-part bills of materials require up to 48 hours.
+                  Basic drawing enquiries are processed within 24 hours. Custom alloy forging designs or multi-part bills of materials require up to 48 hours
                 </p>
               </div>
             </div>
@@ -260,7 +260,7 @@ export default function ContactPage() {
             <div className="w-10 h-0.5 bg-accent-gold mx-auto" />
           </div>
           <p className="text-xs text-zinc-500 max-w-sm mx-auto">
-            Located in Jamnagar&apos;s GIDC Phase 3 industrial area.
+            Located in Jamnagar&apos;s GIDC Phase 3 industrial area
           </p>
 
           {/* Map box placeholder */}
@@ -309,10 +309,10 @@ export default function ContactPage() {
             className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white leading-tight"
             style={{ fontFamily: "var(--font-serif-display)" }}
           >
-            Precision Starts With the <span className="text-accent-gold">Right Conversation.</span>
+            Precision Starts With the <span className="text-accent-gold">Right Conversation</span>
           </h2>
           <p className="text-sm text-zinc-400 leading-relaxed max-w-xl mx-auto">
-            Whether you need one custom part or long-term production supply, our team is ready to review your requirement.
+            Whether you need one custom part or long-term production supply, our team is ready to review your requirement
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <a

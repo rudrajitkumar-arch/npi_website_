@@ -8,9 +8,11 @@
   --color-bg-warm: #F7F3EC;
   --color-text-charcoal: #1E293B;
 
-  --font-display: var(--font-serif-display);
-  --font-serif-display: var(--font-serif-display);
-  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+  --font-serif-display: var(--font-display);
+  --font-sans: var(--font-body);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
 }
 
 :root {
@@ -21,9 +23,14 @@
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), sans-serif;
+  font-family: var(--font-body), sans-serif;
 }
 
 .hero-scene-stage canvas {
   background-color: var(--color-primary-dark) !important;
+}
+
+label {
+  font-family: var(--font-mono), monospace !important;
+  letter-spacing: 0.05em;
 }

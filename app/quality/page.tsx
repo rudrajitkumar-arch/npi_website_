@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Quality & Certifications",
   description:
-    "ISO 9001:2015 certified quality management at New Perfect Incorporation — 100% visual inspection, calibrated metrology, PPAP Level III documentation, RoHS compliance, and controlled production process.",
+    "ISO 9001:2015 certified quality management at New Perfect Incorporation — 100% visual inspection, calibrated metrology, PPAP Level III documentation, RoHS compliance, and controlled production process",
   keywords: [
     "ISO 9001:2015 brass manufacturer",
     "RoHS compliant components",
@@ -42,18 +42,16 @@ function SectionHead({
     <div className={`mb-12 ${center ? "text-center" : ""}`}>
       {tag && <Tag>{tag}</Tag>}
       <h2
-        className={`mt-4 text-3xl sm:text-4xl font-black uppercase leading-tight tracking-tight ${
-          light ? "text-white" : "text-primary-dark"
-        }`}
+        className={`mt-4 text-3xl sm:text-4xl font-black uppercase leading-tight tracking-tight ${light ? "text-white" : "text-primary-dark"
+          }`}
         style={{ fontFamily: "var(--font-serif-display)" }}
       >
         {title}
       </h2>
       {sub && (
         <p
-          className={`mt-3 text-sm max-w-2xl leading-relaxed ${
-            light ? "text-zinc-400" : "text-zinc-500"
-          } ${center ? "mx-auto" : ""}`}
+          className={`mt-3 text-sm max-w-2xl leading-relaxed ${light ? "text-zinc-400" : "text-zinc-500"
+            } ${center ? "mx-auto" : ""}`}
         >
           {sub}
         </p>
@@ -73,7 +71,7 @@ const QUALITY_CARDS = [
       </svg>
     ),
     title: "In-Process Inspection",
-    desc: "Cross-checks at every production stage — raw material intake, semi-finished, and pre-dispatch — to catch deviation before it becomes defect.",
+    desc: "Cross-checks at every production stage — raw material intake, semi-finished, and pre-dispatch — to catch deviation before it becomes defect",
     stat: "100%",
     statLabel: "Stage Coverage",
   },
@@ -85,7 +83,7 @@ const QUALITY_CARDS = [
       </svg>
     ),
     title: "100% Visual Inspection",
-    desc: "Every component is individually reviewed before dispatch. Defect-free delivery is not a target — it is the only acceptable standard.",
+    desc: "Every component is individually reviewed before dispatch. Defect-free delivery is not a target — it is the only acceptable standard",
     stat: "0",
     statLabel: "Defect Tolerance",
   },
@@ -97,7 +95,7 @@ const QUALITY_CARDS = [
       </svg>
     ),
     title: "Calibrated Instruments",
-    desc: "All measurement equipment is maintained and calibrated on strict schedules. Instrument records are available for customer review.",
+    desc: "All measurement equipment is maintained and calibrated on strict schedules. Instrument records are available for customer review",
     stat: "Scheduled",
     statLabel: "Calibration Cycle",
   },
@@ -109,7 +107,7 @@ const QUALITY_CARDS = [
       </svg>
     ),
     title: "Advanced Metrology",
-    desc: "Continuously upgraded checking technology including vision measuring, profile projection, and digital gauging across all production lines.",
+    desc: "Continuously upgraded checking technology including vision measuring, profile projection, and digital gauging across all production lines",
     stat: "Upgraded",
     statLabel: "Continuously",
   },
@@ -133,32 +131,32 @@ const PROCESS_STEPS = [
   {
     num: "01",
     title: "Enquiry & Order",
-    desc: "Customer enquiry reviewed, drawings evaluated, and order confirmed with agreed specs.",
+    desc: "Customer enquiry reviewed, drawings evaluated, and order confirmed with agreed specs",
   },
   {
     num: "02",
     title: "Design & Sampling",
-    desc: "Engineering review, tool design, master sample production, and customer approval.",
+    desc: "Engineering review, tool design, master sample production, and customer approval",
   },
   {
     num: "03",
     title: "Raw Material Procurement",
-    desc: "Verified alloy grades sourced from approved suppliers with material test certificates.",
+    desc: "Verified alloy grades sourced from approved suppliers with material test certificates",
   },
   {
     num: "04",
     title: "Manufacturing Process",
-    desc: "CNC/automatic machining, secondary operations, and plating under in-process controls.",
+    desc: "CNC/automatic machining, secondary operations, and plating under in-process controls",
   },
   {
     num: "05",
     title: "Quality Testing",
-    desc: "Dimensional checks, visual inspection, calibrated metrology, and PPAP records compiled.",
+    desc: "Dimensional checks, visual inspection, calibrated metrology, and PPAP records compiled",
   },
   {
     num: "06",
     title: "Dispatch to Customer",
-    desc: "Packed, labelled, and documented to customer requirements. Export-ready by default.",
+    desc: "Packed, labelled, and documented to customer requirements. Export-ready by default",
   },
 ];
 
@@ -167,7 +165,7 @@ const CERTS = [
     code: "ISO",
     title: "ISO 9001:2015",
     sub: "Quality Management System",
-    desc: "Certified quality management across all production, inspection, and customer satisfaction processes.",
+    desc: "Certified quality management across all production, inspection, and customer satisfaction processes",
     color: "border-accent-gold/40 bg-accent-gold/5",
     badge: "text-accent-gold",
   },
@@ -175,7 +173,7 @@ const CERTS = [
     code: "RoHS",
     title: "RoHS Compliant",
     sub: "Restriction of Hazardous Substances",
-    desc: "All brass and copper components manufactured within EU Directive 2011/65/EU hazardous substance limits.",
+    desc: "All brass,copper & steel components manufactured within EU Directive 2011/65/EU hazardous substance limits",
     color: "border-green-500/30 bg-green-500/5",
     badge: "text-green-400",
   },
@@ -183,7 +181,7 @@ const CERTS = [
     code: "UDYAM",
     title: "UDYAM Registered",
     sub: "Govt. of India — Ministry of MSME",
-    desc: "Registered MSME enterprise under the Government of India's Udyam Recognition Framework.",
+    desc: "Registered MSME enterprise under the Government of India's Udyam Recognition Framework",
     color: "border-blue-400/30 bg-blue-400/5",
     badge: "text-blue-400",
   },
@@ -191,7 +189,7 @@ const CERTS = [
     code: "H&S",
     title: "Health & Environmental",
     sub: "Floor-Level Policy & Training",
-    desc: "Employee awareness programmes, hazard training, and environmental compliance maintained at production floor level.",
+    desc: "Employee awareness programmes, hazard training, and environmental compliance maintained at production floor level",
     color: "border-zinc-400/30 bg-zinc-400/5",
     badge: "text-zinc-400",
   },
@@ -226,13 +224,13 @@ export default function QualityPage() {
             <div className="flex items-center gap-3">
               <div className="w-10 h-0.5 bg-accent-gold shrink-0" />
               <p className="text-sm sm:text-base font-semibold text-white/90">
-                100% visual inspection. Zero compromise on defects.
+                100% visual inspection. Zero compromise on defects
               </p>
             </div>
             <p className="text-sm text-zinc-400 leading-relaxed max-w-xl">
               Every component moves through controlled checks from raw material to dispatch,
               supported by calibrated instruments, upgraded metrology systems, and
-              ISO-certified quality management.
+              ISO-certified quality management
             </p>
             <a
               href="#certifications"
@@ -250,7 +248,7 @@ export default function QualityPage() {
           <SectionHead
             tag="Quality System"
             title="Our Quality Standards"
-            sub="Four pillars of measurable, repeatable quality — built into every production run."
+            sub="Four pillars of measurable, repeatable quality — built into every production run"
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {QUALITY_CARDS.map((q) => (
@@ -325,7 +323,7 @@ export default function QualityPage() {
           <SectionHead
             tag="Production Control"
             title="Business Process"
-            sub="Every order moves through the same disciplined sequence — consistency is what makes production repeatable at scale."
+            sub="Every order moves through the same disciplined sequence — consistency is what makes production repeatable at scale"
           />
 
           {/* Desktop: card row */}
@@ -396,7 +394,7 @@ export default function QualityPage() {
           <SectionHead
             tag="Certified & Compliant"
             title="Certifications & Compliance"
-            sub="Independently verified standards and government-recognized registrations."
+            sub="Independently verified standards and government-recognized registrations"
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {CERTS.map((c) => (
@@ -463,12 +461,12 @@ export default function QualityPage() {
                 New Perfect Incorporation supports{" "}
                 <strong>PPAP Level III documentation</strong> and maintains master samples of
                 every product to improve repeatability, production control, and customer
-                confidence.
+                confidence
               </p>
               <p className="text-sm text-zinc-500 leading-relaxed">
                 Our documentation capability means customers receive full traceability from
                 raw material through manufacturing to final dispatch — with records available
-                for audit at any point in the supply chain.
+                for audit at any point in the supply chain
               </p>
             </div>
 
@@ -477,19 +475,19 @@ export default function QualityPage() {
               {[
                 {
                   title: "PPAP Level III",
-                  desc: "Full Production Part Approval Process documentation package.",
+                  desc: "Full Production Part Approval Process documentation package",
                 },
                 {
                   title: "Master Samples",
-                  desc: "Reference samples maintained for every product in production.",
+                  desc: "Reference samples maintained for every product in production",
                 },
                 {
                   title: "Material Traceability",
-                  desc: "Alloy grade, heat number, and MTC records retained per batch.",
+                  desc: "Alloy grade, heat number, and MTC records retained per batch",
                 },
                 {
                   title: "Inspection Records",
-                  desc: "Dimensional and visual inspection logs available per shipment.",
+                  desc: "Dimensional and visual inspection logs available per shipment",
                 },
               ].map((d) => (
                 <div
@@ -545,7 +543,7 @@ export default function QualityPage() {
           </h2>
           <p className="text-sm text-zinc-400 leading-relaxed max-w-xl mx-auto">
             Speak with our team about quality requirements, drawings, inspection needs,
-            and production documentation.
+            and production documentation
           </p>
           <Link
             href="/contact?subject=quality"

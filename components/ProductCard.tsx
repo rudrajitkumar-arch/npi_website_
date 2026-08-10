@@ -31,14 +31,14 @@ export default function ProductCard({
           sizes="(max-w-7xl) 33vw, 100vw"
           className="object-cover group-hover:scale-105 transition-transform duration-500"
         />
-        <div className="absolute top-3 left-3 bg-primary-dark/90 backdrop-blur-sm text-accent-gold text-[10px] font-bold uppercase tracking-wider px-2.5 py-1">
+        <div className="absolute top-3 left-3 bg-primary-dark/90 backdrop-blur-sm text-accent-gold text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 font-mono">
           {category}
         </div>
       </div>
 
       {/* Info Section */}
       <div className="p-6 flex flex-col flex-grow">
-        <h3 className="text-lg font-serif font-bold text-primary-dark uppercase tracking-wide mb-3 group-hover:text-accent-gold transition-colors duration-300">
+        <h3 className="text-lg font-display font-bold text-primary-dark uppercase tracking-wide mb-3 group-hover:text-accent-gold transition-colors duration-300">
           {title}
         </h3>
         <p className="text-sm text-zinc-500 leading-relaxed mb-4 flex-grow">
@@ -47,7 +47,7 @@ export default function ProductCard({
 
         {/* Technical features list */}
         <div className="mb-4">
-          <h4 className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 mb-2">
+          <h4 className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 mb-2 font-mono">
             Specifications:
           </h4>
           <ul className="space-y-1">
@@ -62,14 +62,14 @@ export default function ProductCard({
 
         {/* Materials support */}
         <div className="border-t border-zinc-100 pt-4 mb-6">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 block mb-2">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 block mb-2 font-mono">
             Available Alloys:
           </span>
           <div className="flex flex-wrap gap-1.5">
             {materials.map((mat, index) => (
               <span
                 key={index}
-                className="bg-bg-warm text-primary-dark text-[10px] font-semibold px-2 py-0.5 border border-zinc-200"
+                className="bg-bg-warm text-primary-dark text-[10px] font-semibold px-2 py-0.5 border border-zinc-200 font-mono"
               >
                 {mat}
               </span>
@@ -81,13 +81,13 @@ export default function ProductCard({
         <div className="grid grid-cols-2 gap-2 mt-auto">
           <Link
             href={`/contact?product=${id}`}
-            className="flex items-center justify-center bg-primary-dark hover:bg-primary-light text-white text-xs font-bold uppercase tracking-wider py-2.5 transition-colors duration-300"
+            className="flex items-center justify-center bg-primary-dark hover:bg-primary-light text-white text-xs font-bold uppercase tracking-wider py-2.5 transition-colors duration-300 font-mono"
           >
             Inquire Now
           </Link>
           <Link
             href={`/products`}
-            className="flex items-center justify-center border border-zinc-300 hover:border-accent-gold text-zinc-700 hover:text-accent-gold text-xs font-bold uppercase tracking-wider py-2.5 transition-colors duration-300"
+            className="flex items-center justify-center border border-zinc-300 hover:border-accent-gold text-zinc-700 hover:text-accent-gold text-xs font-bold uppercase tracking-wider py-2.5 transition-colors duration-300 font-mono"
           >
             Details
           </Link>

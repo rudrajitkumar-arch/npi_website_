@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Our Clients",
   description:
-    "Trusted by global leaders in electrical, automotive, sanitary, and gas fittings sectors. Discover why leading OEMs partner with New Perfect Incorporation for brass & copper machining.",
+    "Trusted by global leaders in electrical, automotive, sanitary, and gas fittings sectors. Discover why leading OEMs partner with New Perfect Incorporation for brass & copper machining",
   keywords: [
     "brass component clients",
     "B2B metal supplier clients",
@@ -83,7 +83,7 @@ const TRUST_STATS = [
   { val: "2007", label: "Established" },
   { val: "ISO 9001:2015", label: "Quality certified" },
   { val: "110+", label: "Machinery Fleet" },
-  { val: "10,000", label: "sq.m. Facility" },
+  { val: "50,000", label: "Sq Ft Facility" },
   { val: "Multi-Sector", label: "Coverage" },
   { val: "Export-Ready", label: "Global supply" },
 ];
@@ -91,27 +91,27 @@ const TRUST_STATS = [
 const WHY_CARDS = [
   {
     title: "Consistent Quality",
-    desc: "Controlled inspection pipelines and 100% manual visual checking on every single dispatch.",
+    desc: "Controlled inspection pipelines and 100% manual visual checking on every single dispatch",
   },
   {
     title: "Custom Specifications",
-    desc: "Components manufactured exactly to custom drawings, samples, grades, and finishing codes.",
+    desc: "Components manufactured exactly to custom drawings, samples, grades, and finishing codes",
   },
   {
     title: "Transparent Quotations",
-    desc: "Rapid response pricing sheets, precise items descriptions, and zero hidden revision charges.",
+    desc: "Rapid response pricing sheets, precise items descriptions, and zero hidden revision charges",
   },
   {
     title: "Scalable Production",
-    desc: "110+ specialized machines operating from our 10,000 sq.m. Jamnagar site to feed bulk OEM requirements.",
+    desc: "110+ specialized machines operating from our 50,000 Sq Ft Jamnagar site to feed bulk OEM requirements",
   },
   {
     title: "Inspection Discipline",
-    desc: "Calibrated digital metrology tools, visual projector systems, and strict PPAP support.",
+    desc: "Calibrated digital metrology tools, visual projector systems, and strict PPAP support",
   },
   {
     title: "Responsive Communication",
-    desc: "Direct contact channels with production engineering and sales specialists for fast responses.",
+    desc: "Direct contact channels with production engineering and sales specialists for fast responses",
   },
 ];
 
@@ -152,13 +152,13 @@ export default function ClientsPage() {
             <div className="flex items-center gap-3">
               <div className="w-10 h-0.5 bg-accent-gold shrink-0" />
               <p className="text-sm sm:text-base font-semibold text-white/90">
-                A growing roster of valued clients across sectors.
+                A growing roster of valued clients across sectors
               </p>
             </div>
             <p className="text-sm text-zinc-400 leading-relaxed max-w-xl">
-              New Perfect Incorporation supplies precision brass and copper components to
+              New Perfect Incorporation supplies Every Precision Components to
               companies across electrical, automotive, plastics, hardware, industrial, and
-              related manufacturing sectors.
+              related manufacturing sectors
             </p>
             <Link
               href="/contact"
@@ -176,7 +176,7 @@ export default function ClientsPage() {
           <SectionHead
             tag="Corporate Roster"
             title="Valued Partnerships"
-            sub="OEM brand names and manufacturers that trust New Perfect Incorporation for precision supply."
+            sub="OEM brand names and manufacturers that trust New Perfect Incorporation for precision supply"
           />
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
@@ -230,7 +230,7 @@ export default function ClientsPage() {
           <SectionHead
             tag="Supplier Credibility"
             title="Why Clients Work With Us"
-            sub="Critical parameters that position us as a reliable long-term vendor."
+            sub="Critical parameters that position us as a reliable long-term vendor"
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -292,7 +292,7 @@ export default function ClientsPage() {
           <div className="w-14 h-1 bg-accent-gold mx-auto" />
           <p className="text-sm text-zinc-500 leading-relaxed max-w-xl mx-auto">
             Send your requirement and our team will help convert it into a precise, production-ready
-            component.
+            component
           </p>
           <Link
             href="/contact"

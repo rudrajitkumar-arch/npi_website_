@@ -22,8 +22,8 @@ const SLIDES = [
   {
     badge: "Est. 2007 · Jamnagar, India's Brass City",
     headline: "PRECISION\nENGINEERED",
-    sub: "Brass & copper components manufactured to exact specification.",
-    body: "Two decades of precision engineering from Jamnagar, India's Brass City.",
+    sub: "Every Precision Components manufactured to exact specification",
+    body: "Two decades of precision engineering from Jamnagar, India's Brass City",
     ctas: [
       { label: "Get a Quote", href: "/contact", primary: true },
       { label: "Explore Capabilities", href: "/capabilities", primary: false },
@@ -33,8 +33,8 @@ const SLIDES = [
   {
     badge: "ISO 9001:2015 Certified · RoHS Compliant",
     headline: "QUALITY\nCERTIFIED",
-    sub: "ISO 9001:2015 certified manufacturing with 100% visual inspection.",
-    body: "From raw material to dispatch, every component follows a controlled quality process.",
+    sub: "ISO 9001:2015 certified manufacturing with 100% visual inspection",
+    body: "From raw material to dispatch, every component follows a controlled quality process",
     ctas: [
       { label: "View Quality System", href: "/quality", primary: true },
       { label: "Contact Sales", href: "/contact", primary: false },
@@ -44,8 +44,8 @@ const SLIDES = [
   {
     badge: "CNC · Machined · Plated · Export-Ready",
     headline: "CUSTOM\nCOMPONENTS",
-    sub: "CNC turned, machined, plated, assembled, and export-ready.",
-    body: "Serving electrical, automotive, aerospace, medical, plumbing, and industrial supply chains.",
+    sub: "CNC turned, machined, plated, assembled, and export-ready",
+    body: "Serving electrical, automotive, aerospace, medical, plumbing, and industrial supply chains",
     ctas: [
       { label: "View Products", href: "/products", primary: true },
       { label: "Send Enquiry", href: "/contact", primary: false },
@@ -56,7 +56,7 @@ const SLIDES = [
 
 const STATS = [
   { val: "2007", label: "Established" },
-  { val: "10,000", label: "sq.m. Facility" },
+  { val: "50,000", label: "Sq Ft Facility" },
   { val: "110+", label: "Machines" },
   { val: "ISO 9001:2015", label: "Certified" },
 ];
@@ -186,7 +186,7 @@ export default function HeroSection() {
               {/* Badge */}
               <div className="slide-badge inline-flex items-center gap-2 border border-accent-gold/40 bg-accent-gold/10 px-4 py-1 rounded-sm mb-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-accent-gold animate-pulse" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent-gold">
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent-gold font-mono">
                   {slide.badge}
                 </span>
               </div>
@@ -221,7 +221,7 @@ export default function HeroSection() {
                     <Link
                       key={c.label}
                       href={c.href}
-                      className="px-8 py-3.5 text-xs font-black uppercase tracking-widest text-white bg-accent-gold hover:bg-accent-gold-hover transition-colors border border-accent-gold hover:shadow-lg hover:shadow-accent-gold/30"
+                      className="px-8 py-3.5 text-xs font-black uppercase tracking-widest text-white bg-accent-gold hover:bg-accent-gold-hover transition-colors border border-accent-gold hover:shadow-lg hover:shadow-accent-gold/30 font-mono"
                     >
                       {c.label}
                     </Link>
@@ -229,7 +229,7 @@ export default function HeroSection() {
                     <Link
                       key={c.label}
                       href={c.href}
-                      className="px-8 py-3.5 text-xs font-black uppercase tracking-widest text-white border border-white/40 hover:border-accent-gold hover:text-accent-gold transition-colors"
+                      className="px-8 py-3.5 text-xs font-black uppercase tracking-widest text-white border border-white/40 hover:border-accent-gold hover:text-accent-gold transition-colors font-mono"
                     >
                       {c.label}
                     </Link>
@@ -277,7 +277,7 @@ export default function HeroSection() {
                 >
                   {s.val}
                 </span>
-                <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mt-1">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mt-1 font-mono">
                   {s.label}
                 </span>
               </div>

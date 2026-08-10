@@ -5,7 +5,7 @@ import Image from "next/image";
 export const metadata: Metadata = {
   title: "Products & Services",
   description:
-    "Precision brass inserts, fittings, fasteners, cable glands, CNC turned parts, copper, bronze & gunmetal components from New Perfect Incorporation — Jamnagar, India. Custom grades and surface finishes available.",
+    "Precision brass inserts, fittings, fasteners, cable glands, CNC turned parts, copper, bronze & gunmetal components from New Perfect Incorporation — Jamnagar, India. Custom grades and surface finishes available",
   keywords: [
     "brass inserts manufacturer",
     "brass fittings exporter",
@@ -234,13 +234,13 @@ export default function ProductsPage() {
             <div className="flex items-center gap-3">
               <div className="w-10 h-0.5 bg-accent-gold shrink-0" />
               <p className="text-sm sm:text-base font-semibold text-white/90">
-                Customized precision components, in every grade you specify.
+                Customized precision components, in every grade you specify
               </p>
             </div>
             <p className="text-sm text-zinc-400 leading-relaxed max-w-xl">
               New Perfect Incorporation manufactures brass, copper, bronze, gunmetal, forged,
               cast, CNC turned, and custom-machined components for multiple industrial
-              applications.
+              applications
             </p>
             <Link
               href="/contact"
@@ -258,7 +258,7 @@ export default function ProductsPage() {
           <SectionHead
             tag="Product Portfolio"
             title="Product Categories"
-            sub="Precision brass and copper components across 9 major product families."
+            sub="Every Precision Components across 9 major product families"
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -334,7 +334,7 @@ export default function ProductsPage() {
           <SectionHead
             tag="Manufacturing Services"
             title="Services We Provide"
-            sub="End-to-end manufacturing services from raw stock to packaged, dispatch-ready components."
+            sub="End-to-end manufacturing services from raw stock to packaged, dispatch-ready components"
             light
           />
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-px bg-white/10">
@@ -364,7 +364,7 @@ export default function ProductsPage() {
           <SectionHead
             tag="Material & Finish"
             title="Material & Finish Support"
-            sub="All components manufactured to customer-specified grades. Surface finishes applied in-house."
+            sub="All components manufactured to customer-specified grades. Surface finishes applied in-house"
           />
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
@@ -393,7 +393,7 @@ export default function ProductsPage() {
               <p className="text-[11px] text-zinc-400 mt-5 leading-relaxed">
                 Components can be manufactured in any customer-specified alloy grade or
                 material equivalent. Share your drawing or MTC (Material Test Certificate)
-                requirements and we will match them exactly.
+                requirements and we will match them exactly
               </p>
             </div>
 
@@ -419,7 +419,7 @@ export default function ProductsPage() {
               <p className="text-[11px] text-zinc-400 leading-relaxed">
                 All plating and surface treatment work is performed in-house using calibrated
                 equipment. Thickness and adhesion are checked against customer or international
-                standards before dispatch.
+                standards before dispatch
               </p>
             </div>
           </div>
@@ -436,9 +436,9 @@ export default function ProductsPage() {
                 className="mt-4 text-3xl sm:text-4xl font-black uppercase leading-tight tracking-tight text-primary-dark"
                 style={{ fontFamily: "var(--font-serif-display)" }}
               >
-                Send Your Drawing.{" "}
+                Send Your Drawing{" "}
                 <span className="text-accent-gold">We&apos;ll Manufacture</span>{" "}
-                to Specification.
+                to Specification
               </h2>
               <div className="mt-4 w-14 h-1 bg-accent-gold mx-auto" />
             </div>
@@ -467,7 +467,7 @@ export default function ProductsPage() {
               </p>
               <p className="text-xs text-zinc-400 mb-6 leading-relaxed max-w-sm">
                 PDF, DWG, STEP, IGES, or JPG accepted. Include target material, quantity,
-                grade, and finish requirement.
+                grade, and finish requirement
               </p>
 
               {/* Info chips */}
@@ -526,11 +526,11 @@ export default function ProductsPage() {
             style={{ fontFamily: "var(--font-serif-display)" }}
           >
             Not Found What You Need?{" "}
-            <span className="text-accent-gold">We Can Machine It.</span>
+            <span className="text-accent-gold">We Can Machine It</span>
           </h2>
           <p className="text-sm text-zinc-400 leading-relaxed max-w-xl mx-auto">
             If your component is not listed, contact us directly. New Perfect Incorporation
-            handles custom requirements — just share a drawing, sample, or specification.
+            handles custom requirements — just share a drawing, sample, or specification
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link

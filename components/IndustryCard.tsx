@@ -83,7 +83,7 @@ export default function IndustryCard({
 
       {/* Details Section */}
       <div className="p-6 flex flex-col flex-grow">
-        <h3 className="text-lg font-serif font-bold text-primary-dark uppercase tracking-wide mb-3 group-hover:text-accent-gold transition-colors duration-300">
+        <h3 className="text-lg font-display font-bold text-primary-dark uppercase tracking-wide mb-3 group-hover:text-accent-gold transition-colors duration-300">
           {title}
         </h3>
         <p className="text-sm text-zinc-500 leading-relaxed flex-grow">

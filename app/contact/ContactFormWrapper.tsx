@@ -37,7 +37,7 @@ export default function ContactFormWrapper() {
         </h3>
         <p className="text-sm text-zinc-500 max-w-md mx-auto leading-relaxed">
           Thank you for contacting New Perfect Incorporation. Our sales and engineering team
-          will review your drawings and requirements and follow up within 24 business hours.
+          will review your drawings and requirements and follow up within 24 business hours
         </p>
         <button
           onClick={() => {

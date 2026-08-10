@@ -14,19 +14,19 @@ export default function Footer() {
               >
                 New Perfect
               </span>
-              <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-accent-gold mt-1 block">
+              <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-accent-gold mt-1 block font-mono">
                 Incorporation
               </span>
             </Link>
             <p className="text-xs text-zinc-400 leading-relaxed mb-5">
-              ISO 9001:2015 certified precision brass &amp; copper components manufacturer,
-              exporter &amp; supplier. Established 2007 · Jamnagar, India.
+              ISO 9001:2015 certified Every Precision Components manufacturer,
+              exporter &amp; supplier. Established 2007 · Jamnagar, India
             </p>
             <div className="flex flex-wrap gap-2">
               {["ISO 9001:2015", "RoHS", "UDYAM"].map((b) => (
                 <span
                   key={b}
-                  className="px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider border border-accent-gold/30 text-accent-gold"
+                  className="px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider border border-accent-gold/30 text-accent-gold font-mono"
                 >
                   {b}
                 </span>
@@ -36,7 +36,7 @@ export default function Footer() {
 
           {/* Address & Contact */}
           <div>
-            <h4 className="text-[10px] font-bold uppercase tracking-widest text-accent-gold mb-5 border-b border-white/10 pb-2">
+            <h4 className="text-[10px] font-bold uppercase tracking-widest text-accent-gold mb-5 border-b border-white/10 pb-2 font-mono">
               Registered Office
             </h4>
             <div className="space-y-3 text-xs text-zinc-400">
@@ -81,14 +81,12 @@ export default function Footer() {
 
           {/* Phone contacts */}
           <div>
-            <h4 className="text-[10px] font-bold uppercase tracking-widest text-accent-gold mb-5 border-b border-white/10 pb-2">
+            <h4 className="text-[10px] font-bold uppercase tracking-widest text-accent-gold mb-5 border-b border-white/10 pb-2 font-mono">
               Contact Persons
             </h4>
             <div className="space-y-3 text-xs text-zinc-400">
               {[
                 { name: "Meet Patel", phone: "+91 78179 42727" },
-                { name: "Chimanbhai Ajudiya", phone: "+91 90994 21887" },
-                { name: "Dipakbhai Ajudiya", phone: "+91 94269 27274" },
               ].map((p) => (
                 <div key={p.name}>
                   <span className="block text-zinc-300 font-semibold">{p.name}</span>
@@ -102,7 +100,7 @@ export default function Footer() {
 
           {/* Quick links */}
           <div>
-            <h4 className="text-[10px] font-bold uppercase tracking-widest text-accent-gold mb-5 border-b border-white/10 pb-2">
+            <h4 className="text-[10px] font-bold uppercase tracking-widest text-accent-gold mb-5 border-b border-white/10 pb-2 font-mono">
               Quick Links
             </h4>
             <ul className="space-y-2.5">
@@ -120,7 +118,7 @@ export default function Footer() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="text-xs text-zinc-400 hover:text-white hover:translate-x-1 inline-block transition-all"
+                    className="text-xs text-zinc-400 hover:text-white hover:translate-x-1 inline-block transition-all font-mono"
                   >
                     {l.label}
                   </Link>
@@ -132,17 +130,17 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-[10px] text-zinc-500">
-          <p>© {new Date().getFullYear()} New Perfect Incorporation. All Rights Reserved.</p>
+          <p>© {new Date().getFullYear()} New Perfect Incorporation. All Rights Reserved</p>
           <p className="flex gap-4">
-            <Link href="/quality" className="hover:text-zinc-300 transition-colors">
+            <Link href="/quality" className="hover:text-zinc-300 transition-colors font-mono">
               ISO 9001:2015
             </Link>
             <span>·</span>
-            <Link href="/quality" className="hover:text-zinc-300 transition-colors">
+            <Link href="/quality" className="hover:text-zinc-300 transition-colors font-mono">
               RoHS Compliant
             </Link>
             <span>·</span>
-            <Link href="/about" className="hover:text-zinc-300 transition-colors">
+            <Link href="/about" className="hover:text-zinc-300 transition-colors font-mono">
               UDYAM Registered
             </Link>
           </p>

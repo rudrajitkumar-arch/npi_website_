@@ -27,10 +27,10 @@ export default function CertificationCard({
       {/* Info Section */}
       <div className="flex-grow text-center md:text-left">
         <div className="flex flex-col md:flex-row md:items-baseline justify-between mb-2">
-          <h3 className="text-lg font-serif font-bold text-primary-dark uppercase tracking-wide group-hover:text-accent-gold transition-colors duration-300">
+          <h3 className="text-lg font-display font-bold text-primary-dark uppercase tracking-wide group-hover:text-accent-gold transition-colors duration-300">
             {title}
           </h3>
-          <span className="text-[11px] font-bold tracking-wider text-accent-gold uppercase mt-1 md:mt-0">
+          <span className="text-[11px] font-bold tracking-wider text-accent-gold uppercase mt-1 md:mt-0 font-mono">
             {authority}
           </span>
         </div>

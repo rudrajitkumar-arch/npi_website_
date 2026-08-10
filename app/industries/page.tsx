@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Industries We Serve",
   description:
-    "New Perfect Incorporation manufactures precision brass & copper components for electrical, automotive, aerospace, medical, plumbing, sanitary, marine, fastener, and plastic molding industries.",
+    "New Perfect Incorporation manufactures every precision components for electrical, automotive, aerospace, medical, plumbing, sanitary, marine, fastener, and plastic molding industries",
   keywords: [
     "electrical brass parts",
     "automotive components Jamnagar",
@@ -72,7 +72,7 @@ const INDUSTRIES = [
       </svg>
     ),
     title: "Electrical & Electronics",
-    desc: "Precision brass and copper components for electrical assemblies, connectors, transformer parts, cable accessories, earthing, and lightning protection.",
+    desc: "Every Precision Components for electrical assemblies, connectors, transformer parts, cable accessories, earthing, and lightning protection",
   },
   {
     icon: (
@@ -82,7 +82,7 @@ const INDUSTRIES = [
       </svg>
     ),
     title: "Automobiles",
-    desc: "Custom-machined brass and metal parts for automotive systems, fittings, fasteners, and engineered assemblies.",
+    desc: "Custom-machined brass and metal parts for automotive systems, fittings, fasteners, and engineered assemblies",
   },
   {
     icon: (
@@ -91,7 +91,7 @@ const INDUSTRIES = [
       </svg>
     ),
     title: "Aerospace",
-    desc: "Precision components manufactured with strict dimensional consistency and controlled production processes.",
+    desc: "Precision components manufactured with strict dimensional consistency and controlled production processes",
   },
   {
     icon: (
@@ -100,7 +100,7 @@ const INDUSTRIES = [
       </svg>
     ),
     title: "Medical",
-    desc: "Brass and engineered components for medical equipment and precision application needs.",
+    desc: "Brass and engineered components for medical equipment and precision application needs",
   },
   {
     icon: (
@@ -109,7 +109,7 @@ const INDUSTRIES = [
       </svg>
     ),
     title: "Plastic & Rubber Molding",
-    desc: "Brass inserts, compression limiters, threaded inserts, and molding-related components.",
+    desc: "Brass inserts, compression limiters, threaded inserts, and molding-related components",
   },
   {
     icon: (
@@ -118,7 +118,7 @@ const INDUSTRIES = [
       </svg>
     ),
     title: "Sanitary & Hardware",
-    desc: "Brass fittings, plumbing fittings, CP fittings, hardware parts, pipe fittings, and related components.",
+    desc: "Brass fittings, plumbing fittings, CP fittings, hardware parts, pipe fittings, and related components",
   },
   {
     icon: (
@@ -127,7 +127,7 @@ const INDUSTRIES = [
       </svg>
     ),
     title: "Gas, CNG & LPG",
-    desc: "Brass LPG gas fittings, gas application components, and custom machined fittings.",
+    desc: "Brass LPG gas fittings, gas application components, and custom machined fittings",
   },
   {
     icon: (
@@ -136,7 +136,7 @@ const INDUSTRIES = [
       </svg>
     ),
     title: "Marine",
-    desc: "Corrosion-conscious brass, bronze, and copper-alloy components for marine applications.",
+    desc: "Corrosion-conscious brass, bronze, and copper-alloy components for marine applications",
   },
   {
     icon: (
@@ -146,7 +146,7 @@ const INDUSTRIES = [
       </svg>
     ),
     title: "Fasteners",
-    desc: "Brass anchors, bolts, nuts, screws, studs, washers, and custom fastener solutions.",
+    desc: "Brass anchors, bolts, nuts, screws, studs, washers, and custom fastener solutions",
   },
   {
     icon: (
@@ -155,34 +155,34 @@ const INDUSTRIES = [
       </svg>
     ),
     title: "General Industrial",
-    desc: "Custom precision components for machines, assemblies, industrial products, and OEM requirements.",
+    desc: "Custom precision components for machines, assemblies, industrial products, and OEM requirements",
   },
 ];
 
 const CAPABILITIES = [
   {
     title: "Custom Machining",
-    desc: "Machining parts exactly as per technical drawings, CAD data, or master samples.",
+    desc: "Machining parts exactly as per technical drawings, CAD data, or master samples",
   },
   {
     title: "High-Volume Production",
-    desc: "Robust scaling infrastructure with 110+ machines handling big contract orders.",
+    desc: "Robust scaling infrastructure with 110+ machines handling big contract orders",
   },
   {
     title: "Secondary Operations",
-    desc: "In-house tapping, slotting, drilling, milling, and deburring to streamline supply.",
+    desc: "In-house tapping, slotting, drilling, milling, and deburring to streamline supply",
   },
   {
     title: "Surface Treatment",
-    desc: "Nickel, tin, chrome, copper, silver, and gold plating options processed in-house.",
+    desc: "Nickel, tin, chrome, copper, silver, and gold plating options processed in-house",
   },
   {
     title: "100% Visual Inspection",
-    desc: "Critical manual inspection processes on every component batch before export.",
+    desc: "Critical manual inspection processes on every component batch before export",
   },
   {
     title: "Packaging & Labelling",
-    desc: "Custom barcoding, sea-worthy packaging, and shipping configurations for export routes.",
+    desc: "Custom barcoding, sea-worthy packaging, and shipping configurations for export routes",
   },
 ];
 
@@ -214,13 +214,13 @@ export default function IndustriesPage() {
             <div className="flex items-center gap-3">
               <div className="w-10 h-0.5 bg-accent-gold shrink-0" />
               <p className="text-sm sm:text-base font-semibold text-white/90">
-                One alloying capability. Ten industries trust the result.
+                One alloying capability. Ten industries trust the result
               </p>
             </div>
             <p className="text-sm text-zinc-400 leading-relaxed max-w-xl">
               New Perfect Incorporation supplies precision brass, copper, bronze, gunmetal,
               CNC turned, forged, cast, and custom-machined components across demanding
-              industrial sectors.
+              industrial sectors
             </p>
             <Link
               href="/contact"
@@ -238,7 +238,7 @@ export default function IndustriesPage() {
           <SectionHead
             tag="Industrial Sectors"
             title="Industries We Supply"
-            sub="Our precision metalworking supports diverse B2B supply lines."
+            sub="Our precision metalworking supports diverse B2B supply lines"
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -301,7 +301,7 @@ export default function IndustriesPage() {
             From electrical connectors and cable accessories to automotive, plumbing, medical,
             and industrial components, New Perfect Incorporation manufactures custom brass and
             copper parts where dimensional consistency, material quality, finishing, and
-            repeatability matter.
+            repeatability matter
           </p>
         </div>
       </section>
@@ -312,7 +312,7 @@ export default function IndustriesPage() {
           <SectionHead
             tag="Manufacturing Breadth"
             title="Cross-Industry Capabilities"
-            sub="Universal operational strengths that support all industrial client sectors."
+            sub="Universal operational strengths that support all industrial client sectors"
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -353,7 +353,7 @@ export default function IndustriesPage() {
           <div className="w-14 h-1 bg-accent-gold mx-auto" />
           <p className="text-sm text-zinc-500 leading-relaxed max-w-xl mx-auto">
             Share your component type, material, quantity, drawing, or sample details. Our
-            team will evaluate the requirement and respond with a clear manufacturing route.
+            team will evaluate the requirement and respond with a clear manufacturing route
           </p>
           <Link
             href="/contact"
