@@ -65,7 +65,7 @@ export default function ContactFormWrapper() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white border border-zinc-200/90 rounded-2xl p-8 sm:p-10 space-y-6 shadow-xl relative overflow-hidden hover:border-accent-gold/40 transition-all duration-300">
+    <form onSubmit={handleSubmit} className="bg-white border border-zinc-200/90 rounded-2xl p-8 sm:p-10 space-y-6 shadow-xl relative overflow-hidden hover:border-accent-gold/40 transition-all duration-300 h-full flex flex-col justify-between">
       <div className="absolute top-0 left-0 right-0 h-1 bg-accent-gold" />
 
       <div className="border-b border-zinc-100 pb-4 mb-2">

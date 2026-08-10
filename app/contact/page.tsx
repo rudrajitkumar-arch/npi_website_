@@ -205,15 +205,15 @@ export default function ContactPage() {
       {/* 3. RFQ & HELPER PANEL SECTION ────────────────────── */}
       <section className="py-20 bg-white border-t border-zinc-100" id="rfq-section">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
             
             {/* Form Column */}
-            <div className="lg:col-span-8">
+            <div className="lg:col-span-8 flex flex-col">
               <ContactFormWrapper />
             </div>
 
             {/* Helper Column */}
-            <div className="lg:col-span-4 bg-gradient-to-b from-white via-bg-warm to-bg-warm border border-zinc-200/90 rounded-2xl p-8 space-y-6 shadow-xl relative overflow-hidden hover:border-accent-gold/40 transition-all duration-300">
+            <div className="lg:col-span-4 bg-gradient-to-b from-white via-bg-warm to-bg-warm border border-zinc-200/90 rounded-2xl p-8 shadow-xl relative overflow-hidden hover:border-accent-gold/40 transition-all duration-300 flex flex-col justify-between h-full space-y-6">
               <div className="absolute top-0 left-0 right-0 h-1 bg-accent-gold" />
 
               <div className="border-b border-zinc-200 pb-3">
