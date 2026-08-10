@@ -103,14 +103,14 @@ const INDUSTRIES = [
     desc: "Zero-leak forged valve bodies, injectors, and high-pressure brass fittings",
   },
   {
-    icon: "⚓",
-    title: "Marine",
-    desc: "Naval brass fasteners and fittings resistant to saltwater corrosion",
+    icon: "🔧",
+    title: "Fittings",
+    desc: "Custom brass, copper, and alloy pipe fittings, unions, nipples, and adapters",
   },
   {
     icon: "🔩",
     title: "Fasteners",
-    desc: "Precision brass bolts, studs, nuts, washers, and specialty fixings",
+    desc: "Precision screws, bolts, studs, nuts, washers, and specialty fixings",
   },
   {
     icon: "🏭",
