@@ -213,32 +213,53 @@ export default function ContactPage() {
             </div>
 
             {/* Helper Column */}
-            <div className="lg:col-span-4 bg-bg-warm border border-zinc-200 p-8 space-y-6">
-              <h4
-                className="text-base font-black uppercase text-primary-dark border-b border-zinc-200 pb-2"
-                style={{ fontFamily: "var(--font-serif-display)" }}
-              >
-                What to Include
-              </h4>
-              <p className="text-xs text-zinc-500 leading-relaxed">
+            <div className="lg:col-span-4 bg-gradient-to-b from-white via-bg-warm to-bg-warm border border-zinc-200/90 rounded-2xl p-8 space-y-6 shadow-xl relative overflow-hidden hover:border-accent-gold/40 transition-all duration-300">
+              <div className="absolute top-0 left-0 right-0 h-1 bg-accent-gold" />
+
+              <div className="border-b border-zinc-200 pb-3">
+                <span className="text-[9px] font-black uppercase tracking-widest text-accent-gold block mb-1">
+                  Engineering Guidelines
+                </span>
+                <h4
+                  className="text-lg font-black uppercase text-primary-dark"
+                  style={{ fontFamily: "var(--font-serif-display)" }}
+                >
+                  What to Include
+                </h4>
+              </div>
+
+              <p className="text-xs text-zinc-500 leading-relaxed font-sans">
                 To guarantee a precise engineering assessment and speed up turnaround times, please supply
                 as many variables as possible:
               </p>
-              <ul className="space-y-3">
+
+              <ul className="space-y-3.5">
                 {HELPER_LIST.map((item) => (
-                  <li key={item} className="flex items-start text-xs text-zinc-600">
-                    <span className="w-1.5 h-1.5 rounded-full bg-accent-gold shrink-0 mr-2.5 mt-1.5" />
+                  <li key={item} className="flex items-start text-xs text-zinc-700 font-medium leading-normal">
+                    <span className="w-5 h-5 rounded-full bg-accent-gold/15 text-accent-gold flex items-center justify-center shrink-0 mr-3 mt-0.5 shadow-xs">
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </span>
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
-              <div className="border-t border-zinc-200 pt-6">
-                <span className="text-[9px] font-bold uppercase tracking-wider text-accent-gold block mb-1">
-                  Quote Turnaround
-                </span>
-                <p className="text-[10px] text-zinc-400 leading-relaxed">
-                  Basic drawing enquiries are processed within 24 hours. Custom alloy forging designs or multi-part bills of materials require up to 48 hours
-                </p>
+
+              <div className="pt-2">
+                <div className="bg-primary-dark text-white p-5 rounded-xl border border-accent-gold/30 shadow-md space-y-1.5">
+                  <div className="flex items-center gap-2">
+                    <svg className="w-4 h-4 text-accent-gold shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span className="text-[10px] font-black uppercase tracking-widest text-accent-gold">
+                      Quote Turnaround
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-zinc-300 leading-relaxed font-sans">
+                    Basic drawing enquiries are processed within 24 hours. Custom alloy forging designs or multi-part bills of materials require up to 48 hours.
+                  </p>
+                </div>
               </div>
             </div>
 
