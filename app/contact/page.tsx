@@ -69,13 +69,34 @@ const CONTACTS = [
 ];
 
 const HELPER_LIST = [
-  "Drawing or sample reference",
-  "Material grade or chemical composition",
-  "Target batch quantity or monthly volume",
-  "Dimensions and tolerance parameters",
-  "Surface finish or plating requirements",
-  "Custom packaging configuration requirements",
-  "Target delivery timeline",
+  {
+    title: "Drawing or Sample Reference",
+    desc: "2D/3D CAD files (PDF, STEP, DWG) or physical sample parts",
+  },
+  {
+    title: "Material Grade & Composition",
+    desc: "IS 319, CZ 121, Free Cutting Brass, Copper, or custom alloy spec",
+  },
+  {
+    title: "Target Batch & Monthly Volume",
+    desc: "Initial sample run quantity vs. estimated annual production batch",
+  },
+  {
+    title: "Dimensions & Tolerance Limits",
+    desc: "Critical dimensional parameters (e.g. ±0.01 mm) & thread specs",
+  },
+  {
+    title: "Surface Finish & Plating Specs",
+    desc: "Nickel, tin, chrome, silver, gold, deburring, or mirror polish",
+  },
+  {
+    title: "Custom Packaging Configuration",
+    desc: "Export polybagging, barcode labelling, or sea-worthy wooden boxes",
+  },
+  {
+    title: "Target Delivery Timeline",
+    desc: "Required dispatch schedule, port of delivery, or incoterms",
+  },
 ];
 
 /* ═══════════════════════════════════════════════════════════
@@ -213,41 +234,53 @@ export default function ContactPage() {
             </div>
 
             {/* Helper Column */}
-            <div className="lg:col-span-4 bg-gradient-to-b from-white via-bg-warm to-bg-warm border border-zinc-200/90 rounded-2xl p-8 shadow-xl relative overflow-hidden hover:border-accent-gold/40 transition-all duration-300 flex flex-col justify-between h-full space-y-6">
+            <div className="lg:col-span-4 bg-white border border-zinc-200/90 rounded-2xl p-6 sm:p-8 shadow-xl relative overflow-hidden hover:border-accent-gold/40 transition-all duration-300 flex flex-col justify-between h-full">
               <div className="absolute top-0 left-0 right-0 h-1 bg-accent-gold" />
 
-              <div className="border-b border-zinc-200 pb-3">
-                <span className="text-[9px] font-black uppercase tracking-widest text-accent-gold block mb-1">
-                  Engineering Guidelines
-                </span>
-                <h4
-                  className="text-lg font-black uppercase text-primary-dark"
-                  style={{ fontFamily: "var(--font-serif-display)" }}
-                >
-                  What to Include
-                </h4>
+              <div>
+                <div className="border-b border-zinc-100 pb-3 mb-4">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-accent-gold block mb-1">
+                    Engineering Guidelines
+                  </span>
+                  <h4
+                    className="text-xl font-black uppercase text-primary-dark tracking-tight"
+                    style={{ fontFamily: "var(--font-serif-display)" }}
+                  >
+                    What to Include
+                  </h4>
+                </div>
+
+                <p className="text-xs text-zinc-500 leading-relaxed font-sans mb-4">
+                  To guarantee a precise engineering assessment and speed up turnaround times, please supply
+                  as many variables as possible:
+                </p>
+
+                <div className="space-y-3">
+                  {HELPER_LIST.map((item) => (
+                    <div
+                      key={item.title}
+                      className="p-3 bg-bg-warm/50 border border-zinc-200/70 rounded-xl flex items-start gap-3 hover:border-accent-gold/50 transition-colors group"
+                    >
+                      <div className="w-5 h-5 rounded-full bg-accent-gold/15 text-accent-gold flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-accent-gold group-hover:text-white transition-colors">
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h5 className="text-[11px] font-black uppercase text-primary-dark tracking-wide">
+                          {item.title}
+                        </h5>
+                        <p className="text-[11px] text-zinc-500 mt-0.5 leading-snug">
+                          {item.desc}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
 
-              <p className="text-xs text-zinc-500 leading-relaxed font-sans">
-                To guarantee a precise engineering assessment and speed up turnaround times, please supply
-                as many variables as possible:
-              </p>
-
-              <ul className="space-y-3.5">
-                {HELPER_LIST.map((item) => (
-                  <li key={item} className="flex items-start text-xs text-zinc-700 font-medium leading-normal">
-                    <span className="w-5 h-5 rounded-full bg-accent-gold/15 text-accent-gold flex items-center justify-center shrink-0 mr-3 mt-0.5 shadow-xs">
-                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="pt-2">
-                <div className="bg-primary-dark text-white p-5 rounded-xl border border-accent-gold/30 shadow-md space-y-1.5">
+              <div className="pt-4 mt-4 border-t border-zinc-100">
+                <div className="bg-primary-dark text-white p-4 sm:p-5 rounded-xl border border-accent-gold/30 shadow-md space-y-1.5">
                   <div className="flex items-center gap-2">
                     <svg className="w-4 h-4 text-accent-gold shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
