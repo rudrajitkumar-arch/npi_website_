@@ -246,47 +246,64 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* 4. MAP PLACEHOLDER ───────────────────────────────── */}
+      {/* 4. FIND US MAP SECTION ───────────────────────────── */}
       <section className="py-20 bg-bg-warm border-t border-zinc-200">
-        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-          <div className="space-y-2">
-            <Tag>Geographic Hub</Tag>
-            <h3
-              className="text-2xl font-black uppercase text-primary-dark"
+        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Header styled with vertical bar */}
+          <div className="flex items-center justify-center gap-3 mb-10 text-center">
+            <span className="w-1.5 h-8 bg-primary-dark rounded-full inline-block" />
+            <h2
+              className="text-2xl sm:text-3xl font-black uppercase text-primary-dark tracking-wide"
               style={{ fontFamily: "var(--font-serif-display)" }}
             >
-              Jamnagar, Gujarat, India
-            </h3>
-            <div className="w-10 h-0.5 bg-accent-gold mx-auto" />
+              FIND US
+            </h2>
           </div>
-          <p className="text-xs text-zinc-500 max-w-sm mx-auto">
-            Located in Jamnagar&apos;s GIDC Phase 3 industrial area
-          </p>
 
-          {/* Map box placeholder */}
-          <div className="relative h-96 bg-zinc-200 border border-zinc-300 max-w-4xl mx-auto flex items-center justify-center group overflow-hidden">
-            {/* Simulating map background texture */}
-            <div
-              className="absolute inset-0 bg-cover bg-center opacity-30 group-hover:scale-102 transition-transform duration-700"
-              style={{ backgroundImage: "url('/images/factory-floor.jpg')" }}
+          {/* Map Card */}
+          <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-zinc-200/80 bg-white h-[480px] sm:h-[540px] w-full">
+            {/* Google Map iframe */}
+            <iframe
+              title="New Perfect Incorporation Location"
+              src="https://maps.google.com/maps?q=Plot%20No.%204145,%20GIDC%20Phase%203,%20Dared,%20Jamnagar,%20Gujarat%20361004&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              className="w-full h-full border-0"
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
             />
-            <div className="absolute inset-0 bg-primary-dark/85" />
-            
-            {/* Floating pin marker */}
-            <div className="relative z-10 text-center space-y-4">
-              <div className="w-12 h-12 bg-accent-gold rounded-full flex items-center justify-center mx-auto shadow-lg animate-bounce">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-              </div>
+
+            {/* Floating Info Box */}
+            <div className="absolute top-4 left-4 sm:top-6 sm:left-6 max-w-xs sm:max-w-sm w-[calc(100%-2rem)] bg-white/95 backdrop-blur-md p-5 sm:p-6 rounded-xl shadow-xl border border-zinc-200 z-10 space-y-3">
               <div>
-                <p className="text-sm font-black uppercase text-white tracking-widest">
+                <h3
+                  className="text-base sm:text-lg font-black uppercase text-primary-dark leading-snug"
+                  style={{ fontFamily: "var(--font-serif-display)" }}
+                >
                   New Perfect Incorporation
+                </h3>
+                <p className="text-xs text-zinc-500 mt-1 leading-relaxed">
+                  Plot No. 4145, Phase 3, GIDC, Dared, Jamnagar, Gujarat 361004
                 </p>
-                <p className="text-[10px] text-zinc-400 uppercase tracking-wider mt-1">
-                  Plot No. 4145, GIDC Phase 3, Jamnagar
-                </p>
+              </div>
+
+              <div className="flex items-center gap-1.5 text-xs text-amber-600 font-bold">
+                <span>5.0</span>
+                <div className="flex text-amber-400 text-sm">★★★★★</div>
+                <span className="text-zinc-400 font-normal text-[11px]">(ISO 9001:2015 Certified)</span>
+              </div>
+
+              <div className="pt-1 flex items-center gap-2">
+                <a
+                  href="https://maps.google.com/maps?q=Plot+No.+4145,+GIDC+Phase+3,+Dared,+Jamnagar,+Gujarat+361004"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-accent-gold hover:bg-accent-gold-hover text-white text-xs font-black uppercase tracking-wider rounded-lg shadow transition-all hover:scale-[1.02]"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                  Open in Maps
+                </a>
               </div>
             </div>
           </div>
