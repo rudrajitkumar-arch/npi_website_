@@ -50,7 +50,7 @@ const SLIDES = [
       { label: "View Products", href: "/products", primary: true },
       { label: "Send Enquiry", href: "/contact", primary: false },
     ],
-    modelPath: "/models/brass_component_1.glb",
+    modelPath: "/models/copper_component.glb",
   },
 ];
 

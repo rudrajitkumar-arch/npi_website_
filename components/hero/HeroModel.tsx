@@ -30,11 +30,11 @@ export default function HeroModel({
   const { center, scaleFactor, size } = useMemo(() => {
     const centerPoint = centerModel(model);
     const factor = normalizeScale(model, 0.25);
-    
+
     const box = new THREE.Box3().setFromObject(model);
     const sizeVec = new THREE.Vector3();
     box.getSize(sizeVec);
-    
+
     return { center: centerPoint, scaleFactor: factor, size: sizeVec };
   }, [model]);
 
@@ -43,6 +43,9 @@ export default function HeroModel({
   }, [size, onLoaded]);
 
   useEffect(() => {
+    const isBoltAndNut = modelPath === "/models/bolt_and_nut.glb";
+    const isCopperComponent = modelPath === "/models/copper_component.glb";
+
     model.traverse((child) => {
       if (child instanceof THREE.Mesh) {
         const nameLower = child.name.toLowerCase();
@@ -69,11 +72,17 @@ export default function HeroModel({
 
         if (child.material) {
           const oldMat = child.material as THREE.MeshStandardMaterial;
-          
+
           const mat = new THREE.MeshPhysicalMaterial({
-            color: new THREE.Color("#ebd39c"), // Warm luxurious champagne gold (not orange/bronze)
-            roughness: 0.18, // Machined polished roughness
-            metalness: 1.0,  // Fully metallic brass
+            color: new THREE.Color(
+              isCopperComponent
+                ? "#d97746"
+                : isBoltAndNut
+                ? "#9CA3AF"
+                : "#ebd39c"
+            ),
+            roughness: isCopperComponent ? 0.22 : isBoltAndNut ? 0.28 : 0.18,
+            metalness: 1.0,  // Fully metallic
             clearcoat: 0.20, // Clearcoat layer
             clearcoatRoughness: 0.05,
             envMapIntensity: 2.2, // High reflection intensity to eliminate black reflection spots

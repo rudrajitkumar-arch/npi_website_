@@ -277,6 +277,7 @@ export default function HomePage() {
   // Preload high-fidelity 3D assets immediately in the HTML head
   ReactDOM.preload("/models/brass_component_1.glb", { as: "fetch", crossOrigin: "anonymous" });
   ReactDOM.preload("/models/bolt_and_nut.glb", { as: "fetch", crossOrigin: "anonymous" });
+  ReactDOM.preload("/models/copper_component.glb", { as: "fetch", crossOrigin: "anonymous" });
   ReactDOM.preload("/hdr/studio.exr", { as: "fetch", crossOrigin: "anonymous" });
 
   return (
