@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "python3 scripts/optimize_images.py",
     "build": "next build",
+    "optimize-images": "python3 scripts/optimize_images.py",
     "start": "next start",
     "lint": "eslint"
   },
