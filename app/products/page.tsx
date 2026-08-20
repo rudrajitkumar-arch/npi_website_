@@ -70,7 +70,7 @@ const CATEGORIES = [
   {
     id: "brass-inserts",
     title: "Brass Inserts",
-    img: "/images/brass-components.jpg",
+    img: "/images/brass-inserts.jpg",
     items: [
       "Brass knurled inserts",
       "Brass threaded inserts",
@@ -83,7 +83,7 @@ const CATEGORIES = [
   {
     id: "brass-fittings",
     title: "Brass Fittings",
-    img: "/images/product-portfolio.jpg",
+    img: "/images/brass-fittings.jpg",
     items: [
       "Brass sanitary & plumbing fittings",
       "Brass pipe fittings",
@@ -95,7 +95,7 @@ const CATEGORIES = [
   {
     id: "brass-forging",
     title: "Brass Forging & Casting Components",
-    img: "/images/factory-floor.jpg",
+    img: "/images/brass-forging.jpg",
     items: [
       "Bronze pipe fittings",
       "Brass forged fittings",
@@ -106,7 +106,7 @@ const CATEGORIES = [
   {
     id: "brass-engineering",
     title: "Brass Engineering Components",
-    img: "/images/cnc-machine.jpg",
+    img: "/images/cnc-turned-parts.jpg",
     items: [
       "Brass heater & geyser parts",
       "Brass medical parts",
@@ -118,7 +118,7 @@ const CATEGORIES = [
   {
     id: "earthing-lightning",
     title: "Earthing & Lightning Protection",
-    img: "/images/inspection.jpg",
+    img: "/images/earthing-lightning.jpg",
     items: [
       "Earthing accessories",
       "Lightning protection accessories",
@@ -128,7 +128,7 @@ const CATEGORIES = [
   {
     id: "brass-fasteners",
     title: "Brass Fasteners & Fixings",
-    img: "/images/shop-floor.jpg",
+    img: "/images/brass-fasteners.jpg",
     items: [
       "Brass anchors",
       "Brass bolts",
@@ -141,7 +141,7 @@ const CATEGORIES = [
   {
     id: "cable-glands",
     title: "Brass Cable Glands & Accessories",
-    img: "/images/raw-material.jpg",
+    img: "/images/brass-cable-glands.jpg",
     items: [
       "Brass cable glands",
       "Brass cable accessories",
@@ -151,7 +151,7 @@ const CATEGORIES = [
   {
     id: "cnc-turned",
     title: "CNC Turned Parts",
-    img: "/images/cnc-machine.jpg",
+    img: "/images/cnc-turned-parts.jpg",
     items: [
       "Brass CNC turned parts",
       "CNC turned parts",
@@ -161,7 +161,7 @@ const CATEGORIES = [
   {
     id: "copper-bronze",
     title: "Copper / Bronze / Gunmetal Components",
-    img: "/images/brass-components.jpg",
+    img: "/images/copper-bronze.jpg",
     items: [
       "Copper components",
       "Bronze pipe fittings",
