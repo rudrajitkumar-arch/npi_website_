@@ -22,8 +22,8 @@ const SLIDES = [
   {
     badge: "Est. 2007 · Jamnagar, India's Brass City",
     headline: "PRECISION\nENGINEERED",
-    sub: "Every Precision Components manufactured to exact specification",
-    body: "Two decades of precision engineering from Jamnagar, India's Brass City",
+    sub: "Precision components manufactured to exact specification.",
+    body: "Nearly two decades of precision engineering from Jamnagar — India's Brass City.",
     ctas: [
       { label: "Get a Quote", href: "/contact", primary: true },
       { label: "Explore Capabilities", href: "/capabilities", primary: false },
@@ -33,8 +33,8 @@ const SLIDES = [
   {
     badge: "ISO 9001:2015 Certified · RoHS Compliant",
     headline: "QUALITY\nCERTIFIED",
-    sub: "ISO 9001:2015 certified manufacturing with 100% visual inspection",
-    body: "From raw material to dispatch, every component follows a controlled quality process",
+    sub: "ISO 9001:2015 certified manufacturing with 100% visual inspection.",
+    body: "From raw material to dispatch, every component follows a controlled quality process.",
     ctas: [
       { label: "View Quality System", href: "/quality", primary: true },
       { label: "Contact Sales", href: "/contact", primary: false },
@@ -44,8 +44,8 @@ const SLIDES = [
   {
     badge: "CNC · Machined · Plated · Export-Ready",
     headline: "CUSTOM\nCOMPONENTS",
-    sub: "CNC turned, machined, plated, assembled, and export-ready",
-    body: "Serving electrical, automotive, aerospace, medical, plumbing, and industrial supply chains",
+    sub: "CNC turned, machined, plated, assembled, and export-ready.",
+    body: "Serving electrical, automotive, aerospace, medical, plumbing, and industrial supply chains.",
     ctas: [
       { label: "View Products", href: "/products", primary: true },
       { label: "Send Enquiry", href: "/contact", primary: false },
@@ -182,18 +182,18 @@ export default function HeroSection() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center w-full relative">
             
             {/* Left side: Stagger-animated text blocks */}
-            <div ref={textRef} className="lg:col-span-7 space-y-4 z-20 relative pointer-events-auto">
+            <div ref={textRef} className="lg:col-span-7 space-y-5 z-20 relative pointer-events-auto">
               {/* Badge */}
-              <div className="slide-badge inline-flex items-center gap-2 border border-accent-gold/40 bg-accent-gold/10 px-4 py-1 rounded-sm mb-1">
+              <div className="slide-badge inline-flex items-center gap-2 border border-accent-gold/40 bg-accent-gold/10 px-4 py-1.5 rounded-sm mb-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-accent-gold animate-pulse" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent-gold font-mono">
+                <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-accent-gold font-mono">
                   {slide.badge}
                 </span>
               </div>
 
               {/* Headline */}
               <h1
-                className="slide-title text-5xl sm:text-7xl lg:text-8xl font-black uppercase leading-none tracking-tight text-white"
+                className="slide-title text-5xl sm:text-7xl lg:text-8xl font-black uppercase leading-[0.95] tracking-tight text-white"
                 style={{ fontFamily: "var(--font-serif-display)" }}
               >
                 {slide.headline.split("\n").map((line, i) => (
@@ -206,13 +206,13 @@ export default function HeroSection() {
               {/* Accent line */}
               <div className="slide-accent flex items-center gap-3 py-1">
                 <div className="w-12 h-0.5 bg-accent-gold shrink-0" />
-                <p className="text-sm sm:text-base font-semibold text-white/90 leading-snug">
+                <p className="text-sm sm:text-base font-semibold text-white/95 leading-relaxed">
                   {slide.sub}
                 </p>
               </div>
 
               {/* Description */}
-              <p className="slide-body text-sm text-zinc-400 leading-relaxed max-w-xl pb-2">{slide.body}</p>
+              <p className="slide-body text-sm sm:text-base text-zinc-300 leading-relaxed max-w-xl pb-2">{slide.body}</p>
 
               {/* CTAs */}
               <div className="slide-ctas flex flex-wrap gap-4">
@@ -221,7 +221,7 @@ export default function HeroSection() {
                     <Link
                       key={c.label}
                       href={c.href}
-                      className="px-8 py-3.5 text-xs font-black uppercase tracking-widest text-white bg-accent-gold hover:bg-accent-gold-hover transition-colors border border-accent-gold hover:shadow-lg hover:shadow-accent-gold/30 font-mono"
+                      className="px-8 py-3.5 text-xs font-bold uppercase tracking-[0.2em] text-white bg-accent-gold hover:bg-accent-gold-hover transition-colors border border-accent-gold hover:shadow-lg hover:shadow-accent-gold/30 font-mono"
                     >
                       {c.label}
                     </Link>
@@ -229,7 +229,7 @@ export default function HeroSection() {
                     <Link
                       key={c.label}
                       href={c.href}
-                      className="px-8 py-3.5 text-xs font-black uppercase tracking-widest text-white border border-white/40 hover:border-accent-gold hover:text-accent-gold transition-colors font-mono"
+                      className="px-8 py-3.5 text-xs font-bold uppercase tracking-[0.2em] text-white border border-white/40 hover:border-accent-gold hover:text-accent-gold transition-colors font-mono"
                     >
                       {c.label}
                     </Link>
@@ -258,7 +258,7 @@ export default function HeroSection() {
                 }`}
               />
             ))}
-            <span className="ml-4 text-[10px] font-mono text-white/30 tracking-widest" aria-live="polite">
+            <span className="ml-4 text-[11px] font-mono text-white/40 tracking-widest" aria-live="polite">
               {String(current + 1).padStart(2, "0")} / {String(SLIDES.length).padStart(2, "0")}
             </span>
           </div>
@@ -272,12 +272,12 @@ export default function HeroSection() {
             {STATS.map((s) => (
               <div key={s.label} className="px-6 py-5 flex flex-col items-center text-center">
                 <span
-                  className="text-xl sm:text-2xl font-black text-accent-gold leading-none"
+                  className="text-2xl sm:text-3xl font-black text-accent-gold leading-none"
                   style={{ fontFamily: "var(--font-serif-display)" }}
                 >
                   {s.val}
                 </span>
-                <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mt-1 font-mono">
+                <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-400 mt-2 font-mono">
                   {s.label}
                 </span>
               </div>

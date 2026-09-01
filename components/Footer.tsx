@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -7,20 +8,18 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link href="/" className="block mb-4">
-              <span
-                className="text-2xl font-black uppercase tracking-wider text-white block leading-none"
-                style={{ fontFamily: "var(--font-serif-display)" }}
-              >
-                New Perfect
-              </span>
-              <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-accent-gold mt-1 block font-mono">
-                Incorporation
-              </span>
+            <Link href="/" className="block mb-5 transition-opacity hover:opacity-90">
+              <Image
+                src="/images/company_logo/New Perfect Incorporation - Logo.png"
+                alt="New Perfect Incorporation Logo"
+                width={200}
+                height={111}
+                className="h-14 sm:h-16 w-auto object-contain"
+              />
             </Link>
             <p className="text-xs text-zinc-400 leading-relaxed mb-5">
-              ISO 9001:2015 certified Every Precision Components manufacturer,
-              exporter &amp; supplier. Established 2007 · Jamnagar, India
+              ISO 9001:2015 certified precision components manufacturer,
+              exporter and supplier. Established 2007 · Jamnagar, India.
             </p>
             <div className="flex flex-wrap gap-2">
               {["ISO 9001:2015", "RoHS", "UDYAM"].map((b) => (
@@ -130,7 +129,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-[10px] text-zinc-500">
-          <p>© {new Date().getFullYear()} New Perfect Incorporation. All Rights Reserved</p>
+          <p>© {new Date().getFullYear()} New Perfect Incorporation. All Rights Reserved.</p>
           <p className="flex gap-4">
             <Link href="/quality" className="hover:text-zinc-300 transition-colors font-mono">
               ISO 9001:2015

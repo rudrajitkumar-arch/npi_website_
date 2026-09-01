@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Industries We Serve",
   description:
-    "New Perfect Incorporation manufactures every precision components for electrical, automotive, aerospace, medical, plumbing, sanitary, marine, fastener, and plastic molding industries",
+    "New Perfect Incorporation manufactures precision components for electrical, automotive, aerospace, medical, plumbing, sanitary, marine, fastener, and plastic moulding industries.",
   keywords: [
     "electrical brass parts",
     "automotive components Jamnagar",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 /* ─── PRIMITIVES ─────────────────────────────────────────── */
 function Tag({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2 border border-accent-gold/40 bg-accent-gold/10 px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-accent-gold">
+    <span className="inline-flex items-center gap-2 border border-accent-gold/40 bg-accent-gold/10 px-4 py-1.5 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-accent-gold">
       <span className="w-1.5 h-1.5 rounded-full bg-accent-gold" />
       {children}
     </span>
@@ -39,10 +39,10 @@ function SectionHead({
   center?: boolean;
 }) {
   return (
-    <div className={`mb-12 ${center ? "text-center" : ""}`}>
+    <div className={`mb-12 lg:mb-16 ${center ? "text-center" : ""}`}>
       {tag && <Tag>{tag}</Tag>}
       <h2
-        className={`mt-4 text-3xl sm:text-4xl font-black uppercase leading-tight tracking-tight ${
+        className={`mt-4 text-3xl sm:text-4xl md:text-5xl font-black uppercase leading-[1.15] tracking-tight ${
           light ? "text-white" : "text-primary-dark"
         }`}
         style={{ fontFamily: "var(--font-serif-display)" }}
@@ -51,14 +51,14 @@ function SectionHead({
       </h2>
       {sub && (
         <p
-          className={`mt-3 text-sm max-w-2xl leading-relaxed ${
+          className={`mt-3.5 text-sm sm:text-base max-w-2xl leading-relaxed ${
             light ? "text-zinc-400" : "text-zinc-500"
           } ${center ? "mx-auto" : ""}`}
         >
           {sub}
         </p>
       )}
-      <div className={`mt-4 w-14 h-1 bg-accent-gold ${center ? "mx-auto" : ""}`} />
+      <div className={`mt-4 w-12 h-1 bg-accent-gold ${center ? "mx-auto" : ""}`} />
     </div>
   );
 }
@@ -72,7 +72,7 @@ const INDUSTRIES = [
       </svg>
     ),
     title: "Electrical & Electronics",
-    desc: "Every Precision Components for electrical assemblies, connectors, transformer parts, cable accessories, earthing, and lightning protection",
+    desc: "Precision components for electrical assemblies, connectors, transformer parts, cable accessories, earthing, and lightning protection.",
   },
   {
     icon: (
@@ -99,7 +99,7 @@ const INDUSTRIES = [
       </svg>
     ),
     title: "Medical",
-    desc: "Brass and engineered components for medical equipment and precision application needs",
+    desc: "Brass and engineered components for medical equipment and precision application requirements.",
   },
   {
     icon: (
@@ -192,38 +192,38 @@ export default function IndustriesPage() {
   return (
     <>
       {/* 1. HERO ──────────────────────────────────────────── */}
-      <section className="relative min-h-[68vh] flex items-center bg-primary-dark overflow-hidden">
+      <section className="relative h-[760px] flex items-center bg-primary-dark overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/brass-components.jpg')" }}
+          style={{ backgroundImage: "url('/images/header_images/industries.jpg')" }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-primary-dark/97 via-primary-dark/88 to-primary-dark/55" />
         <div className="absolute inset-0 bg-primary-dark/25" />
         <div className="absolute inset-y-0 right-[20%] w-px bg-white/5 hidden xl:block" />
 
-        <div className="relative z-10 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-28 pb-16">
+        <div className="relative z-10 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-32 pb-20 lg:pt-36 lg:pb-24">
           <div className="max-w-2xl space-y-6">
             <Tag>Markets We Serve</Tag>
             <h1
-              className="text-4xl sm:text-6xl font-black uppercase leading-none tracking-tight text-white"
+              className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase leading-[1.08] tracking-tight text-white"
               style={{ fontFamily: "var(--font-serif-display)" }}
             >
               Industries We <span className="text-accent-gold">Serve</span>
             </h1>
             <div className="flex items-center gap-3">
               <div className="w-10 h-0.5 bg-accent-gold shrink-0" />
-              <p className="text-sm sm:text-base font-semibold text-white/90">
-                One alloying capability. Ten industries trust the result
+              <p className="text-sm sm:text-base font-semibold text-white/95 leading-relaxed">
+                One precision material platform. Ten industries that trust the result.
               </p>
             </div>
-            <p className="text-sm text-zinc-400 leading-relaxed max-w-xl">
+            <p className="text-sm sm:text-base text-zinc-300 leading-relaxed max-w-xl">
               New Perfect Incorporation supplies precision brass, copper, bronze, gunmetal,
               CNC turned, forged, cast, and custom-machined components across demanding
-              industrial sectors
+              industrial sectors.
             </p>
             <Link
               href="/contact"
-              className="inline-flex px-8 py-3.5 text-xs font-black uppercase tracking-widest text-white bg-accent-gold hover:bg-accent-gold-hover border border-accent-gold transition-colors"
+              className="inline-flex px-8 py-3.5 text-xs font-mono font-bold uppercase tracking-[0.2em] text-white bg-accent-gold hover:bg-accent-gold-hover border border-accent-gold transition-colors"
             >
               Discuss Your Industry Requirement
             </Link>
@@ -232,15 +232,15 @@ export default function IndustriesPage() {
       </section>
 
       {/* 2. INDUSTRY GRID ─────────────────────────────────── */}
-      <section className="py-20 bg-bg-warm">
+      <section className="py-20 lg:py-24 bg-bg-warm">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead
             tag="Industrial Sectors"
             title="Industries We Supply"
-            sub="Our precision metalworking supports diverse B2B supply lines"
+            sub="Our precision metalworking supports diverse B2B supply chains."
           />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-5">
             {INDUSTRIES.map((ind) => (
               <div
                 key={ind.title}
@@ -278,7 +278,7 @@ export default function IndustriesPage() {
       </section>
 
       {/* 3. CRITICAL APPLICATION SECTION ───────────────────── */}
-      <section className="relative py-24 bg-primary-dark text-white overflow-hidden">
+      <section className="relative py-20 lg:py-24 bg-primary-dark text-white overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-10"
           style={{ backgroundImage: "url('/images/factory-floor.jpg')" }}
@@ -290,46 +290,49 @@ export default function IndustriesPage() {
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
           <Tag>Repeatable Tolerances</Tag>
           <h2
-            className="text-3xl sm:text-4xl font-black uppercase tracking-tight leading-tight"
+            className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight leading-[1.15]"
             style={{ fontFamily: "var(--font-serif-display)" }}
           >
             Built for Precision-Critical <span className="text-accent-gold">Supply Chains</span>
           </h2>
-          <div className="w-14 h-1 bg-accent-gold mx-auto" />
+          <div className="w-12 h-1 bg-accent-gold mx-auto" />
           <p className="text-sm sm:text-base text-zinc-300 leading-relaxed max-w-3xl mx-auto font-sans">
             From electrical connectors and cable accessories to automotive, plumbing, medical,
             and industrial components, New Perfect Incorporation manufactures custom brass and
-            copper parts where dimensional consistency, material quality, finishing, and
-            repeatability matter
+            copper parts where dimensional consistency, material quality, surface finish, and
+            repeatability are critical.
           </p>
         </div>
       </section>
 
       {/* 4. CROSS-INDUSTRY CAPABILITIES ───────────────────── */}
-      <section className="py-20 bg-bg-warm border-t border-zinc-200">
+      <section className="py-20 lg:py-24 bg-bg-warm border-t border-zinc-200">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead
             tag="Manufacturing Breadth"
             title="Cross-Industry Capabilities"
-            sub="Universal operational strengths that support all industrial client sectors"
+            sub="Core operational strengths that support all industrial client sectors."
           />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {CAPABILITIES.map((cap) => (
               <div
                 key={cap.title}
-                className="bg-white border border-zinc-200 hover:border-accent-gold p-6 transition-all duration-300 hover:shadow-md group"
+                className="bg-white border border-zinc-200 hover:border-accent-gold p-7 lg:p-8 transition-all duration-300 hover:shadow-md group flex flex-col justify-between"
               >
-                <div className="w-8 h-8 rounded bg-bg-warm text-accent-gold flex items-center justify-center mb-4 font-bold text-sm">
-                  ✓
+                <div>
+                  <div className="w-8 h-8 rounded bg-bg-warm text-accent-gold flex items-center justify-center mb-4">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <h4
+                    className="text-base font-black uppercase tracking-wide text-primary-dark group-hover:text-accent-gold transition-colors mb-2 font-display"
+                  >
+                    {cap.title}
+                  </h4>
                 </div>
-                <h4
-                  className="text-sm font-black uppercase tracking-wide text-primary-dark group-hover:text-accent-gold transition-colors mb-2"
-                  style={{ fontFamily: "var(--font-serif-display)" }}
-                >
-                  {cap.title}
-                </h4>
-                <p className="text-xs text-zinc-500 leading-relaxed">
+                <p className="text-xs text-zinc-500 leading-relaxed mt-2">
                   {cap.desc}
                 </p>
               </div>
@@ -339,27 +342,29 @@ export default function IndustriesPage() {
       </section>
 
       {/* 5. CTA SECTION ───────────────────────────────────── */}
-      <section className="py-20 bg-white border-t border-zinc-100">
+      <section className="py-20 lg:py-24 bg-white border-t border-zinc-100">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
           <Tag>Evaluate Blueprint</Tag>
           <h2
-            className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-primary-dark"
+            className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-primary-dark leading-[1.15]"
             style={{ fontFamily: "var(--font-serif-display)" }}
           >
             Looking for Components for{" "}
             <span className="text-accent-gold">Your Industry?</span>
           </h2>
-          <div className="w-14 h-1 bg-accent-gold mx-auto" />
-          <p className="text-sm text-zinc-500 leading-relaxed max-w-xl mx-auto">
+          <div className="w-12 h-1 bg-accent-gold mx-auto" />
+          <p className="text-sm sm:text-base text-zinc-500 leading-relaxed max-w-xl mx-auto">
             Share your component type, material, quantity, drawing, or sample details. Our
-            team will evaluate the requirement and respond with a clear manufacturing route
+            team will evaluate the requirement and respond with a clear manufacturing plan.
           </p>
-          <Link
-            href="/contact"
-            className="inline-flex px-10 py-4 text-xs font-black uppercase tracking-widest text-white bg-accent-gold hover:bg-accent-gold-hover border border-accent-gold transition-colors hover:shadow-xl hover:shadow-accent-gold/20"
-          >
-            Discuss Your Requirement
-          </Link>
+          <div className="pt-2">
+            <Link
+              href="/contact"
+              className="inline-flex px-9 py-4 text-xs font-mono font-bold uppercase tracking-[0.2em] text-white bg-accent-gold hover:bg-accent-gold-hover border border-accent-gold transition-colors hover:shadow-xl hover:shadow-accent-gold/20"
+            >
+              Discuss Your Requirement
+            </Link>
+          </div>
         </div>
       </section>
     </>

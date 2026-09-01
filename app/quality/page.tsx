@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Quality & Certifications",
   description:
-    "ISO 9001:2015 certified quality management at New Perfect Incorporation — 100% visual inspection, calibrated metrology, PPAP Level III documentation, RoHS compliance, and controlled production process",
+    "ISO 9001:2015 certified quality management at New Perfect Incorporation — 100% visual inspection, calibrated metrology, PPAP Level III documentation, RoHS compliance, and controlled production processes.",
   keywords: [
     "ISO 9001:2015 brass manufacturer",
     "RoHS compliant components",
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
 /* ─── PRIMITIVES ─────────────────────────────────────────── */
 function Tag({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2 border border-accent-gold/40 bg-accent-gold/10 px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-accent-gold">
+    <span className="inline-flex items-center gap-2 border border-accent-gold/40 bg-accent-gold/10 px-4 py-1.5 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-accent-gold">
       <span className="w-1.5 h-1.5 rounded-full bg-accent-gold" />
       {children}
     </span>
@@ -39,10 +40,10 @@ function SectionHead({
   center?: boolean;
 }) {
   return (
-    <div className={`mb-12 ${center ? "text-center" : ""}`}>
+    <div className={`mb-12 lg:mb-16 ${center ? "text-center" : ""}`}>
       {tag && <Tag>{tag}</Tag>}
       <h2
-        className={`mt-4 text-3xl sm:text-4xl font-black uppercase leading-tight tracking-tight ${light ? "text-white" : "text-primary-dark"
+        className={`mt-4 text-3xl sm:text-4xl md:text-5xl font-black uppercase leading-[1.15] tracking-tight ${light ? "text-white" : "text-primary-dark"
           }`}
         style={{ fontFamily: "var(--font-serif-display)" }}
       >
@@ -50,13 +51,13 @@ function SectionHead({
       </h2>
       {sub && (
         <p
-          className={`mt-3 text-sm max-w-2xl leading-relaxed ${light ? "text-zinc-400" : "text-zinc-500"
+          className={`mt-3.5 text-sm sm:text-base max-w-2xl leading-relaxed ${light ? "text-zinc-400" : "text-zinc-500"
             } ${center ? "mx-auto" : ""}`}
         >
           {sub}
         </p>
       )}
-      <div className={`mt-4 w-14 h-1 bg-accent-gold ${center ? "mx-auto" : ""}`} />
+      <div className={`mt-4 w-12 h-1 bg-accent-gold ${center ? "mx-auto" : ""}`} />
     </div>
   );
 }
@@ -83,9 +84,9 @@ const QUALITY_CARDS = [
       </svg>
     ),
     title: "100% Visual Inspection",
-    desc: "Every component is individually reviewed before dispatch. Defect-free delivery is not a target — it is the only acceptable standard",
-    stat: "0",
-    statLabel: "Defect Tolerance",
+    desc: "Every component is individually reviewed before dispatch under disciplined defect prevention and controlled inspection protocols",
+    stat: "Zero-Defect",
+    statLabel: "Quality Target",
   },
   {
     icon: (
@@ -168,14 +169,16 @@ const CERTS = [
     desc: "Certified quality management across all production, inspection, and customer satisfaction processes",
     color: "border-accent-gold/40 bg-accent-gold/5",
     badge: "text-accent-gold",
+    logo: "/images/certificate_images/iso.png",
   },
   {
     code: "RoHS",
     title: "RoHS Compliant",
     sub: "Restriction of Hazardous Substances",
-    desc: "All brass,copper & steel components manufactured within EU Directive 2011/65/EU hazardous substance limits",
+    desc: "All brass, copper, and steel components manufactured within EU Directive 2011/65/EU hazardous substance limits.",
     color: "border-green-500/30 bg-green-500/5",
     badge: "text-green-400",
+    logo: "/images/certificate_images/rohs.png",
   },
   {
     code: "UDYAM",
@@ -184,6 +187,7 @@ const CERTS = [
     desc: "Registered MSME enterprise under the Government of India's Udyam Recognition Framework",
     color: "border-blue-400/30 bg-blue-400/5",
     badge: "text-blue-400",
+    logo: "/images/certificate_images/msme.png",
   },
   {
     code: "H&S",
@@ -192,6 +196,7 @@ const CERTS = [
     desc: "Employee awareness programmes, hazard training, and environmental compliance maintained at production floor level",
     color: "border-zinc-400/30 bg-zinc-400/5",
     badge: "text-zinc-400",
+    logo: "/images/certificate_images/hse.png",
   },
 ];
 
@@ -202,20 +207,20 @@ export default function QualityPage() {
   return (
     <>
       {/* 1. HERO ──────────────────────────────────────────── */}
-      <section className="relative min-h-[68vh] flex items-center bg-primary-dark overflow-hidden">
+      <section className="relative h-[760px] flex items-center bg-primary-dark overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/inspection.jpg')" }}
+          style={{ backgroundImage: "url('/images/header_images/quality.webp')" }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-primary-dark/97 via-primary-dark/88 to-primary-dark/55" />
         <div className="absolute inset-0 bg-primary-dark/25" />
         <div className="absolute inset-y-0 right-[20%] w-px bg-white/5 hidden xl:block" />
 
-        <div className="relative z-10 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-28 pb-16">
+        <div className="relative z-10 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-32 pb-20 lg:pt-36 lg:pb-24">
           <div className="max-w-2xl space-y-6">
             <Tag>Quality Assurance</Tag>
             <h1
-              className="text-4xl sm:text-6xl font-black uppercase leading-none tracking-tight text-white"
+              className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase leading-[1.08] tracking-tight text-white"
               style={{ fontFamily: "var(--font-serif-display)" }}
             >
               Quality You{" "}
@@ -223,18 +228,18 @@ export default function QualityPage() {
             </h1>
             <div className="flex items-center gap-3">
               <div className="w-10 h-0.5 bg-accent-gold shrink-0" />
-              <p className="text-sm sm:text-base font-semibold text-white/90">
+              <p className="text-sm sm:text-base font-semibold text-white/95 leading-relaxed">
                 100% visual inspection. Zero compromise on defects
               </p>
             </div>
-            <p className="text-sm text-zinc-400 leading-relaxed max-w-xl">
+            <p className="text-sm sm:text-base text-zinc-300 leading-relaxed max-w-xl">
               Every component moves through controlled checks from raw material to dispatch,
               supported by calibrated instruments, upgraded metrology systems, and
               ISO-certified quality management
             </p>
             <a
               href="#certifications"
-              className="inline-flex px-8 py-3.5 text-xs font-black uppercase tracking-widest text-white bg-accent-gold hover:bg-accent-gold-hover border border-accent-gold transition-colors"
+              className="inline-flex px-8 py-3.5 text-xs font-mono font-bold uppercase tracking-[0.2em] text-white bg-accent-gold hover:bg-accent-gold-hover border border-accent-gold transition-colors"
             >
               View Certifications
             </a>
@@ -243,18 +248,18 @@ export default function QualityPage() {
       </section>
 
       {/* 2. QUALITY SYSTEM CARDS ──────────────────────────── */}
-      <section className="py-20 bg-bg-warm">
+      <section className="py-20 lg:py-24 bg-bg-warm">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead
             tag="Quality System"
             title="Our Quality Standards"
-            sub="Four pillars of measurable, repeatable quality — built into every production run"
+            sub="Four pillars of measurable, repeatable quality — built into every production run."
           />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {QUALITY_CARDS.map((q) => (
               <div
                 key={q.title}
-                className="group bg-white border border-zinc-200 hover:border-accent-gold p-7 transition-all duration-300 hover:shadow-xl relative overflow-hidden flex flex-col"
+                className="group bg-white border border-zinc-200 hover:border-accent-gold p-7 lg:p-8 transition-all duration-300 hover:shadow-xl relative overflow-hidden flex flex-col justify-between"
               >
                 {/* Gold top slide */}
                 <div className="absolute top-0 left-0 w-0 h-1 bg-accent-gold group-hover:w-full transition-all duration-500" />
@@ -291,7 +296,7 @@ export default function QualityPage() {
       </section>
 
       {/* 3. METROLOGY TOOLKIT ─────────────────────────────── */}
-      <section className="py-16 bg-primary-dark border-t border-white/5">
+      <section className="py-14 lg:py-16 bg-primary-dark border-t border-white/5">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
             <Tag>Measurement Equipment</Tag>
@@ -301,14 +306,14 @@ export default function QualityPage() {
             >
               Metrology Toolkit
             </h2>
-            <div className="mt-4 w-14 h-1 bg-accent-gold mx-auto" />
+            <div className="mt-4 w-12 h-1 bg-accent-gold mx-auto" />
           </div>
 
           <div className="flex flex-wrap gap-3 justify-center">
             {METROLOGY.map((tool) => (
               <span
                 key={tool}
-                className="group px-4 py-2.5 text-[10px] font-black uppercase tracking-widest border border-white/15 hover:border-accent-gold text-zinc-400 hover:text-accent-gold transition-all duration-300 cursor-default"
+                className="group px-4 py-2.5 text-[10px] font-mono font-bold uppercase tracking-widest border border-white/15 hover:border-accent-gold text-zinc-400 hover:text-accent-gold transition-all duration-300 cursor-default"
               >
                 {tool}
               </span>
@@ -318,12 +323,12 @@ export default function QualityPage() {
       </section>
 
       {/* 4. BUSINESS PROCESS ──────────────────────────────── */}
-      <section className="py-20 bg-bg-warm border-t border-zinc-200">
+      <section className="py-20 lg:py-24 bg-bg-warm border-t border-zinc-200">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead
             tag="Production Control"
             title="Business Process"
-            sub="Every order moves through the same disciplined sequence — consistency is what makes production repeatable at scale"
+            sub="Every order moves through the same disciplined sequence — consistency is what makes production repeatable at scale."
           />
 
           {/* Desktop: card row */}
@@ -389,53 +394,52 @@ export default function QualityPage() {
       </section>
 
       {/* 5. CERTIFICATIONS ────────────────────────────────── */}
-      <section className="py-20 bg-white border-t border-zinc-100" id="certifications">
+      <section className="py-20 lg:py-24 bg-white border-t border-zinc-100" id="certifications">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead
             tag="Certified & Compliant"
             title="Certifications & Compliance"
-            sub="Independently verified standards and government-recognized registrations"
+            sub="Independently verified standards and government-recognised registrations."
           />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {CERTS.map((c) => (
               <div
                 key={c.title}
-                className={`group border ${c.color} hover:border-accent-gold/60 p-7 transition-all duration-300 hover:shadow-lg flex flex-col`}
+                className={`group border ${c.color} hover:border-accent-gold/60 p-7 lg:p-8 transition-all duration-300 hover:shadow-lg flex flex-col justify-between`}
               >
-                {/* Badge */}
-                <div className="mb-5">
-                  <span
-                    className={`inline-block text-xs font-black uppercase tracking-widest ${c.badge} border border-current px-2.5 py-1`}
+                <div>
+                  {/* Badge */}
+                  <div className="mb-5">
+                    <span
+                      className={`inline-block text-xs font-black uppercase tracking-widest ${c.badge} border border-current px-2.5 py-1`}
+                    >
+                      {c.code}
+                    </span>
+                  </div>
+
+                  {/* Certificate Logo */}
+                  <div className="h-16 flex items-center mb-4">
+                    <Image
+                      src={c.logo}
+                      alt={c.title}
+                      width={100}
+                      height={64}
+                      style={{ width: "auto", height: "auto" }}
+                      className="max-h-14 max-w-[120px] object-contain object-left group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+
+                  <h3
+                    className="text-sm font-black uppercase tracking-wide text-primary-dark group-hover:text-accent-gold transition-colors mb-1"
+                    style={{ fontFamily: "var(--font-serif-display)" }}
                   >
-                    {c.code}
-                  </span>
+                    {c.title}
+                  </h3>
+                  <p className="text-[9px] font-bold uppercase tracking-widest text-zinc-400 mb-3">
+                    {c.sub}
+                  </p>
                 </div>
-
-                {/* Shield icon */}
-                <svg
-                  className="w-8 h-8 text-accent-gold mb-4 opacity-60 group-hover:opacity-100 transition-opacity"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                  />
-                </svg>
-
-                <h3
-                  className="text-sm font-black uppercase tracking-wide text-primary-dark group-hover:text-accent-gold transition-colors mb-1"
-                  style={{ fontFamily: "var(--font-serif-display)" }}
-                >
-                  {c.title}
-                </h3>
-                <p className="text-[9px] font-bold uppercase tracking-widest text-zinc-400 mb-3">
-                  {c.sub}
-                </p>
-                <p className="text-[11px] text-zinc-500 leading-relaxed flex-1">{c.desc}</p>
+                <p className="text-[11px] text-zinc-500 leading-relaxed mt-2">{c.desc}</p>
               </div>
             ))}
           </div>
@@ -443,35 +447,35 @@ export default function QualityPage() {
       </section>
 
       {/* 6. PPAP / DOCUMENTATION ──────────────────────────── */}
-      <section className="py-20 bg-bg-warm border-t border-zinc-200">
+      <section className="py-20 lg:py-24 bg-bg-warm border-t border-zinc-200">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left: text */}
             <div>
               <Tag>PPAP &amp; Documentation</Tag>
               <h2
-                className="mt-4 text-3xl sm:text-4xl font-black uppercase leading-tight tracking-tight text-primary-dark mb-5"
+                className="mt-4 text-3xl sm:text-4xl md:text-5xl font-black uppercase leading-[1.15] tracking-tight text-primary-dark mb-5"
                 style={{ fontFamily: "var(--font-serif-display)" }}
               >
                 Documentation for{" "}
                 <span className="text-accent-gold">Reliable Supply</span>
               </h2>
-              <div className="w-14 h-1 bg-accent-gold mb-6" />
-              <p className="text-sm text-zinc-600 leading-relaxed mb-6">
+              <div className="w-12 h-1 bg-accent-gold mb-6" />
+              <p className="text-sm sm:text-base text-zinc-600 leading-relaxed mb-6">
                 New Perfect Incorporation supports{" "}
                 <strong>PPAP Level III documentation</strong> and maintains master samples of
                 every product to improve repeatability, production control, and customer
-                confidence
+                confidence.
               </p>
-              <p className="text-sm text-zinc-500 leading-relaxed">
+              <p className="text-sm sm:text-base text-zinc-500 leading-relaxed">
                 Our documentation capability means customers receive full traceability from
                 raw material through manufacturing to final dispatch — with records available
-                for audit at any point in the supply chain
+                for audit at any point in the supply chain.
               </p>
             </div>
 
             {/* Right: doc capability cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-5">
               {[
                 {
                   title: "PPAP Level III",
@@ -492,29 +496,31 @@ export default function QualityPage() {
               ].map((d) => (
                 <div
                   key={d.title}
-                  className="group bg-white border border-zinc-200 hover:border-accent-gold p-5 transition-all duration-300 hover:shadow-md"
+                  className="group bg-white border border-zinc-200 hover:border-accent-gold p-5 lg:p-6 transition-all duration-300 hover:shadow-md flex flex-col justify-between"
                 >
-                  {/* Folder icon */}
-                  <svg
-                    className="w-5 h-5 text-accent-gold mb-3"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"
-                    />
-                  </svg>
-                  <h4
-                    className="text-xs font-black uppercase tracking-wide text-primary-dark group-hover:text-accent-gold transition-colors mb-1.5"
-                    style={{ fontFamily: "var(--font-serif-display)" }}
-                  >
-                    {d.title}
-                  </h4>
-                  <p className="text-[10px] text-zinc-500 leading-snug">{d.desc}</p>
+                  <div>
+                    {/* Folder icon */}
+                    <svg
+                      className="w-5 h-5 text-accent-gold mb-3"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"
+                      />
+                    </svg>
+                    <h4
+                      className="text-xs sm:text-sm font-black uppercase tracking-wide text-primary-dark group-hover:text-accent-gold transition-colors mb-1.5"
+                      style={{ fontFamily: "var(--font-serif-display)" }}
+                    >
+                      {d.title}
+                    </h4>
+                  </div>
+                  <p className="text-xs text-zinc-500 leading-relaxed mt-2">{d.desc}</p>
                 </div>
               ))}
             </div>
@@ -523,7 +529,7 @@ export default function QualityPage() {
       </section>
 
       {/* 7. CTA ───────────────────────────────────────────── */}
-      <section className="relative py-24 bg-primary-dark overflow-hidden">
+      <section className="relative py-20 lg:py-24 bg-primary-dark overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-10"
           style={{ backgroundImage: "url('/images/inspection.jpg')" }}
@@ -532,25 +538,28 @@ export default function QualityPage() {
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-gold/50 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-gold/50 to-transparent" />
 
-        <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
           <Tag>Quality Consultation</Tag>
           <h2
-            className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white leading-tight"
+            className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-[1.15]"
             style={{ fontFamily: "var(--font-serif-display)" }}
           >
             Need Certified Component{" "}
             <span className="text-accent-gold">Manufacturing?</span>
           </h2>
-          <p className="text-sm text-zinc-400 leading-relaxed max-w-xl mx-auto">
+          <div className="w-12 h-1 bg-accent-gold mx-auto" />
+          <p className="text-sm sm:text-base text-zinc-300 leading-relaxed max-w-xl mx-auto">
             Speak with our team about quality requirements, drawings, inspection needs,
-            and production documentation
+            and production documentation.
           </p>
-          <Link
-            href="/contact?subject=quality"
-            className="inline-flex px-10 py-4 text-xs font-black uppercase tracking-widest text-white bg-accent-gold hover:bg-accent-gold-hover border border-accent-gold transition-colors hover:shadow-xl hover:shadow-accent-gold/20"
-          >
-            Talk to Quality Team
-          </Link>
+          <div className="pt-2">
+            <Link
+              href="/contact?subject=quality"
+              className="inline-flex px-9 py-4 text-xs font-mono font-bold uppercase tracking-[0.2em] text-white bg-accent-gold hover:bg-accent-gold-hover border border-accent-gold transition-colors hover:shadow-xl hover:shadow-accent-gold/20"
+            >
+              Talk to Quality Team
+            </Link>
+          </div>
         </div>
       </section>
     </>

@@ -27,7 +27,7 @@ const slides: Slide[] = [
     title: "50,000 SQ FT MANUFACTURING FACILITY",
     subtitle: "STATE-OF-THE-ART INFRASTRUCTURE",
     description: "Equipped with 110+ advanced CNC, VMC, and automatic lathe machines to deliver complex geometric components with tolerances up to +/- 0.01 mm",
-    image: "/images/cnc-machine.jpg",
+    image: "/images/cnc-turned-parts.jpg",
     badge: "110+ ADVANCED MACHINES"
   },
   {

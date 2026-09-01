@@ -51,11 +51,11 @@ export default function ContactForm() {
               <span>
                 <strong>New Perfect Incorporation</strong>
                 <br />
-                GIDC Phase III, Dared,
+                Plot No. 4145, GIDC Phase 3,
                 <br />
-                Jamnagar - 361004,
+                Dared, Jamnagar, Gujarat,
                 <br />
-                Gujarat, India
+                India – 361004
               </span>
             </div>
 
@@ -63,16 +63,23 @@ export default function ContactForm() {
               <svg className="h-5 w-5 text-accent-gold mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
-              <span>+91 288 273XXXX</span>
+              <a href="tel:+917817942727" className="hover:text-white transition-colors">
+                +91 78179 42727
+              </a>
             </div>
 
-            <div className="flex items-center">
-              <svg className="h-5 w-5 text-accent-gold mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="flex items-start">
+              <svg className="h-5 w-5 text-accent-gold mr-3 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
-              <a href="mailto:info@newperfectinc.com" className="hover:text-white transition-colors">
-                info@newperfectinc.com
-              </a>
+              <div className="space-y-1">
+                <a href="mailto:info@newperfectinc.com" className="block hover:text-white transition-colors">
+                  info@newperfectinc.com
+                </a>
+                <a href="mailto:newperfectinc@gmail.com" className="block hover:text-white transition-colors">
+                  newperfectinc@gmail.com
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -273,6 +280,26 @@ export default function ContactForm() {
               >
                 Submit Request for Quote
               </button>
+            </div>
+
+            {/* Confidentiality & Engineering Review Reassurance */}
+            <div className="pt-3 border-t border-zinc-100 space-y-1.5 text-[11px] text-zinc-500">
+              <div className="flex items-start sm:items-center gap-2">
+                <svg className="w-3.5 h-3.5 text-accent-gold shrink-0 mt-0.5 sm:mt-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+                <span className="leading-snug">
+                  <strong>Confidentiality Guaranteed:</strong> All technical drawings, CAD data, and specifications are treated with strict confidentiality.
+                </span>
+              </div>
+              <div className="flex items-start sm:items-center gap-2">
+                <svg className="w-3.5 h-3.5 text-accent-gold shrink-0 mt-0.5 sm:mt-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span className="leading-snug">
+                  <strong>Engineering Review:</strong> Enquiries are reviewed directly by our technical team, with responses provided within 24 business hours.
+                </span>
+              </div>
             </div>
           </form>
         )}
