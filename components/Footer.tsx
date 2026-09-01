@@ -7,8 +7,8 @@ export default function Footer() {
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
-          <div className="lg:col-span-1 max-w-xs flex flex-col items-center text-center">
-            <Link href="/" className="flex justify-center mb-5 transition-opacity hover:opacity-90">
+          <div className="lg:col-span-1 max-w-[280px]">
+            <Link href="/" className="w-full flex justify-center mb-5 transition-opacity hover:opacity-90">
               <Image
                 src="/images/company_logo/New Perfect Incorporation - Logo.png"
                 alt="New Perfect Incorporation Logo"
@@ -19,11 +19,11 @@ export default function Footer() {
                 style={{ filter: "brightness(0) invert(1)" }}
               />
             </Link>
-            <p className="text-xs text-zinc-400 leading-relaxed mb-5 text-center">
+            <p className="text-xs text-zinc-400 leading-relaxed mb-5 text-left">
               ISO 9001:2015 certified precision components manufacturer,
               exporter and supplier. Established 2007 · Jamnagar, India.
             </p>
-            <div className="flex flex-wrap justify-center gap-2">
+            <div className="flex flex-wrap justify-start gap-2">
               {["ISO 9001:2015", "RoHS", "UDYAM"].map((b) => (
                 <span
                   key={b}
