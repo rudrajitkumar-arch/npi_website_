@@ -212,42 +212,42 @@ const MACHINES = [
 /* ─── Products ──────────────────────────────────────────── */
 const PRODUCTS = [
   {
-    img: "/images/brass-inserts.jpg?v=2",
+    img: "/images/bi_v2.jpg",
     title: "Brass Inserts",
     desc: "Heat-set, ultrasonic & moulded inserts for polymer applications with precision knurling",
   },
   {
-    img: "/images/brass-fittings.jpg?v=2",
+    img: "/images/bf_v2.jpg",
     title: "Brass Fittings",
     desc: "Compression, push-fit, and threaded fittings for plumbing, gas, and hydraulic lines",
   },
   {
-    img: "/images/brass-fasteners.jpg?v=2",
+    img: "/images/bfx_v2.jpg",
     title: "Brass Fasteners & Fixings",
     desc: "Hex bolts, studs, nuts, washers, and specialty screws in all thread standards",
   },
   {
-    img: "/images/brass-cable-glands.jpg?v=2",
+    img: "/images/bcg_v2.jpg",
     title: "Brass Cable Glands",
     desc: "EMC, metric, NPT, and armoured cable gland assemblies with accessories",
   },
   {
-    img: "/images/cnc-turned-parts.jpg?v=2",
+    img: "/images/ctp_v2.jpg",
     title: "CNC Turned Parts",
     desc: "Complex custom components from drawings — prototype to high-volume production",
   },
   {
-    img: "/images/copper-bronze.jpg?v=2",
+    img: "/images/cb_v2.jpg",
     title: "Copper / Bronze / Gunmetal",
     desc: "Precision-machined copper and bronze alloy components for electrical & marine uses",
   },
   {
-    img: "/images/earthing-lightning.jpg?v=2",
+    img: "/images/el_v2.jpg",
     title: "Earthing & Lightning Protection",
     desc: "Earth rods, clamps, bonding conductors, and lightning protection hardware",
   },
   {
-    img: "/images/brass-forging.jpg?v=2",
+    img: "/images/bfo_v2.jpg",
     title: "Brass Forging & Casting",
     desc: "High-density forged and cast brass components for structural and valve applications",
   },
