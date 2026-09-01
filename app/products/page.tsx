@@ -69,7 +69,7 @@ const CATEGORIES = [
     id: "brass-inserts",
     title: "Brass Inserts",
     badge: "Moulding & Threaded",
-    img: "/images/brass-inserts.jpg",
+    img: "/images/brass-inserts.jpg?v=2",
     desc: "Precision-machined threaded and knurled brass inserts designed for high pull-out resistance and torque retention in plastics, CPVC/PPR mouldings, and composite assemblies.",
     items: [
       "Brass knurled inserts (straight, diamond & helical)",
@@ -89,7 +89,7 @@ const CATEGORIES = [
     id: "brass-fittings",
     title: "Brass Fittings",
     badge: "Fluid & Gas Control",
-    img: "/images/brass-fittings.jpg",
+    img: "/images/brass-fittings.jpg?v=2",
     desc: "High-integrity sanitary, plumbing, and pipe fittings machined to exact thread standards for leak-proof fluid, air, and gas distribution systems.",
     items: [
       "Brass sanitary & plumbing fittings",
@@ -109,7 +109,7 @@ const CATEGORIES = [
     id: "brass-forging",
     title: "Brass Forging & Casting Components",
     badge: "High-Pressure Duty",
-    img: "/images/brass-forging.jpg",
+    img: "/images/brass-forging.jpg?v=2",
     desc: "Hot-forged and precision-cast components engineered for superior structural density, high burst resistance, and heavy-duty mechanical reliability.",
     items: [
       "Bronze pipe fittings & heavy flanges",
@@ -128,7 +128,7 @@ const CATEGORIES = [
     id: "brass-engineering",
     title: "Brass Engineering Components",
     badge: "Custom Engineered",
-    img: "/images/brass-components.jpg",
+    img: "/images/brass-components.jpg?v=2",
     desc: "Custom-engineered brass components manufactured strictly to client blueprints, technical drawings, and OEM specifications for specialized machinery.",
     items: [
       "Brass heater & geyser parts",
@@ -148,7 +148,7 @@ const CATEGORIES = [
     id: "earthing-lightning",
     title: "Earthing & Lightning Protection",
     badge: "High Conductivity",
-    img: "/images/earthing-lightning.jpg",
+    img: "/images/earthing-lightning.jpg?v=2",
     desc: "High-conductivity grounding components and electrical hardware built to safeguard substations, transmission networks, and industrial electrical installations.",
     items: [
       "Earth clamps & rod accessories",
@@ -167,7 +167,7 @@ const CATEGORIES = [
     id: "brass-fasteners",
     title: "Brass Fasteners & Fixings",
     badge: "Corrosion-Resistant",
-    img: "/images/brass-fasteners.jpg",
+    img: "/images/brass-fasteners.jpg?v=2",
     desc: "Corrosion-resistant precision standard and custom threaded fasteners engineered for dependable mechanical joining in critical B2B equipment.",
     items: [
       "Brass anchors (drop-in, wedge, expansion)",
@@ -187,7 +187,7 @@ const CATEGORIES = [
     id: "cable-glands",
     title: "Brass Cable Glands & Accessories",
     badge: "Ingress & Retention",
-    img: "/images/brass-cable-glands.jpg",
+    img: "/images/brass-cable-glands.jpg?v=2",
     desc: "Industrial and commercial cable glands designed to provide mechanical cable retention, earth continuity, and environmental ingress sealing.",
     items: [
       "Industrial cable glands (armoured & unarmoured)",
@@ -206,7 +206,7 @@ const CATEGORIES = [
     id: "cnc-turned",
     title: "CNC Turned Parts",
     badge: "Close Tolerances",
-    img: "/images/cnc-turned-parts.jpg",
+    img: "/images/cnc-turned-parts.jpg?v=2",
     desc: "High-precision multi-axis CNC turned and milled components manufactured with tight dimensional tolerances, controlled concentricity, and fine surface finishes.",
     items: [
       "Brass CNC turned parts & shafts",
@@ -225,7 +225,7 @@ const CATEGORIES = [
     id: "copper-bronze",
     title: "Copper / Bronze / Gunmetal Components",
     badge: "Thermal & Wear Duty",
-    img: "/images/copper-bronze.jpg",
+    img: "/images/copper-bronze.jpg?v=2",
     desc: "Non-ferrous specialty alloy parts offering high electrical conductivity, thermal dissipation, wear resistance, and seawater corrosion resistance.",
     items: [
       "Pure copper electrical & contact components",
