@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div className="lg:col-span-1 max-w-[280px]">
-            <Link href="/" className="w-full flex justify-center mb-5 transition-opacity hover:opacity-90">
+            <Link href="/" className="w-full flex justify-start mb-5 transition-opacity hover:opacity-90">
               <Image
                 src="/images/company_logo/New Perfect Incorporation - Logo.png"
                 alt="New Perfect Incorporation Logo"
