@@ -152,7 +152,7 @@ export const products: ProductItem[] = [
     description: "Premium electrical brass accessories, neutral links, earth bars, terminal blocks, pins, and socket contacts",
     features: ["Excellent conductivity", "Corrosion resistance", "Thread precision"],
     materials: ["Free Cutting Brass IS 319", "High Grade Copper", "Lead Free Brass"],
-    image: "/images/brass-components.jpg?v=2"
+    image: "/images/product_images/brass_cable_glands_accessories.jpg"
   },
   {
     id: "brass-fasteners-inserts",
@@ -161,7 +161,7 @@ export const products: ProductItem[] = [
     description: "Threaded inserts for plastics, knurled nuts, custom screws, hex bolts, studs, and custom washers",
     features: ["Deep knurling for strong pull-out resistance", "Precision UNC/UNF/Metric threads", "Vibration resistant fits"],
     materials: ["Brass CZ 121", "Copper", "Silicon Bronze"],
-    image: "/images/brass-fasteners.jpg?v=2"
+    image: "/images/product_images/brass_fasteners_fixings.jpg"
   },
   {
     id: "plumbing-sanitary-fittings",
@@ -170,7 +170,7 @@ export const products: ProductItem[] = [
     description: "High-grade brass pipe fittings, CP brass fittings, hose nipples, compression fittings, and adapters",
     features: ["Leak-proof threading", "Hydrostatic pressure tested", "High temperature resistance"],
     materials: ["Forging Brass", "High Tensile Brass", "DZR Brass"],
-    image: "/images/brass-fittings.jpg?v=2"
+    image: "/images/product_images/brass_fitting.jpg"
   },
   {
     id: "cable-glands-accessories",
@@ -179,7 +179,7 @@ export const products: ProductItem[] = [
     description: "Industrial brass cable glands, PG/Metric threads, lock nuts, earth tags, and reducers",
     features: ["IP66/IP68 ingress protection rating ready", "Corrosion resistant plating", "High tensile strength"],
     materials: ["Brass IS 319 Grade 1", "CuZn39Pb3", "CW614N"],
-    image: "/images/brass-cable-glands.jpg?v=2"
+    image: "/images/product_images/brass_cable_glands_accessories.jpg"
   },
   {
     id: "custom-cnc-components",
@@ -188,7 +188,7 @@ export const products: ProductItem[] = [
     description: "Bespoke precision components manufactured to tight tolerances from customer blueprints and samples",
     features: ["Tolerances up to ±0.01 mm", "Complex geometries", "Surface finish Ra 0.4"],
     materials: ["Brass", "Copper", "Bronze", "Gunmetal"],
-    image: "/images/cnc-turned-parts.jpg?v=2"
+    image: "/images/product_images/cnc-turned-components.jpg"
   }
 ];
 
