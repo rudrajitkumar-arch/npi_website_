@@ -52,12 +52,12 @@ export default function Header() {
           className="flex items-center shrink-0 transition-opacity hover:opacity-90"
         >
           <Image
-            src="/images/company_logo/npi-logo-white.png"
+            src="/images/company_logo/final-logo.png"
             alt="New Perfect Incorporation"
-            width={175}
-            height={98}
+            width={215}
+            height={64}
             priority
-            className="h-[68px] sm:h-[82px] lg:h-[98px] max-h-[98px] w-auto object-contain block"
+            className="h-9 sm:h-11 lg:h-12 w-auto object-contain block"
           />
         </Link>
 

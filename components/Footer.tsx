@@ -10,11 +10,11 @@ export default function Footer() {
           <div className="lg:col-span-1 max-w-[280px]">
             <Link href="/" className="w-full flex justify-start mb-5 transition-opacity hover:opacity-90">
               <Image
-                src="/images/company_logo/npi-logo-white.png"
+                src="/images/company_logo/final-logo.png"
                 alt="New Perfect Incorporation Logo"
-                width={200}
-                height={111}
-                className="h-16 sm:h-20 w-auto object-contain block"
+                width={220}
+                height={66}
+                className="h-10 sm:h-12 w-auto object-contain block"
               />
             </Link>
             <p className="text-xs text-zinc-400 leading-relaxed mb-5 text-left">
