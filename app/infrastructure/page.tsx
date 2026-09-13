@@ -72,37 +72,37 @@ const OVERVIEW_STATS = [
 
 const GALLERY_ITEMS = [
   {
-    img: "/images/factory-floor.jpg",
+    img: "/images/factory_images/factory-indoor.png",
     title: "Automated Shop Floor",
     desc: "Machinery cells feeding high-volume brass extrusion rods and components",
   },
   {
-    img: "/images/raw-material.jpg",
+    img: "/images/product_images/brass_fitting.jpg",
     title: "Traceable Brass Stock",
     desc: "Verified extruded brass bar stock with certified chemical alloy composition",
   },
   {
-    img: "/images/raw-copper.jpg",
+    img: "/images/product_images/copper_bronze_gunmetal.jpg",
     title: "Copper & Bronze Alloy Stock",
     desc: "High-conductivity copper and phosphor bronze hex bars for precision turning",
   },
   {
-    img: "/images/cnc-turned-parts.jpg",
+    img: "/images/product_images/cnc-turned-components.jpg",
     title: "CNC & Traub Machining Cells",
     desc: "Precision turning centers processing complex tight-tolerance components",
   },
   {
-    img: "/images/brass-inserts.jpg",
+    img: "/images/product_images/brass_inserts.jpg",
     title: "Moulding Inserts Line",
     desc: "High-speed knurled and threaded inserts production for plastic and automotive OEMs",
   },
   {
-    img: "/images/brass-fasteners.jpg",
+    img: "/images/product_images/brass_fasteners_fixings.jpg",
     title: "Fasteners & Hardware Line",
     desc: "Precision anchors, bolts, studs, and custom screws with controlled thread pitch",
   },
   {
-    img: "/images/brass-components.jpg",
+    img: "/images/product_images/brass_cable_glands_accessories.jpg",
     title: "Finished Component Dispatch",
     desc: "Finished engineering components prepared for ultrasonic wash and sea-worthy export packing",
   },
@@ -143,9 +143,13 @@ export default function InfrastructurePage() {
     <>
       {/* 1. HERO ──────────────────────────────────────────── */}
       <section className="relative h-[760px] flex items-center bg-primary-dark overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/header_images/infrastructure.jpg')" }}
+        <Image
+          src="/images/header_images/infrastructure.jpg"
+          alt="Inside Our Precision Manufacturing Facility"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-primary-dark/97 via-primary-dark/88 to-primary-dark/55" />
         <div className="absolute inset-0 bg-primary-dark/25" />

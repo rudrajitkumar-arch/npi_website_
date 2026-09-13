@@ -13,9 +13,25 @@
 
 import { useRef, useCallback, useEffect, useState } from "react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { gsap } from "gsap";
-import HeroScene from "@/components/hero/HeroScene";
 import { useAutoPlay, useHeroScroll } from "@/hooks/useHeroScroll";
+
+const HeroScene = dynamic(() => import("@/components/hero/HeroScene"), {
+  ssr: false,
+  loading: () => (
+    <div
+      className="absolute inset-0 flex items-center justify-center pointer-events-none"
+      aria-hidden="true"
+    >
+      <div className="relative h-52 w-52 sm:h-64 sm:w-64">
+        <div className="absolute inset-0 rounded-full bg-accent-gold/10 blur-3xl animate-pulse" />
+        <div className="absolute inset-8 rounded-full border border-accent-gold/25" />
+        <div className="absolute inset-16 rounded-full bg-accent-gold/20 blur-xl" />
+      </div>
+    </div>
+  ),
+});
 
 /* ─── SLIDE DATA ──────────────────────────────────────────── */
 const SLIDES = [

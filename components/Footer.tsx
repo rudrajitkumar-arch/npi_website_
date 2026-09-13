@@ -10,13 +10,11 @@ export default function Footer() {
           <div className="lg:col-span-1 max-w-[280px]">
             <Link href="/" className="w-full flex justify-start mb-5 transition-opacity hover:opacity-90">
               <Image
-                src="/images/company_logo/New Perfect Incorporation - Logo.png"
+                src="/images/company_logo/npi-logo-white.png"
                 alt="New Perfect Incorporation Logo"
                 width={200}
                 height={111}
-                unoptimized
                 className="h-16 sm:h-20 w-auto object-contain block"
-                style={{ filter: "brightness(0) invert(1)" }}
               />
             </Link>
             <p className="text-xs text-zinc-400 leading-relaxed mb-5 text-left">

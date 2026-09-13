@@ -285,9 +285,13 @@ export default function ProductsPage() {
     <>
       {/* 1. HERO ──────────────────────────────────────────── */}
       <section className="relative h-[760px] flex items-center bg-primary-dark overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/header_images/products.jpg')" }}
+        <Image
+          src="/images/header_images/products.jpg"
+          alt="Range of Precision Products & Services"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-primary-dark/97 via-primary-dark/88 to-primary-dark/55" />
         <div className="absolute inset-0 bg-primary-dark/25" />

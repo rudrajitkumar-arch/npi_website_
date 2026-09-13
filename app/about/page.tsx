@@ -202,9 +202,13 @@ export default function AboutPage() {
     <>
       {/* 1. HERO ──────────────────────────────────────────── */}
       <section className="relative h-[760px] flex items-center bg-primary-dark overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/header_images/about.png')" }}
+        <Image
+          src="/images/header_images/about.png"
+          alt="New Perfect Incorporation Brass Facility"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-primary-dark/96 via-primary-dark/85 to-primary-dark/50" />
         <div className="absolute inset-0 bg-primary-dark/30" />
@@ -489,9 +493,12 @@ export default function AboutPage() {
 
       {/* 7. CTA ───────────────────────────────────────────── */}
       <section className="relative py-20 lg:py-24 bg-primary-dark overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-10"
-          style={{ backgroundImage: "url('/images/cnc-machine.jpg')" }}
+        <Image
+          src="/images/product_images/cnc-turned-components.jpg"
+          alt="Precision CNC Turning Machine"
+          fill
+          sizes="100vw"
+          className="object-cover object-center opacity-10"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-primary-dark/95 to-primary-dark/80" />
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-gold/50 to-transparent" />

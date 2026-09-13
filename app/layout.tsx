@@ -7,7 +7,6 @@ import Footer from "@/components/Footer";
 const fraunces = Fraunces({
   variable: "--font-display",
   subsets: ["latin"],
-  style: ["normal", "italic"],
   display: "swap",
 });
 

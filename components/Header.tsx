@@ -23,8 +23,17 @@ export default function Header() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", onScroll);
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 60);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -43,14 +52,12 @@ export default function Header() {
           className="flex items-center shrink-0 transition-opacity hover:opacity-90"
         >
           <Image
-            src="/images/company_logo/New Perfect Incorporation - Logo.png"
+            src="/images/company_logo/npi-logo-white.png"
             alt="New Perfect Incorporation"
             width={175}
             height={98}
             priority
-            unoptimized
             className="h-[68px] sm:h-[82px] lg:h-[98px] max-h-[98px] w-auto object-contain block"
-            style={{ width: "auto", height: "auto", filter: "brightness(0) invert(1)" }}
           />
         </Link>
 
