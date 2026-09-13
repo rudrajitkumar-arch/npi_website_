@@ -54,10 +54,14 @@ export default function Header() {
           <Image
             src="/images/company_logo/final-logo.png"
             alt="New Perfect Incorporation"
-            width={215}
-            height={64}
+            width={340}
+            height={102}
             priority
-            className="h-9 sm:h-11 lg:h-12 w-auto object-contain block"
+            className={`${
+              scrolled
+                ? "h-12 sm:h-14 lg:h-16"
+                : "h-14 sm:h-16 md:h-18 lg:h-[76px]"
+            } w-auto object-contain block transition-all duration-300`}
           />
         </Link>
 

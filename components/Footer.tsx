@@ -12,9 +12,9 @@ export default function Footer() {
               <Image
                 src="/images/company_logo/final-logo.png"
                 alt="New Perfect Incorporation Logo"
-                width={220}
-                height={66}
-                className="h-10 sm:h-12 w-auto object-contain block"
+                width={260}
+                height={78}
+                className="h-12 sm:h-14 w-auto object-contain block"
               />
             </Link>
             <p className="text-xs text-zinc-400 leading-relaxed mb-5 text-left">
