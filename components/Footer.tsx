@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="bg-primary-dark border-t-4 border-accent-gold shrink-0">
+    <footer className="bg-[#172124] border-t-2 border-[#075E62] shrink-0 text-[#D8DEDC]">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
@@ -17,7 +17,7 @@ export default function Footer() {
                 className="h-12 sm:h-14 w-auto object-contain block"
               />
             </Link>
-            <p className="text-xs text-zinc-400 leading-relaxed mb-5 text-left">
+            <p className="text-xs text-[#D8DEDC]/80 leading-relaxed mb-5 text-left">
               ISO 9001:2015 certified precision components manufacturer,
               exporter and supplier. Established 2007 · Jamnagar, India.
             </p>
@@ -25,7 +25,7 @@ export default function Footer() {
               {["ISO 9001:2015", "RoHS", "UDYAM"].map((b) => (
                 <span
                   key={b}
-                  className="px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider border border-accent-gold/30 text-accent-gold font-mono"
+                  className="px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider border border-[#075E62]/50 text-[#E8EFEC] bg-[#075E62]/20 font-mono"
                 >
                   {b}
                 </span>
@@ -35,10 +35,10 @@ export default function Footer() {
 
           {/* Address & Contact */}
           <div>
-            <h4 className="text-[10px] font-bold uppercase tracking-widest text-accent-gold mb-5 border-b border-white/10 pb-2 font-mono">
+            <h4 className="text-[10px] font-bold uppercase tracking-widest text-[#FFFFFF] mb-5 border-b border-[#075E62]/40 pb-2 font-mono">
               Registered Office
             </h4>
-            <div className="space-y-3 text-xs text-zinc-400">
+            <div className="space-y-3 text-xs text-[#D8DEDC]">
               <p>
                 Plot No. 4145, GIDC Phase 3,
                 <br />
@@ -48,28 +48,28 @@ export default function Footer() {
               </p>
               <div className="pt-1 space-y-1">
                 <p>
-                  <span className="text-zinc-500">W:</span>{" "}
+                  <span className="text-[#68757A]">W:</span>{" "}
                   <a
                     href="https://www.newperfectinc.com"
-                    className="hover:text-white transition-colors"
+                    className="hover:text-[#C96A45] transition-colors"
                   >
                     www.newperfectinc.com
                   </a>
                 </p>
                 <p>
-                  <span className="text-zinc-500">E:</span>{" "}
+                  <span className="text-[#68757A]">E:</span>{" "}
                   <a
                     href="mailto:info@newperfectinc.com"
-                    className="hover:text-white transition-colors"
+                    className="hover:text-[#C96A45] transition-colors"
                   >
                     info@newperfectinc.com
                   </a>
                 </p>
                 <p>
-                  <span className="text-zinc-500">E:</span>{" "}
+                  <span className="text-[#68757A]">E:</span>{" "}
                   <a
                     href="mailto:newperfectinc@gmail.com"
-                    className="hover:text-white transition-colors"
+                    className="hover:text-[#C96A45] transition-colors"
                   >
                     newperfectinc@gmail.com
                   </a>
@@ -80,16 +80,16 @@ export default function Footer() {
 
           {/* Phone contacts */}
           <div>
-            <h4 className="text-[10px] font-bold uppercase tracking-widest text-accent-gold mb-5 border-b border-white/10 pb-2 font-mono">
+            <h4 className="text-[10px] font-bold uppercase tracking-widest text-[#FFFFFF] mb-5 border-b border-[#075E62]/40 pb-2 font-mono">
               Contact Persons
             </h4>
-            <div className="space-y-3 text-xs text-zinc-400">
+            <div className="space-y-3 text-xs text-[#D8DEDC]">
               {[
                 { name: "Meet Patel", phone: "+91 78179 42727" },
               ].map((p) => (
                 <div key={p.name}>
-                  <span className="block text-zinc-300 font-semibold">{p.name}</span>
-                  <a href={`tel:${p.phone.replace(/\s/g, "")}`} className="hover:text-white transition-colors">
+                  <span className="block text-[#FFFFFF] font-semibold">{p.name}</span>
+                  <a href={`tel:${p.phone.replace(/\s/g, "")}`} className="hover:text-[#C96A45] transition-colors">
                     {p.phone}
                   </a>
                 </div>
@@ -99,7 +99,7 @@ export default function Footer() {
 
           {/* Quick links */}
           <div>
-            <h4 className="text-[10px] font-bold uppercase tracking-widest text-accent-gold mb-5 border-b border-white/10 pb-2 font-mono">
+            <h4 className="text-[10px] font-bold uppercase tracking-widest text-[#FFFFFF] mb-5 border-b border-[#075E62]/40 pb-2 font-mono">
               Quick Links
             </h4>
             <ul className="space-y-2.5">
@@ -116,7 +116,7 @@ export default function Footer() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="text-xs text-zinc-400 hover:text-white hover:translate-x-1 inline-block transition-all font-mono"
+                    className="text-xs text-[#D8DEDC] hover:text-[#C96A45] hover:translate-x-1 inline-block transition-all font-mono"
                   >
                     {l.label}
                   </Link>
@@ -127,18 +127,18 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-[10px] text-zinc-500">
+        <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-[10px] text-[#68757A]">
           <p>© {new Date().getFullYear()} New Perfect Incorporation. All Rights Reserved.</p>
           <p className="flex gap-4">
-            <Link href="/quality" className="hover:text-zinc-300 transition-colors font-mono">
+            <Link href="/quality" className="hover:text-[#D8DEDC] transition-colors font-mono">
               ISO 9001:2015
             </Link>
             <span>·</span>
-            <Link href="/quality" className="hover:text-zinc-300 transition-colors font-mono">
+            <Link href="/quality" className="hover:text-[#D8DEDC] transition-colors font-mono">
               RoHS Compliant
             </Link>
             <span>·</span>
-            <Link href="/about" className="hover:text-zinc-300 transition-colors font-mono">
+            <Link href="/about" className="hover:text-[#D8DEDC] transition-colors font-mono">
               UDYAM Registered
             </Link>
           </p>

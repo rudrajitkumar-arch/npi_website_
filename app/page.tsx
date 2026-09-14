@@ -21,8 +21,8 @@ export const metadata: Metadata = {
 
 function Tag({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2 border border-accent-gold/40 bg-accent-gold/10 px-4 py-1.5 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-accent-gold">
-      <span className="w-1.5 h-1.5 rounded-full bg-accent-gold" />
+    <span className="inline-flex items-center gap-2 border border-[#075E62]/30 bg-[#E8EFEC] px-4 py-1.5 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-[#075E62]">
+      <span className="w-1.5 h-1.5 rounded-full bg-[#075E62]" />
       {children}
     </span>
   );
@@ -45,21 +45,23 @@ function SectionHead({
     <div className={`mb-12 lg:mb-16 ${center ? "text-center" : ""}`}>
       {tag && <Tag>{tag}</Tag>}
       <h2
-        className={`mt-4 text-3xl sm:text-4xl md:text-5xl font-black uppercase leading-[1.15] tracking-tight ${light ? "text-white" : "text-primary-dark"
-          }`}
+        className={`mt-4 text-3xl sm:text-4xl md:text-5xl font-black uppercase leading-[1.15] tracking-tight ${
+          light ? "text-white" : "text-[#202A2E]"
+        }`}
         style={{ fontFamily: "var(--font-serif-display)" }}
       >
         {title}
       </h2>
       {sub && (
         <p
-          className={`mt-3.5 text-sm sm:text-base ${light ? "text-zinc-400" : "text-zinc-500"
-            } max-w-2xl leading-relaxed ${center ? "mx-auto" : ""}`}
+          className={`mt-3.5 text-sm sm:text-base ${
+            light ? "text-[#D8DEDC]" : "text-[#68757A]"
+          } max-w-2xl leading-relaxed ${center ? "mx-auto" : ""}`}
         >
           {sub}
         </p>
       )}
-      <div className={`mt-4 w-12 h-1 bg-accent-gold ${center ? "mx-auto" : ""}`} />
+      <div className={`mt-4 w-12 h-1 bg-[#C96A45] ${center ? "mx-auto" : ""}`} />
     </div>
   );
 }
@@ -344,14 +346,14 @@ export default function HomePage() {
               </p>
               <Link
                 href="/about"
-                className="inline-flex px-8 py-3.5 bg-primary-dark text-white text-xs font-mono font-bold uppercase tracking-[0.2em] hover:bg-accent-gold transition-colors"
+                className="inline-flex px-8 py-3.5 bg-[#202A2E] text-white text-xs font-mono font-bold uppercase tracking-[0.2em] hover:bg-[#075E62] transition-colors"
               >
                 About New Perfect
               </Link>
             </div>
 
             {/* Single Image */}
-            <div className="relative h-[380px] lg:h-[440px] w-full rounded-sm overflow-hidden border border-zinc-200/80 shadow-md">
+            <div className="relative h-[380px] lg:h-[440px] w-full rounded-sm overflow-hidden border border-[#D8DEDC] shadow-sm">
               <Image
                 src="/images/factory_images/factory-outdoor.png"
                 alt="New Perfect Incorporation Facility & Precision Manufacturing"
@@ -359,14 +361,14 @@ export default function HomePage() {
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/20 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#202A2E]/30 via-transparent to-transparent pointer-events-none" />
             </div>
           </div>
         </div>
       </section>
 
       {/* 3. INDUSTRIES ─────────────────────────────────────── */}
-      <section className="py-20 lg:py-24 bg-white border-t border-zinc-100">
+      <section className="py-20 lg:py-24 bg-[#F6F5F0] border-t border-[#D8DEDC]">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead
             tag="Sectors"
@@ -377,15 +379,15 @@ export default function HomePage() {
             {INDUSTRIES.map((ind) => (
               <div
                 key={ind.title}
-                className="group border border-zinc-200 hover:border-accent-gold bg-bg-warm hover:bg-white p-5 lg:p-6 transition-all duration-300 cursor-default flex flex-col justify-between"
+                className="group border border-[#D8DEDC] hover:border-[#075E62] bg-white hover:bg-[#E8EFEC]/40 p-5 lg:p-6 transition-all duration-300 cursor-default flex flex-col justify-between"
               >
                 <div>
-                  <div className="mb-3">{ind.icon}</div>
-                  <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wide text-primary-dark group-hover:text-accent-gold transition-colors mb-2 font-display">
+                  <div className="mb-3 text-[#075E62] group-hover:text-[#C96A45] transition-colors">{ind.icon}</div>
+                  <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wide text-[#202A2E] group-hover:text-[#075E62] transition-colors mb-2 font-display">
                     {ind.title}
                   </h3>
                 </div>
-                <p className="text-xs text-zinc-500 leading-relaxed">{ind.desc}</p>
+                <p className="text-xs text-[#68757A] leading-relaxed">{ind.desc}</p>
               </div>
             ))}
           </div>
@@ -393,7 +395,7 @@ export default function HomePage() {
       </section>
 
       {/* 4. CAPABILITIES ───────────────────────────────────── */}
-      <section className="py-20 lg:py-24 bg-bg-warm border-t border-zinc-200">
+      <section className="py-20 lg:py-24 bg-[#F6F5F0] border-t border-[#D8DEDC]">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead
             tag="Manufacturing"
@@ -404,28 +406,28 @@ export default function HomePage() {
             {CAPABILITIES.map((cap) => (
               <div
                 key={cap.num}
-                className="group bg-white border border-zinc-200 hover:border-accent-gold p-8 transition-all duration-300 hover:shadow-xl relative overflow-hidden"
+                className="group bg-white border border-[#D8DEDC] hover:border-[#075E62] p-8 transition-all duration-300 hover:shadow-md relative overflow-hidden"
               >
                 {/* Large number watermark */}
                 <span
-                  className="absolute -top-4 -right-2 text-8xl font-black text-zinc-100 group-hover:text-accent-gold/10 select-none transition-colors"
+                  className="absolute -top-4 -right-2 text-8xl font-black text-[#E8EFEC] group-hover:text-[#075E62]/15 select-none transition-colors"
                   style={{ fontFamily: "var(--font-serif-display)" }}
                 >
                   {cap.num}
                 </span>
                 <div className="relative z-10">
-                  <div className="w-8 h-1 bg-accent-gold mb-5" />
+                  <div className="w-8 h-1 bg-[#C96A45] mb-5" />
                   <h3
-                    className="text-lg sm:text-xl font-black uppercase tracking-wide text-primary-dark mb-3"
+                    className="text-lg sm:text-xl font-black uppercase tracking-wide text-[#202A2E] mb-3"
                     style={{ fontFamily: "var(--font-serif-display)" }}
                   >
                     {cap.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-zinc-500 leading-relaxed mb-5">{cap.desc}</p>
+                  <p className="text-xs sm:text-sm text-[#68757A] leading-relaxed mb-5">{cap.desc}</p>
                   <ul className="space-y-2">
                     {cap.items.map((item) => (
-                      <li key={item} className="flex items-center text-xs sm:text-sm text-zinc-600">
-                        <span className="w-1.5 h-1.5 rounded-full bg-accent-gold mr-2.5 shrink-0" />
+                      <li key={item} className="flex items-center text-xs sm:text-sm text-[#30383C]">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#075E62] mr-2.5 shrink-0" />
                         {item}
                       </li>
                     ))}
@@ -437,7 +439,7 @@ export default function HomePage() {
           <div className="mt-10 text-center">
             <Link
               href="/capabilities"
-              className="inline-flex px-8 py-3.5 border border-zinc-300 hover:border-accent-gold text-zinc-700 hover:text-accent-gold text-xs font-mono font-bold uppercase tracking-[0.2em] transition-colors"
+              className="inline-flex px-8 py-3.5 border border-[#075E62] hover:bg-[#075E62] text-[#075E62] hover:text-white text-xs font-mono font-bold uppercase tracking-[0.2em] transition-colors"
             >
               Full Capabilities →
             </Link>
@@ -479,7 +481,7 @@ export default function HomePage() {
           <div className="mt-10 text-center">
             <Link
               href="/infrastructure"
-              className="inline-flex px-8 py-3.5 border border-white/20 hover:border-accent-gold text-zinc-300 hover:text-accent-gold text-xs font-mono font-bold uppercase tracking-[0.2em] transition-colors"
+              className="inline-flex px-8 py-3.5 border border-white/40 hover:border-[#075E62] hover:bg-[#075E62] text-white text-xs font-mono font-bold uppercase tracking-[0.2em] transition-colors"
             >
               View Infrastructure →
             </Link>
@@ -488,7 +490,7 @@ export default function HomePage() {
       </section>
 
       {/* 6. PRODUCT PORTFOLIO ──────────────────────────────── */}
-      <section className="py-20 lg:py-24 bg-bg-warm border-t border-zinc-200">
+      <section className="py-20 lg:py-24 bg-[#F6F5F0] border-t border-[#D8DEDC]">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead
             tag="Products"
@@ -499,9 +501,9 @@ export default function HomePage() {
             {PRODUCTS.map((p) => (
               <div
                 key={p.title}
-                className="group bg-white border border-zinc-200 hover:border-accent-gold overflow-hidden transition-all duration-300 hover:shadow-xl flex flex-col"
+                className="group bg-white border border-[#D8DEDC] hover:border-[#075E62] overflow-hidden transition-all duration-300 hover:shadow-md flex flex-col"
               >
-                <div className="relative h-44 bg-zinc-100 overflow-hidden">
+                <div className="relative h-44 bg-[#F6F5F0] overflow-hidden">
                   <Image
                     src={p.img}
                     alt={p.title}
@@ -509,18 +511,18 @@ export default function HomePage() {
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                     sizes="(max-width: 1024px) 50vw, 25vw"
                   />
-                  <div className="absolute inset-0 bg-primary-dark/20 group-hover:bg-primary-dark/5 transition-colors" />
+                  <div className="absolute inset-0 bg-[#202A2E]/20 group-hover:bg-[#202A2E]/5 transition-colors" />
                 </div>
                 <div className="p-6 flex flex-col flex-1">
                   <h3
-                    className="text-base font-black uppercase tracking-wide text-primary-dark group-hover:text-accent-gold transition-colors mb-2 font-display"
+                    className="text-base font-black uppercase tracking-wide text-[#202A2E] group-hover:text-[#075E62] transition-colors mb-2 font-display"
                   >
                     {p.title}
                   </h3>
-                  <p className="text-xs text-zinc-500 leading-relaxed flex-1">{p.desc}</p>
+                  <p className="text-xs text-[#68757A] leading-relaxed flex-1">{p.desc}</p>
                   <Link
                     href="/products"
-                    className="mt-4 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-accent-gold hover:text-primary-dark transition-colors"
+                    className="mt-4 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-[#075E62] hover:text-[#C96A45] transition-colors"
                   >
                     View Products →
                   </Link>
@@ -531,7 +533,7 @@ export default function HomePage() {
           <div className="mt-12 text-center">
             <Link
               href="/products"
-              className="inline-flex px-8 py-3.5 bg-primary-dark hover:bg-accent-gold text-white text-xs font-mono font-bold uppercase tracking-[0.2em] transition-colors"
+              className="inline-flex px-8 py-3.5 bg-[#C96A45] hover:bg-[#A95132] text-white text-xs font-mono font-bold uppercase tracking-[0.2em] transition-colors"
             >
               Full Product Catalogue →
             </Link>
@@ -540,7 +542,7 @@ export default function HomePage() {
       </section>
 
       {/* 7. QUALITY ────────────────────────────────────────── */}
-      <section className="py-20 lg:py-24 bg-white border-t border-zinc-100">
+      <section className="py-20 lg:py-24 bg-white border-t border-[#D8DEDC]">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead
             tag="Quality Assurance"
@@ -551,29 +553,29 @@ export default function HomePage() {
             {QUALITY_CARDS.map((q) => (
               <div
                 key={q.title}
-                className="group border border-zinc-200 hover:border-accent-gold bg-bg-warm hover:bg-white p-7 lg:p-8 transition-all duration-300 flex flex-col justify-between"
+                className="group border border-[#D8DEDC] hover:border-[#3F6B5B] bg-[#F6F5F0] hover:bg-white p-7 lg:p-8 transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
-                  <div className="mb-4">{q.icon}</div>
-                  <h3 className="text-base font-bold uppercase tracking-wide text-primary-dark group-hover:text-accent-gold transition-colors mb-2 font-display">
+                  <div className="mb-4 text-[#3F6B5B]">{q.icon}</div>
+                  <h3 className="text-base font-bold uppercase tracking-wide text-[#202A2E] group-hover:text-[#3F6B5B] transition-colors mb-2 font-display">
                     {q.title}
                   </h3>
                 </div>
-                <p className="text-xs text-zinc-500 leading-relaxed">{q.desc}</p>
+                <p className="text-xs text-[#68757A] leading-relaxed">{q.desc}</p>
               </div>
             ))}
           </div>
 
           {/* Toolkit chips */}
-          <div className="border-t border-zinc-100 pt-10">
-            <p className="text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-zinc-400 mb-5 text-center">
+          <div className="border-t border-[#D8DEDC] pt-10">
+            <p className="text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-[#68757A] mb-5 text-center">
               Measurement &amp; Testing Toolkit
             </p>
             <div className="flex flex-wrap gap-2.5 justify-center">
               {TOOLKIT.map((t) => (
                 <span
                   key={t}
-                  className="px-3.5 py-1.5 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.15em] text-primary-dark bg-bg-warm border border-zinc-200 hover:border-accent-gold hover:text-accent-gold transition-colors cursor-default"
+                  className="px-3.5 py-1.5 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.15em] text-[#30383C] bg-[#E8EFEC] border border-[#D8DEDC] hover:border-[#075E62] hover:text-[#075E62] transition-colors cursor-default"
                 >
                   {t}
                 </span>
@@ -584,7 +586,7 @@ export default function HomePage() {
           <div className="mt-12 text-center">
             <Link
               href="/quality"
-              className="inline-flex px-8 py-3.5 border border-zinc-300 hover:border-accent-gold text-zinc-700 hover:text-accent-gold text-xs font-mono font-bold uppercase tracking-[0.2em] transition-colors"
+              className="inline-flex px-8 py-3.5 border border-[#075E62] hover:bg-[#075E62] text-[#075E62] hover:text-white text-xs font-mono font-bold uppercase tracking-[0.2em] transition-colors"
             >
               Our Quality System →
             </Link>
@@ -593,16 +595,16 @@ export default function HomePage() {
       </section>
 
       {/* 8. CERTIFICATIONS ─────────────────────────────────── */}
-      <section className="py-14 lg:py-16 bg-bg-warm border-t border-zinc-200">
+      <section className="py-14 lg:py-16 bg-[#F6F5F0] border-t border-[#D8DEDC]">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.25em] text-zinc-400 text-center mb-8">
+          <p className="text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.25em] text-[#68757A] text-center mb-8">
             Certifications &amp; Compliance
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
             {CERTS.map((c) => (
               <div
                 key={c.label}
-                className="group bg-white border border-zinc-200 hover:border-accent-gold p-6 lg:p-7 flex flex-col items-center text-center transition-all duration-300"
+                className="group bg-white border border-[#D8DEDC] hover:border-[#3F6B5B] p-6 lg:p-7 flex flex-col items-center text-center transition-all duration-300"
               >
                 {/* Badge logo */}
                 <div className="h-12 flex items-center justify-center mb-3">
@@ -615,10 +617,10 @@ export default function HomePage() {
                     className="max-h-11 max-w-[90px] object-contain group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
-                <span className="text-sm font-black uppercase tracking-wide text-primary-dark group-hover:text-accent-gold transition-colors">
+                <span className="text-sm font-black uppercase tracking-wide text-[#202A2E] group-hover:text-[#3F6B5B] transition-colors">
                   {c.label}
                 </span>
-                <span className="text-[10px] sm:text-[11px] text-zinc-400 mt-1">{c.note}</span>
+                <span className="text-[10px] sm:text-[11px] text-[#68757A] mt-1">{c.note}</span>
               </div>
             ))}
           </div>
@@ -627,15 +629,15 @@ export default function HomePage() {
 
 
       {/* 10. FINAL CTA ─────────────────────────────────────── */}
-      <section className="relative py-20 lg:py-24 bg-primary-dark overflow-hidden">
+      <section className="relative py-20 lg:py-24 bg-[#202A2E] overflow-hidden">
         {/* bg texture */}
         <div
           className="absolute inset-0 bg-cover bg-center opacity-10"
           style={{ backgroundImage: "url('/images/cnc-machine.jpg')" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary-dark via-primary-dark/95 to-primary-dark/70" />
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-gold/50 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-gold/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#202A2E] via-[#202A2E]/95 to-[#202A2E]/80" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#075E62]/50 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#075E62]/50 to-transparent" />
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
           <Tag>Custom Manufacturing Enquiry</Tag>
@@ -644,23 +646,23 @@ export default function HomePage() {
             style={{ fontFamily: "var(--font-serif-display)" }}
           >
             Let&apos;s Build Something{" "}
-            <span className="text-accent-gold">Precise,</span> Together
+            <span className="text-[#C96A45]">Precise,</span> Together
           </h2>
-          <div className="w-12 h-1 bg-accent-gold mx-auto" />
-          <p className="text-sm sm:text-base text-zinc-300 max-w-xl mx-auto leading-relaxed">
+          <div className="w-12 h-1 bg-[#C96A45] mx-auto" />
+          <p className="text-sm sm:text-base text-[#D8DEDC] max-w-xl mx-auto leading-relaxed">
             Share your drawing, sample, or technical requirement. Our team will respond
             with a prompt, transparent quotation.
           </p>
           <div className="flex flex-wrap gap-4 justify-center pt-2">
             <Link
               href="/contact"
-              className="px-9 py-4 text-xs font-mono font-bold uppercase tracking-[0.2em] text-white bg-accent-gold hover:bg-accent-gold-hover border border-accent-gold transition-colors hover:shadow-xl hover:shadow-accent-gold/20"
+              className="px-9 py-4 text-xs font-mono font-bold uppercase tracking-[0.2em] text-white bg-[#C96A45] hover:bg-[#A95132] border border-[#C96A45] transition-colors hover:shadow-xl hover:shadow-[#C96A45]/20"
             >
               Get Quote
             </Link>
             <Link
               href="/contact#sales"
-              className="px-9 py-4 text-xs font-mono font-bold uppercase tracking-[0.2em] text-white border border-white/30 hover:border-accent-gold hover:text-accent-gold transition-colors"
+              className="px-9 py-4 text-xs font-mono font-bold uppercase tracking-[0.2em] text-white border border-white/40 hover:border-[#075E62] hover:bg-[#075E62] transition-colors"
             >
               Contact Sales
             </Link>

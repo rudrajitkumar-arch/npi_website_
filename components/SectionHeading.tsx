@@ -22,7 +22,7 @@ export default function SectionHeading({
       {subtitle && (
         <span
           className={`text-xs sm:text-sm font-bold uppercase tracking-[0.25em] mb-3 font-mono ${
-            dark ? "text-accent-gold" : "text-accent-gold"
+            dark ? "text-[#C96A45]" : "text-[#075E62]"
           }`}
         >
           {subtitle}
@@ -30,12 +30,12 @@ export default function SectionHeading({
       )}
       <h2
         className={`text-2xl sm:text-4xl font-display font-bold uppercase tracking-wide leading-tight ${
-          dark ? "text-white" : "text-primary-dark"
+          dark ? "text-white" : "text-[#202A2E]"
         }`}
       >
         {title}
       </h2>
-      <div className="w-16 h-1 bg-accent-gold mt-4" />
+      <div className="w-16 h-1 bg-[#C96A45] mt-4" />
     </div>
   );
 }

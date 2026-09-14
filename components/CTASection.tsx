@@ -52,7 +52,7 @@ export default function CTASection({
           </Link>
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center px-8 py-3.5 border border-white hover:border-accent-gold hover:bg-accent-gold text-white text-xs font-bold uppercase tracking-wider transition-all duration-300 font-mono"
+            className="inline-flex items-center justify-center px-8 py-3.5 border border-white/60 hover:border-[#075E62] hover:bg-[#075E62] text-white text-xs font-bold uppercase tracking-wider transition-all duration-300 font-mono"
           >
             Contact Jamnagar Office
           </Link>

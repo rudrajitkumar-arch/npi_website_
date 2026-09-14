@@ -19,8 +19,8 @@ export const metadata: Metadata = {
 /* ─── PRIMITIVES ─────────────────────────────────────────── */
 function Tag({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2 border border-accent-gold/40 bg-accent-gold/10 px-4 py-1.5 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-accent-gold">
-      <span className="w-1.5 h-1.5 rounded-full bg-accent-gold" />
+    <span className="inline-flex items-center gap-2 border border-brand-primary/30 bg-surface-soft px-4 py-1.5 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-brand-primary">
+      <span className="w-1.5 h-1.5 rounded-full bg-accent" />
       {children}
     </span>
   );
@@ -59,7 +59,7 @@ function SectionHead({
           {sub}
         </p>
       )}
-      <div className={`mt-4 w-12 h-1 bg-accent-gold ${center ? "mx-auto" : ""}`} />
+      <div className={`mt-4 w-12 h-1 bg-accent ${center ? "mx-auto" : ""}`} />
     </div>
   );
 }

@@ -19,8 +19,8 @@ export const metadata: Metadata = {
 /* ─── PRIMITIVES ─────────────────────────────────────────── */
 function Tag({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2 border border-accent-gold/40 bg-accent-gold/10 px-4 py-1.5 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-accent-gold">
-      <span className="w-1.5 h-1.5 rounded-full bg-accent-gold" />
+    <span className="inline-flex items-center gap-2 border border-brand-primary/30 bg-surface-soft px-4 py-1.5 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-brand-primary">
+      <span className="w-1.5 h-1.5 rounded-full bg-accent" />
       {children}
     </span>
   );
@@ -57,7 +57,7 @@ function SectionHead({
           {sub}
         </p>
       )}
-      <div className={`mt-4 w-12 h-1 bg-accent-gold ${center ? "mx-auto" : ""}`} />
+      <div className={`mt-4 w-12 h-1 bg-accent ${center ? "mx-auto" : ""}`} />
     </div>
   );
 }
@@ -167,8 +167,8 @@ const CERTS = [
     title: "ISO 9001:2015",
     sub: "Quality Management System",
     desc: "Certified quality management across all production, inspection, and customer satisfaction processes",
-    color: "border-accent-gold/40 bg-accent-gold/5",
-    badge: "text-accent-gold",
+    color: "border-[#3F6B5B]/40 bg-[#E8EFEC]/40",
+    badge: "text-[#3F6B5B]",
     logo: "/images/certificate_images/iso.png",
   },
   {
@@ -176,8 +176,8 @@ const CERTS = [
     title: "RoHS Compliant",
     sub: "Restriction of Hazardous Substances",
     desc: "All brass, copper, and steel components manufactured within EU Directive 2011/65/EU hazardous substance limits.",
-    color: "border-green-500/30 bg-green-500/5",
-    badge: "text-green-400",
+    color: "border-[#3F6B5B]/40 bg-[#E8EFEC]/40",
+    badge: "text-[#3F6B5B]",
     logo: "/images/certificate_images/rohs.png",
   },
   {
@@ -185,8 +185,8 @@ const CERTS = [
     title: "UDYAM Registered",
     sub: "Govt. of India — Ministry of MSME",
     desc: "Registered MSME enterprise under the Government of India's Udyam Recognition Framework",
-    color: "border-blue-400/30 bg-blue-400/5",
-    badge: "text-blue-400",
+    color: "border-border-soft bg-surface",
+    badge: "text-brand-primary",
     logo: "/images/certificate_images/msme.png",
   },
   {
@@ -194,8 +194,8 @@ const CERTS = [
     title: "Health & Environmental",
     sub: "Floor-Level Policy & Training",
     desc: "Employee awareness programmes, hazard training, and environmental compliance maintained at production floor level",
-    color: "border-zinc-400/30 bg-zinc-400/5",
-    badge: "text-zinc-400",
+    color: "border-border-soft bg-surface",
+    badge: "text-text-secondary",
     logo: "/images/certificate_images/hse.png",
   },
 ];

@@ -25,9 +25,9 @@ const HeroScene = dynamic(() => import("@/components/hero/HeroScene"), {
       aria-hidden="true"
     >
       <div className="relative h-52 w-52 sm:h-64 sm:w-64">
-        <div className="absolute inset-0 rounded-full bg-accent-gold/10 blur-3xl animate-pulse" />
-        <div className="absolute inset-8 rounded-full border border-accent-gold/25" />
-        <div className="absolute inset-16 rounded-full bg-accent-gold/20 blur-xl" />
+        <div className="absolute inset-0 rounded-full bg-[#075E62]/10 blur-3xl animate-pulse" />
+        <div className="absolute inset-8 rounded-full border border-[#2F7C78]/25" />
+        <div className="absolute inset-16 rounded-full bg-[#075E62]/15 blur-xl" />
       </div>
     </div>
   ),
@@ -245,7 +245,7 @@ export default function HeroSection() {
                     <Link
                       key={c.label}
                       href={c.href}
-                      className="px-8 py-3.5 text-xs font-bold uppercase tracking-[0.2em] text-white border border-white/40 hover:border-accent-gold hover:text-accent-gold transition-colors font-mono"
+                      className="px-8 py-3.5 text-xs font-bold uppercase tracking-[0.2em] text-white border border-white/40 hover:border-[#075E62] hover:bg-[#075E62] transition-colors font-mono"
                     >
                       {c.label}
                     </Link>
