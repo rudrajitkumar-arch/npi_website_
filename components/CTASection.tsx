@@ -15,7 +15,7 @@ export default function CTASection({
   backgroundImage = "/images/header_images/contact.jpeg",
 }: CTASectionProps) {
   return (
-    <section className="relative bg-primary-dark py-24 text-white overflow-hidden">
+    <section className="relative bg-[#252A2D] py-24 text-white overflow-hidden">
       {/* Background Image with dark overlay */}
       <div className="absolute inset-0 z-10 opacity-30">
         <Image
@@ -26,14 +26,14 @@ export default function CTASection({
           className="object-cover filter brightness-50 contrast-125"
         />
       </div>
-      <div className="absolute inset-0 bg-primary-dark/85 z-10" />
+      <div className="absolute inset-0 bg-[#252A2D]/85 z-10" />
 
       {/* Grid structure decorative borders */}
       <div className="absolute inset-y-0 left-[15%] w-[1px] bg-white/5 pointer-events-none hidden lg:block z-15" />
       <div className="absolute inset-y-0 right-[15%] w-[1px] bg-white/5 pointer-events-none hidden lg:block z-15" />
 
       <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-        <span className="text-xs sm:text-sm font-bold uppercase tracking-[0.25em] text-accent-gold block font-mono">
+        <span className="text-xs sm:text-sm font-bold uppercase tracking-[0.25em] text-[#EAF3F7] block font-mono">
           {subtitle}
         </span>
         <h2 className="text-3xl sm:text-5xl font-display font-black uppercase tracking-wide leading-tight max-w-4xl mx-auto">
@@ -46,13 +46,13 @@ export default function CTASection({
         <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
           <Link
             href="/contact?action=upload"
-            className="inline-flex items-center justify-center px-8 py-3.5 border border-accent-gold bg-accent-gold hover:bg-accent-gold-hover text-white text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:shadow-lg hover:shadow-accent-gold/20 font-mono"
+            className="inline-flex items-center justify-center px-8 py-3.5 border border-[#1E6D95] bg-[#1E6D95] hover:bg-[#15516F] text-white text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:shadow-lg hover:shadow-[#1E6D95]/20 font-mono"
           >
             Upload Technical Specifications
           </Link>
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center px-8 py-3.5 border border-white/60 hover:border-[#075E62] hover:bg-[#075E62] text-white text-xs font-bold uppercase tracking-wider transition-all duration-300 font-mono"
+            className="inline-flex items-center justify-center px-8 py-3.5 border border-white hover:border-[#1E6D95] hover:bg-[#1E6D95] text-white text-xs font-bold uppercase tracking-wider transition-all duration-300 font-mono"
           >
             Contact Jamnagar Office
           </Link>

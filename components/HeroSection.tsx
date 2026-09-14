@@ -25,9 +25,9 @@ const HeroScene = dynamic(() => import("@/components/hero/HeroScene"), {
       aria-hidden="true"
     >
       <div className="relative h-52 w-52 sm:h-64 sm:w-64">
-        <div className="absolute inset-0 rounded-full bg-[#075E62]/10 blur-3xl animate-pulse" />
-        <div className="absolute inset-8 rounded-full border border-[#2F7C78]/25" />
-        <div className="absolute inset-16 rounded-full bg-[#075E62]/15 blur-xl" />
+        <div className="absolute inset-0 rounded-full bg-accent-gold/10 blur-3xl animate-pulse" />
+        <div className="absolute inset-8 rounded-full border border-accent-gold/25" />
+        <div className="absolute inset-16 rounded-full bg-accent-gold/20 blur-xl" />
       </div>
     </div>
   ),
@@ -80,7 +80,7 @@ const STATS = [
 export default function HeroSection() {
   const heroRef = useRef<HTMLElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
-  const stopAutoPlayRef = useRef(() => {});
+  const stopAutoPlayRef = useRef(() => { });
   const [mounted, setMounted] = useState(false);
 
   // Set mounted true on client
@@ -196,13 +196,13 @@ export default function HeroSection() {
       <div className="relative z-20 flex-1 flex items-center pointer-events-none">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-4 lg:pt-20 pb-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center w-full relative">
-            
+
             {/* Left side: Stagger-animated text blocks */}
             <div ref={textRef} className="lg:col-span-7 space-y-5 z-20 relative pointer-events-auto">
               {/* Badge */}
-              <div className="slide-badge inline-flex items-center gap-2 border border-accent-gold/40 bg-accent-gold/10 px-4 py-1.5 rounded-sm mb-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-accent-gold animate-pulse" />
-                <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-accent-gold font-mono">
+              <div className="slide-badge inline-flex items-center gap-2 border border-[#1E6D95]/40 bg-[#EAF3F7]/10 px-4 py-1.5 rounded-sm mb-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#B9793F] animate-pulse" />
+                <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#EAF3F7] font-mono">
                   {slide.badge}
                 </span>
               </div>
@@ -214,14 +214,14 @@ export default function HeroSection() {
               >
                 {slide.headline.split("\n").map((line, i) => (
                   <span key={i} className="block">
-                    {i === 1 ? <span className="text-accent-gold">{line}</span> : line}
+                    {i === 1 ? <span className="text-[#1E6D95]">{line}</span> : line}
                   </span>
                 ))}
               </h1>
 
               {/* Accent line */}
               <div className="slide-accent flex items-center gap-3 py-1">
-                <div className="w-12 h-0.5 bg-accent-gold shrink-0" />
+                <div className="w-12 h-0.5 bg-[#B9793F] shrink-0" />
                 <p className="text-sm sm:text-base font-semibold text-white/95 leading-relaxed">
                   {slide.sub}
                 </p>
@@ -237,7 +237,7 @@ export default function HeroSection() {
                     <Link
                       key={c.label}
                       href={c.href}
-                      className="px-8 py-3.5 text-xs font-bold uppercase tracking-[0.2em] text-white bg-accent-gold hover:bg-accent-gold-hover transition-colors border border-accent-gold hover:shadow-lg hover:shadow-accent-gold/30 font-mono"
+                      className="px-8 py-3.5 text-xs font-bold uppercase tracking-[0.2em] text-white bg-[#1E6D95] hover:bg-[#15516F] transition-colors border border-[#1E6D95] hover:shadow-lg hover:shadow-[#1E6D95]/30 font-mono"
                     >
                       {c.label}
                     </Link>
@@ -245,7 +245,7 @@ export default function HeroSection() {
                     <Link
                       key={c.label}
                       href={c.href}
-                      className="px-8 py-3.5 text-xs font-bold uppercase tracking-[0.2em] text-white border border-white/40 hover:border-[#075E62] hover:bg-[#075E62] transition-colors font-mono"
+                      className="px-8 py-3.5 text-xs font-bold uppercase tracking-[0.2em] text-white border border-white/40 hover:border-[#1E6D95] hover:text-[#1E6D95] transition-colors font-mono"
                     >
                       {c.label}
                     </Link>
@@ -253,7 +253,7 @@ export default function HeroSection() {
                 )}
               </div>
             </div>
-            
+
             {/* Right side spacer to balance layout grid */}
             <div className="hidden lg:block lg:col-span-5 h-[350px] pointer-events-none" />
           </div>
@@ -267,11 +267,10 @@ export default function HeroSection() {
                 aria-selected={i === current}
                 aria-label={`Go to slide ${i + 1}`}
                 onClick={() => handleManualGoTo(i)}
-                className={`transition-all duration-300 rounded-full ${
-                  i === current
+                className={`transition-all duration-300 rounded-full ${i === current
                     ? "w-8 h-2 bg-accent-gold"
                     : "w-2 h-2 bg-white/30 hover:bg-white/60"
-                }`}
+                  }`}
               />
             ))}
             <span className="ml-4 text-[11px] font-mono text-white/40 tracking-widest" aria-live="polite">

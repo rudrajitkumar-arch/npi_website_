@@ -18,8 +18,8 @@ export const metadata: Metadata = {
 /* ─── PRIMITIVES ─────────────────────────────────────────── */
 function Tag({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2 border border-[#075E62]/30 bg-[#E8EFEC] px-4 py-1.5 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-[#075E62]">
-      <span className="w-1.5 h-1.5 rounded-full bg-[#075E62]" />
+    <span className="inline-flex items-center gap-2 border border-[#1E6D95]/40 bg-[#EAF3F7] px-4 py-1.5 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-[#1E6D95]">
+      <span className="w-1.5 h-1.5 rounded-full bg-[#1E6D95]" />
       {children}
     </span>
   );
@@ -42,23 +42,21 @@ function SectionHead({
     <div className={`mb-12 lg:mb-16 ${center ? "text-center" : ""}`}>
       {tag && <Tag>{tag}</Tag>}
       <h2
-        className={`mt-4 text-3xl sm:text-4xl md:text-5xl font-black uppercase leading-[1.15] tracking-tight ${
-          light ? "text-white" : "text-[#202A2E]"
-        }`}
+        className={`mt-4 text-3xl sm:text-4xl md:text-5xl font-black uppercase leading-[1.15] tracking-tight ${light ? "text-white" : "text-[#252A2D]"
+          }`}
         style={{ fontFamily: "var(--font-serif-display)" }}
       >
         {title}
       </h2>
       {sub && (
         <p
-          className={`mt-3.5 text-sm sm:text-base max-w-2xl leading-relaxed ${
-            light ? "text-[#D8DEDC]" : "text-[#68757A]"
-          } ${center ? "mx-auto" : ""}`}
+          className={`mt-3.5 text-sm sm:text-base max-w-2xl leading-relaxed ${light ? "text-zinc-400" : "text-[#667177]"
+            } ${center ? "mx-auto" : ""}`}
         >
           {sub}
         </p>
       )}
-      <div className={`mt-4 w-12 h-1 bg-[#C96A45] ${center ? "mx-auto" : ""}`} />
+      <div className={`mt-4 w-12 h-1 bg-[#1E6D95] ${center ? "mx-auto" : ""}`} />
     </div>
   );
 }
@@ -68,71 +66,70 @@ const STATS = [
   { val: "2007", label: "Year Founded" },
   { val: "50,000", label: "Sq Ft Facility" },
   { val: "ISO 9001", label: "2015 Certified" },
-  { val: "110+", label: "Machinery Fleet" },
+  { val: "110+", label: "Machines" },
+  { val: "₹50 Cr+", label: "Annual Turnover" },
+  { val: "10+", label: "Industrial Sectors" },
 ];
 
 const TIMELINE = [
   {
     year: "2007",
-    title: "Company Founded",
-    desc: "Established with 4 traditional lathe machines in Jamnagar, serving local electrical switchgear component demand.",
+    title: "Foundation",
+    desc: "Founded by Mr. Chimanbhai Patel. Brass component manufacturing begins with modest infrastructure and strong ambition",
   },
   {
-    year: "2012",
-    title: "First CNC Turned Parts",
-    desc: "Invested in CNC sliding-head turning centers to meet automotive export specifications and tighter tolerance requirements.",
+    year: "2015",
+    title: "ISO Certified",
+    desc: "Quality systems formalized; the factory earns ISO 9001:2015 accreditation",
   },
   {
-    year: "2018",
-    title: "50,000 Sq Ft Expansion",
-    desc: "Consolidated all operations into the present state-of-the-art manufacturing facility in GIDC Phase 3, Dared, Jamnagar.",
+    year: "2020",
+    title: "New Leadership",
+    desc: "Mr. Meet Patel takes the reins, expanding capability and market reach",
   },
   {
-    year: "2024",
-    title: "Global Supply Chain Partner",
-    desc: "110+ machines operational. Supplying precision brass and copper components to buyers across North America, Europe, and Asia.",
+    year: "Today",
+    title: "50,000 Sq Ft Campus",
+    desc: "Thousands of product variants delivered across aerospace, medical, electrical, automotive, and industrial sectors",
   },
 ];
 
 const DEPARTMENTS = [
   {
-    type: "head",
-    role: "Finance Head, Founder & CEO",
     head: "Chimanbhai Patel",
+    role: "Finance Head, Founder & CEO",
+    type: "founder",
+    responsibilities: [],
+  },
+  {
+    head: "Dipakbhai Ajudiya",
+    role: "Production Head",
+    type: "dept",
     responsibilities: [
-      "Strategic direction & company governance",
-      "Financial oversight & capital investments",
-      "Key stakeholder & banking relationships",
+      "Production Foreman",
+      "Assembly & Quality",
+      "Time Keeping",
+      "Inventory Control",
     ],
   },
   {
+    head: "Jeet Ajudiya",
+    role: "Quality Head",
     type: "dept",
-    role: "Production & Manufacturing",
+    responsibilities: [
+      "Quality Control & Metrology",
+      "100% Visual Inspection",
+      "ISO & Compliance Audits",
+    ],
+  },
+  {
     head: "Meet Patel",
-    responsibilities: [
-      "Oversees 110+ production machines",
-      "Daily shift output & scheduling",
-      "Process optimization & cycle-time control",
-    ],
-  },
-  {
+    role: "Sales Head",
     type: "dept",
-    role: "Quality Assurance & QC",
-    head: "Pritesh Patel",
     responsibilities: [
-      "In-process & final visual inspection",
-      "Calibration of measuring instruments",
-      "RoHS, material test certificates & documentation",
-    ],
-  },
-  {
-    type: "dept",
-    role: "Tool Room & Engineering",
-    head: "Ramesh Patel",
-    responsibilities: [
-      "Custom tooling, jigs, and fixtures design",
-      "First-article development from drawings",
-      "Machine preventive maintenance schedules",
+      "Sales Manager",
+      "Customer Billing",
+      "Marketing & Cost Accounting",
     ],
   },
 ];
@@ -140,7 +137,7 @@ const DEPARTMENTS = [
 const WHY_CARDS = [
   {
     icon: (
-      <svg className="w-7 h-7 text-[#075E62]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-7 h-7 text-[#1E6D95]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
       </svg>
@@ -150,7 +147,7 @@ const WHY_CARDS = [
   },
   {
     icon: (
-      <svg className="w-7 h-7 text-[#075E62]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-7 h-7 text-[#1E6D95]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
       </svg>
     ),
@@ -159,7 +156,7 @@ const WHY_CARDS = [
   },
   {
     icon: (
-      <svg className="w-7 h-7 text-[#075E62]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-7 h-7 text-[#1E6D95]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
       </svg>
     ),
@@ -168,7 +165,7 @@ const WHY_CARDS = [
   },
   {
     icon: (
-      <svg className="w-7 h-7 text-[#075E62]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-7 h-7 text-[#1E6D95]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" />
       </svg>
     ),
@@ -177,7 +174,7 @@ const WHY_CARDS = [
   },
   {
     icon: (
-      <svg className="w-7 h-7 text-[#075E62]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-7 h-7 text-[#1E6D95]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
       </svg>
     ),
@@ -186,7 +183,7 @@ const WHY_CARDS = [
   },
   {
     icon: (
-      <svg className="w-7 h-7 text-[#075E62]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-7 h-7 text-[#1E6D95]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),

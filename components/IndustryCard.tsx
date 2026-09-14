@@ -63,30 +63,30 @@ export default function IndustryCard({
   };
 
   return (
-    <div className="bg-white border border-[#D8DEDC] hover:border-[#075E62] shadow-sm hover:shadow-md transition-all duration-300 group flex flex-col h-full">
+    <div className="bg-white border border-[#D9DEE0] hover:border-[#1E6D95] shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col h-full">
       {/* Visual Section */}
-      <div className="relative h-48 w-full overflow-hidden bg-[#202A2E]">
+      <div className="relative h-48 w-full overflow-hidden bg-[#252A2D]">
         <Image
           src={image}
           alt={title}
           fill
           sizes="(max-w-7xl) 33vw, 100vw"
-          className="object-cover opacity-75 group-hover:scale-105 transition-transform duration-500"
+          className="object-cover opacity-70 group-hover:scale-105 transition-transform duration-500"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#202A2E] via-transparent to-transparent opacity-85" />
-        
+        <div className="absolute inset-0 bg-gradient-to-t from-[#252A2D] via-transparent to-transparent opacity-85" />
+
         {/* Floating Icon */}
-        <div className="absolute bottom-4 left-4 p-2 bg-[#075E62] text-white rounded-xs shadow-md group-hover:bg-[#C96A45] transition-colors duration-300">
+        <div className="absolute bottom-4 left-4 p-2 bg-[#1E6D95] text-white rounded shadow-md group-hover:bg-white group-hover:text-[#1E6D95] transition-colors duration-300">
           {renderIcon(icon)}
         </div>
       </div>
 
       {/* Details Section */}
       <div className="p-6 flex flex-col flex-grow">
-        <h3 className="text-lg font-display font-bold text-[#202A2E] uppercase tracking-wide mb-3 group-hover:text-[#075E62] transition-colors duration-300">
+        <h3 className="text-lg font-display font-bold text-[#252A2D] uppercase tracking-wide mb-3 group-hover:text-[#1E6D95] transition-colors duration-300">
           {title}
         </h3>
-        <p className="text-sm text-[#68757A] leading-relaxed flex-grow">
+        <p className="text-sm text-[#667177] leading-relaxed flex-grow">
           {description}
         </p>
       </div>

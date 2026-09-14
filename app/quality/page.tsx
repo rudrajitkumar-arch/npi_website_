@@ -19,8 +19,8 @@ export const metadata: Metadata = {
 /* ─── PRIMITIVES ─────────────────────────────────────────── */
 function Tag({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2 border border-brand-primary/30 bg-surface-soft px-4 py-1.5 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-brand-primary">
-      <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+    <span className="inline-flex items-center gap-2 border border-[#1E6D95]/40 bg-[#EAF3F7] px-4 py-1.5 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-[#1E6D95]">
+      <span className="w-1.5 h-1.5 rounded-full bg-[#1E6D95]" />
       {children}
     </span>
   );
@@ -43,7 +43,7 @@ function SectionHead({
     <div className={`mb-12 lg:mb-16 ${center ? "text-center" : ""}`}>
       {tag && <Tag>{tag}</Tag>}
       <h2
-        className={`mt-4 text-3xl sm:text-4xl md:text-5xl font-black uppercase leading-[1.15] tracking-tight ${light ? "text-white" : "text-primary-dark"
+        className={`mt-4 text-3xl sm:text-4xl md:text-5xl font-black uppercase leading-[1.15] tracking-tight ${light ? "text-white" : "text-[#252A2D]"
           }`}
         style={{ fontFamily: "var(--font-serif-display)" }}
       >
@@ -51,13 +51,13 @@ function SectionHead({
       </h2>
       {sub && (
         <p
-          className={`mt-3.5 text-sm sm:text-base max-w-2xl leading-relaxed ${light ? "text-zinc-400" : "text-zinc-500"
+          className={`mt-3.5 text-sm sm:text-base max-w-2xl leading-relaxed ${light ? "text-zinc-400" : "text-[#667177]"
             } ${center ? "mx-auto" : ""}`}
         >
           {sub}
         </p>
       )}
-      <div className={`mt-4 w-12 h-1 bg-accent ${center ? "mx-auto" : ""}`} />
+      <div className={`mt-4 w-12 h-1 bg-[#1E6D95] ${center ? "mx-auto" : ""}`} />
     </div>
   );
 }
@@ -167,8 +167,8 @@ const CERTS = [
     title: "ISO 9001:2015",
     sub: "Quality Management System",
     desc: "Certified quality management across all production, inspection, and customer satisfaction processes",
-    color: "border-[#3F6B5B]/40 bg-[#E8EFEC]/40",
-    badge: "text-[#3F6B5B]",
+    color: "border-accent-gold/40 bg-accent-gold/5",
+    badge: "text-accent-gold",
     logo: "/images/certificate_images/iso.png",
   },
   {
@@ -176,8 +176,8 @@ const CERTS = [
     title: "RoHS Compliant",
     sub: "Restriction of Hazardous Substances",
     desc: "All brass, copper, and steel components manufactured within EU Directive 2011/65/EU hazardous substance limits.",
-    color: "border-[#3F6B5B]/40 bg-[#E8EFEC]/40",
-    badge: "text-[#3F6B5B]",
+    color: "border-green-500/30 bg-green-500/5",
+    badge: "text-green-400",
     logo: "/images/certificate_images/rohs.png",
   },
   {
@@ -185,8 +185,8 @@ const CERTS = [
     title: "UDYAM Registered",
     sub: "Govt. of India — Ministry of MSME",
     desc: "Registered MSME enterprise under the Government of India's Udyam Recognition Framework",
-    color: "border-border-soft bg-surface",
-    badge: "text-brand-primary",
+    color: "border-blue-400/30 bg-blue-400/5",
+    badge: "text-blue-400",
     logo: "/images/certificate_images/msme.png",
   },
   {
@@ -194,8 +194,8 @@ const CERTS = [
     title: "Health & Environmental",
     sub: "Floor-Level Policy & Training",
     desc: "Employee awareness programmes, hazard training, and environmental compliance maintained at production floor level",
-    color: "border-border-soft bg-surface",
-    badge: "text-text-secondary",
+    color: "border-zinc-400/30 bg-zinc-400/5",
+    badge: "text-zinc-400",
     logo: "/images/certificate_images/hse.png",
   },
 ];

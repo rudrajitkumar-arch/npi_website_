@@ -8,7 +8,7 @@ import * as THREE from "three";
 import HeroModel from "./HeroModel";
 import FloatingModel from "./FloatingModel";
 
-const PRIMARY_DARK = "#202A2E";
+const PRIMARY_DARK = "#062F3A";
 
 const canvasStyle = {
   width: "100%",
@@ -118,9 +118,9 @@ export default function HeroScene({
         aria-hidden="true"
       >
         <div className="relative h-52 w-52 sm:h-64 sm:w-64">
-          <div className="absolute inset-0 rounded-full bg-[#075E62]/10 blur-3xl" />
-          <div className="absolute inset-8 rounded-full border border-[#2F7C78]/25" />
-          <div className="absolute inset-16 rounded-full bg-[#075E62]/15 blur-xl" />
+          <div className="absolute inset-0 rounded-full bg-[#1E6D95]/15 blur-3xl" />
+          <div className="absolute inset-8 rounded-full border border-[#1E6D95]/30" />
+          <div className="absolute inset-16 rounded-full bg-[#1E6D95]/20 blur-xl" />
         </div>
       </div>
       <Canvas

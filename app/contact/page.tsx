@@ -19,8 +19,8 @@ export const metadata: Metadata = {
 /* ─── PRIMITIVES ─────────────────────────────────────────── */
 function Tag({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2 border border-brand-primary/30 bg-surface-soft px-4 py-1.5 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-brand-primary">
-      <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+    <span className="inline-flex items-center gap-2 border border-[#1E6D95]/40 bg-[#EAF3F7] px-4 py-1.5 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-[#1E6D95]">
+      <span className="w-1.5 h-1.5 rounded-full bg-[#1E6D95]" />
       {children}
     </span>
   );
@@ -44,7 +44,7 @@ function SectionHead({
       {tag && <Tag>{tag}</Tag>}
       <h2
         className={`mt-4 text-3xl sm:text-4xl md:text-5xl font-black uppercase leading-[1.15] tracking-tight ${
-          light ? "text-white" : "text-primary-dark"
+          light ? "text-white" : "text-[#252A2D]"
         }`}
         style={{ fontFamily: "var(--font-serif-display)" }}
       >
@@ -53,13 +53,13 @@ function SectionHead({
       {sub && (
         <p
           className={`mt-3.5 text-sm sm:text-base max-w-2xl leading-relaxed ${
-            light ? "text-zinc-400" : "text-zinc-500"
+            light ? "text-zinc-400" : "text-[#667177]"
           } ${center ? "mx-auto" : ""}`}
         >
           {sub}
         </p>
       )}
-      <div className={`mt-4 w-12 h-1 bg-accent ${center ? "mx-auto" : ""}`} />
+      <div className={`mt-4 w-12 h-1 bg-[#1E6D95] ${center ? "mx-auto" : ""}`} />
     </div>
   );
 }
@@ -232,7 +232,7 @@ export default function ContactPage() {
       <section className="py-20 lg:py-24 bg-white border-t border-zinc-100" id="rfq-section">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-            
+
             {/* Form Column */}
             <div className="lg:col-span-8 flex flex-col">
               <ContactFormWrapper />

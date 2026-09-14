@@ -1,34 +1,39 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-primary: #075E62;
-  --color-brand-secondary: #2F7C78;
+  /* Brand Blue - Source of Truth from Logo */
+  --color-brand-primary: #1E6D95;
+  --color-brand-dark: #15516F;
+  --color-brand-light: #EAF3F7;
 
-  --color-dark: #202A2E;
-  --color-dark-deep: #172124;
+  /* Charcoal Foundations */
+  --color-charcoal-primary: #252A2D;
+  --color-charcoal-secondary: #3F474B;
+  --color-charcoal-deep: #1B2023;
 
-  --color-background: #F6F5F0;
-  --color-surface: #FFFFFF;
-  --color-surface-soft: #E8EFEC;
+  /* Surfaces & Background */
+  --color-bg-page: #F5F6F4;
+  --color-surface-white: #FFFFFF;
+  --color-border-soft: #D9DEE0;
 
-  --color-text-primary: #30383C;
-  --color-text-secondary: #68757A;
+  /* Text Hierarchy */
+  --color-text-main: #252A2D;
+  --color-text-muted: #667177;
 
-  --color-border-soft: #D8DEDC;
+  /* Secondary Warm Accent (Brass / Copper homage) */
+  --color-accent-copper: #B9793F;
+  --color-accent-copper-dark: #945C2E;
 
-  --color-accent: #C96A45;
-  --color-accent-hover: #A95132;
-  --color-accent-dark: #A95132;
+  /* Verification / Quality */
+  --color-success-muted: #3F6B5B;
 
-  --color-success: #3F6B5B;
-
-  /* Harmonized brand aliases */
-  --color-primary-dark: #202A2E;
-  --color-primary-light: #075E62;
-  --color-accent-gold: #C96A45;
-  --color-accent-gold-hover: #A95132;
-  --color-bg-warm: #F6F5F0;
-  --color-text-charcoal: #30383C;
+  /* Harmonized Theme Aliases */
+  --color-primary-dark: #252A2D;
+  --color-primary-light: #1E6D95;
+  --color-accent-gold: #1E6D95;
+  --color-accent-gold-hover: #15516F;
+  --color-bg-warm: #F5F6F4;
+  --color-text-charcoal: #252A2D;
 
   --font-display: var(--font-display);
   --font-serif-display: var(--font-display);
@@ -38,27 +43,24 @@
 }
 
 :root {
-  --brand-primary: #075E62;
-  --brand-secondary: #2F7C78;
+  --brand-primary: #1E6D95;
+  --brand-dark: #15516F;
+  --brand-light: #EAF3F7;
 
-  --dark: #202A2E;
-  --dark-deep: #172124;
+  --charcoal-primary: #252A2D;
+  --charcoal-secondary: #3F474B;
 
-  --background: #F6F5F0;
+  --background: #F5F6F4;
+  --foreground: #252A2D;
   --surface: #FFFFFF;
-  --surface-soft: #E8EFEC;
+  --border: #D9DEE0;
 
-  --text-primary: #30383C;
-  --text-secondary: #68757A;
+  --text-primary: #252A2D;
+  --text-secondary: #667177;
 
-  --border: #D8DEDC;
-
-  --accent: #C96A45;
-  --accent-dark: #A95132;
-
+  --copper: #B9793F;
+  --copper-dark: #945C2E;
   --success: #3F6B5B;
-
-  --foreground: #30383C;
 }
 
 body {
@@ -70,16 +72,20 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   text-wrap: balance;
 }
 
 .hero-scene-stage canvas {
-  background-color: var(--color-primary-dark) !important;
+  background-color: var(--charcoal-primary) !important;
 }
 
 label {
   font-family: var(--font-mono), monospace !important;
   letter-spacing: 0.08em;
 }
-
