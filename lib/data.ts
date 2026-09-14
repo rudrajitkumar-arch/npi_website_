@@ -54,7 +54,6 @@ export const navItems: NavItem[] = [
   { name: "Quality", href: "/quality" },
   { name: "Industries", href: "/industries" },
   { name: "Infrastructure", href: "/infrastructure" },
-  { name: "Clients", href: "/clients" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -278,20 +277,4 @@ export const industries: IndustryItem[] = [
     icon: "medical",
     image: "/images/inspection.jpg"
   }
-];
-
-export const clientLogos = [
-  { name: "Godrej", industry: "Appliances & Security", logo: "/images/clients/godrej.png" },
-  { name: "Panasonic", industry: "Electronics & Systems", logo: "/images/clients/panasonic.png" },
-  { name: "GreatWhite", industry: "Electrical & Switchgear", logo: "/images/clients/greatwhite.png" },
-  { name: "Imperial Auto", industry: "Automotive Systems", logo: "/images/clients/imperial-auto.png" },
-  { name: "ELCOM", industry: "Electromechanical", logo: "/images/clients/elcom.png" },
-  { name: "Supreme", industry: "Piping & Polymers", logo: "/images/clients/supreme.png" },
-  { name: "Bentlay Fittings", industry: "Plumbing & Sanitary", logo: "/images/clients/bentlay.png" },
-  { name: "APTIV", industry: "Automotive Architecture", logo: "/images/clients/aptiv.png" },
-  { name: "Georg Fischer (+GF+)", industry: "Industrial Piping", logo: "/images/clients/georg-fischer.png" },
-  { name: "CAHORS", industry: "Energy & Telecom", logo: "/images/clients/cahors.png" },
-  { name: "DHOOT Automotive", industry: "Automotive Wiring", logo: "/images/clients/dhoot.png" },
-  { name: "ALWASAIL", industry: "Industrial Piping", logo: "/images/clients/alwasail.png" },
-  { name: "BROTHERS Plast Tech", industry: "Plastic Moulding", logo: "/images/clients/brothers.png" }
 ];

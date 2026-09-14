@@ -309,23 +309,6 @@ const CERTS = [
   { label: "PPAP / HSE", note: "Quality & Safety Standards", logo: "/images/certificate_images/hse.png" },
 ];
 
-/* ─── Clients ───────────────────────────────────────────── */
-const CLIENTS = [
-  "Godrej",
-  "Panasonic",
-  "GreatWhite",
-  "Imperial Auto",
-  "Elcom",
-  "Supreme",
-  "Bentlay",
-  "Aptiv",
-  "GF",
-  "Cahors",
-  "Dhoot Automotive",
-  "Alwasail",
-  "Brothers Plast Tech",
-];
-
 /* ═══════════════════════════════════════════════════════════
    PAGE
 ═══════════════════════════════════════════════════════════ */
@@ -642,30 +625,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 9. CLIENTS ────────────────────────────────────────── */}
-      <section className="py-20 lg:py-24 bg-white border-t border-zinc-100">
-        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHead
-            tag="Clients"
-            title="Trusted by Industry Leaders"
-          />
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-px bg-zinc-100">
-            {CLIENTS.map((name) => (
-              <div
-                key={name}
-                className="bg-white hover:bg-bg-warm border-0 px-6 py-7 flex items-center justify-center transition-colors duration-300 group"
-              >
-                <span
-                  className="text-sm font-black uppercase tracking-widest text-zinc-400 group-hover:text-primary-dark transition-colors text-center"
-                  style={{ fontFamily: "var(--font-serif-display)" }}
-                >
-                  {name}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* 10. FINAL CTA ─────────────────────────────────────── */}
       <section className="relative py-20 lg:py-24 bg-primary-dark overflow-hidden">

@@ -111,7 +111,6 @@ export default function Footer() {
                 { label: "Quality", href: "/quality" },
                 { label: "Industries", href: "/industries" },
                 { label: "Infrastructure", href: "/infrastructure" },
-                { label: "Clients", href: "/clients" },
                 { label: "Contact", href: "/contact" },
               ].map((l) => (
                 <li key={l.href}>
