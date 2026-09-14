@@ -12,7 +12,7 @@ export default function CTASection({
   title = "SUBMIT YOUR TECHNICAL DRAWINGS & RECEIVE A QUOTE",
   subtitle = "CUSTOM PRECISION MACHINING SOLUTIONS",
   description = "Our engineering team reviews standard blueprints, CAD models, and technical drawings to deliver optimized quotes matching international quality tolerances",
-  backgroundImage = "/images/contact-bg.jpg",
+  backgroundImage = "/images/header_images/contact.jpeg",
 }: CTASectionProps) {
   return (
     <section className="relative bg-primary-dark py-24 text-white overflow-hidden">

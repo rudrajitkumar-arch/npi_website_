@@ -44,7 +44,7 @@ export default function Header() {
     : "bg-transparent py-2.5 sm:py-3";
 
   return (
-    <header className={`${base} ${bg}`}>
+    <header className={`${base} ${bg}`} suppressHydrationWarning>
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
         {/* Logo */}
         <Link
@@ -57,11 +57,7 @@ export default function Header() {
             width={340}
             height={102}
             priority
-            className={`${
-              scrolled
-                ? "h-12 sm:h-14 lg:h-16"
-                : "h-14 sm:h-16 md:h-18 lg:h-[76px]"
-            } w-auto object-contain block transition-all duration-300`}
+            className="h-14 sm:h-16 md:h-18 lg:h-[72px] w-auto object-contain block transition-all duration-300"
           />
         </Link>
 

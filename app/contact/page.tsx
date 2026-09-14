@@ -379,7 +379,7 @@ export default function ContactPage() {
       <section className="relative py-20 lg:py-24 bg-primary-dark overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-10"
-          style={{ backgroundImage: "url('/images/contact-bg.jpg')" }}
+          style={{ backgroundImage: "url('/images/header_images/contact.jpeg')" }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-primary-dark/95 to-primary-dark/80" />
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-gold/50 to-transparent" />
