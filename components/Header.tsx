@@ -51,12 +51,12 @@ export default function Header() {
           className="flex items-center shrink-0 transition-opacity hover:opacity-90"
         >
           <Image
-            src="/images/company_logo/final-logo.png"
+            src="/images/company_logo/new-final-logo-white.png"
             alt="New Perfect Incorporation"
-            width={340}
-            height={102}
+            width={360}
+            height={167}
             priority
-            className="h-14 sm:h-16 md:h-18 lg:h-[72px] w-auto object-contain block transition-all duration-300"
+            className="h-14 sm:h-16 md:h-18 lg:h-[76px] w-auto object-contain block transition-all duration-300"
           />
         </Link>
 

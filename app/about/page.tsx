@@ -75,7 +75,7 @@ const TIMELINE = [
   {
     year: "2007",
     title: "Foundation",
-    desc: "Founded by Mr. Chimanbhai Patel. Brass component manufacturing begins with modest infrastructure and strong ambition",
+    desc: "Founded by Mr. Chiman Patel. Brass component manufacturing begins with modest infrastructure and strong ambition",
   },
   {
     year: "2015",
@@ -96,13 +96,13 @@ const TIMELINE = [
 
 const DEPARTMENTS = [
   {
-    head: "Chimanbhai Patel",
+    head: "Chiman Patel",
     role: "Finance Head, Founder & CEO",
     type: "founder",
     responsibilities: [],
   },
   {
-    head: "Dipakbhai Ajudiya",
+    head: "Dipak Ajudiya",
     role: "Production Head",
     type: "dept",
     responsibilities: [
@@ -282,7 +282,7 @@ export default function AboutPage() {
             {/* Single Image */}
             <div className="relative h-[380px] lg:h-[440px] w-full rounded-sm overflow-hidden border border-zinc-200/80 shadow-md">
               <Image
-                src="/images/factory_images/factory-indoor.png"
+                src="/images/factory_images/about-facility.png"
                 alt="New Perfect Incorporation Precision Brass Manufacturing Facility"
                 fill
                 className="object-cover"
@@ -402,7 +402,7 @@ export default function AboutPage() {
                 className="text-lg font-black uppercase text-white"
                 style={{ fontFamily: "var(--font-serif-display)" }}
               >
-                Chimanbhai Patel
+                Chiman Patel
               </h3>
               <p className="text-[10px] font-bold uppercase tracking-widest text-accent-gold mt-1">
                 Finance Head, Founder &amp; CEO

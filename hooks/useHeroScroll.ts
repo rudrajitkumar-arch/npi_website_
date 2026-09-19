@@ -115,7 +115,13 @@ export function useHeroScroll({
   useEffect(() => {
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+    const isInsideOverlay = (target: EventTarget | null): boolean => {
+      if (!target || !(target instanceof Element)) return false;
+      return !!target.closest("#wa-popup, [data-no-hero-scroll]");
+    };
+
     const onWheel = (e: WheelEvent) => {
+      if (isInsideOverlay(e.target)) return;
       if (prefersReduced) return;
       if (!isHeroPrimaryViewport()) return;
 
@@ -146,10 +152,15 @@ export function useHeroScroll({
     };
 
     const onTouchStart = (e: TouchEvent) => {
+      if (isInsideOverlay(e.target)) {
+        touchStartY.current = null;
+        return;
+      }
       touchStartY.current = e.touches[0].clientY;
     };
 
     const onTouchEnd = (e: TouchEvent) => {
+      if (isInsideOverlay(e.target)) return;
       if (prefersReduced) return;
       if (!isHeroPrimaryViewport()) return;
       if (touchStartY.current === null) return;

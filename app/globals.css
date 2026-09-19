@@ -89,3 +89,26 @@ label {
   font-family: var(--font-mono), monospace !important;
   letter-spacing: 0.08em;
 }
+
+/* WhatsApp floating button — mobile sizing */
+@media (max-width: 640px) {
+  #whatsapp-floating-btn {
+    width: 54px !important;
+    height: 54px !important;
+    bottom: 16px !important;
+    right: 16px !important;
+  }
+}
+
+/* Screen-reader only utility (if not already in Tailwind output) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
