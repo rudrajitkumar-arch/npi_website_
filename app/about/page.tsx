@@ -301,15 +301,15 @@ export default function AboutPage() {
             {STATS.map((s) => (
               <div
                 key={s.label}
-                className="bg-primary-dark hover:bg-primary-light px-3 sm:px-4 py-8 flex flex-col items-center justify-center text-center transition-colors duration-300 group"
+                className="group bg-primary-dark hover:bg-primary-light px-3 sm:px-4 py-8 flex flex-col items-center justify-center text-center transition-colors duration-200 ease-out"
               >
                 <span
-                  className="text-2xl sm:text-3xl font-black text-accent-gold leading-none whitespace-nowrap"
+                  className="text-2xl sm:text-3xl font-black text-accent-gold group-hover:text-white transition-colors duration-200 ease-out leading-none whitespace-nowrap"
                   style={{ fontFamily: "var(--font-serif-display)" }}
                 >
                   {s.val}
                 </span>
-                <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mt-2.5 leading-snug">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 group-hover:text-white transition-colors duration-200 ease-out mt-2.5 leading-snug">
                   {s.label}
                 </span>
               </div>

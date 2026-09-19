@@ -458,15 +458,15 @@ export default function HomePage() {
             {MACHINES.map((m) => (
               <div
                 key={m.label}
-                className="bg-primary-dark hover:bg-primary-light p-8 flex flex-col items-center text-center transition-colors duration-300"
+                className="group bg-primary-dark hover:bg-primary-light p-8 flex flex-col items-center text-center transition-colors duration-200 ease-out"
               >
                 <span
-                  className="text-3xl sm:text-4xl lg:text-5xl font-black text-accent-gold leading-none"
+                  className="text-3xl sm:text-4xl lg:text-5xl font-black text-accent-gold group-hover:text-white transition-colors duration-200 ease-out leading-none"
                   style={{ fontFamily: "var(--font-serif-display)" }}
                 >
                   {m.val}
                 </span>
-                <span className="text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-zinc-400 mt-2.5 leading-snug">
+                <span className="text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-zinc-400 group-hover:text-white transition-colors duration-200 ease-out mt-2.5 leading-snug">
                   {m.label}
                 </span>
               </div>

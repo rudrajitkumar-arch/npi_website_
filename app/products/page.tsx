@@ -243,16 +243,66 @@ const CATEGORIES = [
 ];
 
 const SERVICES = [
-  { num: "01", label: "Precision Machining" },
-  { num: "02", label: "Custom Screw Machining" },
-  { num: "03", label: "CNC Turning & Milling" },
-  { num: "04", label: "Forging + Machining" },
-  { num: "05", label: "Stamping & Marking" },
-  { num: "06", label: "Brazing & Welding" },
-  { num: "07", label: "Annealing & Heat Treatment" },
-  { num: "08", label: "Surface Cleaning & Plating" },
-  { num: "09", label: "Light Assembly" },
-  { num: "10", label: "Packaging & Labelling" },
+  {
+    num: "01",
+    label: "Precision Machining",
+    img: "/images/services/Precision_Machining.jpg",
+    alt: "Precision machining components",
+  },
+  {
+    num: "02",
+    label: "Custom Screw Machining",
+    img: "/images/services/Custom_Screw_Machining.jpg",
+    alt: "Custom screw machining components",
+  },
+  {
+    num: "03",
+    label: "CNC Turning & Milling",
+    img: "/images/services/CNC_Turning_Milling.jpg",
+    alt: "CNC turning and milling components",
+  },
+  {
+    num: "04",
+    label: "Forging + Machining",
+    img: "/images/services/Forging_Machining.png",
+    alt: "Forged and machined components",
+  },
+  {
+    num: "05",
+    label: "Stamping & Marking",
+    img: "/images/services/Stamping_Marking.png",
+    alt: "Metal stamping and marking",
+  },
+  {
+    num: "06",
+    label: "Brazing & Welding",
+    img: "/images/services/Brazing_Welding.jpeg",
+    alt: "Brazing and welding process",
+  },
+  {
+    num: "07",
+    label: "Annealing & Heat Treatment",
+    img: "/images/services/Annealing_Heat_Treatment.jpg",
+    alt: "Annealing and heat treatment",
+  },
+  {
+    num: "08",
+    label: "Surface Cleaning & Plating",
+    img: "/images/services/Surface_Cleaning_Plating.png",
+    alt: "Surface cleaning and plating",
+  },
+  {
+    num: "09",
+    label: "Light Assembly",
+    img: "/images/services/Light_Assembly.jpg",
+    alt: "Precision component assembly",
+  },
+  {
+    num: "10",
+    label: "Packaging & Labelling",
+    img: "/images/services/Packaging_Labelling.png",
+    alt: "Industrial component packaging and labelling",
+  },
 ];
 
 const MATERIALS = [
@@ -449,29 +499,50 @@ export default function ProductsPage() {
       </section>
 
       {/* 3. SERVICES ──────────────────────────────────────── */}
-      <section className="py-20 lg:py-24 bg-primary-dark">
-        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 lg:py-20 bg-primary-dark">
+        <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead
             tag="Manufacturing Services"
             title="Services We Provide"
             sub="End-to-end manufacturing services from raw stock to packaged, dispatch-ready components."
             light
           />
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-px bg-white/10">
-            {SERVICES.map((s) => (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+            {SERVICES.map((s, i) => (
               <div
                 key={s.num}
-                className="bg-primary-dark hover:bg-primary-light px-5 py-7 flex flex-col items-center text-center transition-colors duration-300 group cursor-default"
+                className={[
+                  "group bg-[#1F2528] border border-[#30383C] hover:border-[#1E6D95]/70",
+                  "rounded-[4px] overflow-hidden flex flex-col",
+                  "transition-colors duration-200 ease-out cursor-default",
+                  // centre last 2 cards in a 4-col row on desktop
+                  i === 8 ? "lg:col-start-2" : "",
+                  i === 9 ? "lg:col-start-3" : "",
+                ].join(" ")}
               >
-                <span
-                  className="text-[10px] font-black text-accent-gold/60 group-hover:text-accent-gold mb-2 transition-colors"
-                  style={{ fontFamily: "var(--font-serif-display)" }}
-                >
-                  {s.num}
-                </span>
-                <p className="text-xs font-black uppercase tracking-wide text-zinc-300 group-hover:text-white transition-colors leading-snug">
-                  {s.label}
-                </p>
+                {/* Image — 4:3 fixed */}
+                <div className="relative w-full aspect-[4/3] overflow-hidden shrink-0">
+                  <Image
+                    src={s.img}
+                    alt={s.alt}
+                    fill
+                    loading="lazy"
+                    sizes="(max-width:640px) 50vw, (max-width:1024px) 33vw, 25vw"
+                    className="object-cover transition-transform duration-200 ease-out group-hover:scale-[1.02]"
+                  />
+                </div>
+                {/* Text area — fixed min-height keeps all cards aligned */}
+                <div className="px-5 py-5 min-h-[90px] flex flex-col justify-center">
+                  <span
+                    className="block text-[11px] font-semibold text-[#1E6D95] tracking-[0.15em] mb-2"
+                    style={{ fontFamily: "var(--font-serif-display)" }}
+                  >
+                    {s.num}
+                  </span>
+                  <p className="text-[13px] font-black uppercase tracking-wide text-zinc-200 group-hover:text-white transition-colors duration-200 leading-snug">
+                    {s.label}
+                  </p>
+                </div>
               </div>
             ))}
           </div>

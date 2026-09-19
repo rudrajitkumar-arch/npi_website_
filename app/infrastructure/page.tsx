@@ -321,15 +321,15 @@ export default function InfrastructurePage() {
             {MACHINERY_HIGHLIGHTS.map((mach) => (
               <div
                 key={mach.label}
-                className="bg-primary-dark p-6 flex flex-col justify-center items-center text-center transition-colors duration-300 hover:bg-primary-light"
+                className="group bg-primary-dark hover:bg-primary-light p-6 flex flex-col justify-center items-center text-center transition-colors duration-200 ease-out"
               >
                 <span
-                  className="text-3xl font-black text-accent-gold leading-none mb-1.5"
+                  className="text-3xl font-black text-accent-gold group-hover:text-white transition-colors duration-200 ease-out leading-none mb-1.5"
                   style={{ fontFamily: "var(--font-serif-display)" }}
                 >
                   {mach.val}
                 </span>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 leading-snug">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 group-hover:text-white transition-colors duration-200 ease-out leading-snug">
                   {mach.label}
                 </span>
               </div>

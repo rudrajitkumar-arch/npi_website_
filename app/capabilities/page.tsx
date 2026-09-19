@@ -132,16 +132,66 @@ const CAP_CARDS = [
 ];
 
 const SERVICES = [
-  "Precision Machining",
-  "Custom Screw Machining",
-  "CNC Turning & Milling",
-  "Forging + Machining",
-  "Stamping & Marking",
-  "Brazing & Welding",
-  "Annealing & Heat Treatment",
-  "Surface Cleaning & Plating",
-  "Light Assembly",
-  "Packaging & Labelling",
+  {
+    num: "01",
+    label: "Precision Machining",
+    img: "/images/services/Precision_Machining.jpg",
+    alt: "Precision machining components",
+  },
+  {
+    num: "02",
+    label: "Custom Screw Machining",
+    img: "/images/services/Custom_Screw_Machining.jpg",
+    alt: "Custom screw machining components",
+  },
+  {
+    num: "03",
+    label: "CNC Turning & Milling",
+    img: "/images/services/CNC_Turning_Milling.jpg",
+    alt: "CNC turning and milling components",
+  },
+  {
+    num: "04",
+    label: "Forging + Machining",
+    img: "/images/services/Forging_Machining.png",
+    alt: "Forged and machined components",
+  },
+  {
+    num: "05",
+    label: "Stamping & Marking",
+    img: "/images/services/Stamping_Marking.png",
+    alt: "Metal stamping and marking",
+  },
+  {
+    num: "06",
+    label: "Brazing & Welding",
+    img: "/images/services/Brazing_Welding.jpeg",
+    alt: "Brazing and welding process",
+  },
+  {
+    num: "07",
+    label: "Annealing & Heat Treatment",
+    img: "/images/services/Annealing_Heat_Treatment.jpg",
+    alt: "Annealing and heat treatment",
+  },
+  {
+    num: "08",
+    label: "Surface Cleaning & Plating",
+    img: "/images/services/Surface_Cleaning_Plating.png",
+    alt: "Surface cleaning and plating",
+  },
+  {
+    num: "09",
+    label: "Light Assembly",
+    img: "/images/services/Light_Assembly.jpg",
+    alt: "Precision component assembly",
+  },
+  {
+    num: "10",
+    label: "Packaging & Labelling",
+    img: "/images/services/Packaging_Labelling.png",
+    alt: "Industrial component packaging and labelling",
+  },
 ];
 
 const MACHINES = [
@@ -254,15 +304,15 @@ export default function CapabilitiesPage() {
       {/* 1. HERO ──────────────────────────────────────────── */}
       <section className="relative h-[760px] flex items-center bg-primary-dark overflow-hidden">
         <Image
-          src="/images/header_images/capabalities.jpg"
+          src="/images/header_images/capabilities-hero.png"
           alt="Precision Manufacturing Capabilities"
           fill
           priority
           sizes="100vw"
           className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary-dark/97 via-primary-dark/88 to-primary-dark/55" />
-        <div className="absolute inset-0 bg-primary-dark/25" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary-dark/96 via-primary-dark/80 to-primary-dark/35" />
+        <div className="absolute inset-0 bg-primary-dark/15" />
         <div className="absolute inset-y-0 right-[18%] w-px bg-white/5 hidden xl:block" />
 
         <div className="relative z-10 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-32 pb-20 lg:pt-36 lg:pb-24">
@@ -349,29 +399,49 @@ export default function CapabilitiesPage() {
         </div>
       </section>
 
-      {/* 3. SERVICES GRID ─────────────────────────────────── */}
-      <section className="py-20 lg:py-24 bg-white border-t border-zinc-100">
-        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* 3. SERVICES GRID ────────────────────────────────── */}
+      <section className="py-16 lg:py-20 bg-bg-warm border-t border-zinc-200">
+        <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead
             tag="Services"
             title="Services We Provide"
             sub="Comprehensive manufacturing services from raw bar stock to finished, dispatched components."
           />
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-px bg-zinc-100">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
             {SERVICES.map((s, i) => (
               <div
-                key={s}
-                className="bg-white hover:bg-bg-warm border-0 px-5 py-7 flex flex-col items-center justify-center text-center group transition-colors duration-300 cursor-default"
+                key={s.num}
+                className={[
+                  "group bg-white border border-zinc-200 hover:border-[#1E6D95]/60",
+                  "rounded-[4px] overflow-hidden flex flex-col",
+                  "transition-colors duration-200 ease-out cursor-default",
+                  i === 8 ? "lg:col-start-2" : "",
+                  i === 9 ? "lg:col-start-3" : "",
+                ].join(" ")}
               >
-                <span
-                  className="text-[10px] font-black text-zinc-400 mb-3 group-hover:text-accent-gold transition-colors"
-                  style={{ fontFamily: "var(--font-serif-display)" }}
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <p className="text-xs font-black uppercase tracking-wide text-primary-dark group-hover:text-accent-gold transition-colors leading-snug">
-                  {s}
-                </p>
+                {/* Image — 4:3 fixed */}
+                <div className="relative w-full aspect-[4/3] overflow-hidden bg-zinc-100 shrink-0">
+                  <Image
+                    src={s.img}
+                    alt={s.alt}
+                    fill
+                    loading="lazy"
+                    sizes="(max-width:640px) 50vw, (max-width:1024px) 33vw, 25vw"
+                    className="object-cover transition-transform duration-200 ease-out group-hover:scale-[1.02]"
+                  />
+                </div>
+                {/* Text area — fixed min-height keeps all cards aligned */}
+                <div className="px-5 py-5 min-h-[90px] flex flex-col justify-center">
+                  <span
+                    className="block text-[11px] font-semibold text-[#1E6D95] tracking-[0.15em] mb-2"
+                    style={{ fontFamily: "var(--font-serif-display)" }}
+                  >
+                    {s.num}
+                  </span>
+                  <p className="text-[13px] font-black uppercase tracking-wide text-primary-dark group-hover:text-[#1E6D95] transition-colors duration-200 leading-snug">
+                    {s.label}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
@@ -393,15 +463,15 @@ export default function CapabilitiesPage() {
             {MACHINES.map((m) => (
               <div
                 key={m.label}
-                className="bg-primary-dark hover:bg-primary-light px-6 py-8 flex flex-col items-center text-center transition-colors duration-300 group"
+                className="group bg-primary-dark hover:bg-primary-light px-6 py-8 flex flex-col items-center text-center transition-colors duration-200 ease-out"
               >
                 <span
-                  className="text-3xl sm:text-4xl font-black text-accent-gold leading-none"
+                  className="text-3xl sm:text-4xl font-black text-accent-gold group-hover:text-white transition-colors duration-200 ease-out leading-none"
                   style={{ fontFamily: "var(--font-serif-display)" }}
                 >
                   {m.val}
                 </span>
-                <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mt-2 leading-snug text-center">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 group-hover:text-white transition-colors duration-200 ease-out mt-2 leading-snug text-center">
                   {m.label}
                 </span>
               </div>
@@ -523,11 +593,11 @@ export default function CapabilitiesPage() {
             <div className="absolute top-4 left-10 right-10 h-0.5 bg-zinc-200 z-0" />
             <div className="absolute top-4 left-10 right-10 h-0.5 bg-accent-gold/40 z-0" />
             {PRODUCTION_STEPS.map((s) => (
-              <div key={s.step} className="relative z-10 flex flex-col items-center bg-white px-3">
-                <span className="w-8 h-8 rounded-full bg-primary-dark text-accent-gold border-2 border-accent-gold flex items-center justify-center text-xs font-mono font-bold shadow-sm">
+              <div key={s.step} className="relative z-10 flex flex-col items-center bg-white px-3 group cursor-default">
+                <span className="w-8 h-8 rounded-full bg-primary-dark text-white border-2 border-accent-gold group-hover:bg-accent-gold flex items-center justify-center text-xs font-mono font-bold shadow-sm transition-colors duration-200">
                   {s.step}
                 </span>
-                <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-primary-dark mt-2.5 text-center">
+                <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-primary-dark group-hover:text-accent-gold mt-2.5 text-center transition-colors duration-200">
                   {s.title}
                 </span>
               </div>
