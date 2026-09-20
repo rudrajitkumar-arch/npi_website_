@@ -10,7 +10,7 @@ export default function Footer() {
           <div className="lg:col-span-1 max-w-[280px]">
             <Link href="/" className="w-full flex justify-start mb-5 transition-opacity hover:opacity-90">
               <Image
-                src="/images/company_logo/new-final-logo-white.png"
+                src="/images/company_logo/New Logo Final final.png"
                 alt="New Perfect Incorporation Logo"
                 width={260}
                 height={121}

@@ -51,7 +51,7 @@ export default function Header() {
           className="flex items-center shrink-0 transition-opacity hover:opacity-90"
         >
           <Image
-            src="/images/company_logo/new-final-logo-white.png"
+            src="/images/company_logo/New Logo Final final.png"
             alt="New Perfect Incorporation"
             width={360}
             height={167}
