@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 
 function Tag({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2 border border-[#1E6D95]/40 bg-[#EAF3F7] px-4 py-1.5 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-[#1E6D95]">
+    <span className="inline-flex items-center gap-2 border border-[#1E6D95]/40 bg-[#EAF3F7] px-3 sm:px-4 py-1 sm:py-1.5 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.14em] sm:tracking-[0.22em] text-[#1E6D95]">
       <span className="w-1.5 h-1.5 rounded-full bg-[#1E6D95]" />
       {children}
     </span>

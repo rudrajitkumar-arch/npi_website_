@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import { Suspense } from "react";
 import ContactFormWrapper from "./ContactFormWrapper";
 
 export const metadata: Metadata = {
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
 /* ─── PRIMITIVES ─────────────────────────────────────────── */
 function Tag({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2 border border-[#1E6D95]/40 bg-[#EAF3F7] px-4 py-1.5 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-[#1E6D95]">
+    <span className="inline-flex items-center gap-2 border border-[#1E6D95]/40 bg-[#EAF3F7] px-3 sm:px-4 py-1 sm:py-1.5 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.14em] sm:tracking-[0.22em] text-[#1E6D95]">
       <span className="w-1.5 h-1.5 rounded-full bg-[#1E6D95]" />
       {children}
     </span>
@@ -107,7 +108,7 @@ export default function ContactPage() {
   return (
     <>
       {/* 1. HERO ──────────────────────────────────────────── */}
-      <section className="relative h-[760px] flex items-center bg-primary-dark overflow-hidden">
+      <section className="relative min-h-[500px] sm:min-h-[580px] lg:h-[760px] flex items-center bg-primary-dark overflow-hidden">
         <Image
           src="/images/header_images/contact.jpeg"
           alt="Contact New Perfect Incorporation & Request a Quote"
@@ -116,35 +117,34 @@ export default function ContactPage() {
           sizes="100vw"
           className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary-dark/97 via-primary-dark/88 to-primary-dark/55" />
+        <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/95 via-primary-dark/85 to-primary-dark/60 lg:bg-gradient-to-r lg:from-primary-dark/97 lg:via-primary-dark/88 lg:to-primary-dark/55" />
         <div className="absolute inset-0 bg-primary-dark/25" />
         <div className="absolute inset-y-0 right-[20%] w-px bg-white/5 hidden xl:block" />
 
-        <div className="relative z-10 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-32 pb-20 lg:pt-36 lg:pb-24">
-          <div className="max-w-2xl space-y-6">
+        <div className="relative z-10 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-28 pb-16 sm:pt-32 sm:pb-20 lg:pt-36 lg:pb-24">
+          <div className="max-w-2xl space-y-4 sm:space-y-5 lg:space-y-6">
             <Tag>Get Quotation</Tag>
             <h1
-              className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase leading-[1.08] tracking-tight text-white"
+              className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase leading-[1.1] sm:leading-[1.08] tracking-tight text-white"
               style={{ fontFamily: "var(--font-serif-display)" }}
             >
               Let&apos;s Build Something <span className="text-accent-gold">Precise,</span> Together
             </h1>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-0.5 bg-accent-gold shrink-0" />
-              <p className="text-sm sm:text-base font-semibold text-white/95 leading-relaxed">
-                Share your drawing, sample, or requirement. Our team will respond with a fast and transparent quotation
-              </p>
-            </div>
-            <p className="text-sm sm:text-base text-zinc-300 leading-relaxed max-w-xl">
+            <p className="text-sm sm:text-base font-semibold text-white/95 leading-snug sm:leading-relaxed">
+              Share your drawing, sample, or requirement. Our team will respond with a fast and transparent quotation
+            </p>
+            <p className="text-xs sm:text-sm lg:text-base text-zinc-300 leading-relaxed max-w-xl">
               For brass, copper, bronze, gunmetal, CNC turned, forged, cast, plated,
               assembled, or custom precision components, contact New Perfect Incorporation
             </p>
-            <a
-              href="#rfq-section"
-              className="inline-flex px-8 py-3.5 text-xs font-mono font-bold uppercase tracking-[0.2em] text-white bg-accent-gold hover:bg-accent-gold-hover border border-accent-gold transition-colors"
-            >
-              Send Enquiry
-            </a>
+            <div>
+              <a
+                href="#rfq-section"
+                className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-3.5 text-[11px] sm:text-xs font-mono font-bold uppercase tracking-[0.15em] sm:tracking-[0.2em] text-white bg-accent-gold hover:bg-accent-gold-hover border border-accent-gold transition-colors"
+              >
+                Send Enquiry
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -235,7 +235,9 @@ export default function ContactPage() {
 
             {/* Form Column */}
             <div className="lg:col-span-8 flex flex-col">
-              <ContactFormWrapper />
+              <Suspense fallback={<div className="h-96 bg-white border border-zinc-200" />}>
+                <ContactFormWrapper />
+              </Suspense>
             </div>
 
             {/* Helper Column */}

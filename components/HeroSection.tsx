@@ -182,7 +182,7 @@ export default function HeroSection() {
       aria-label="Hero section"
     >
       {/* ── BACKGROUND FULL-SIZE 3D CANVAS & OVERLAYS ── */}
-      <div className="relative lg:absolute w-full h-[220px] sm:h-[280px] lg:h-full lg:inset-0 z-10 lg:z-0 overflow-hidden pointer-events-auto bg-primary-dark mt-11 sm:mt-14 lg:mt-0">
+      <div className="relative lg:absolute w-full h-[210px] sm:h-[270px] lg:h-full lg:inset-0 z-10 lg:z-0 overflow-hidden pointer-events-auto bg-primary-dark mt-[76px] sm:mt-[88px] lg:mt-0">
         {/* Subtle dark gradient overlay rendered on the bottom layer (hidden on mobile) */}
         <div className="absolute inset-0 bg-gradient-to-r from-primary-dark/95 via-primary-dark/85 to-primary-dark/45 z-0 hidden lg:block" />
         <div className="absolute inset-0 bg-gradient-to-t from-primary-dark via-transparent to-primary-dark/35 z-0 hidden lg:block" />

@@ -1,8 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 
 export default function ContactFormWrapper() {
+  const searchParams = useSearchParams();
+
   const [formData, setFormData] = useState({
     name: "",
     company: "",
@@ -17,6 +20,12 @@ export default function ContactFormWrapper() {
     drawing: null as File | null,
   });
   const [submitted, setSubmitted] = useState(false);
+
+  // Prefill compType from ?product= query param (set by Enquire buttons on category pages)
+  useEffect(() => {
+    const product = searchParams.get("product");
+    if (product) setFormData((prev) => ({ ...prev, compType: product }));
+  }, [searchParams]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
