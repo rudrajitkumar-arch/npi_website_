@@ -40,7 +40,7 @@ export const PRODUCT_CATALOGUE: ProductCategory[] = [
   {
     slug: "electrical-electronics",
     name: "Electrical & Electronics",
-    image: "/images/product_images/earthing_lightning_protection.png",
+    image: "/images/header_images/Electrical_Electronics.png",
     imageAlt: "Brass electrical and electronics components including earthing and switchgear",
     description:
       "High-conductivity electrical accessories for power distribution, switchgear, wiring and earthing systems.",
@@ -128,7 +128,7 @@ export const PRODUCT_CATALOGUE: ProductCategory[] = [
   {
     slug: "cnc-turned-parts",
     name: "CNC Turned Parts",
-    image: "/images/product_images/cnc-turned-components.jpg",
+    image: "/images/header_images/CNC_Turned_Parts.png",
     imageAlt: "CNC turned precision machined components",
     description:
       "Multi-axis CNC turned and milled components manufactured with tight dimensional control across brass, copper, aluminium and steel.",

@@ -143,71 +143,73 @@ export default async function CategoryPage({
         </div>
       </section>
 
-      {/* PRODUCT GRID */}
-      <section className="py-16 lg:py-20 bg-[#F5F6F4]">
+      {/* MAIN CONTENT & SIDEBAR */}
+      <section className="py-12 sm:py-16 lg:py-20 bg-[#F5F6F4]">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-start">
 
-          {/* Section header */}
-          <div className="flex items-center gap-3 mb-10">
-            <span className="w-6 h-px bg-[#1E6D95]" />
-            <span className="text-[10px] font-mono font-black uppercase tracking-[0.22em] text-[#1E6D95]">
-              Products in this Category
-            </span>
-          </div>
+            {/* LEFT: Products section */}
+            <div className="lg:col-span-8 xl:col-span-9">
+              {/* Section header */}
+              <div className="flex items-center gap-3 mb-8">
+                <span className="w-6 h-px bg-[#1E6D95]" />
+                <span className="text-[10px] font-mono font-black uppercase tracking-[0.22em] text-[#1E6D95]">
+                  Products in this Category
+                </span>
+              </div>
 
-          {/* Card grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mb-12">
-            {cat.subProducts.map((sub, i) => (
-              <article
-                key={sub.slug}
-                className="product-card animate-fade-in-up stagger-child bg-white border border-[#D9DEE0] overflow-hidden"
-                style={{ "--stagger": i } as React.CSSProperties}
-              >
-                {/* Image area — 4:3 ratio */}
-                <div className="relative w-full overflow-hidden" style={{ paddingTop: "75%" }}>
-                  <Image
-                    src={sub.image}
-                    alt={sub.imageAlt}
-                    fill
-                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                    className="product-card-img object-cover object-center"
-                    loading="lazy"
-                  />
-                </div>
-
-                {/* Card body */}
-                <div className="p-4 flex flex-col gap-3">
-                  <h3 className="product-card-title text-[11px] sm:text-xs font-black uppercase tracking-wide text-[#252A2D] leading-snug min-h-[2.5rem] flex items-start">
-                    {sub.name}
-                  </h3>
-                  <a
-                    href={`/contact?product=${encodeURIComponent(sub.name)}&category=${cat.slug}`}
-                    className="product-card-btn inline-flex items-center gap-1.5 text-[10px] font-mono font-black uppercase tracking-[0.16em] text-white bg-[#1E6D95] hover:bg-[#15516F] transition-colors px-3 py-2 self-start"
-                    aria-label={`Enquire about ${sub.name}`}
+              {/* Card grid */}
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5 mb-10">
+                {cat.subProducts.map((sub, i) => (
+                  <article
+                    key={sub.slug}
+                    className="product-card animate-fade-in-up stagger-child bg-white border border-[#D9DEE0] overflow-hidden"
+                    style={{ "--stagger": i } as React.CSSProperties}
                   >
-                    Enquire
-                    <span className="product-card-arrow">→</span>
-                  </a>
-                </div>
-              </article>
-            ))}
-          </div>
+                    {/* Image area — 4:3 ratio */}
+                    <div className="relative w-full overflow-hidden" style={{ paddingTop: "75%" }}>
+                      <Image
+                        src={sub.image}
+                        alt={sub.imageAlt}
+                        fill
+                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                        className="product-card-img object-cover object-center"
+                        loading="lazy"
+                      />
+                    </div>
 
-          {/* Bottom row: back link + sidebar info */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16">
-            {/* Back link */}
-            <div className="lg:col-span-2 flex items-center">
-              <a
-                href="/products"
-                className="inline-flex items-center gap-2 text-[11px] font-mono font-bold uppercase tracking-widest text-zinc-500 hover:text-[#1E6D95] transition-colors"
-              >
-                <span className="rotate-180 inline-block">→</span>
-                Back to All Products
-              </a>
+                    {/* Card body */}
+                    <div className="p-4 flex flex-col gap-3">
+                      <h3 className="product-card-title text-[11px] sm:text-xs font-black uppercase tracking-wide text-[#252A2D] leading-snug min-h-[2.5rem] flex items-start">
+                        {sub.name}
+                      </h3>
+                      <a
+                        href={`/contact?product=${encodeURIComponent(sub.name)}&category=${cat.slug}`}
+                        className="product-card-btn inline-flex items-center gap-1.5 text-[10px] font-mono font-black uppercase tracking-[0.16em] text-white bg-[#1E6D95] hover:bg-[#15516F] transition-colors px-3 py-2 self-start"
+                        aria-label={`Enquire about ${sub.name}`}
+                      >
+                        Enquire
+                        <span className="product-card-arrow">→</span>
+                      </a>
+                    </div>
+                  </article>
+                ))}
+              </div>
+
+              {/* Back link */}
+              <div className="pt-2">
+                <a
+                  href="/products"
+                  className="inline-flex items-center gap-2 text-[11px] font-mono font-bold uppercase tracking-widest text-zinc-500 hover:text-[#1E6D95] transition-colors"
+                >
+                  <span className="rotate-180 inline-block">→</span>
+                  Back to All Products
+                </a>
+              </div>
             </div>
 
-            {/* Sidebar: enquiry + other categories + manufactured by */}
-            <div className="space-y-5">
+            {/* RIGHT: Sidebar (top-aligned, sticky on desktop) */}
+            <aside className="lg:col-span-4 xl:col-span-3 space-y-5 lg:sticky lg:top-28">
               {/* Enquiry CTA */}
               <div className="bg-[#252A2D] p-6 sm:p-7 border border-white/5">
                 <span className="text-[9px] font-mono font-black uppercase tracking-[0.22em] text-[#1E6D95] block mb-4">
@@ -255,9 +257,9 @@ export default async function CategoryPage({
                 </p>
                 <p className="text-[11px] text-zinc-500 mt-1">Jamnagar, Gujarat, India</p>
               </div>
-            </div>
-          </div>
+            </aside>
 
+          </div>
         </div>
       </section>
 
