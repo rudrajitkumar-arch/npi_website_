@@ -406,78 +406,87 @@ export default function AboutPage() {
       </section>
 
       {/* 5. LEADERSHIP ────────────────────────────────────── */}
-      <section className="py-20 lg:py-24 bg-white border-t border-zinc-100">
-        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-16 lg:py-24 bg-white border-t border-zinc-100">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead
             tag="Leadership"
             title="Team Structure"
             sub="Experienced leadership driving precision manufacturing and global supply."
+            hideBar={true}
           />
 
-          {/* Founder card — centered, prominent */}
-          <div className="flex justify-center mb-10">
-            <div className="bg-primary-dark text-white border border-accent-gold/30 px-10 py-8 max-w-xs w-full text-center relative overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-accent-gold" />
-              <div className="w-14 h-14 rounded-full bg-accent-gold/20 border border-accent-gold/40 flex items-center justify-center mx-auto mb-4">
-                <span className="text-accent-gold text-xl font-black">CP</span>
-              </div>
-              <h3
-                className="text-lg font-black uppercase text-white"
-                style={{ fontFamily: "var(--font-serif-display)" }}
-              >
-                Chiman Patel
-              </h3>
-              <p className="text-[10px] font-bold uppercase tracking-widest text-accent-gold mt-1">
-                Finance Head, Founder &amp; CEO
-              </p>
-            </div>
-          </div>
-
-          {/* Connector arrow down */}
-          <div className="flex justify-center mb-10">
-            <svg className="w-5 h-8 text-accent-gold/40" fill="none" stroke="currentColor" viewBox="0 0 24 32">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 0v24M5 17l7 7 7-7" />
-            </svg>
-          </div>
-
-          {/* Department cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            {DEPARTMENTS.filter((d) => d.type === "dept").map((d) => (
-              <div
-                key={d.role}
-                className="group bg-bg-warm border border-zinc-200 hover:border-accent-gold p-7 lg:p-8 transition-all duration-300 hover:shadow-lg"
-              >
-                {/* Avatar initials */}
-                <div className="w-10 h-10 rounded-full bg-primary-dark flex items-center justify-center mb-4 group-hover:bg-accent-gold transition-colors">
-                  <span className="text-xs font-black text-white">
-                    {d.head
-                      .split(" ")
-                      .map((w) => w[0])
-                      .join("")
-                      .slice(0, 2)}
-                  </span>
+          <div className="w-full">
+            {/* Founder card — prominent, full width on mobile, max-w-md centered on desktop */}
+            <div className="w-full md:max-w-md mx-auto">
+              <div className="bg-primary-dark text-white border border-accent-gold/40 hover:border-accent-gold p-6 sm:p-7 md:p-8 text-center relative overflow-hidden transition-all duration-300 shadow-md">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-accent-gold" />
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-accent-gold/20 border border-accent-gold/40 flex items-center justify-center mx-auto mb-3.5">
+                  <span className="text-accent-gold text-base sm:text-lg font-black tracking-wider">CP</span>
                 </div>
-
                 <h3
-                  className="text-sm font-black uppercase text-primary-dark group-hover:text-accent-gold transition-colors"
+                  className="text-base sm:text-lg font-black uppercase text-white tracking-wide"
                   style={{ fontFamily: "var(--font-serif-display)" }}
                 >
-                  {d.head}
+                  Chiman Patel
                 </h3>
-                <p className="text-[10px] font-bold uppercase tracking-widest text-accent-gold mt-0.5 mb-4">
-                  {d.role}
+                <p className="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-accent-gold mt-1">
+                  Finance Head, Founder &amp; CEO
                 </p>
-
-                <div className="border-t border-zinc-200 pt-4 space-y-1.5">
-                  {d.responsibilities.map((r) => (
-                    <div key={r} className="flex items-center text-[11px] text-zinc-500">
-                      <span className="w-1 h-1 rounded-full bg-accent-gold mr-2 shrink-0" />
-                      {r}
-                    </div>
-                  ))}
-                </div>
               </div>
-            ))}
+            </div>
+
+            {/* Connector arrow from Founder down to department heads */}
+            <div className="flex justify-center py-5 sm:py-6">
+              <svg className="w-5 h-7 text-[#1E6D95]" fill="none" stroke="currentColor" viewBox="0 0 24 32">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 2v22M5 17l7 7 7-7" />
+              </svg>
+            </div>
+
+            {/* Department cards */}
+            <div className="space-y-0 md:space-y-0 md:grid md:grid-cols-3 md:gap-6 lg:gap-8">
+              {DEPARTMENTS.filter((d) => d.type === "dept").map((d, index) => (
+                <div key={d.role} className="flex flex-col">
+                  {index > 0 && (
+                    <div className="flex justify-center py-4 md:hidden">
+                      <svg className="w-4 h-6 text-[#1E6D95]" fill="none" stroke="currentColor" viewBox="0 0 24 32">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 2v22M5 17l7 7 7-7" />
+                      </svg>
+                    </div>
+                  )}
+                  <div className="flex-1 bg-bg-warm border border-zinc-200 hover:border-accent-gold p-5 sm:p-6 lg:p-7 transition-all duration-300 hover:shadow-lg flex flex-col">
+                    {/* Avatar initials */}
+                    <div className="w-10 h-10 rounded-full bg-primary-dark flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-accent-gold transition-colors">
+                      <span className="text-xs font-black text-white">
+                        {d.head
+                          .split(" ")
+                          .map((w) => w[0])
+                          .join("")
+                          .slice(0, 2)}
+                      </span>
+                    </div>
+
+                    <h3
+                      className="text-sm sm:text-base font-black uppercase text-primary-dark group-hover:text-accent-gold transition-colors"
+                      style={{ fontFamily: "var(--font-serif-display)" }}
+                    >
+                      {d.head}
+                    </h3>
+                    <p className="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-accent-gold mt-0.5 mb-3 sm:mb-4">
+                      {d.role}
+                    </p>
+
+                    <div className="border-t border-zinc-200 pt-3 sm:pt-4 space-y-1.5 mt-auto">
+                      {d.responsibilities.map((r) => (
+                        <div key={r} className="flex items-center text-xs text-zinc-600 leading-snug">
+                          <span className="w-1.5 h-1.5 rounded-full bg-accent-gold mr-2 shrink-0" />
+                          {r}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
