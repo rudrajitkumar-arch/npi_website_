@@ -408,41 +408,43 @@ export default function QualityPage() {
             {CERTS.map((c) => (
               <div
                 key={c.title}
-                className={`group border ${c.color} hover:border-accent-gold/60 p-7 lg:p-8 transition-all duration-300 hover:shadow-lg flex flex-col justify-between`}
+                className={`group border ${c.color} hover:border-accent-gold/60 p-6 sm:p-7 lg:p-8 transition-all duration-300 hover:shadow-lg flex flex-col items-center text-center justify-between`}
               >
-                <div>
+                <div className="w-full flex flex-col items-center text-center">
                   {/* Badge */}
-                  <div className="mb-5">
+                  <div className="mb-4 sm:mb-5 flex justify-center">
                     <span
-                      className={`inline-block text-xs font-black uppercase tracking-widest ${c.badge} border border-current px-2.5 py-1`}
+                      className={`inline-block text-xs font-black uppercase tracking-widest ${c.badge} border border-current px-2.5 py-1 text-center`}
                     >
                       {c.code}
                     </span>
                   </div>
 
                   {/* Certificate Logo */}
-                  <div className="h-16 flex items-center mb-4">
+                  <div className="h-16 flex items-center justify-center mb-4">
                     <Image
                       src={c.logo}
                       alt={c.title}
                       width={100}
                       height={64}
                       style={{ width: "auto", height: "auto" }}
-                      className="max-h-14 max-w-[120px] object-contain object-left group-hover:scale-105 transition-transform duration-300"
+                      className="max-h-14 max-w-[120px] object-contain object-center group-hover:scale-105 transition-transform duration-300 mx-auto"
                     />
                   </div>
 
                   <h3
-                    className="text-sm font-black uppercase tracking-wide text-primary-dark group-hover:text-accent-gold transition-colors mb-1"
+                    className="text-sm font-black uppercase tracking-wide text-primary-dark group-hover:text-accent-gold transition-colors mb-1 text-center"
                     style={{ fontFamily: "var(--font-serif-display)" }}
                   >
                     {c.title}
                   </h3>
-                  <p className="text-[9px] font-bold uppercase tracking-widest text-zinc-400 mb-3">
+                  <p className="text-[9px] font-bold uppercase tracking-widest text-zinc-400 mb-3 text-center">
                     {c.sub}
                   </p>
                 </div>
-                <p className="text-[11px] text-zinc-500 leading-relaxed mt-2">{c.desc}</p>
+                <p className="text-xs sm:text-[11px] text-zinc-500 leading-relaxed mt-2 text-center max-w-xs mx-auto">
+                  {c.desc}
+                </p>
               </div>
             ))}
           </div>
