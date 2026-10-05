@@ -230,8 +230,8 @@ export default function Header() {
       {mobileOpen && (
         <div className="xl:hidden bg-[#252A2D] border-t border-white/10 overflow-y-auto max-h-[80vh]">
           <div className="px-4 py-4 space-y-1">
-            {/* Standard nav links */}
-            {[...NAV_LEFT, ...NAV_RIGHT].map((n) => (
+            {/* NAV_LEFT: Home, About, Capabilities */}
+            {NAV_LEFT.map((n) => (
               <Link
                 key={n.href}
                 href={n.href}
@@ -246,8 +246,8 @@ export default function Header() {
               </Link>
             ))}
 
-            {/* PRODUCTS accordion trigger */}
-            <div className="border-t border-white/[0.08] pt-1">
+            {/* PRODUCTS accordion trigger & body — placed immediately after Capabilities */}
+            <div>
               <button
                 className={`w-full flex items-center justify-between px-3 py-2.5 text-sm font-bold uppercase tracking-widest font-mono transition-colors ${
                   isProductsActive || mobileProductsOpen
@@ -335,7 +335,23 @@ export default function Header() {
               )}
             </div>
 
-            {/* CTA */}
+            {/* NAV_RIGHT: Quality, Industries, Infrastructure, Contact */}
+            {NAV_RIGHT.map((n) => (
+              <Link
+                key={n.href}
+                href={n.href}
+                onClick={() => setMobileOpen(false)}
+                className={`block px-3 py-2.5 text-sm font-bold uppercase tracking-widest font-mono ${
+                  pathname === n.href
+                    ? "text-[#1E6D95] bg-white/5"
+                    : "text-white/90 hover:text-[#1E6D95] hover:bg-white/5"
+                }`}
+              >
+                {n.label}
+              </Link>
+            ))}
+
+            {/* CTA: Get Quote */}
             <div className="pt-3 border-t border-white/10">
               <Link
                 href="/contact"
