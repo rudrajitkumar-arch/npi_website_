@@ -208,6 +208,12 @@ label {
   border-color: #1E6D95;
 }
 
+/* Global permanent 1:1 square product card image wrapper */
+.product-card-image-wrapper {
+  aspect-ratio: 1 / 1 !important;
+  width: 100%;
+}
+
 /* Card image zoom on card hover */
 .product-card .card-image,
 .product-card .product-card-img {
@@ -215,7 +221,7 @@ label {
 }
 .product-card:hover .card-image,
 .product-card:hover .product-card-img {
-  transform: scale(1.03);
+  transform: scale(1.02);
 }
 
 /* Card title color shift on hover */

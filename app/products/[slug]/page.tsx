@@ -11,6 +11,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { PRODUCT_CATALOGUE, CATALOGUE_MAP } from "@/lib/products";
+import ProductCard from "@/components/ProductCard";
 
 /* ── Static params — pre-render all 8 slugs ── */
 export async function generateStaticParams() {
@@ -50,12 +51,12 @@ export default async function CategoryPage({
       {/* HERO — Category specific contrast overlay (retains visible product photography) */}
       <section className="relative min-h-[400px] sm:min-h-[480px] lg:h-[580px] flex items-end bg-[#202A2E] overflow-hidden">
         <Image
-          src={cat.image}
-          alt={cat.imageAlt}
+          src={cat.heroImage || cat.image}
+          alt={cat.heroImageAlt || cat.imageAlt}
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center md:object-right"
+          className="object-cover object-right md:object-right"
         />
 
         {/* Desktop directional overlay: dark on left (text zone), reveals image on right */}
@@ -161,38 +162,15 @@ export default async function CategoryPage({
               {/* Card grid */}
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5 mb-10">
                 {cat.subProducts.map((sub, i) => (
-                  <article
+                  <ProductCard
                     key={sub.slug}
-                    className="product-card animate-fade-in-up stagger-child bg-white border border-[#D9DEE0] overflow-hidden"
-                    style={{ "--stagger": i } as React.CSSProperties}
-                  >
-                    {/* Image area — 4:3 ratio */}
-                    <div className="relative w-full overflow-hidden" style={{ paddingTop: "75%" }}>
-                      <Image
-                        src={sub.image}
-                        alt={sub.imageAlt}
-                        fill
-                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                        className="product-card-img object-cover object-center"
-                        loading="lazy"
-                      />
-                    </div>
-
-                    {/* Card body */}
-                    <div className="p-4 flex flex-col gap-3">
-                      <h3 className="product-card-title text-[11px] sm:text-xs font-black uppercase tracking-wide text-[#252A2D] leading-snug min-h-[2.5rem] flex items-start">
-                        {sub.name}
-                      </h3>
-                      <a
-                        href={`/contact?product=${encodeURIComponent(sub.name)}&category=${cat.slug}`}
-                        className="product-card-btn inline-flex items-center gap-1.5 text-[10px] font-mono font-black uppercase tracking-[0.16em] text-white bg-[#1E6D95] hover:bg-[#15516F] transition-colors px-3 py-2 self-start"
-                        aria-label={`Enquire about ${sub.name}`}
-                      >
-                        Enquire
-                        <span className="product-card-arrow">→</span>
-                      </a>
-                    </div>
-                  </article>
+                    name={sub.name}
+                    slug={sub.slug}
+                    categorySlug={cat.slug}
+                    image={sub.image}
+                    imageAlt={sub.imageAlt}
+                    index={i}
+                  />
                 ))}
               </div>
 

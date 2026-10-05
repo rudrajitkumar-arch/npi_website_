@@ -23,9 +23,12 @@ export interface ProductCategory {
   slug: string;
   /** Full display name */
   name: string;
-  /** Category-level hero image — relative to /public */
+  /** Category-level thumbnail image — relative to /public */
   image: string;
   imageAlt: string;
+  /** Category-specific hero background image — relative to /public */
+  heroImage: string;
+  heroImageAlt: string;
   /** One-line description for landing page cards and category page intro */
   description: string;
   subProducts: SubProduct[];
@@ -42,31 +45,33 @@ export const PRODUCT_CATALOGUE: ProductCategory[] = [
     name: "Electrical & Electronics",
     image: "/images/header_images/Electrical_Electronics.png",
     imageAlt: "Brass electrical and electronics components including earthing and switchgear",
+    heroImage: "/images/products/categories/Electrical_Electronics.png",
+    heroImageAlt: "Brass electrical and electronics components, switchgear and earthing accessories",
     description:
       "High-conductivity electrical accessories for power distribution, switchgear, wiring and earthing systems.",
     subProducts: [
       {
         name: "Pins",
         slug: "pins",
-        image: "/images/products/electrical-electronics/pins.jpg",
+        image: "/images/products/electrical-electronics/pins.png",
         imageAlt: "Brass electrical pins — precision machined contact pins",
       },
       {
         name: "Cable Glands",
         slug: "cable-glands",
-        image: "/images/products/electrical-electronics/cable-glands.jpg",
+        image: "/images/products/electrical-electronics/cable-glands.png",
         imageAlt: "Brass cable glands and accessories",
       },
       {
         name: "MCB & Switchgear Components",
         slug: "mcb-switchgear-components",
-        image: "/images/products/electrical-electronics/mcb-switchgear-components.jpg",
+        image: "/images/products/electrical-electronics/mcb-switchgear-components.png",
         imageAlt: "Brass MCB and switchgear components",
       },
       {
         name: "Terminal Blocks",
         slug: "terminal-blocks",
-        image: "/images/products/electrical-electronics/terminal-blocks.jpg",
+        image: "/images/products/electrical-electronics/terminal-blocks.png",
         imageAlt: "Brass terminal block connectors",
       },
       {
@@ -78,7 +83,7 @@ export const PRODUCT_CATALOGUE: ProductCategory[] = [
       {
         name: "Neutral Links",
         slug: "neutral-links",
-        image: "/images/products/electrical-electronics/neutral-links.jpg",
+        image: "/images/products/electrical-electronics/neutral-links.png",
         imageAlt: "Brass neutral link bars for electrical panels",
       },
     ],
@@ -89,37 +94,39 @@ export const PRODUCT_CATALOGUE: ProductCategory[] = [
     name: "Fittings",
     image: "/images/product_images/brass_fitting.jpg",
     imageAlt: "Brass pipe and plumbing fittings",
+    heroImage: "/images/products/categories/fittings.png",
+    heroImageAlt: "Brass pipe and plumbing fittings, precision-machined industrial fittings",
     description:
       "Precision-machined fittings for fluid, gas and industrial piping systems across compressor, electrofusion and forged applications.",
     subProducts: [
       {
         name: "Compressor Fittings",
         slug: "compressor-fittings",
-        image: "/images/products/fittings/compressor-fittings.jpg",
+        image: "/images/products/fittings/compressor-fittings.png",
         imageAlt: "Brass compressor pipe fittings",
       },
       {
         name: "Electrofusion Fittings",
         slug: "electrofusion-fittings",
-        image: "/images/products/fittings/electrofusion-fittings.jpg",
+        image: "/images/products/fittings/electrofusion-fittings-v2.png",
         imageAlt: "Brass electrofusion pipe fittings — elbow, tee, coupling",
       },
       {
         name: "Hose Nipple Fittings",
         slug: "hose-nipple-fittings",
-        image: "/images/products/fittings/hose-nipple-fittings.jpg",
+        image: "/images/products/fittings/hose-nipple-fittings-v2.png",
         imageAlt: "Brass hose nipple and barb fittings",
       },
       {
         name: "Brass & Copper Forged Fittings",
         slug: "brass-copper-forged-fittings",
-        image: "/images/products/fittings/brass-copper-forged-fittings.jpg",
+        image: "/images/products/fittings/brass-copper-forged-fittings.png",
         imageAlt: "Brass and copper forged pipe fittings",
       },
       {
         name: "CPVC PPR Fitting Inserts",
         slug: "cpvc-ppr-fitting-inserts",
-        image: "/images/products/fittings/cpvc-ppr-fitting-inserts.jpg",
+        image: "/images/products/fittings/cpvc-ppr-fitting-inserts.png",
         imageAlt: "Brass CPVC and PPR pipe fitting inserts",
       },
     ],
@@ -130,43 +137,45 @@ export const PRODUCT_CATALOGUE: ProductCategory[] = [
     name: "CNC Turned Parts",
     image: "/images/header_images/CNC_Turned_Parts.png",
     imageAlt: "CNC turned precision machined components",
+    heroImage: "/images/products/categories/CNC_Turned_Parts.png",
+    heroImageAlt: "Multi-axis CNC turned and precision machined brass, copper, aluminum and steel parts",
     description:
       "Multi-axis CNC turned and milled components manufactured with tight dimensional control across brass, copper, aluminium and steel.",
     subProducts: [
       {
         name: "Aluminum CNC Turned Components",
         slug: "aluminum-cnc-turned",
-        image: "/images/products/cnc-turned-parts/aluminum-cnc-turned.jpg",
+        image: "/images/products/cnc-turned-parts/aluminum-cnc-turned-v2.png",
         imageAlt: "Aluminum CNC turned precision components",
       },
       {
         name: "Multi-axis CNC Milled Components",
         slug: "multi-axis-cnc-milled",
-        image: "/images/products/cnc-turned-parts/multi-axis-cnc-milled.jpg",
+        image: "/images/products/cnc-turned-parts/multi-axis-cnc-milled.png",
         imageAlt: "Multi-axis CNC milled precision machined parts",
       },
       {
         name: "Steel Turned Parts",
         slug: "steel-turned-parts",
-        image: "/images/products/cnc-turned-parts/steel-turned-parts.jpg",
+        image: "/images/products/cnc-turned-parts/steel-turned-parts.png",
         imageAlt: "Steel CNC turned precision parts",
       },
       {
         name: "Copper Turned Parts",
         slug: "copper-turned-parts",
-        image: "/images/products/cnc-turned-parts/copper-turned-parts.jpg",
+        image: "/images/products/cnc-turned-parts/copper-turned-parts.png",
         imageAlt: "Copper CNC turned precision components",
       },
       {
         name: "Brass CNC Turned Parts",
         slug: "brass-cnc-turned-parts",
-        image: "/images/products/cnc-turned-parts/brass-cnc-turned-parts.jpg",
+        image: "/images/products/cnc-turned-parts/brass-cnc-turned-parts-v2.png",
         imageAlt: "Brass CNC turned precision components",
       },
       {
         name: "CNC Sliding Head Components",
         slug: "cnc-sliding-head",
-        image: "/images/products/cnc-turned-parts/cnc-sliding-head.jpg",
+        image: "/images/products/cnc-turned-parts/cnc-sliding-head.png",
         imageAlt: "CNC sliding head high-precision turned components",
       },
     ],
@@ -177,31 +186,33 @@ export const PRODUCT_CATALOGUE: ProductCategory[] = [
     name: "Inserts",
     image: "/images/product_images/brass_inserts.jpg",
     imageAlt: "Brass and aluminium moulding inserts",
+    heroImage: "/images/products/categories/inserts.png",
+    heroImageAlt: "Brass and aluminium moulding inserts, threaded and knurled inserts",
     description:
       "Threaded and knurled inserts for plastic moulding, PPR piping and composite assemblies in brass and aluminium.",
     subProducts: [
       {
         name: "PPR Inserts",
         slug: "ppr-inserts",
-        image: "/images/products/inserts/ppr-inserts.jpg",
+        image: "/images/products/inserts/ppr-inserts.png",
         imageAlt: "Brass PPR pipe fitting inserts",
       },
       {
         name: "Brass Moulding Inserts",
         slug: "brass-moulding-inserts",
-        image: "/images/products/inserts/brass-moulding-inserts.jpg",
+        image: "/images/products/inserts/brass-moulding-inserts.png",
         imageAlt: "Brass knurled moulding inserts",
       },
       {
         name: "Hex Inserts",
         slug: "hex-inserts",
-        image: "/images/products/inserts/hex-inserts.jpg",
+        image: "/images/products/inserts/hex-inserts.png",
         imageAlt: "Brass hex moulding inserts",
       },
       {
         name: "Aluminium Moulding Inserts",
         slug: "aluminium-moulding-inserts",
-        image: "/images/products/inserts/aluminium-moulding-inserts.jpg",
+        image: "/images/products/inserts/aluminium-moulding-inserts.png",
         imageAlt: "Aluminium moulding inserts for plastic assemblies",
       },
     ],
@@ -212,31 +223,33 @@ export const PRODUCT_CATALOGUE: ProductCategory[] = [
     name: "Stamping Parts",
     image: "/images/product_images/stamping_parts.jpg",
     imageAlt: "Precision stamped brass, copper and steel components",
+    heroImage: "/images/products/categories/Stamping-parts.png",
+    heroImageAlt: "Precision stamped brass, copper and steel metal components",
     description:
       "Precision-stamped and pressed metal components in brass, copper and steel for a broad range of industrial assemblies.",
     subProducts: [
       {
-        name: "Washer",
+        name: "Washer Stampings",
         slug: "washer",
-        image: "/images/products/stamping-parts/washer.jpg",
+        image: "/images/products/stamping-parts/washer.png",
         imageAlt: "Precision stamped metal washers",
       },
       {
         name: "Steel Stampings",
         slug: "steel-stampings",
-        image: "/images/products/stamping-parts/steel-stampings.jpg",
+        image: "/images/products/stamping-parts/steel-stampings.png",
         imageAlt: "Precision steel stamped components",
       },
       {
         name: "Copper Stampings",
         slug: "copper-stampings",
-        image: "/images/products/stamping-parts/copper-stampings.jpg",
+        image: "/images/products/stamping-parts/copper-stampings.png",
         imageAlt: "Precision copper stamped components",
       },
       {
         name: "Brass Stampings",
         slug: "brass-stampings",
-        image: "/images/products/stamping-parts/brass-stampings.jpg",
+        image: "/images/products/stamping-parts/brass-stampings.png",
         imageAlt: "Precision brass stamped components",
       },
     ],
@@ -247,31 +260,33 @@ export const PRODUCT_CATALOGUE: ProductCategory[] = [
     name: "Fasteners & Fixings",
     image: "/images/product_images/brass_fasteners_fixings.jpg",
     imageAlt: "Brass nuts, bolts, anchors, washers and screws",
+    heroImage: "/images/products/categories/Fasteners & Fixings.png",
+    heroImageAlt: "Brass fasteners, nuts, bolts, anchors, precision washers and screws",
     description:
       "Corrosion-resistant precision fasteners and fixings in brass for structural, electrical and industrial joining applications.",
     subProducts: [
       {
         name: "Brass Anchors (Drop-in, Wedge, Expansion)",
         slug: "brass-anchors",
-        image: "/images/products/fasteners-fixings/brass-anchors.jpg",
+        image: "/images/products/fasteners-fixings/brass-anchors.png",
         imageAlt: "Brass drop-in, wedge and expansion anchors",
       },
       {
         name: "Washers",
         slug: "washers",
-        image: "/images/products/fasteners-fixings/washers.jpg",
+        image: "/images/products/fasteners-fixings/washers.png",
         imageAlt: "Brass precision washers",
       },
       {
         name: "Screws",
         slug: "screws",
-        image: "/images/products/fasteners-fixings/screws.jpg",
+        image: "/images/products/fasteners-fixings/screws.png",
         imageAlt: "Brass precision screws",
       },
       {
         name: "Nut Bolts",
         slug: "nut-bolts",
-        image: "/images/products/fasteners-fixings/nut-bolts.jpg",
+        image: "/images/products/fasteners-fixings/nut-bolts.png",
         imageAlt: "Brass nut and bolt fasteners",
       },
     ],
@@ -282,31 +297,33 @@ export const PRODUCT_CATALOGUE: ProductCategory[] = [
     name: "High Precision Components",
     image: "/images/product_images/high_precision_components.jpg",
     imageAlt: "High precision small machined brass and metal components",
+    heroImage: "/images/products/categories/HIGH-PRECISION-Components.png",
+    heroImageAlt: "High precision machined brass and metal components for automotive, medical and appliance applications",
     description:
       "Small high-precision machined components for appliance, medical, gas and automotive applications.",
     subProducts: [
       {
         name: "Heater & Geyser Parts",
         slug: "heater-geyser-parts",
-        image: "/images/products/high-precision-components/heater-geyser-parts.jpg",
+        image: "/images/products/high-precision-components/heater-geyser-parts.png",
         imageAlt: "High precision brass parts for heaters and geysers",
       },
       {
         name: "Lead Free Brass Medical Parts",
         slug: "lead-free-brass-medical-parts",
-        image: "/images/products/high-precision-components/lead-free-brass-medical-parts.jpg",
+        image: "/images/products/high-precision-components/lead-free-brass-medical-parts.png",
         imageAlt: "Lead-free brass precision medical components",
       },
       {
         name: "Gas Fittings",
         slug: "gas-fittings",
-        image: "/images/products/high-precision-components/gas-fittings.jpg",
+        image: "/images/products/high-precision-components/gas-fittings.png",
         imageAlt: "High precision brass gas fittings",
       },
       {
         name: "Auto Parts",
         slug: "auto-parts",
-        image: "/images/products/high-precision-components/auto-parts.jpg",
+        image: "/images/products/high-precision-components/auto-parts.png",
         imageAlt: "High precision brass automotive components",
       },
     ],
@@ -317,25 +334,27 @@ export const PRODUCT_CATALOGUE: ProductCategory[] = [
     name: "Copper, Bronze & Gunmetal Components",
     image: "/images/product_images/copper_bronze_gunmetal.jpg",
     imageAlt: "Copper, bronze and gunmetal machined components",
+    heroImage: "/images/products/categories/copper-bronze-gunmetal-components.png",
+    heroImageAlt: "Precision machined copper, bronze and gunmetal non-ferrous alloy components",
     description:
       "Non-ferrous specialty alloy components offering high electrical conductivity, thermal performance and seawater corrosion resistance.",
     subProducts: [
       {
         name: "Gunmetal Components",
         slug: "gunmetal-components",
-        image: "/images/products/copper-bronze-gunmetal/gunmetal-components.jpg",
+        image: "/images/products/copper-bronze-gunmetal/gunmetal-components.png",
         imageAlt: "Precision machined gunmetal components",
       },
       {
         name: "Copper Components",
         slug: "copper-components",
-        image: "/images/products/copper-bronze-gunmetal/copper-components.jpg",
+        image: "/images/products/copper-bronze-gunmetal/copper-components.png",
         imageAlt: "Precision machined copper components",
       },
       {
         name: "Bronze Components",
         slug: "bronze-components",
-        image: "/images/products/copper-bronze-gunmetal/bronze-components.jpg",
+        image: "/images/products/copper-bronze-gunmetal/bronze-components.png",
         imageAlt: "Precision machined bronze components",
       },
     ],
