@@ -33,18 +33,20 @@ function SectionHead({
   sub,
   light = false,
   center = true,
+  hideBar = false,
 }: {
   tag?: string;
   title: string;
   sub?: string;
   light?: boolean;
   center?: boolean;
+  hideBar?: boolean;
 }) {
   return (
-    <div className={`mb-12 lg:mb-16 ${center ? "text-center" : ""}`}>
+    <div className={`mb-7 sm:mb-10 lg:mb-16 ${center ? "text-center" : ""}`}>
       {tag && <Tag>{tag}</Tag>}
       <h2
-        className={`mt-4 text-3xl sm:text-4xl md:text-5xl font-black uppercase leading-[1.15] tracking-tight ${
+        className={`mt-4 sm:mt-5 text-2xl sm:text-3xl md:text-5xl font-black uppercase leading-[1.15] tracking-tight ${
           light ? "text-white" : "text-[#252A2D]"
         }`}
         style={{ fontFamily: "var(--font-serif-display)" }}
@@ -53,14 +55,16 @@ function SectionHead({
       </h2>
       {sub && (
         <p
-          className={`mt-3.5 text-sm sm:text-base max-w-2xl leading-relaxed ${
+          className={`mt-2.5 sm:mt-3.5 text-xs sm:text-sm md:text-base max-w-xl leading-relaxed ${
             light ? "text-zinc-400" : "text-[#667177]"
           } ${center ? "mx-auto" : ""}`}
         >
           {sub}
         </p>
       )}
-      <div className={`mt-4 w-12 h-1 bg-[#1E6D95] ${center ? "mx-auto" : ""}`} />
+      {!hideBar && (
+        <div className={`mt-3 sm:mt-4 w-12 h-1 bg-[#1E6D95] ${center ? "mx-auto" : ""}`} />
+      )}
     </div>
   );
 }
@@ -108,7 +112,7 @@ export default function ContactPage() {
   return (
     <>
       {/* 1. HERO ──────────────────────────────────────────── */}
-      <section className="relative min-h-[500px] sm:min-h-[580px] lg:h-[760px] flex items-center bg-primary-dark overflow-hidden">
+      <section className="relative min-h-[460px] sm:min-h-[580px] lg:h-[760px] flex items-center bg-primary-dark overflow-hidden">
         <Image
           src="/images/header_images/contact.jpeg"
           alt="Contact New Perfect Incorporation & Request a Quote"
@@ -121,7 +125,7 @@ export default function ContactPage() {
         <div className="absolute inset-0 bg-primary-dark/25" />
         <div className="absolute inset-y-0 right-[20%] w-px bg-white/5 hidden xl:block" />
 
-        <div className="relative z-10 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-28 pb-16 sm:pt-32 sm:pb-20 lg:pt-36 lg:pb-24">
+        <div className="relative z-10 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-28 pb-14 sm:pt-32 sm:pb-20 lg:pt-36 lg:pb-24">
           <div className="max-w-2xl space-y-4 sm:space-y-5 lg:space-y-6">
             <Tag>Get Quotation</Tag>
             <h1
@@ -150,77 +154,92 @@ export default function ContactPage() {
       </section>
 
       {/* 2. CONTACT INFORMATION CARDS ────────────────────── */}
-      <section className="py-20 lg:py-24 bg-bg-warm">
+      <section className="py-12 sm:py-16 lg:py-24 bg-bg-warm">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead
             tag="Corporate Contacts"
             title="Contact Information"
             sub="Get in touch directly with our sales and engineering team."
+            hideBar={true}
           />
 
-          <div className="w-full mb-6">
+          {/* Meet Patel Card */}
+          <div className="w-full mb-4 sm:mb-6">
             {CONTACTS.map((person) => (
               <div
                 key={person.name}
-                className="bg-white border border-zinc-200 hover:border-accent-gold p-6 sm:p-8 transition-all duration-300 relative group overflow-hidden flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+                className="bg-white border border-zinc-200 hover:border-[#1E6D95] p-5 sm:p-8 transition-all duration-300 relative group overflow-hidden flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4"
               >
-                <div className="absolute top-0 left-0 w-0 h-1 bg-accent-gold group-hover:w-full transition-all duration-500" />
+                <div className="absolute top-0 left-0 w-0 h-1 bg-[#1E6D95] group-hover:w-full transition-all duration-500" />
                 <div>
                   <h3
-                    className="text-lg sm:text-xl font-black uppercase text-primary-dark group-hover:text-accent-gold transition-colors mb-1"
+                    className="text-base sm:text-xl font-black uppercase text-primary-dark group-hover:text-[#1E6D95] transition-colors leading-tight"
                     style={{ fontFamily: "var(--font-serif-display)" }}
                   >
                     {person.name}
                   </h3>
-                  <span className="text-xs font-bold uppercase tracking-wider text-zinc-400 block">
+                  <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-zinc-400 block mt-1">
                     {person.label}
                   </span>
                 </div>
                 <a
                   href={`tel:${person.phone.replace(/\s/g, "")}`}
-                  className="inline-flex items-center gap-3 px-6 py-3 bg-bg-warm group-hover:bg-primary-dark text-primary-dark group-hover:text-accent-gold border border-zinc-200 group-hover:border-primary-dark transition-all text-sm font-bold shrink-0 self-start sm:self-auto"
+                  className="inline-flex items-center gap-2.5 px-4 py-2.5 sm:px-6 sm:py-3 bg-zinc-50 group-hover:bg-[#1E6D95] text-primary-dark group-hover:text-white border border-zinc-200 group-hover:border-[#1E6D95] transition-all text-xs sm:text-sm font-bold min-h-[44px] shrink-0 self-start sm:self-auto font-mono"
+                  aria-label={`Call ${person.name} at ${person.phone}`}
                 >
-                  <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-[#1E6D95] group-hover:text-white shrink-0 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  {person.phone}
+                  <span>{person.phone}</span>
                 </a>
               </div>
             ))}
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* 3-Column Info Cards (Emails, Website, Registered Address) */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
             {/* Emails */}
-            <div className="bg-white border border-zinc-200 p-6 flex flex-col justify-center">
-              <span className="text-[9px] font-black uppercase tracking-widest text-zinc-400 mb-2">
+            <div className="bg-white border border-zinc-200 hover:border-[#1E6D95] p-5 sm:p-6 transition-all duration-300 relative group overflow-hidden flex flex-col justify-center">
+              <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-2 font-mono">
                 Email Addresses
               </span>
-              <div className="space-y-1">
-                <a href="mailto:info@newperfectinc.com" className="text-sm font-bold text-primary-dark hover:text-accent-gold transition-colors block">
+              <div className="space-y-1.5 break-words">
+                <a
+                  href="mailto:info@newperfectinc.com"
+                  className="text-xs sm:text-sm font-bold text-primary-dark hover:text-[#1E6D95] transition-colors block font-mono"
+                >
                   info@newperfectinc.com
                 </a>
-                <a href="mailto:newperfectinc@gmail.com" className="text-sm font-bold text-primary-dark hover:text-accent-gold transition-colors block">
+                <a
+                  href="mailto:newperfectinc@gmail.com"
+                  className="text-xs sm:text-sm font-bold text-primary-dark hover:text-[#1E6D95] transition-colors block font-mono"
+                >
                   newperfectinc@gmail.com
                 </a>
               </div>
             </div>
 
             {/* Website */}
-            <div className="bg-white border border-zinc-200 p-6 flex flex-col justify-center">
-              <span className="text-[9px] font-black uppercase tracking-widest text-zinc-400 mb-2">
+            <div className="bg-white border border-zinc-200 hover:border-[#1E6D95] p-5 sm:p-6 transition-all duration-300 relative group overflow-hidden flex flex-col justify-center">
+              <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-2 font-mono">
                 Corporate Site
               </span>
-              <a href="https://www.newperfectinc.com" className="text-sm font-bold text-primary-dark hover:text-accent-gold transition-colors block">
+              <a
+                href="https://www.newperfectinc.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs sm:text-sm font-bold text-primary-dark hover:text-[#1E6D95] transition-colors block font-mono break-all"
+              >
                 www.newperfectinc.com
               </a>
             </div>
 
             {/* Registered Address */}
-            <div className="bg-white border border-zinc-200 p-6 flex flex-col justify-center">
-              <span className="text-[9px] font-black uppercase tracking-widest text-zinc-400 mb-2">
-                Registered Office Address
+            <div className="bg-white border border-zinc-200 hover:border-[#1E6D95] p-5 sm:p-6 transition-all duration-300 relative group overflow-hidden flex flex-col justify-center">
+              <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-2 font-mono">
+                Registered Office
               </span>
-              <p className="text-xs text-zinc-600 leading-relaxed">
+              <p className="text-xs sm:text-xs text-zinc-600 leading-relaxed font-sans">
                 Plot No. 4145, GIDC Phase 3, Dared, Jamnagar, Gujarat, India – 361004
               </p>
             </div>
@@ -228,8 +247,8 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* 3. RFQ & HELPER PANEL SECTION ────────────────────── */}
-      <section className="py-20 lg:py-24 bg-white border-t border-zinc-100" id="rfq-section">
+      {/* 3. RFQ & HELPER PANEL SECTION */}
+      <section className="py-12 sm:py-16 lg:py-24 bg-white border-t border-zinc-100" id="rfq-section">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
 
@@ -307,14 +326,14 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* 4. FIND US MAP SECTION ───────────────────────────── */}
-      <section className="py-20 lg:py-24 bg-bg-warm border-t border-zinc-200">
+      {/* 4. FIND US MAP SECTION */}
+      <section className="py-12 sm:py-16 lg:py-24 bg-bg-warm border-t border-zinc-200">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header styled with vertical bar */}
-          <div className="flex items-center justify-center gap-3 mb-10 text-center">
-            <span className="w-1.5 h-8 bg-primary-dark rounded-full inline-block" />
+          <div className="flex items-center justify-center gap-3 mb-8 sm:mb-10 text-center">
+            <span className="w-1.5 h-6 sm:h-8 bg-primary-dark rounded-full inline-block" />
             <h2
-              className="text-2xl sm:text-3xl font-black uppercase text-primary-dark tracking-wide"
+              className="text-xl sm:text-2xl md:text-3xl font-black uppercase text-primary-dark tracking-wide"
               style={{ fontFamily: "var(--font-serif-display)" }}
             >
               FIND US
@@ -322,7 +341,7 @@ export default function ContactPage() {
           </div>
 
           {/* Map Card */}
-          <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-zinc-200/80 bg-white h-[480px] sm:h-[540px] w-full">
+          <div className="relative rounded-xl sm:rounded-3xl overflow-hidden shadow-xl sm:shadow-2xl border border-zinc-200/80 bg-white h-[400px] sm:h-[480px] lg:h-[540px] w-full">
             {/* Google Map iframe */}
             <iframe
               title="New Perfect Incorporation Location"
@@ -334,39 +353,39 @@ export default function ContactPage() {
             />
 
             {/* Floating Info Box */}
-            <div className="absolute top-0 left-0 max-w-xs sm:max-w-sm w-full bg-white p-5 sm:p-7 rounded-br-2xl rounded-tl-2xl sm:rounded-tl-3xl shadow-2xl border-r border-b border-zinc-200 z-20 space-y-3">
+            <div className="absolute top-0 left-0 max-w-[280px] sm:max-w-sm w-full bg-white p-4 sm:p-7 rounded-br-xl sm:rounded-br-2xl rounded-tl-xl sm:rounded-tl-3xl shadow-xl sm:shadow-2xl border-r border-b border-zinc-200 z-20 space-y-2 sm:space-y-3">
               <div>
                 <h3
-                  className="text-base sm:text-lg font-black uppercase text-primary-dark leading-snug"
+                  className="text-sm sm:text-lg font-black uppercase text-primary-dark leading-snug"
                   style={{ fontFamily: "var(--font-serif-display)" }}
                 >
                   New Perfect Incorporation
                 </h3>
-                <p className="text-xs text-zinc-500 mt-1 leading-relaxed">
+                <p className="text-[11px] sm:text-xs text-zinc-500 mt-0.5 sm:mt-1 leading-relaxed">
                   Plot No. 4145, GIDC Phase 3, Dared, Jamnagar, Gujarat, India – 361004
                 </p>
               </div>
 
-              <div className="flex items-center gap-1.5 text-xs text-amber-600 font-bold">
+              <div className="flex items-center gap-1.5 text-[11px] sm:text-xs text-amber-600 font-bold">
                 <span>5.0</span>
                 <div className="flex text-amber-400 gap-0.5">
                   {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20">
+                    <svg key={i} className="w-3 sm:w-3.5 h-3 sm:h-3.5 fill-current" viewBox="0 0 20 20">
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
                   ))}
                 </div>
-                <span className="text-zinc-400 font-normal text-[11px]">(7 Reviews on Google)</span>
+                <span className="text-zinc-400 font-normal text-[10px] sm:text-[11px]">(7 Reviews)</span>
               </div>
 
-              <div className="pt-1 flex items-center gap-2">
+              <div className="pt-0.5 sm:pt-1 flex items-center gap-2">
                 <a
                   href="https://maps.app.goo.gl/vSrZ6MaU2pysBcNQ8"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary-dark hover:bg-accent-gold text-white text-xs font-black uppercase tracking-widest rounded-lg shadow transition-all hover:scale-[1.02]"
+                  className="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 py-2 sm:px-5 sm:py-2.5 bg-primary-dark hover:bg-accent-gold text-white text-[10px] sm:text-xs font-black uppercase tracking-widest rounded-lg shadow transition-all hover:scale-[1.02]"
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>
                   Open in Maps
@@ -377,8 +396,8 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* 5. FINAL CTA ─────────────────────────────────────── */}
-      <section className="relative py-20 lg:py-24 bg-primary-dark overflow-hidden">
+      {/* 5. FINAL CTA */}
+      <section className="relative py-12 sm:py-16 lg:py-24 bg-primary-dark overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-10"
           style={{ backgroundImage: "url('/images/header_images/contact.jpeg')" }}
@@ -387,28 +406,28 @@ export default function ContactPage() {
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-gold/50 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-gold/50 to-transparent" />
 
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4 sm:space-y-6">
           <Tag>Fast Response Team</Tag>
           <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-[1.15]"
+            className="text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tight text-white leading-[1.15]"
             style={{ fontFamily: "var(--font-serif-display)" }}
           >
             Precision Starts With the <span className="text-accent-gold">Right Conversation</span>
           </h2>
           <div className="w-12 h-1 bg-accent-gold mx-auto" />
-          <p className="text-sm sm:text-base text-zinc-300 leading-relaxed max-w-xl mx-auto">
+          <p className="text-xs sm:text-sm md:text-base text-zinc-300 leading-relaxed max-w-xl mx-auto">
             Whether you need a single custom part or ongoing production supply, our team is ready to review your requirement.
           </p>
-          <div className="flex flex-wrap gap-4 justify-center pt-2">
+          <div className="flex flex-wrap gap-3 sm:gap-4 justify-center pt-2">
             <a
               href="mailto:info@newperfectinc.com"
-              className="px-9 py-4 text-xs font-mono font-bold uppercase tracking-[0.2em] text-white bg-accent-gold hover:bg-accent-gold-hover border border-accent-gold transition-colors hover:shadow-xl hover:shadow-accent-gold/20"
+              className="px-6 sm:px-9 py-3 sm:py-4 text-xs font-mono font-bold uppercase tracking-[0.15em] sm:tracking-[0.2em] text-white bg-accent-gold hover:bg-accent-gold-hover border border-accent-gold transition-colors hover:shadow-xl hover:shadow-accent-gold/20"
             >
               Email Us
             </a>
             <a
               href="tel:+917817942727"
-              className="px-9 py-4 text-xs font-mono font-bold uppercase tracking-[0.2em] text-white border border-white/30 hover:border-accent-gold hover:text-accent-gold transition-colors"
+              className="px-6 sm:px-9 py-3 sm:py-4 text-xs font-mono font-bold uppercase tracking-[0.15em] sm:tracking-[0.2em] text-white border border-white/30 hover:border-accent-gold hover:text-accent-gold transition-colors"
             >
               Call Sales
             </a>
