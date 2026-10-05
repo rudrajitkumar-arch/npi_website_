@@ -31,18 +31,20 @@ function SectionHead({
   sub,
   light = false,
   center = true,
+  hideBar = false,
 }: {
   tag?: string;
   title: string;
   sub?: string;
   light?: boolean;
   center?: boolean;
+  hideBar?: boolean;
 }) {
   return (
-    <div className={`mb-12 lg:mb-16 ${center ? "text-center" : ""}`}>
+    <div className={`mb-7 sm:mb-10 lg:mb-16 ${center ? "text-center" : ""}`}>
       {tag && <Tag>{tag}</Tag>}
       <h2
-        className={`mt-4 text-3xl sm:text-4xl md:text-5xl font-black uppercase leading-[1.15] tracking-tight ${light ? "text-white" : "text-[#252A2D]"
+        className={`mt-4 sm:mt-5 text-2xl sm:text-3xl md:text-5xl font-black uppercase leading-[1.15] tracking-tight ${light ? "text-white" : "text-[#252A2D]"
           }`}
         style={{ fontFamily: "var(--font-serif-display)" }}
       >
@@ -50,13 +52,13 @@ function SectionHead({
       </h2>
       {sub && (
         <p
-          className={`mt-3.5 text-sm sm:text-base max-w-2xl leading-relaxed ${light ? "text-zinc-400" : "text-[#667177]"
+          className={`mt-2.5 sm:mt-3.5 text-xs sm:text-sm md:text-base max-w-xl leading-relaxed ${light ? "text-zinc-400" : "text-[#667177]"
             } ${center ? "mx-auto" : ""}`}
         >
           {sub}
         </p>
       )}
-      <div className={`mt-4 w-12 h-1 bg-[#1E6D95] ${center ? "mx-auto" : ""}`} />
+      {!hideBar && <div className={`mt-4 w-12 h-1 bg-[#1E6D95] ${center ? "mx-auto" : ""}`} />}
     </div>
   );
 }
@@ -318,12 +320,13 @@ export default function AboutPage() {
       </section>
 
       {/* 4. TIMELINE ──────────────────────────────────────── */}
-      <section className="py-20 lg:py-24 bg-bg-warm border-t border-zinc-200">
+      <section className="py-10 sm:py-16 lg:py-24 bg-bg-warm border-t border-zinc-200">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead
             tag="Our Story"
             title="Our Journey"
             sub="From a small workshop in Jamnagar to a 50,000 Sq Ft precision manufacturing campus"
+            hideBar={true}
           />
 
           {/* Desktop timeline: horizontal */}
@@ -355,27 +358,48 @@ export default function AboutPage() {
           </div>
 
           {/* Mobile timeline: vertical */}
-          <div className="md:hidden relative pl-8">
-            <div className="absolute left-3 top-0 bottom-0 w-px bg-accent-gold/30" />
-            <div className="space-y-8">
-              {TIMELINE.map((t) => (
-                <div key={t.year} className="relative group">
-                  {/* Dot */}
-                  <div className="absolute -left-[21px] top-1 w-4 h-4 rounded-full border-2 border-accent-gold bg-bg-warm group-hover:bg-accent-gold transition-colors duration-300" />
-                  <div className="bg-white border border-zinc-200 group-hover:border-accent-gold p-5 transition-all duration-300">
-                    <span className="text-xs font-black uppercase tracking-widest text-accent-gold block mb-1">
-                      {t.year}
-                    </span>
-                    <h3
-                      className="text-sm font-black uppercase text-primary-dark mb-2 group-hover:text-accent-gold transition-colors"
-                      style={{ fontFamily: "var(--font-serif-display)" }}
-                    >
-                      {t.title}
-                    </h3>
-                    <p className="text-[11px] text-zinc-500 leading-relaxed">{t.desc}</p>
+          <div className="md:hidden relative">
+            <div className="relative">
+              {TIMELINE.map((t, i) => {
+                const isLast = i === TIMELINE.length - 1;
+                return (
+                  <div
+                    key={t.year}
+                    className={`relative flex items-start gap-3.5 sm:gap-4 ${
+                      !isLast ? "pb-5 sm:pb-6" : ""
+                    }`}
+                  >
+                    {/* Timeline rail with node and connector */}
+                    <div className="relative flex flex-col items-center flex-shrink-0 self-stretch">
+                      {/* Circular node */}
+                      <div className="w-5 h-5 rounded-full border-2 border-[#1E6D95] bg-[#FDFBF7] flex items-center justify-center z-10 mt-1 shadow-xs">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#1E6D95]" />
+                      </div>
+
+                      {/* Connecting line to next node */}
+                      {!isLast && (
+                        <div className="w-[2px] bg-[#1E6D95]/25 flex-grow mt-1" />
+                      )}
+                    </div>
+
+                    {/* Timeline Card */}
+                    <div className="flex-1 bg-white border border-zinc-200 hover:border-[#1E6D95]/50 p-4 sm:p-5 transition-all duration-300 shadow-xs">
+                      <span className="text-[17px] sm:text-[19px] font-black uppercase tracking-wider text-[#1E6D95] block mb-1 leading-tight">
+                        {t.year}
+                      </span>
+                      <h3
+                        className="text-sm sm:text-base font-black uppercase text-primary-dark mb-1.5 leading-snug"
+                        style={{ fontFamily: "var(--font-serif-display)" }}
+                      >
+                        {t.title}
+                      </h3>
+                      <p className="text-xs sm:text-[13px] text-zinc-600 leading-relaxed">
+                        {t.desc}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
