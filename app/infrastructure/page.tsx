@@ -317,22 +317,27 @@ export default function InfrastructurePage() {
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-px bg-white/10 max-w-4xl mx-auto">
-            {MACHINERY_HIGHLIGHTS.map((mach) => (
-              <div
-                key={mach.label}
-                className="group bg-primary-dark hover:bg-primary-light p-6 flex flex-col justify-center items-center text-center transition-colors duration-200 ease-out"
-              >
-                <span
-                  className="text-3xl font-black text-accent-gold group-hover:text-white transition-colors duration-200 ease-out leading-none mb-1.5"
-                  style={{ fontFamily: "var(--font-serif-display)" }}
+            {MACHINERY_HIGHLIGHTS.map((mach, i, arr) => {
+              const isLastOdd = i === arr.length - 1 && arr.length % 2 !== 0;
+              return (
+                <div
+                  key={mach.label}
+                  className={`group bg-primary-dark hover:bg-primary-light p-6 flex flex-col justify-center items-center text-center transition-colors duration-200 ease-out ${
+                    isLastOdd ? "col-span-2 sm:col-span-1" : ""
+                  }`}
                 >
-                  {mach.val}
-                </span>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 group-hover:text-white transition-colors duration-200 ease-out leading-snug">
-                  {mach.label}
-                </span>
-              </div>
-            ))}
+                  <span
+                    className="text-3xl font-black text-accent-gold group-hover:text-white transition-colors duration-200 ease-out leading-none mb-1.5"
+                    style={{ fontFamily: "var(--font-serif-display)" }}
+                  >
+                    {mach.val}
+                  </span>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 group-hover:text-white transition-colors duration-200 ease-out leading-snug">
+                    {mach.label}
+                  </span>
+                </div>
+              );
+            })}
           </div>
 
           <Link
