@@ -558,7 +558,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. CERTIFICATIONS ─────────────────────────────────── */}
+      {/* 8. QUALITY VISUAL GALLERY ────────────────────────── */}
+      <HomeQualityGallery />
+
+      {/* 9. CERTIFICATIONS ─────────────────────────────────── */}
       <section className="py-14 lg:py-16 bg-bg-warm border-t border-zinc-200">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.25em] text-zinc-400 text-center mb-8">
@@ -591,8 +594,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 9. QUALITY IN ACTION (VISUAL GALLERY) ──────────────── */}
-      <HomeQualityGallery />
 
       {/* 10. FINAL CTA ─────────────────────────────────────── */}
       <section className="relative py-20 lg:py-24 bg-primary-dark overflow-hidden">
