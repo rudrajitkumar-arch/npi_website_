@@ -88,18 +88,8 @@ const GALLERY_ITEMS = [
   },
   {
     img: "/images/product_images/cnc-turned-components.jpg",
-    title: "CNC & Traub Machining Cells",
+    title: "Traub Machining Cells",
     desc: "Precision turning centers processing complex tight-tolerance components",
-  },
-  {
-    img: "/images/product_images/brass_inserts.jpg",
-    title: "Moulding Inserts Line",
-    desc: "High-speed knurled and threaded inserts production for plastic and automotive OEMs",
-  },
-  {
-    img: "/images/product_images/brass_fasteners_fixings.jpg",
-    title: "Fasteners & Hardware Line",
-    desc: "Precision anchors, bolts, studs, and custom screws with controlled thread pitch",
   },
   {
     img: "/images/product_images/brass_cable_glands_accessories.jpg",
@@ -322,9 +312,8 @@ export default function InfrastructurePage() {
               return (
                 <div
                   key={mach.label}
-                  className={`group bg-primary-dark hover:bg-primary-light p-6 flex flex-col justify-center items-center text-center transition-colors duration-200 ease-out ${
-                    isLastOdd ? "col-span-2 sm:col-span-1" : ""
-                  }`}
+                  className={`group bg-primary-dark hover:bg-primary-light p-6 flex flex-col justify-center items-center text-center transition-colors duration-200 ease-out ${isLastOdd ? "col-span-2 sm:col-span-1" : ""
+                    }`}
                 >
                   <span
                     className="text-3xl font-black text-accent-gold group-hover:text-white transition-colors duration-200 ease-out leading-none mb-1.5"
