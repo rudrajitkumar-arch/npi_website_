@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import QualityInAction from "@/components/QualityInAction";
 
 export const metadata: Metadata = {
   title: "Quality & Certifications",
@@ -325,7 +326,10 @@ export default function QualityPage() {
         </div>
       </section>
 
-      {/* 4. BUSINESS PROCESS ──────────────────────────────── */}
+      {/* 4. QUALITY IN ACTION (FACILITY & OPERATIONS SHOWCASE) ── */}
+      <QualityInAction />
+
+      {/* 5. BUSINESS PROCESS ──────────────────────────────── */}
       <section className="py-20 lg:py-24 bg-bg-warm border-t border-zinc-200">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHead
