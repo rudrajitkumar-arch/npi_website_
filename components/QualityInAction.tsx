@@ -1,163 +1,136 @@
 "use client";
 
 /**
- * QualityInAction — Editorial Facility & Operations Showcase
+ * QualityInAction — Editorial Facility & Operations Gallery
  *
  * Placed in /quality:
  *  After: METROLOGY TOOLKIT
  *  Before: BUSINESS PROCESS
  *
- * Exactly 7 Image Slots:
- *  - Group 01: QUALITY INSPECTION LAB (1 slot)
- *  - Group 02: ADVANCED MACHINERY FLOOR (2 slots)
- *  - Group 03: MODERN OFFICE & ENGINEERING (4 slots)
+ * Exact 7 Image Slots across 3 groups:
+ *  - 01: QUALITY INSPECTION LAB (1 image)
+ *  - 02: ADVANCED MACHINERY FLOOR (2 images, 67/33 hierarchy)
+ *  - 03: MODERN OFFICE & ENGINEERING (4 images, editorial collage)
  *
- * 100% visible clean industrial placeholders with zero layout shift.
- * Replacing `src: null` with image paths auto-renders Next.js Image.
+ * Clean, architectural placeholders without development noise.
+ * Data-driven: replace `image: null` with `image: "/path.jpg"` to activate real images.
  */
 
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 
 /* ─── DATA TYPES ─────────────────────────────────────────── */
-export interface QualitySlotItem {
+export interface QualityVisualItem {
   id: string;
-  slotNum: string; // e.g. "01/07"
-  src: string | null;
+  image: string | null;
   alt: string;
-  label: string;
   caption?: string;
   groupTitle: string;
-  recommendedSize: string;
 }
 
-export interface QualityGroup {
-  id: string;
-  num: string;
+export interface QualityVisualGroup {
+  number: string;
   title: string;
-  desc: string;
-  slots: QualitySlotItem[];
+  description: string;
+  images: QualityVisualItem[];
 }
 
-/* ─── DATA SOURCE (EXACTLY 7 SLOTS) ──────────────────────── */
-export const QUALITY_IN_ACTION_GROUPS: QualityGroup[] = [
+/* ─── DATA SOURCE (EXACTLY 7 IMAGE SLOTS) ────────────────── */
+export const QUALITY_VISUAL_GROUPS: QualityVisualGroup[] = [
   {
-    id: "quality-lab",
-    num: "01",
+    number: "01",
     title: "QUALITY INSPECTION LAB",
-    desc: "Dedicated inspection and metrology facilities supporting dimensional checks, quality verification, and precision component control.",
-    slots: [
+    description:
+      "Dedicated inspection and metrology facilities supporting dimensional checks, quality verification, and precision component control.",
+    images: [
       {
-        id: "slot-lab-1",
-        slotNum: "01/07",
-        src: null, // Replace with real image: e.g. "/images/quality/quality-lab.jpg"
-        alt: "Dedicated quality inspection laboratory with calibrated measuring equipment and metrology tools",
-        label: "Primary Metrology Facility",
-        caption: "Calibrated optical projectors, digital height gauges, and precision measurement bench.",
+        id: "lab-1",
+        image: null, // Replace with e.g. "/images/quality/quality-lab.jpg"
+        alt: "Dedicated quality inspection laboratory and metrology room",
+        caption: "Calibrated optical projectors, digital height gauges, and metrology bench",
         groupTitle: "Quality Inspection Lab",
-        recommendedSize: "1920 × 900 px",
       },
     ],
   },
   {
-    id: "machinery-floor",
-    num: "02",
+    number: "02",
     title: "ADVANCED MACHINERY FLOOR",
-    desc: "A dedicated production environment supporting precision machining and high-volume component manufacturing.",
-    slots: [
+    description:
+      "A dedicated production environment supporting precision machining and high-volume component manufacturing.",
+    images: [
       {
-        id: "slot-machinery-1",
-        slotNum: "02/07",
-        src: null, // Replace with: "/images/quality/machinery-floor-1.jpg"
+        id: "machinery-1",
+        image: null, // Replace with e.g. "/images/quality/machinery-floor-1.jpg"
         alt: "Advanced CNC turning and sliding-head machinery production floor",
-        label: "Primary Production Fleet",
-        caption: "High-speed multi-axis CNC turning and automated lathe production lines.",
+        caption: "High-speed multi-axis CNC turning and automated production fleet",
         groupTitle: "Advanced Machinery Floor",
-        recommendedSize: "1600 × 1000 px",
       },
       {
-        id: "slot-machinery-2",
-        slotNum: "03/07",
-        src: null, // Replace with: "/images/quality/machinery-floor-2.jpg"
+        id: "machinery-2",
+        image: null, // Replace with e.g. "/images/quality/machinery-floor-2.jpg"
         alt: "Automated Traub lathe and secondary machining workcells",
-        label: "Machining Workcells",
-        caption: "Dedicated automatic Traub cells feeding tight-tolerance repetitive components.",
+        caption: "Automated lathe workcells for precision repetitive components",
         groupTitle: "Advanced Machinery Floor",
-        recommendedSize: "1400 × 1000 px",
       },
     ],
   },
   {
-    id: "modern-office",
-    num: "03",
+    number: "03",
     title: "MODERN OFFICE & ENGINEERING",
-    desc: "Professional office and engineering spaces supporting planning, coordination, technical review, and day-to-day operations.",
-    slots: [
+    description:
+      "Professional office and engineering spaces supporting planning, coordination, technical review, and day-to-day operations.",
+    images: [
       {
-        id: "slot-office-1",
-        slotNum: "04/07",
-        src: null, // Replace with: "/images/quality/office-1.jpg"
-        alt: "Engineering planning and coordination conference facility",
-        label: "Engineering & Conference Suite",
-        caption: "Central planning room for cross-departmental coordination and drawing review.",
+        id: "office-1",
+        image: null, // Replace with e.g. "/images/quality/office-1.jpg"
+        alt: "Engineering planning and conference suite",
+        caption: "Central engineering coordination and drawing review suite",
         groupTitle: "Modern Office & Engineering",
-        recommendedSize: "1600 × 1050 px",
       },
       {
-        id: "slot-office-2",
-        slotNum: "05/07",
-        src: null, // Replace with: "/images/quality/office-2.jpg"
+        id: "office-2",
+        image: null, // Replace with e.g. "/images/quality/office-2.jpg"
         alt: "CAD design and technical drawing verification desk",
-        label: "CAD & Technical Review",
-        caption: "Computer-aided engineering station for blueprint inspection and tolerances.",
+        caption: "CAD design and component tolerance verification station",
         groupTitle: "Modern Office & Engineering",
-        recommendedSize: "1200 × 900 px",
       },
       {
-        id: "slot-office-3",
-        slotNum: "06/07",
-        src: null, // Replace with: "/images/quality/office-3.jpg"
-        alt: "Production scheduling and operations management workspace",
-        label: "Operations Coordination",
-        caption: "Order tracking, dispatch scheduling, and material batch verification.",
+        id: "office-3",
+        image: null, // Replace with e.g. "/images/quality/office-3.jpg"
+        alt: "Production scheduling and operations coordination workspace",
+        caption: "Operations scheduling and supply chain coordination",
         groupTitle: "Modern Office & Engineering",
-        recommendedSize: "1200 × 900 px",
       },
       {
-        id: "slot-office-4",
-        slotNum: "07/07",
-        src: null, // Replace with: "/images/quality/office-4.jpg"
+        id: "office-4",
+        image: null, // Replace with e.g. "/images/quality/office-4.jpg"
         alt: "Quality administration and export documentation office",
-        label: "Quality Administration",
-        caption: "PPAP documentation, mill test certificates, and compliance records filing.",
+        caption: "Quality administration and PPAP documentation records",
         groupTitle: "Modern Office & Engineering",
-        recommendedSize: "1400 × 750 px",
       },
     ],
   },
 ];
 
-/* ─── ALL 7 SLOTS FLATTENED (FOR LIGHTBOX) ───────────────── */
-const ALL_SLOTS: QualitySlotItem[] = QUALITY_IN_ACTION_GROUPS.flatMap((g) => g.slots);
+/* Flattened 7 items for Lightbox */
+const ALL_VISUAL_ITEMS: QualityVisualItem[] = QUALITY_VISUAL_GROUPS.flatMap((g) => g.images);
 
-/* ─── REUSABLE SLOT VIEW COMPONENT ───────────────────────── */
-interface SlotViewProps {
-  slot: QualitySlotItem;
+/* ─── MINIMAL EDITORIAL IMAGE SLOT COMPONENT ─────────────── */
+interface MinimalSlotProps {
+  item: QualityVisualItem;
   aspectClass?: string;
   className?: string;
-  showOverlay?: boolean;
   priority?: boolean;
   onClick?: () => void;
 }
 
-function QualitySlotView({
-  slot,
+function MinimalImageSlot({
+  item,
   aspectClass = "aspect-[16/10]",
   className = "",
-  showOverlay = true,
   priority = false,
   onClick,
-}: SlotViewProps) {
+}: MinimalSlotProps) {
   return (
     <div
       role="button"
@@ -169,161 +142,114 @@ function QualitySlotView({
           onClick?.();
         }
       }}
-      aria-label={`${slot.groupTitle} - ${slot.label} (Slot ${slot.slotNum})`}
-      className={`group/slot relative overflow-hidden transition-all duration-300 cursor-pointer ${aspectClass} ${className}`}
+      aria-label={`${item.groupTitle}: ${item.alt}`}
+      className={`group relative overflow-hidden bg-[#EFF2F5] border border-zinc-200/80 transition-all duration-300 cursor-pointer ${aspectClass} ${className}`}
     >
-      {slot.src ? (
+      {item.image ? (
         <>
           <Image
-            src={slot.src}
-            alt={slot.alt}
+            src={item.image}
+            alt={item.alt}
             fill
             priority={priority}
             loading={priority ? undefined : "lazy"}
-            className="object-cover transition-transform duration-700 ease-out group-hover/slot:scale-[1.02]"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 60vw, 40vw"
           />
-          {showOverlay && (
-            <div className="absolute inset-0 bg-gradient-to-t from-[#252A2D]/85 via-[#252A2D]/20 to-transparent transition-opacity duration-300 group-hover/slot:from-[#252A2D]/90 pointer-events-none" />
+          {/* Subtle bottom gradient on hover */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+          {item.caption && (
+            <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+              <p className="text-xs font-mono text-zinc-200 truncate">{item.caption}</p>
+            </div>
           )}
-          <div className="absolute top-3 left-3 z-10 pointer-events-none">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[9px] font-mono font-bold uppercase tracking-widest bg-black/60 backdrop-blur-sm text-white border border-white/20">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#1E6D95]" />
-              SLOT {slot.slotNum}
-            </span>
-          </div>
-          <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 text-white pointer-events-none">
-            <span className="text-[10px] font-mono uppercase tracking-[0.18em] text-[#EAF3F7] block mb-1">
-              {slot.label}
-            </span>
-            {slot.caption && (
-              <p className="text-xs text-zinc-300 leading-snug line-clamp-2">{slot.caption}</p>
-            )}
-          </div>
         </>
       ) : (
-        /* ── Visible Clean Industrial Placeholder ── */
-        <div className="absolute inset-0 bg-[#F4F7F9] border-2 border-dashed border-zinc-300 group-hover/slot:border-[#1E6D95] group-hover/slot:bg-[#EDF3F7] transition-all duration-300 flex flex-col items-center justify-center p-4 sm:p-6 text-center select-none">
-          {/* Subtle Precision Corner Crosshairs */}
-          <div className="absolute top-2.5 left-2.5 w-3 h-3 border-t-2 border-l-2 border-zinc-400/80 group-hover/slot:border-[#1E6D95] transition-colors pointer-events-none" />
-          <div className="absolute top-2.5 right-2.5 w-3 h-3 border-t-2 border-r-2 border-zinc-400/80 group-hover/slot:border-[#1E6D95] transition-colors pointer-events-none" />
-          <div className="absolute bottom-2.5 left-2.5 w-3 h-3 border-b-2 border-l-2 border-zinc-400/80 group-hover/slot:border-[#1E6D95] transition-colors pointer-events-none" />
-          <div className="absolute bottom-2.5 right-2.5 w-3 h-3 border-b-2 border-r-2 border-zinc-400/80 group-hover/slot:border-[#1E6D95] transition-colors pointer-events-none" />
-
-          {/* Top Slot Pill */}
-          <div className="absolute top-3 left-3 sm:top-3.5 sm:left-3.5 flex items-center gap-1.5 pointer-events-none">
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[9px] font-mono font-bold uppercase tracking-widest bg-white border border-zinc-300 text-[#1E6D95] shadow-xs group-hover/slot:border-[#1E6D95]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#1E6D95]" />
-              SLOT {slot.slotNum}
-            </span>
-          </div>
-
-          {/* Center Graphic */}
-          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white border border-zinc-300 shadow-sm flex items-center justify-center text-zinc-400 group-hover/slot:text-[#1E6D95] group-hover/slot:border-[#1E6D95] group-hover/slot:scale-105 transition-all duration-300 mb-3">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.5}
-                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-              />
-            </svg>
-          </div>
-
-          {/* Primary Label */}
-          <span className="text-[11px] sm:text-xs font-mono font-bold uppercase tracking-[0.18em] text-[#252A2D] group-hover/slot:text-[#1E6D95] transition-colors">
-            IMAGE PLACEHOLDER
-          </span>
-          <span className="text-[10px] font-mono uppercase tracking-[0.12em] text-zinc-500 mt-1 max-w-[260px] truncate">
-            {slot.label}
-          </span>
-
-          {/* Dimension Tag */}
-          <div className="mt-3 flex items-center gap-2">
-            <span className="inline-flex items-center gap-1 text-[8px] sm:text-[9px] font-mono uppercase tracking-widest text-zinc-500 border border-zinc-200 bg-white px-2 py-0.5">
-              Rec: {slot.recommendedSize}
-            </span>
-            <span className="inline-flex items-center gap-1 text-[8px] sm:text-[9px] font-mono uppercase tracking-widest text-[#1E6D95] bg-[#EAF3F7] px-2 py-0.5 font-bold">
-              Ready for Asset
-            </span>
-          </div>
+        /* Quiet, architectural placeholder */
+        <div className="absolute inset-0 flex items-center justify-center transition-colors duration-300 group-hover:bg-[#E8ECEF]">
+          <svg
+            className="w-5 h-5 text-zinc-400/80 group-hover:text-zinc-500 transition-colors duration-200"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={1.25}
+              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+            />
+          </svg>
         </div>
       )}
     </div>
   );
 }
 
-/* ─── GROUP HEADER COMPONENT ─────────────────────────────── */
+/* ─── GROUP HEADER (EDITORIAL TYPOGRAPHY) ─────────────────── */
 function GroupHeader({
   num,
   title,
   desc,
-  slotCount,
 }: {
   num: string;
   title: string;
   desc: string;
-  slotCount: number;
 }) {
   return (
-    <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 sm:gap-4 pb-4 sm:pb-5 border-b border-zinc-200 mb-5 sm:mb-6">
-      <div className="space-y-1.5 max-w-2xl">
-        <div className="flex items-center gap-2.5">
-          <span className="text-[11px] font-mono font-bold text-[#1E6D95] tracking-[0.2em]">
-            [{num}]
-          </span>
-          <h3
-            className="text-lg sm:text-xl lg:text-2xl font-black uppercase tracking-tight text-[#252A2D]"
-            style={{ fontFamily: "var(--font-serif-display)" }}
-          >
-            {title}
-          </h3>
-        </div>
-        <p className="text-xs sm:text-sm text-[#667177] leading-relaxed">{desc}</p>
-      </div>
-
-      <div className="shrink-0 flex items-center gap-2">
-        <span className="text-[10px] font-mono font-bold uppercase tracking-widest px-2.5 py-1 bg-white border border-zinc-300 text-zinc-600">
-          {slotCount} {slotCount === 1 ? "Image Slot" : "Image Slots"}
+    <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-1.5 md:gap-6 mb-3 sm:mb-3.5">
+      <div className="flex items-baseline gap-2.5 shrink-0">
+        <span className="text-[11px] font-mono font-bold text-[#1E6D95] tracking-widest">
+          {num}
         </span>
+        <h3
+          className="text-base sm:text-lg font-bold uppercase tracking-tight text-[#252A2D]"
+          style={{ fontFamily: "var(--font-serif-display)" }}
+        >
+          {title}
+        </h3>
       </div>
+      <p className="text-xs sm:text-[13px] text-[#667177] max-w-xl leading-relaxed md:text-right">
+        {desc}
+      </p>
     </div>
   );
 }
 
-/* ─── MAIN COMPONENT ─────────────────────────────────────── */
+/* ─── MAIN QUALITY IN ACTION COMPONENT ───────────────────── */
 export default function QualityInAction() {
-  const [lightboxSlot, setLightboxSlot] = useState<QualitySlotItem | null>(null);
+  const [activeItem, setActiveItem] = useState<QualityVisualItem | null>(null);
 
-  const labGroup = QUALITY_IN_ACTION_GROUPS[0];
-  const machineryGroup = QUALITY_IN_ACTION_GROUPS[1];
-  const officeGroup = QUALITY_IN_ACTION_GROUPS[2];
+  const labGroup = QUALITY_VISUAL_GROUPS[0];
+  const machineryGroup = QUALITY_VISUAL_GROUPS[1];
+  const officeGroup = QUALITY_VISUAL_GROUPS[2];
 
-  // Lightbox navigation
-  const currentSlotIndex = lightboxSlot
-    ? ALL_SLOTS.findIndex((s) => s.id === lightboxSlot.id)
+  // Lightbox keyboard handlers
+  const currentIndex = activeItem
+    ? ALL_VISUAL_ITEMS.findIndex((it) => it.id === activeItem.id)
     : -1;
 
   const handleNext = useCallback(() => {
-    if (currentSlotIndex === -1) return;
-    const nextIdx = (currentSlotIndex + 1) % ALL_SLOTS.length;
-    setLightboxSlot(ALL_SLOTS[nextIdx]);
-  }, [currentSlotIndex]);
+    if (currentIndex === -1) return;
+    const nextIdx = (currentIndex + 1) % ALL_VISUAL_ITEMS.length;
+    setActiveItem(ALL_VISUAL_ITEMS[nextIdx]);
+  }, [currentIndex]);
 
   const handlePrev = useCallback(() => {
-    if (currentSlotIndex === -1) return;
-    const prevIdx = (currentSlotIndex - 1 + ALL_SLOTS.length) % ALL_SLOTS.length;
-    setLightboxSlot(ALL_SLOTS[prevIdx]);
-  }, [currentSlotIndex]);
+    if (currentIndex === -1) return;
+    const prevIdx = (currentIndex - 1 + ALL_VISUAL_ITEMS.length) % ALL_VISUAL_ITEMS.length;
+    setActiveItem(ALL_VISUAL_ITEMS[prevIdx]);
+  }, [currentIndex]);
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
-      if (!lightboxSlot) return;
-      if (e.key === "Escape") setLightboxSlot(null);
+      if (!activeItem) return;
+      if (e.key === "Escape") setActiveItem(null);
       if (e.key === "ArrowRight") handleNext();
       if (e.key === "ArrowLeft") handlePrev();
     },
-    [lightboxSlot, handleNext, handlePrev]
+    [activeItem, handleNext, handlePrev]
   );
 
   useEffect(() => {
@@ -334,127 +260,120 @@ export default function QualityInAction() {
   return (
     <section
       id="quality-in-action"
-      className="py-20 lg:py-24 bg-white border-t border-zinc-200 relative overflow-hidden"
+      className="py-16 lg:py-20 bg-[#F8F9FA] border-t border-zinc-200/80 relative"
     >
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* ── SECTION HEADER ── */}
-        <div className="text-center mb-14 lg:mb-18">
-          <span className="inline-flex items-center gap-2 border border-[#1E6D95]/40 bg-[#EAF3F7] px-3 sm:px-4 py-1 sm:py-1.5 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.14em] sm:tracking-[0.22em] text-[#1E6D95]">
+        {/* ── SECTION HEADING (MATCHING QUALITY PAGE CONVENTIONS) ── */}
+        <div className="text-center mb-10 sm:mb-12 lg:mb-14">
+          <span className="inline-flex items-center gap-2 border border-[#1E6D95]/40 bg-[#EAF3F7] px-3.5 py-1 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.16em] sm:tracking-[0.22em] text-[#1E6D95]">
             <span className="w-1.5 h-1.5 rounded-full bg-[#1E6D95]" />
             FACILITY & OPERATIONS
           </span>
           <h2
-            className="mt-4 text-3xl sm:text-4xl md:text-5xl font-black uppercase leading-[1.15] tracking-tight text-[#252A2D]"
+            className="mt-3.5 text-2xl sm:text-3xl lg:text-4xl font-black uppercase text-[#252A2D] tracking-tight"
             style={{ fontFamily: "var(--font-serif-display)" }}
           >
             QUALITY IN ACTION
           </h2>
-          <p className="mt-3.5 text-sm sm:text-base max-w-2xl leading-relaxed text-[#667177] mx-auto">
+          <p className="mt-2.5 text-xs sm:text-sm md:text-base max-w-2xl leading-relaxed text-[#667177] mx-auto">
             Dedicated inspection facilities, precision manufacturing environments, and professional
             engineering spaces support quality at every stage.
           </p>
-          <div className="mt-4 w-12 h-1 bg-[#1E6D95] mx-auto" />
+          <div className="mt-3.5 w-12 h-1 bg-[#1E6D95] mx-auto" />
         </div>
 
-        {/* ── 3 EDITORIAL GROUPS (TOTAL 7 SLOTS) ── */}
-        <div className="space-y-16 lg:space-y-20">
+        {/* ── EDITORIAL IMAGE GROUPS (TOTAL 7 SLOTS) ── */}
+        <div className="space-y-10 sm:space-y-12 lg:space-y-14">
           {/* ═════════════════════════════════════════════════════
-              GROUP 01 — QUALITY INSPECTION LAB (Slot 1 of 7)
+              GROUP 01 — QUALITY INSPECTION LAB (1 Feature Image)
              ═════════════════════════════════════════════════════ */}
           <div>
             <GroupHeader
-              num={labGroup.num}
+              num={labGroup.number}
               title={labGroup.title}
-              desc={labGroup.desc}
-              slotCount={labGroup.slots.length}
+              desc={labGroup.description}
             />
-            {/* Primary Landscape Hero Slot */}
-            <QualitySlotView
-              slot={labGroup.slots[0]}
+            {/* Sleek, wide panoramic feature slot */}
+            <MinimalImageSlot
+              item={labGroup.images[0]}
               aspectClass="aspect-[16/9] sm:aspect-[2.1/1] lg:aspect-[2.5/1]"
-              className="border border-zinc-200 hover:border-[#1E6D95] hover:shadow-lg transition-all duration-300"
-              onClick={() => setLightboxSlot(labGroup.slots[0])}
+              onClick={() => setActiveItem(labGroup.images[0])}
             />
           </div>
 
           {/* ═════════════════════════════════════════════════════
-              GROUP 02 — ADVANCED MACHINERY FLOOR (Slots 2 & 3 of 7)
+              GROUP 02 — ADVANCED MACHINERY FLOOR (2 Images)
              ═════════════════════════════════════════════════════ */}
           <div>
             <GroupHeader
-              num={machineryGroup.num}
+              num={machineryGroup.number}
               title={machineryGroup.title}
-              desc={machineryGroup.desc}
-              slotCount={machineryGroup.slots.length}
+              desc={machineryGroup.description}
             />
-            {/* 2 Complementary Images Grid: 7 / 5 Hierarchy on Desktop */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6">
-              <div className="lg:col-span-7">
-                <QualitySlotView
-                  slot={machineryGroup.slots[0]}
-                  aspectClass="aspect-[16/10] sm:aspect-[16/9] lg:aspect-[16/10]"
-                  className="border border-zinc-200 hover:border-[#1E6D95] hover:shadow-lg transition-all duration-300 h-full"
-                  onClick={() => setLightboxSlot(machineryGroup.slots[0])}
+            {/* 67% Primary / 33% Secondary aligned row */}
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-3.5 sm:gap-4 items-stretch">
+              <div className="md:col-span-8">
+                <MinimalImageSlot
+                  item={machineryGroup.images[0]}
+                  aspectClass="aspect-[16/10] sm:aspect-[16/9]"
+                  className="h-full"
+                  onClick={() => setActiveItem(machineryGroup.images[0])}
                 />
               </div>
-              <div className="lg:col-span-5">
-                <QualitySlotView
-                  slot={machineryGroup.slots[1]}
-                  aspectClass="aspect-[16/10] sm:aspect-[16/9] lg:aspect-[16/10]"
-                  className="border border-zinc-200 hover:border-[#1E6D95] hover:shadow-lg transition-all duration-300 h-full"
-                  onClick={() => setLightboxSlot(machineryGroup.slots[1])}
+              <div className="md:col-span-4">
+                <MinimalImageSlot
+                  item={machineryGroup.images[1]}
+                  aspectClass="aspect-[16/10] sm:aspect-[16/9] md:aspect-auto"
+                  className="h-full"
+                  onClick={() => setActiveItem(machineryGroup.images[1])}
                 />
               </div>
             </div>
           </div>
 
           {/* ═════════════════════════════════════════════════════
-              GROUP 03 — MODERN OFFICE & ENGINEERING (Slots 4, 5, 6, 7 of 7)
+              GROUP 03 — MODERN OFFICE & ENGINEERING (4 Images)
              ═════════════════════════════════════════════════════ */}
           <div>
             <GroupHeader
-              num={officeGroup.num}
+              num={officeGroup.number}
               title={officeGroup.title}
-              desc={officeGroup.desc}
-              slotCount={officeGroup.slots.length}
+              desc={officeGroup.description}
             />
-
-            {/* Editorial 4-slot layout: Featured view + 3 supporting slots */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6">
-              {/* Featured Slot: Slot 04/07 (Desktop Left) */}
-              <div className="lg:col-span-7 flex flex-col">
-                <QualitySlotView
-                  slot={officeGroup.slots[0]}
-                  aspectClass="aspect-[16/10] sm:aspect-[16/9] lg:aspect-[16/11]"
-                  className="border border-zinc-200 hover:border-[#1E6D95] hover:shadow-lg transition-all duration-300 h-full"
-                  onClick={() => setLightboxSlot(officeGroup.slots[0])}
+            {/* Balanced Editorial Collage: 1 Main (~58%) + 3 Supporting (~42%) */}
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-3.5 sm:gap-4 items-stretch">
+              {/* Main Feature Slot */}
+              <div className="md:col-span-7">
+                <MinimalImageSlot
+                  item={officeGroup.images[0]}
+                  aspectClass="aspect-[16/10] sm:aspect-[16/9] md:aspect-auto"
+                  className="h-full min-h-[220px] sm:min-h-[280px]"
+                  onClick={() => setActiveItem(officeGroup.images[0])}
                 />
               </div>
 
-              {/* 3 Supporting Slots: Slots 05, 06, 07 of 7 (Desktop Right) */}
-              <div className="lg:col-span-5 flex flex-col gap-4">
+              {/* 3 Supporting Slots in Compact Block */}
+              <div className="md:col-span-5 flex flex-col gap-3.5 sm:gap-4 justify-between">
                 {/* 2 Tiles Row */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <QualitySlotView
-                    slot={officeGroup.slots[1]}
+                <div className="grid grid-cols-2 gap-3.5 sm:gap-4">
+                  <MinimalImageSlot
+                    item={officeGroup.images[1]}
                     aspectClass="aspect-[4/3]"
-                    className="border border-zinc-200 hover:border-[#1E6D95] hover:shadow-md transition-all duration-300"
-                    onClick={() => setLightboxSlot(officeGroup.slots[1])}
+                    onClick={() => setActiveItem(officeGroup.images[1])}
                   />
-                  <QualitySlotView
-                    slot={officeGroup.slots[2]}
+                  <MinimalImageSlot
+                    item={officeGroup.images[2]}
                     aspectClass="aspect-[4/3]"
-                    className="border border-zinc-200 hover:border-[#1E6D95] hover:shadow-md transition-all duration-300"
-                    onClick={() => setLightboxSlot(officeGroup.slots[2])}
+                    onClick={() => setActiveItem(officeGroup.images[2])}
                   />
                 </div>
 
-                {/* Bottom Supporting Wide Slot */}
-                <QualitySlotView
-                  slot={officeGroup.slots[3]}
-                  aspectClass="aspect-[16/9] sm:aspect-[2/1] lg:aspect-[2.1/1]"
-                  className="border border-zinc-200 hover:border-[#1E6D95] hover:shadow-md transition-all duration-300 flex-grow"
-                  onClick={() => setLightboxSlot(officeGroup.slots[3])}
+                {/* Bottom Supporting Slot */}
+                <MinimalImageSlot
+                  item={officeGroup.images[3]}
+                  aspectClass="aspect-[16/7] sm:aspect-[2.2/1]"
+                  className="flex-grow"
+                  onClick={() => setActiveItem(officeGroup.images[3])}
                 />
               </div>
             </div>
@@ -462,94 +381,84 @@ export default function QualityInAction() {
         </div>
       </div>
 
-      {/* ── LIGHTBOX MODAL ── */}
-      {lightboxSlot && (
+      {/* ── MINIMAL EDITORIAL LIGHTBOX ── */}
+      {activeItem && (
         <div
           role="dialog"
           aria-modal="true"
-          aria-label={`Inspection view: ${lightboxSlot.label}`}
-          className="fixed inset-0 z-50 bg-[#0B1520]/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
-          onClick={() => setLightboxSlot(null)}
+          aria-label={activeItem.alt}
+          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6"
+          onClick={() => setActiveItem(null)}
         >
-          {/* Modal Container */}
           <div
-            className="relative max-w-5xl w-full bg-[#18232F] border border-white/15 p-4 sm:p-6 shadow-2xl flex flex-col gap-4"
+            className="relative max-w-4xl w-full bg-[#141A1F] border border-white/10 p-3 sm:p-5 shadow-2xl flex flex-col gap-3"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Modal Header */}
-            <div className="flex items-center justify-between pb-3 border-b border-white/10 text-white">
-              <div className="flex items-center gap-2">
-                <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#1E6D95] bg-[#EAF3F7] px-2 py-0.5">
-                  SLOT {lightboxSlot.slotNum}
-                </span>
-                <span className="text-xs font-mono uppercase tracking-wider text-zinc-400">
-                  {lightboxSlot.groupTitle}
-                </span>
-              </div>
+            {/* Header bar */}
+            <div className="flex items-center justify-between pb-2 border-b border-white/10 text-white">
+              <span className="text-[11px] font-mono tracking-wider text-zinc-400 uppercase">
+                {activeItem.groupTitle}
+              </span>
               <button
                 type="button"
-                onClick={() => setLightboxSlot(null)}
-                aria-label="Close Lightbox"
-                className="w-8 h-8 rounded-full border border-white/20 hover:border-white text-zinc-300 hover:text-white flex items-center justify-center transition-colors"
+                onClick={() => setActiveItem(null)}
+                aria-label="Close"
+                className="w-7 h-7 text-zinc-400 hover:text-white flex items-center justify-center transition-colors text-sm"
               >
                 ✕
               </button>
             </div>
 
-            {/* Modal Image Frame / Placeholder */}
-            <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full bg-[#0D1824] border border-white/10 overflow-hidden flex items-center justify-center">
-              {lightboxSlot.src ? (
+            {/* Frame */}
+            <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full bg-[#0D1216] border border-white/5 overflow-hidden flex items-center justify-center">
+              {activeItem.image ? (
                 <Image
-                  src={lightboxSlot.src}
-                  alt={lightboxSlot.alt}
+                  src={activeItem.image}
+                  alt={activeItem.alt}
                   fill
                   className="object-contain"
                   sizes="100vw"
                 />
               ) : (
-                <div className="text-center p-6 text-zinc-400 flex flex-col items-center justify-center">
-                  <div className="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center mb-3 text-[#1E6D95]">
-                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                      />
-                    </svg>
-                  </div>
-                  <span className="text-sm font-mono font-bold uppercase tracking-widest text-white">
-                    SLOT {lightboxSlot.slotNum} PLACEHOLDER
-                  </span>
-                  <p className="text-xs font-mono uppercase text-zinc-400 mt-1">
-                    {lightboxSlot.label}
-                  </p>
-                  <p className="text-xs text-zinc-400 mt-2 max-w-md">{lightboxSlot.caption}</p>
-                  <span className="mt-4 text-[10px] font-mono uppercase tracking-widest text-[#1E6D95] border border-[#1E6D95]/40 bg-[#1E6D95]/10 px-3 py-1">
-                    Awaiting Image: {lightboxSlot.recommendedSize}
-                  </span>
+                <div className="text-center p-6 text-zinc-500 flex flex-col items-center">
+                  <svg
+                    className="w-8 h-8 text-zinc-600 mb-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.25}
+                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
+                  </svg>
+                  <p className="text-xs font-mono uppercase text-zinc-400">{activeItem.alt}</p>
                 </div>
               )}
             </div>
 
-            {/* Modal Footer Controls */}
-            <div className="flex items-center justify-between pt-2 border-t border-white/10 text-white">
+            {/* Caption & Controls */}
+            <div className="flex items-center justify-between pt-1 text-xs text-zinc-400">
               <button
                 type="button"
                 onClick={handlePrev}
-                className="text-xs font-mono uppercase tracking-wider text-zinc-400 hover:text-white flex items-center gap-1.5 transition-colors"
+                className="hover:text-white transition-colors font-mono uppercase text-[10px] tracking-wider"
               >
-                ← Prev Slot
+                ← Prev
               </button>
-              <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">
-                Use Arrow Keys • Esc to Close
-              </span>
+              {activeItem.caption && (
+                <span className="text-[11px] text-zinc-400 truncate max-w-md hidden sm:inline">
+                  {activeItem.caption}
+                </span>
+              )}
               <button
                 type="button"
                 onClick={handleNext}
-                className="text-xs font-mono uppercase tracking-wider text-zinc-400 hover:text-white flex items-center gap-1.5 transition-colors"
+                className="hover:text-white transition-colors font-mono uppercase text-[10px] tracking-wider"
               >
-                Next Slot →
+                Next →
               </button>
             </div>
           </div>
