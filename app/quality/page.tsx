@@ -425,14 +425,13 @@ export default function QualityPage() {
                   </div>
 
                   {/* Certificate Logo */}
-                  <div className="h-16 flex items-center justify-center mb-4">
+                  <div className="relative h-16 w-28 mx-auto mb-4 flex items-center justify-center">
                     <Image
                       src={c.logo}
                       alt={c.title}
-                      width={100}
-                      height={64}
-                      style={{ width: "auto", height: "auto" }}
-                      className="max-h-14 max-w-[120px] object-contain object-center group-hover:scale-105 transition-transform duration-300 mx-auto"
+                      fill
+                      sizes="120px"
+                      className="object-contain object-center group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>
 

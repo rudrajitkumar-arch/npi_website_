@@ -574,14 +574,13 @@ export default function HomePage() {
                 className="group bg-white border border-zinc-200 hover:border-accent-gold p-6 lg:p-7 flex flex-col items-center text-center transition-all duration-300"
               >
                 {/* Badge logo */}
-                <div className="h-12 flex items-center justify-center mb-3">
+                <div className="relative h-11 w-24 flex items-center justify-center mb-3">
                   <Image
                     src={c.logo}
                     alt={c.label}
-                    width={48}
-                    height={40}
-                    style={{ width: "auto", height: "auto" }}
-                    className="max-h-11 max-w-[90px] object-contain group-hover:scale-105 transition-transform duration-300"
+                    fill
+                    sizes="96px"
+                    className="object-contain group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
                 <span className="text-sm font-black uppercase tracking-wide text-primary-dark group-hover:text-accent-gold transition-colors">

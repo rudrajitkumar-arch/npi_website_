@@ -86,7 +86,8 @@ function GalleryCard({
         src={item.src}
         alt={item.alt}
         fill
-        loading="lazy"
+        priority={item.id <= 2}
+        loading={item.id <= 2 ? "eager" : "lazy"}
         className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.03]"
         sizes="(max-width: 640px) 280px, 340px"
         draggable={false}

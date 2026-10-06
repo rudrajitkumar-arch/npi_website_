@@ -240,6 +240,7 @@ export default function QualityInAction() {
               <div className="aspect-[4/5] md:aspect-auto md:flex-1 md:min-h-0 relative w-full">
                 <MosaicSlot
                   item={images[1]}
+                  priority
                   onClick={() => setActiveSlot(images[1])}
                 />
               </div>
