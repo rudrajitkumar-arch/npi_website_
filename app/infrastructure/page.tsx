@@ -70,21 +70,17 @@ const OVERVIEW_STATS = [
   { val: "End-to-End", label: "Production Flow" },
 ];
 
-const GALLERY_ITEMS = [
+interface GalleryItem {
+  img?: string | null;
+  title: string;
+  desc: string;
+}
+
+const GALLERY_ITEMS: GalleryItem[] = [
   {
     img: "/images/factory_images/factory-indoor.png",
     title: "Automated Shop Floor",
     desc: "Machinery cells feeding high-volume brass extrusion rods and components",
-  },
-  {
-    img: "/images/product_images/brass_fitting.jpg",
-    title: "Traceable Brass Stock",
-    desc: "Verified extruded brass bar stock with certified chemical alloy composition",
-  },
-  {
-    img: "/images/product_images/copper_bronze_gunmetal.jpg",
-    title: "Copper & Bronze Alloy Stock",
-    desc: "High-conductivity copper and phosphor bronze hex bars for precision turning",
   },
   {
     img: "/images/product_images/cnc-turned-components.jpg",
@@ -95,6 +91,21 @@ const GALLERY_ITEMS = [
     img: "/images/product_images/brass_cable_glands_accessories.jpg",
     title: "Finished Component Dispatch",
     desc: "Finished engineering components prepared for ultrasonic wash and sea-worthy export packing",
+  },
+  {
+    img: null,
+    title: "Modern Office",
+    desc: "A professional office environment supporting planning, coordination, engineering communication, and day-to-day operations.",
+  },
+  {
+    img: null,
+    title: "Quality Inspection Lab",
+    desc: "Dedicated inspection and metrology facilities supporting dimensional checks, quality verification, and precision component control.",
+  },
+  {
+    img: null,
+    title: "Advanced Machinery Floor",
+    desc: "A dedicated production floor equipped for precision machining and high-volume component manufacturing.",
   },
 ];
 
@@ -235,16 +246,42 @@ export default function InfrastructurePage() {
                 key={index}
                 className="group relative h-72 overflow-hidden border border-zinc-200 bg-primary-dark"
               >
-                <Image
-                  src={item.img}
-                  alt={item.title}
-                  fill
-                  className="object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-500"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/95 via-primary-dark/40 to-transparent" />
+                {item.img ? (
+                  <Image
+                    src={item.img}
+                    alt={item.title}
+                    fill
+                    className="object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-500"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center p-6 bg-primary-dark/85 group-hover:bg-primary-dark/75 transition-colors duration-500">
+                    <div className="w-full h-full border border-dashed border-zinc-600/70 group-hover:border-accent-gold/50 flex flex-col items-center justify-center gap-2 p-4 transition-colors duration-300">
+                      <svg
+                        className="w-8 h-8 text-zinc-500 group-hover:text-accent-gold transition-colors duration-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={1.5}
+                          d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                        />
+                      </svg>
+                      <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-zinc-400 group-hover:text-zinc-300 transition-colors">
+                        Image Placeholder
+                      </span>
+                      <span className="text-[9px] font-mono uppercase tracking-[0.14em] text-zinc-500">
+                        Add Image Here
+                      </span>
+                    </div>
+                  </div>
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/95 via-primary-dark/40 to-transparent pointer-events-none" />
 
-                <div className="absolute bottom-0 left-0 right-0 p-6 space-y-2">
+                <div className="absolute bottom-0 left-0 right-0 p-6 space-y-2 pointer-events-none">
                   <h3
                     className="text-base font-black uppercase text-white tracking-wide"
                     style={{ fontFamily: "var(--font-serif-display)" }}
