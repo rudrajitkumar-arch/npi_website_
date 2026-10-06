@@ -3,11 +3,20 @@
 import { useGLTF } from "@react-three/drei";
 import { useEffect, useMemo } from "react";
 import * as THREE from "three";
-import { normalizeScale } from "@/utils/threeHelpers";
+import { centerModel, normalizeScale } from "@/utils/threeHelpers";
 
 interface HeroModelProps {
   modelPath?: string;
-  onLoaded?: () => void;
+  onLoaded: (size: THREE.Vector3) => void;
+}
+
+function disposeMaterial(material: THREE.Material | THREE.Material[]) {
+  if (Array.isArray(material)) {
+    material.forEach((mat) => mat.dispose());
+    return;
+  }
+
+  material.dispose();
 }
 
 export default function HeroModel({
@@ -16,25 +25,26 @@ export default function HeroModel({
 }: HeroModelProps) {
   const { scene } = useGLTF(modelPath);
 
-  // Clone scene so multiple instances don't collide
   const model = useMemo(() => scene.clone(true), [scene]);
 
-  // Normalize scale to consistent target size
-  const scaleFactor = useMemo(() => {
-    return normalizeScale(model, 0.32);
+  const { center, scaleFactor, size } = useMemo(() => {
+    const centerPoint = centerModel(model);
+    const factor = normalizeScale(model, 0.25);
+
+    const box = new THREE.Box3().setFromObject(model);
+    const sizeVec = new THREE.Vector3();
+    box.getSize(sizeVec);
+
+    return { center: centerPoint, scaleFactor: factor, size: sizeVec };
   }, [model]);
 
-  // Notify parent that model is parsed and ready
   useEffect(() => {
-    if (onLoaded) {
-      onLoaded();
-    }
-  }, [onLoaded]);
+    onLoaded(size);
+  }, [size, onLoaded]);
 
-  // Apply rich metallic physical materials
   useEffect(() => {
-    const isBoltAndNut = modelPath.includes("bolt_and_nut");
-    const isCopperComponent = modelPath.includes("copper_component");
+    const isBoltAndNut = modelPath === "/models/bolt_and_nut.glb";
+    const isCopperComponent = modelPath === "/models/copper_component.glb";
 
     model.traverse((child) => {
       if (child instanceof THREE.Mesh) {
@@ -63,24 +73,23 @@ export default function HeroModel({
         if (child.material) {
           const oldMat = child.material as THREE.MeshStandardMaterial;
 
-          // Rich physical material: 0.85 metalness ensures vibrant color is lit by studio lights
           const mat = new THREE.MeshPhysicalMaterial({
             color: new THREE.Color(
               isCopperComponent
-                ? "#d97443"
+                ? "#d97746"
                 : isBoltAndNut
-                ? "#bcc4ce"
-                : "#d4a843"
+                ? "#9CA3AF"
+                : "#ebd39c"
             ),
-            roughness: isCopperComponent ? 0.20 : isBoltAndNut ? 0.22 : 0.18,
-            metalness: 0.85,
-            clearcoat: 0.3,
-            clearcoatRoughness: 0.08,
-            envMapIntensity: 1.5,
-            map: oldMat.map || null,
-            normalMap: oldMat.normalMap || null,
-            roughnessMap: oldMat.roughnessMap || null,
-            metalnessMap: oldMat.metalnessMap || null,
+            roughness: isCopperComponent ? 0.22 : isBoltAndNut ? 0.28 : 0.18,
+            metalness: 1.0,  // Fully metallic
+            clearcoat: 0.20, // Clearcoat layer
+            clearcoatRoughness: 0.05,
+            envMapIntensity: 2.2, // High reflection intensity to eliminate black reflection spots
+            map: oldMat.map,
+            normalMap: oldMat.normalMap,
+            roughnessMap: oldMat.roughnessMap,
+            metalnessMap: oldMat.metalnessMap,
           });
 
           child.material = mat;
@@ -88,16 +97,21 @@ export default function HeroModel({
         }
       }
     });
-  }, [model, modelPath]);
+  }, [model]);
+
+  useEffect(() => {
+    return () => {
+      model.traverse((child) => {
+        if (child instanceof THREE.Mesh) {
+          if (child.material) disposeMaterial(child.material);
+        }
+      });
+    };
+  }, [model]);
 
   return (
     <group scale={[scaleFactor, scaleFactor, scaleFactor]}>
-      <primitive object={model} />
+      <primitive object={model} position={[-center.x, -center.y, -center.z]} />
     </group>
   );
 }
-
-// Preload models for instant display
-useGLTF.preload("/models/brass_component_1.glb");
-useGLTF.preload("/models/bolt_and_nut.glb");
-useGLTF.preload("/models/copper_component.glb");

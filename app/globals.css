@@ -82,12 +82,7 @@ h6 {
 }
 
 .hero-scene-stage canvas {
-  display: block !important;
-  width: 100% !important;
-  height: 100% !important;
-  position: absolute !important;
-  inset: 0 !important;
-  background-color: transparent !important;
+  background-color: var(--charcoal-primary) !important;
 }
 
 label {
