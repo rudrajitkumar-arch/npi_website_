@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import HeroSection from "@/components/HeroSection";
+import HomeQualityGallery from "@/components/HomeQualityGallery";
 import { PRODUCT_CATALOGUE } from "@/lib/products";
 
 export const metadata: Metadata = {
@@ -590,6 +591,8 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* 9. QUALITY IN ACTION (VISUAL GALLERY) ──────────────── */}
+      <HomeQualityGallery />
 
       {/* 10. FINAL CTA ─────────────────────────────────────── */}
       <section className="relative py-20 lg:py-24 bg-primary-dark overflow-hidden">
