@@ -93,17 +93,17 @@ const GALLERY_ITEMS: GalleryItem[] = [
     desc: "Finished engineering components prepared for ultrasonic wash and sea-worthy export packing",
   },
   {
-    img: null,
+    img: "/images/quality_images/Modern Office.jpeg",
     title: "Modern Office",
     desc: "A professional office environment supporting planning, coordination, engineering communication, and day-to-day operations.",
   },
   {
-    img: null,
+    img: "/images/quality_images/Quality Lab.png",
     title: "Quality Inspection Lab",
     desc: "Dedicated inspection and metrology facilities supporting dimensional checks, quality verification, and precision component control.",
   },
   {
-    img: null,
+    img: "/images/quality_images/Advanced Machine Floor.png",
     title: "Advanced Machinery Floor",
     desc: "A dedicated production floor equipped for precision machining and high-volume component manufacturing.",
   },
