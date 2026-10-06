@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import HeroSection from "@/components/HeroSection";
+import { getProductAssetImage } from "@/lib/products";
 
 export const metadata: Metadata = {
   title: "New Perfect Incorporation | Precision Components Manufacturer – Jamnagar, India",
@@ -208,49 +209,54 @@ const MACHINES = [
   { val: "3", label: "Power Press" },
 ];
 
-/* ─── Products ──────────────────────────────────────────── */
-const PRODUCTS = [
+/* ─── Products (single source of truth from lib/products.ts) ── */
+const PORTFOLIO_CARDS = [
   {
-    img: "/images/product_images/brass_inserts.jpg",
+    slug: "inserts",
     title: "Brass Inserts",
     desc: "Heat-set, ultrasonic & moulded inserts for polymer applications with precision knurling",
   },
   {
-    img: "/images/product_images/brass_fitting.jpg",
+    slug: "fittings",
     title: "Brass Fittings",
     desc: "Compression, push-fit, and threaded fittings for plumbing, gas, and hydraulic lines",
   },
   {
-    img: "/images/product_images/brass_fasteners_fixings.jpg",
+    slug: "fasteners-fixings",
     title: "Brass Fasteners & Fixings",
     desc: "Hex bolts, studs, nuts, washers, and specialty screws in all thread standards",
   },
   {
-    img: "/images/product_images/brass_cable_glands_accessories.jpg",
+    slug: "cable-glands",
     title: "Brass Cable Glands",
     desc: "EMC, metric, NPT, and armoured cable gland assemblies with accessories",
   },
   {
-    img: "/images/product_images/cnc-turned-components.jpg",
+    slug: "cnc-turned-parts",
     title: "CNC Turned Parts",
     desc: "Complex custom components from drawings — prototype to high-volume production",
   },
   {
-    img: "/images/product_images/copper_bronze_gunmetal.jpg",
+    slug: "copper-bronze-gunmetal",
     title: "Copper / Bronze / Gunmetal",
     desc: "Precision-machined copper and bronze alloy components for electrical & marine uses",
   },
   {
-    img: "/images/product_images/earthing_lightning_protection.png",
+    slug: "earthing-components",
     title: "Earthing & Lightning Protection",
     desc: "Earth rods, clamps, bonding conductors, and lightning protection hardware",
   },
   {
-    img: "/images/product_images/brass_forging_casting_components.jpg",
+    slug: "brass-copper-forged-fittings",
     title: "Brass Forging & Casting",
     desc: "High-density forged and cast brass components for structural and valve applications",
   },
 ];
+
+const PRODUCTS = PORTFOLIO_CARDS.map((card) => ({
+  ...card,
+  img: getProductAssetImage(card.slug),
+}));
 
 /* ─── Quality ───────────────────────────────────────────── */
 const QUALITY_CARDS = [

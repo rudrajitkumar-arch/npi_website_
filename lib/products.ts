@@ -374,3 +374,28 @@ export const MEGA_MENU_COLUMNS: ProductCategory[][] = [
   [PRODUCT_CATALOGUE[4], PRODUCT_CATALOGUE[5]],   // Stamping Parts, Fasteners & Fixings
   [PRODUCT_CATALOGUE[6], PRODUCT_CATALOGUE[7]],   // High Precision, Copper/Bronze/Gunmetal
 ];
+
+/**
+ * Resolves an image path from PRODUCT_CATALOGUE by category slug or sub-product slug.
+ * Checks category-level image first, then sub-products across all categories.
+ * Ensures single source of truth for all components (e.g. Home portfolio).
+ */
+export function getProductAssetImage(slug: string): string {
+  if (CATALOGUE_MAP[slug]?.image) {
+    return CATALOGUE_MAP[slug].image;
+  }
+  for (const cat of PRODUCT_CATALOGUE) {
+    const sub = cat.subProducts.find((s) => s.slug === slug);
+    if (sub?.image) {
+      return sub.image;
+    }
+  }
+  // Aliases for alternate slug representations
+  if (slug === "earthing-lightning") {
+    return getProductAssetImage("earthing-components");
+  }
+  if (slug === "forging-casting" || slug === "brass-forging") {
+    return getProductAssetImage("brass-copper-forged-fittings");
+  }
+  return "";
+}
