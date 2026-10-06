@@ -85,7 +85,10 @@ export default function HeroSection() {
 
   // Set mounted true on client
   useEffect(() => {
-    const t = requestAnimationFrame(() => setMounted(true));
+    const t = requestAnimationFrame(() => {
+      setMounted(true);
+      window.dispatchEvent(new Event("resize"));
+    });
     return () => cancelAnimationFrame(t);
   }, []);
 
