@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import HeroSection from "@/components/HeroSection";
-import { getProductAssetImage } from "@/lib/products";
+import { PRODUCT_CATALOGUE } from "@/lib/products";
 
 export const metadata: Metadata = {
   title: "New Perfect Incorporation | Precision Components Manufacturer – Jamnagar, India",
@@ -210,52 +210,11 @@ const MACHINES = [
 ];
 
 /* ─── Products (single source of truth from lib/products.ts) ── */
-const PORTFOLIO_CARDS = [
-  {
-    slug: "inserts",
-    title: "Brass Inserts",
-    desc: "Heat-set, ultrasonic & moulded inserts for polymer applications with precision knurling",
-  },
-  {
-    slug: "fittings",
-    title: "Brass Fittings",
-    desc: "Compression, push-fit, and threaded fittings for plumbing, gas, and hydraulic lines",
-  },
-  {
-    slug: "fasteners-fixings",
-    title: "Brass Fasteners & Fixings",
-    desc: "Hex bolts, studs, nuts, washers, and specialty screws in all thread standards",
-  },
-  {
-    slug: "cable-glands",
-    title: "Brass Cable Glands",
-    desc: "EMC, metric, NPT, and armoured cable gland assemblies with accessories",
-  },
-  {
-    slug: "cnc-turned-parts",
-    title: "CNC Turned Parts",
-    desc: "Complex custom components from drawings — prototype to high-volume production",
-  },
-  {
-    slug: "copper-bronze-gunmetal",
-    title: "Copper / Bronze / Gunmetal",
-    desc: "Precision-machined copper and bronze alloy components for electrical & marine uses",
-  },
-  {
-    slug: "earthing-components",
-    title: "Earthing & Lightning Protection",
-    desc: "Earth rods, clamps, bonding conductors, and lightning protection hardware",
-  },
-  {
-    slug: "brass-copper-forged-fittings",
-    title: "Brass Forging & Casting",
-    desc: "High-density forged and cast brass components for structural and valve applications",
-  },
-];
-
-const PRODUCTS = PORTFOLIO_CARDS.map((card) => ({
-  ...card,
-  img: getProductAssetImage(card.slug),
+const PRODUCTS = PRODUCT_CATALOGUE.map((cat) => ({
+  slug: cat.slug,
+  title: cat.name,
+  desc: cat.description,
+  img: cat.image,
 }));
 
 /* ─── Quality ───────────────────────────────────────────── */
@@ -525,7 +484,7 @@ export default function HomePage() {
                   </h3>
                   <p className="text-xs text-zinc-500 leading-relaxed flex-1">{p.desc}</p>
                   <Link
-                    href="/products"
+                    href={`/products/${p.slug}`}
                     className="mt-4 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-accent-gold hover:text-primary-dark transition-colors"
                   >
                     View Products →
