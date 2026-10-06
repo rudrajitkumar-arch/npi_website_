@@ -9,19 +9,17 @@
  *
  * EXACTLY 6 Image Slots:
  *  01 — Quality Inspection Lab       (Aspect Ratio: 16:9)
- *  02 — Advanced Machinery Floor      (Aspect Ratio: 4:5)
- *  03 — Modern Office & Engineering   (Aspect Ratio: 4:5)
- *  04 — Modern Office & Engineering   (Aspect Ratio: 4:3)
- *  05 — Modern Office & Engineering   (Aspect Ratio: 4:3)
- *  06 — Modern Office & Engineering   (Aspect Ratio: 4:3)
+ *  02 — Advanced Machinery Floor      (Right stacked)
+ *  03 — Modern Office & Engineering   (Right stacked)
+ *  04 — Modern Office & Engineering   (Bottom row, 4:3)
+ *  05 — Modern Office & Engineering   (Bottom row, 4:3)
+ *  06 — Modern Office & Engineering   (Bottom row, 4:3)
  *
- * Real Assets:
- *  /public/images/quality/quality-in-action-01.jpg (Quality Lab)
- *  /public/images/quality/quality-in-action-02.jpg (Advanced Machine Floor)
- *  /public/images/quality/quality-in-action-03.jpg (Modern Office 1)
- *  /public/images/quality/quality-in-action-04.jpg (Modern Office 2)
- *  /public/images/quality/quality-in-action-05.jpg (Modern Office 3)
- *  /public/images/quality/quality-in-action-06.jpg (Modern Office)
+ * Perfect Alignment Rules:
+ *  - Top-left Image 01 height matches the combined height of Image 02 + Image 03 + gap.
+ *  - Uniform 12-14px gap across the entire mosaic.
+ *  - Zero gap between top block and bottom row.
+ *  - Bottom 3 images perfectly aligned with equal 4:3 aspect ratios.
  */
 
 import React, { useState, useEffect, useCallback } from "react";
@@ -34,7 +32,6 @@ export interface QualityActionImage {
   groupLabel: string;
   image: string;
   aspectRatio: string;
-  aspectClass: string;
   alt: string;
 }
 
@@ -45,7 +42,6 @@ export const QUALITY_IN_ACTION_IMAGES: QualityActionImage[] = [
     groupLabel: "01  QUALITY INSPECTION LAB",
     image: "/images/quality/quality-in-action-01.jpg",
     aspectRatio: "16 / 9",
-    aspectClass: "aspect-[16/9]",
     alt: "Quality inspection and metrology laboratory with calibrated measurement equipment",
   },
   {
@@ -54,7 +50,6 @@ export const QUALITY_IN_ACTION_IMAGES: QualityActionImage[] = [
     groupLabel: "02  ADVANCED MACHINERY FLOOR",
     image: "/images/quality/quality-in-action-02.jpg",
     aspectRatio: "4 / 5",
-    aspectClass: "aspect-[4/5]",
     alt: "Advanced CNC turning and precision component machining floor",
   },
   {
@@ -63,7 +58,6 @@ export const QUALITY_IN_ACTION_IMAGES: QualityActionImage[] = [
     groupLabel: "03  MODERN OFFICE & ENGINEERING",
     image: "/images/quality/quality-in-action-03.jpg",
     aspectRatio: "4 / 5",
-    aspectClass: "aspect-[4/5]",
     alt: "Modern office and executive engineering coordination workspace",
   },
   {
@@ -72,7 +66,6 @@ export const QUALITY_IN_ACTION_IMAGES: QualityActionImage[] = [
     groupLabel: "03  MODERN OFFICE & ENGINEERING",
     image: "/images/quality/quality-in-action-04.jpg",
     aspectRatio: "4 / 3",
-    aspectClass: "aspect-[4/3]",
     alt: "Engineering planning and conference suite",
   },
   {
@@ -81,7 +74,6 @@ export const QUALITY_IN_ACTION_IMAGES: QualityActionImage[] = [
     groupLabel: "03  MODERN OFFICE & ENGINEERING",
     image: "/images/quality/quality-in-action-05.jpg",
     aspectRatio: "4 / 3",
-    aspectClass: "aspect-[4/3]",
     alt: "CAD design and technical drawing review workspace",
   },
   {
@@ -90,7 +82,6 @@ export const QUALITY_IN_ACTION_IMAGES: QualityActionImage[] = [
     groupLabel: "03  MODERN OFFICE & ENGINEERING",
     image: "/images/quality/quality-in-action-06.jpg",
     aspectRatio: "4 / 3",
-    aspectClass: "aspect-[4/3]",
     alt: "Operations coordination and quality management office",
   },
 ];
@@ -119,8 +110,7 @@ function MosaicSlot({
         }
       }}
       aria-label={`${item.groupLabel}: ${item.alt}`}
-      style={{ aspectRatio: item.aspectRatio }}
-      className={`group relative w-full overflow-hidden bg-[#EFF2F5] border border-zinc-200/90 hover:border-[#1E6D95] transition-all duration-300 cursor-pointer shadow-xs hover:shadow-md ${item.aspectClass}`}
+      className="group relative w-full h-full overflow-hidden bg-[#EFF2F5] border border-zinc-200/90 hover:border-[#1E6D95] transition-all duration-300 cursor-pointer shadow-xs hover:shadow-md"
     >
       {/* Real Image Layer */}
       {!hasError && item.image ? (
@@ -132,10 +122,10 @@ function MosaicSlot({
           loading={priority ? "eager" : "lazy"}
           onError={() => setHasError(true)}
           className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 60vw, 35vw"
         />
       ) : (
-        /* Clean Neutral Placeholder (when image is missing or error) */
+        /* Clean Neutral Placeholder */
         <div className="absolute inset-0 flex items-center justify-center transition-colors duration-300 group-hover:bg-[#E7ECF0]">
           <svg
             className="w-5 h-5 text-zinc-400/80 group-hover:text-zinc-500 transition-colors duration-200"
@@ -154,7 +144,7 @@ function MosaicSlot({
         </div>
       )}
 
-      {/* Subtle Editorial Label (reveals gently on hover) */}
+      {/* Subtle Editorial Label on hover */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-end p-3 sm:p-4">
         <span className="text-[10px] sm:text-[11px] font-mono font-medium uppercase tracking-wider text-white">
           {item.groupLabel}
@@ -205,37 +195,38 @@ export default function QualityInAction() {
   return (
     <section
       id="quality-in-action"
-      className="py-14 lg:py-18 bg-[#F8F9FA] border-t border-zinc-200/80 relative"
+      className="py-12 sm:py-14 lg:py-16 bg-[#F8F9FA] border-t border-zinc-200/80 relative"
     >
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* ── SECTION HEADING ── */}
-        <div className="text-center mb-8 sm:mb-10 lg:mb-12">
+        <div className="text-center mb-7 sm:mb-8 lg:mb-9">
           <span className="inline-flex items-center gap-2 border border-[#1E6D95]/40 bg-[#EAF3F7] px-3.5 py-1 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.16em] sm:tracking-[0.22em] text-[#1E6D95]">
             <span className="w-1.5 h-1.5 rounded-full bg-[#1E6D95]" />
             FACILITY & OPERATIONS
           </span>
           <h2
-            className="mt-3.5 text-2xl sm:text-3xl lg:text-4xl font-black uppercase text-[#252A2D] tracking-tight"
+            className="mt-3 text-2xl sm:text-3xl lg:text-4xl font-black uppercase text-[#252A2D] tracking-tight"
             style={{ fontFamily: "var(--font-serif-display)" }}
           >
             QUALITY IN ACTION
           </h2>
-          <p className="mt-2.5 text-xs sm:text-sm md:text-base max-w-2xl leading-relaxed text-[#667177] mx-auto">
+          <p className="mt-2 text-xs sm:text-sm md:text-base max-w-2xl leading-relaxed text-[#667177] mx-auto">
             Dedicated inspection facilities, precision manufacturing environments, and professional
             engineering spaces support quality at every stage.
           </p>
-          <div className="mt-3.5 w-12 h-1 bg-[#1E6D95] mx-auto" />
+          <div className="mt-3 w-12 h-1 bg-[#1E6D95] mx-auto" />
         </div>
 
-        {/* ── 6-IMAGE COMPACT EDITORIAL MOSAIC ── */}
+        {/* ── 6-IMAGE TIGHT UNIFIED MOSAIC ── */}
         <div className="space-y-3 sm:space-y-3.5">
           {/* TOP BLOCK:
-              Desktop: 01 (16:9 Left, col-span-8/9) + [02 & 03 stacked 4:5 Right, col-span-4/3]
-              Mobile: 01 full width, 02 & 03 in 2-column
+              Desktop: Image 01 (Left ~67% with 16:9) and Right column (~33%)
+              Right column contains Images 02 & 03 whose combined height perfectly matches Image 01.
+              Mobile: Image 01 full width, Images 02 & 03 in 2-column row.
           */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-3.5 items-start">
-            {/* IMAGE 01: Quality Inspection Lab (16:9) */}
-            <div className="md:col-span-8 lg:col-span-9">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-3.5 items-stretch">
+            {/* IMAGE 01: Quality Inspection Lab (16:9 establishing anchor) */}
+            <div className="md:col-span-8 aspect-[16/9] w-full">
               <MosaicSlot
                 item={images[0]}
                 priority
@@ -243,42 +234,43 @@ export default function QualityInAction() {
               />
             </div>
 
-            {/* IMAGE 02 & 03: Advanced Machinery Floor & Modern Office 1 (4:5 each) */}
-            <div className="md:col-span-4 lg:col-span-3 grid grid-cols-2 md:grid-cols-1 gap-3 sm:gap-3.5">
-              <MosaicSlot
-                item={images[1]}
-                onClick={() => setActiveSlot(images[1])}
-              />
-              <MosaicSlot
-                item={images[2]}
-                onClick={() => setActiveSlot(images[2])}
-              />
+            {/* IMAGE 02 & 03: Advanced Machinery Floor & Office 1
+                Fills exactly the same top-to-bottom height as Image 01 on desktop! */}
+            <div className="md:col-span-4 grid grid-cols-2 md:flex md:flex-col gap-3 sm:gap-3.5 h-full">
+              <div className="aspect-[4/5] md:aspect-auto md:flex-1 md:min-h-0 relative w-full">
+                <MosaicSlot
+                  item={images[1]}
+                  onClick={() => setActiveSlot(images[1])}
+                />
+              </div>
+              <div className="aspect-[4/5] md:aspect-auto md:flex-1 md:min-h-0 relative w-full">
+                <MosaicSlot
+                  item={images[2]}
+                  onClick={() => setActiveSlot(images[2])}
+                />
+              </div>
             </div>
           </div>
 
           {/* BOTTOM BLOCK:
-              Desktop: IMAGE 04, 05, 06 in 3 columns (4:3 each)
-              Mobile: IMAGE 04 & 05 in 2 columns, IMAGE 06 full width
+              Desktop: Images 04, 05, 06 in 3 equal columns with exact 4:3 ratio.
+              Sits immediately below top block with matching 12-14px gap.
+              Mobile: Images 04 & 05 in 2-column, Image 06 full width.
           */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-3.5">
-            {/* IMAGE 04: Modern Office 2 (4:3) */}
-            <div className="col-span-1">
+            <div className="col-span-1 aspect-[4/3] w-full">
               <MosaicSlot
                 item={images[3]}
                 onClick={() => setActiveSlot(images[3])}
               />
             </div>
-
-            {/* IMAGE 05: Modern Office 3 (4:3) */}
-            <div className="col-span-1">
+            <div className="col-span-1 aspect-[4/3] w-full">
               <MosaicSlot
                 item={images[4]}
                 onClick={() => setActiveSlot(images[4])}
               />
             </div>
-
-            {/* IMAGE 06: Modern Office (4:3) */}
-            <div className="col-span-2 md:col-span-1">
+            <div className="col-span-2 md:col-span-1 aspect-[4/3] sm:aspect-[4/3] w-full">
               <MosaicSlot
                 item={images[5]}
                 onClick={() => setActiveSlot(images[5])}
