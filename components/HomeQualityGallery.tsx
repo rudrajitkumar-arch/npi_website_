@@ -51,6 +51,12 @@ const GALLERY_IMAGES = [
     alt: "Operations coordination and quality management",
     label: "MODERN OFFICE & ENGINEERING",
   },
+  {
+    id: 7,
+    src: "/images/factory_images/about-facility.png",
+    alt: "NPI manufacturing facility exterior",
+    label: "OUR FACILITY",
+  },
 ];
 
 /* ─── INDIVIDUAL CARD ─────────────────────────────────────── */
