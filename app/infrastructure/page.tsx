@@ -74,6 +74,7 @@ interface GalleryItem {
   img?: string | null;
   title: string;
   desc: string;
+  objectPosition?: string;
 }
 
 const GALLERY_ITEMS: GalleryItem[] = [
@@ -101,6 +102,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     img: "/images/quality_images/Quality Lab.png",
     title: "Quality Inspection Lab",
     desc: "Dedicated inspection and metrology facilities supporting dimensional checks, quality verification, and precision component control.",
+    objectPosition: "85% center",
   },
   {
     img: "/images/quality_images/Advanced Machine Floor.png",
@@ -252,6 +254,7 @@ export default function InfrastructurePage() {
                     alt={item.title}
                     fill
                     className="object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-500"
+                    style={item.objectPosition ? { objectPosition: item.objectPosition } : undefined}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                 ) : (
