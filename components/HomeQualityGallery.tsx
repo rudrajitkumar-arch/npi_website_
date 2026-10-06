@@ -72,6 +72,13 @@ export const HOME_QUALITY_IMAGES: QualityGalleryItem[] = [
     src: "/images/quality/quality-in-action-06.jpg",
     alt: "Operations coordination and quality management office",
   },
+  {
+    id: 7,
+    title: "Precision Manufacturing Facility",
+    groupLabel: "07  MANUFACTURING FACILITY",
+    src: "/images/factory_images/about-facility.png",
+    alt: "New Perfect Incorporation modern manufacturing facility and plant in Jamnagar",
+  },
 ];
 
 /* Duplicate once for seamless infinite looping */
