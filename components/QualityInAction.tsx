@@ -10,21 +10,18 @@
  * EXACTLY 6 Image Slots:
  *  01 — Quality Inspection Lab       (Aspect Ratio: 16:9)
  *  02 — Advanced Machinery Floor      (Aspect Ratio: 4:5)
- *  03 — Advanced Machinery Floor      (Aspect Ratio: 4:5)
+ *  03 — Modern Office & Engineering   (Aspect Ratio: 4:5)
  *  04 — Modern Office & Engineering   (Aspect Ratio: 4:3)
  *  05 — Modern Office & Engineering   (Aspect Ratio: 4:3)
  *  06 — Modern Office & Engineering   (Aspect Ratio: 4:3)
  *
- * Zero-maintenance image replacement:
- *  Drop files into /public/images/quality/
- *    quality-in-action-01.jpg
- *    quality-in-action-02.jpg
- *    quality-in-action-03.jpg
- *    quality-in-action-04.jpg
- *    quality-in-action-05.jpg
- *    quality-in-action-06.jpg
- *
- * Fixed aspect-ratio containers guarantee zero layout shift.
+ * Real Assets:
+ *  /public/images/quality/quality-in-action-01.jpg (Quality Lab)
+ *  /public/images/quality/quality-in-action-02.jpg (Advanced Machine Floor)
+ *  /public/images/quality/quality-in-action-03.jpg (Modern Office 1)
+ *  /public/images/quality/quality-in-action-04.jpg (Modern Office 2)
+ *  /public/images/quality/quality-in-action-05.jpg (Modern Office 3)
+ *  /public/images/quality/quality-in-action-06.jpg (Modern Office)
  */
 
 import React, { useState, useEffect, useCallback } from "react";
@@ -49,7 +46,7 @@ export const QUALITY_IN_ACTION_IMAGES: QualityActionImage[] = [
     image: "/images/quality/quality-in-action-01.jpg",
     aspectRatio: "16 / 9",
     aspectClass: "aspect-[16/9]",
-    alt: "Quality inspection and metrology laboratory",
+    alt: "Quality inspection and metrology laboratory with calibrated measurement equipment",
   },
   {
     id: 2,
@@ -58,16 +55,16 @@ export const QUALITY_IN_ACTION_IMAGES: QualityActionImage[] = [
     image: "/images/quality/quality-in-action-02.jpg",
     aspectRatio: "4 / 5",
     aspectClass: "aspect-[4/5]",
-    alt: "Advanced CNC turning and precision machining fleet",
+    alt: "Advanced CNC turning and precision component machining floor",
   },
   {
     id: 3,
-    title: "Advanced Machinery Floor",
-    groupLabel: "02  ADVANCED MACHINERY FLOOR",
+    title: "Modern Office & Engineering",
+    groupLabel: "03  MODERN OFFICE & ENGINEERING",
     image: "/images/quality/quality-in-action-03.jpg",
     aspectRatio: "4 / 5",
     aspectClass: "aspect-[4/5]",
-    alt: "Automated Traub lathe machining workcells",
+    alt: "Modern office and executive engineering coordination workspace",
   },
   {
     id: 4,
@@ -85,7 +82,7 @@ export const QUALITY_IN_ACTION_IMAGES: QualityActionImage[] = [
     image: "/images/quality/quality-in-action-05.jpg",
     aspectRatio: "4 / 3",
     aspectClass: "aspect-[4/3]",
-    alt: "CAD design and technical drawing validation",
+    alt: "CAD design and technical drawing review workspace",
   },
   {
     id: 6,
@@ -94,7 +91,7 @@ export const QUALITY_IN_ACTION_IMAGES: QualityActionImage[] = [
     image: "/images/quality/quality-in-action-06.jpg",
     aspectRatio: "4 / 3",
     aspectClass: "aspect-[4/3]",
-    alt: "Operations coordination and quality management",
+    alt: "Operations coordination and quality management office",
   },
 ];
 
@@ -109,7 +106,6 @@ function MosaicSlot({
   onClick: () => void;
 }) {
   const [hasError, setHasError] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
 
   return (
     <div
@@ -124,27 +120,22 @@ function MosaicSlot({
       }}
       aria-label={`${item.groupLabel}: ${item.alt}`}
       style={{ aspectRatio: item.aspectRatio }}
-      className={`group relative w-full overflow-hidden bg-[#EFF2F5] border border-zinc-200/90 transition-all duration-300 cursor-pointer ${item.aspectClass}`}
+      className={`group relative w-full overflow-hidden bg-[#EFF2F5] border border-zinc-200/90 hover:border-[#1E6D95] transition-all duration-300 cursor-pointer shadow-xs hover:shadow-md ${item.aspectClass}`}
     >
       {/* Real Image Layer */}
-      {!hasError && (
+      {!hasError && item.image ? (
         <Image
           src={item.image}
           alt={item.alt}
           fill
           priority={priority}
-          loading={priority ? undefined : "lazy"}
+          loading={priority ? "eager" : "lazy"}
           onError={() => setHasError(true)}
-          onLoad={() => setIsLoaded(true)}
-          className={`object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.02] ${
-            isLoaded ? "opacity-100" : "opacity-0"
-          }`}
+          className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.02]"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
-      )}
-
-      {/* Clean Neutral Placeholder (when image is missing or loading) */}
-      {(!isLoaded || hasError) && (
+      ) : (
+        /* Clean Neutral Placeholder (when image is missing or error) */
         <div className="absolute inset-0 flex items-center justify-center transition-colors duration-300 group-hover:bg-[#E7ECF0]">
           <svg
             className="w-5 h-5 text-zinc-400/80 group-hover:text-zinc-500 transition-colors duration-200"
@@ -164,7 +155,7 @@ function MosaicSlot({
       )}
 
       {/* Subtle Editorial Label (reveals gently on hover) */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-end p-3 sm:p-4">
+      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-end p-3 sm:p-4">
         <span className="text-[10px] sm:text-[11px] font-mono font-medium uppercase tracking-wider text-white">
           {item.groupLabel}
         </span>
@@ -252,7 +243,7 @@ export default function QualityInAction() {
               />
             </div>
 
-            {/* IMAGE 02 & 03: Advanced Machinery Floor (4:5 each) */}
+            {/* IMAGE 02 & 03: Advanced Machinery Floor & Modern Office 1 (4:5 each) */}
             <div className="md:col-span-4 lg:col-span-3 grid grid-cols-2 md:grid-cols-1 gap-3 sm:gap-3.5">
               <MosaicSlot
                 item={images[1]}
@@ -270,7 +261,7 @@ export default function QualityInAction() {
               Mobile: IMAGE 04 & 05 in 2 columns, IMAGE 06 full width
           */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-3.5">
-            {/* IMAGE 04: Modern Office & Engineering (4:3) */}
+            {/* IMAGE 04: Modern Office 2 (4:3) */}
             <div className="col-span-1">
               <MosaicSlot
                 item={images[3]}
@@ -278,7 +269,7 @@ export default function QualityInAction() {
               />
             </div>
 
-            {/* IMAGE 05: Modern Office & Engineering (4:3) */}
+            {/* IMAGE 05: Modern Office 3 (4:3) */}
             <div className="col-span-1">
               <MosaicSlot
                 item={images[4]}
@@ -286,7 +277,7 @@ export default function QualityInAction() {
               />
             </div>
 
-            {/* IMAGE 06: Modern Office & Engineering (4:3) */}
+            {/* IMAGE 06: Modern Office (4:3) */}
             <div className="col-span-2 md:col-span-1">
               <MosaicSlot
                 item={images[5]}
@@ -328,7 +319,7 @@ export default function QualityInAction() {
             {/* Lightbox Frame */}
             <div
               style={{ aspectRatio: activeSlot.aspectRatio }}
-              className="relative w-full max-h-[70vh] bg-[#0D1216] border border-white/5 overflow-hidden flex items-center justify-center mx-auto"
+              className="relative w-full max-h-[75vh] bg-[#0D1216] border border-white/5 overflow-hidden flex items-center justify-center mx-auto"
             >
               <Image
                 src={activeSlot.image}
@@ -336,27 +327,7 @@ export default function QualityInAction() {
                 fill
                 className="object-contain"
                 sizes="100vw"
-                onError={(e) => {
-                  (e.target as HTMLElement).style.display = "none";
-                }}
               />
-              <div className="text-center p-6 text-zinc-500 flex flex-col items-center pointer-events-none">
-                <svg
-                  className="w-8 h-8 text-zinc-600 mb-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.25}
-                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
-                <p className="text-xs font-mono uppercase text-zinc-400">{activeSlot.title}</p>
-                <p className="text-[11px] text-zinc-500 mt-1">{activeSlot.alt}</p>
-              </div>
             </div>
 
             {/* Lightbox Controls */}
