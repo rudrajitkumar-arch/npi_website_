@@ -23,7 +23,12 @@ export default function HeroModel({
   modelPath = "/models/brass_component_1.glb",
   onLoaded,
 }: HeroModelProps) {
-  const { scene } = useGLTF(modelPath);
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+  const fullPath =
+    modelPath.startsWith("/") && basePath && !modelPath.startsWith(basePath)
+      ? `${basePath}${modelPath}`
+      : modelPath;
+  const { scene } = useGLTF(fullPath);
 
   const model = useMemo(() => scene.clone(true), [scene]);
 

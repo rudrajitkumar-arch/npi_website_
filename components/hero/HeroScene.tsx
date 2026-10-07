@@ -187,7 +187,13 @@ export default function HeroScene({
 
         {/* 3D Environment HDRI reflection mapping from local high-speed EXR file */}
         <Suspense fallback={null}>
-          <Environment files="/hdr/studio.exr" />
+          <Environment
+            files={
+              process.env.NEXT_PUBLIC_BASE_PATH
+                ? `${process.env.NEXT_PUBLIC_BASE_PATH}/hdr/studio.exr`
+                : "/hdr/studio.exr"
+            }
+          />
         </Suspense>
 
         {/* Model, positioning, scale, and dynamic group animations */}
