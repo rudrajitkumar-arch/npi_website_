@@ -106,8 +106,8 @@ const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     img: "/images/product_images/cnc-turned-components.jpg",
-    title: "Advanced Machinery Floor",
-    desc: "A dedicated production floor equipped for precision machining and high-volume component manufacturing.",
+    title: "Advanced Conference Room",
+    desc: "A modern conference space designed for technical discussions, planning, collaboration, and engineering coordination.",
   },
 ];
 
