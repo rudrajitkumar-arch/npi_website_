@@ -84,7 +84,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     desc: "Machinery cells feeding high-volume brass extrusion rods and components",
   },
   {
-    img: "/images/product_images/cnc-turned-components.jpg",
+    img: "/images/quality_images/Advanced Machine Floor.png",
     title: "Traub Machining Cells",
     desc: "Precision turning centers processing complex tight-tolerance components",
   },
@@ -105,7 +105,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     objectPosition: "85% center",
   },
   {
-    img: "/images/quality_images/Advanced Machine Floor.png",
+    img: "/images/product_images/cnc-turned-components.jpg",
     title: "Advanced Machinery Floor",
     desc: "A dedicated production floor equipped for precision machining and high-volume component manufacturing.",
   },
