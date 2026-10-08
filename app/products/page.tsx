@@ -10,7 +10,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { PRODUCT_CATALOGUE } from "@/lib/products";
-import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "Products",
@@ -118,8 +117,7 @@ function CategoryCard({
   return (
     <Link
       href={`/products/${category.slug}`}
-      className="product-card group/card bg-white border border-zinc-200 hover:border-[#1E6D95] hover:shadow-xl flex flex-col relative overflow-hidden reveal-hidden cursor-pointer"
-      style={{ transitionDelay: `${index * 60}ms` }}
+      className="product-card group/card bg-white border border-zinc-200 hover:border-[#1E6D95] hover:shadow-xl flex flex-col relative overflow-hidden cursor-pointer transition-all duration-300"
     >
       {/* Top accent reveal on hover */}
       <div className="absolute top-0 left-0 w-0 h-[2px] bg-[#1E6D95] group-hover/card:w-full transition-all duration-500 z-20" />
@@ -255,9 +253,6 @@ export default function ProductsPage() {
           </div>
         </div>
       </section>
-
-      {/* Scroll-reveal — client component, zero bundle impact */}
-      <ScrollReveal />
 
       {/* 3. SERVICES ──────────────────────────────────────── */}
       <section className="py-16 lg:py-20 bg-[#252A2D]">
