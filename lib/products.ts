@@ -137,7 +137,7 @@ export const PRODUCT_CATALOGUE: ProductCategory[] = [
     name: "CNC Turned Parts",
     image: "/images/header_images/CNC_Turned_Parts.png",
     imageAlt: "CNC turned precision machined components",
-    heroImage: "/images/products/categories/CNC_Turned_Parts.png",
+    heroImage: "/images/products/categories/CNC Turned Parts.png",
     heroImageAlt: "Multi-axis CNC turned and precision machined brass, copper, aluminum and steel parts",
     description:
       "Multi-axis CNC turned and milled components manufactured with tight dimensional control across brass, copper, aluminium and steel.",
