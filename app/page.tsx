@@ -463,9 +463,10 @@ export default function HomePage() {
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {PRODUCTS.map((p) => (
-              <div
+              <Link
                 key={p.title}
-                className="group bg-white border border-zinc-200 hover:border-accent-gold overflow-hidden transition-all duration-300 hover:shadow-xl flex flex-col"
+                href={`/products/${p.slug}`}
+                className="group bg-white border border-zinc-200 hover:border-accent-gold overflow-hidden transition-all duration-300 hover:shadow-xl flex flex-col cursor-pointer"
               >
                 <div className="relative h-44 bg-zinc-100 overflow-hidden">
                   <Image
@@ -484,14 +485,13 @@ export default function HomePage() {
                     {p.title}
                   </h3>
                   <p className="text-xs text-zinc-500 leading-relaxed flex-1">{p.desc}</p>
-                  <Link
-                    href={`/products/${p.slug}`}
-                    className="mt-4 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-accent-gold hover:text-primary-dark transition-colors"
+                  <span
+                    className="mt-4 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-accent-gold group-hover:text-primary-dark transition-colors inline-flex items-center gap-1"
                   >
                     View Products →
-                  </Link>
+                  </span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
           <div className="mt-12 text-center">

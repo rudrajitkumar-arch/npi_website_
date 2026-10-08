@@ -116,8 +116,9 @@ function CategoryCard({
   const remaining = category.subProducts.length - preview.length;
 
   return (
-    <div
-      className="product-card group/card bg-white border border-zinc-200 hover:border-[#1E6D95] hover:shadow-xl flex flex-col relative overflow-hidden reveal-hidden"
+    <Link
+      href={`/products/${category.slug}`}
+      className="product-card group/card bg-white border border-zinc-200 hover:border-[#1E6D95] hover:shadow-xl flex flex-col relative overflow-hidden reveal-hidden cursor-pointer"
       style={{ transitionDelay: `${index * 60}ms` }}
     >
       {/* Top accent reveal on hover */}
@@ -130,7 +131,7 @@ function CategoryCard({
           alt={category.imageAlt}
           fill
           loading="lazy"
-          className="card-image object-cover opacity-90 group-hover/card:opacity-100"
+          className="card-image object-cover opacity-90 group-hover/card:opacity-100 group-hover/card:scale-105 transition-all duration-500"
           sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, (max-width:1280px) 33vw, 25vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#252A2D]/90 via-[#252A2D]/20 to-transparent" />
@@ -172,15 +173,14 @@ function CategoryCard({
         </div>
 
         {/* CTA */}
-        <Link
-          href={`/products/${category.slug}`}
-          className="mt-auto inline-flex items-center gap-2 text-[10px] font-mono font-black uppercase tracking-[0.18em] text-[#252A2D] hover:text-[#1E6D95] transition-colors duration-200 border-t border-zinc-100 pt-4"
+        <div
+          className="mt-auto inline-flex items-center gap-2 text-[10px] font-mono font-black uppercase tracking-[0.18em] text-[#252A2D] group-hover/card:text-[#1E6D95] transition-colors duration-200 border-t border-zinc-100 pt-4"
         >
           View Category
-          <span className="view-cat-arrow text-[#1E6D95]">→</span>
-        </Link>
+          <span className="view-cat-arrow text-[#1E6D95] group-hover/card:translate-x-1 transition-transform duration-200">→</span>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
