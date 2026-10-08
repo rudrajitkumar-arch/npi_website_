@@ -105,7 +105,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     objectPosition: "85% center",
   },
   {
-    img: "/images/quality_images/Conference Room.jpeg",
+    img: "/images/quality_images/Conference Room Final.png",
     title: "Advanced Conference Room",
     desc: "A modern conference space designed for technical discussions, planning, collaboration, and engineering coordination.",
   },
