@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 
+const MAX_UPLOAD_BYTES = 10 * 1024 * 1024; // 10 MB
+
 export default function ContactFormWrapper() {
   const searchParams = useSearchParams();
 
@@ -17,9 +19,10 @@ export default function ContactFormWrapper() {
     quantity: "",
     finish: "",
     message: "",
-    drawing: null as File | null,
+    drawings: [] as File[],
   });
   const [submitted, setSubmitted] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
 
   // Prefill compType from ?product= query param (set by Enquire buttons on category pages)
   useEffect(() => {
@@ -27,8 +30,45 @@ export default function ContactFormWrapper() {
     if (product) setFormData((prev) => ({ ...prev, compType: product }));
   }, [searchParams]);
 
+  const totalSize = formData.drawings.reduce((sum, f) => sum + f.size, 0);
+  const isSizeExceeded = totalSize > MAX_UPLOAD_BYTES;
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selected = e.target.files ? Array.from(e.target.files) : [];
+    const combined = [...formData.drawings, ...selected];
+    const size = combined.reduce((sum, f) => sum + f.size, 0);
+    if (size > MAX_UPLOAD_BYTES) {
+      setUploadError(
+        "Total attachment size must not exceed 10 MB. Please remove some files and try again."
+      );
+    } else {
+      setUploadError(null);
+    }
+    setFormData({ ...formData, drawings: combined });
+    // Reset input so same file can be re-added after removal
+    e.target.value = "";
+  };
+
+  const removeFile = (index: number) => {
+    const updated = formData.drawings.filter((_, i) => i !== index);
+    const size = updated.reduce((sum, f) => sum + f.size, 0);
+    setUploadError(
+      size > MAX_UPLOAD_BYTES
+        ? "Total attachment size must not exceed 10 MB. Please remove some files and try again."
+        : null
+    );
+    setFormData({ ...formData, drawings: updated });
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // Recheck on submit
+    if (isSizeExceeded) {
+      setUploadError(
+        "Total attachment size must not exceed 10 MB. Please remove some files and try again."
+      );
+      return;
+    }
     console.log("RFQ Submission Data:", formData);
     setSubmitted(true);
   };
@@ -51,6 +91,7 @@ export default function ContactFormWrapper() {
         <button
           onClick={() => {
             setSubmitted(false);
+            setUploadError(null);
             setFormData({
               name: "",
               company: "",
@@ -62,7 +103,7 @@ export default function ContactFormWrapper() {
               quantity: "",
               finish: "",
               message: "",
-              drawing: null,
+              drawings: [],
             });
           }}
           className="px-6 py-3 bg-primary-dark text-white text-xs font-black uppercase tracking-widest hover:bg-accent-gold transition-colors"
@@ -229,11 +270,9 @@ export default function ContactFormWrapper() {
         <div className="relative border-2 border-dashed border-[#1E6D95]/40 hover:border-[#1E6D95] bg-[#EAF3F7]/30 hover:bg-[#EAF3F7]/60 rounded-xl transition-all p-6 text-center cursor-pointer group shadow-inner">
           <input
             type="file"
-            onChange={(e) => {
-              if (e.target.files && e.target.files[0]) {
-                setFormData({ ...formData, drawing: e.target.files[0] });
-              }
-            }}
+            multiple
+            accept=".pdf,.dwg,.dxf,.step,.stp,.jpg,.jpeg,.png"
+            onChange={handleFileChange}
             className="absolute inset-0 opacity-0 cursor-pointer"
           />
           <div className="w-10 h-10 rounded-full bg-[#1E6D95]/15 text-[#1E6D95] flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition-transform">
@@ -242,12 +281,46 @@ export default function ContactFormWrapper() {
             </svg>
           </div>
           <span className="text-xs font-black text-[#252A2D] uppercase tracking-wider block mb-1">
-            {formData.drawing ? formData.drawing.name : "Select Drawing Files"}
+            {formData.drawings.length === 0
+              ? "Select Drawing Files"
+              : `${formData.drawings.length} file${formData.drawings.length > 1 ? "s" : ""} selected`}
           </span>
           <span className="text-[11px] text-zinc-400 block">
-            Drag files here or click to browse. Maximum file size: 20 MB.
+            Drag files here or click to browse. Maximum total attachment size: 10 MB.
           </span>
         </div>
+
+        {/* File list with remove buttons */}
+        {formData.drawings.length > 0 && (
+          <ul className="mt-2 space-y-1">
+            {formData.drawings.map((f, i) => (
+              <li key={i} className="flex items-center justify-between text-[11px] text-zinc-600 bg-zinc-50 border border-zinc-200 rounded-lg px-3 py-1.5">
+                <span className="truncate max-w-[75%]">{f.name}</span>
+                <span className="flex items-center gap-2 shrink-0">
+                  <span className="text-zinc-400">{(f.size / 1024).toFixed(0)} KB</span>
+                  <button
+                    type="button"
+                    onClick={() => removeFile(i)}
+                    className="text-red-400 hover:text-red-600 font-bold transition-colors"
+                    aria-label={`Remove ${f.name}`}
+                  >
+                    ×
+                  </button>
+                </span>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        {/* Size error */}
+        {uploadError && (
+          <p className="mt-2 text-[11px] text-red-600 font-semibold flex items-start gap-1.5">
+            <svg className="w-3.5 h-3.5 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+            </svg>
+            {uploadError}
+          </p>
+        )}
       </div>
 
       {/* Message requirement details */}
@@ -266,7 +339,8 @@ export default function ContactFormWrapper() {
 
       <button
         type="submit"
-        className="w-full bg-[#1E6D95] hover:bg-[#15516F] text-white text-xs sm:text-sm font-black uppercase tracking-widest py-4 rounded-xl shadow-lg hover:shadow-[#1E6D95]/20 transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer"
+        disabled={isSizeExceeded}
+        className="w-full bg-[#1E6D95] hover:bg-[#15516F] disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs sm:text-sm font-black uppercase tracking-widest py-4 rounded-xl shadow-lg hover:shadow-[#1E6D95]/20 transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer"
       >
         <span>Send Enquiry</span>
         <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
