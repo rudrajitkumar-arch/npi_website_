@@ -43,7 +43,7 @@ export const PRODUCT_CATALOGUE: ProductCategory[] = [
   {
     slug: "electrical-electronics",
     name: "Electrical & Electronics",
-    image: "/images/header_images/Electrical_Electronics.png",
+    image: "/images/product_category_images/Electrical_Electronics_Final.png",
     imageAlt: "Brass electrical and electronics components including earthing and switchgear",
     heroImage: "/images/products/categories/Electrical_Electronics.png",
     heroImageAlt: "Brass electrical and electronics components, switchgear and earthing accessories",
@@ -92,7 +92,7 @@ export const PRODUCT_CATALOGUE: ProductCategory[] = [
   {
     slug: "fittings",
     name: "Fittings",
-    image: "/images/product_images/brass_fitting.jpg",
+    image: "/images/product_category_images/Fittings_final.png",
     imageAlt: "Brass pipe and plumbing fittings",
     heroImage: "/images/products/categories/fittings.png",
     heroImageAlt: "Brass pipe and plumbing fittings, precision-machined industrial fittings",
@@ -135,7 +135,7 @@ export const PRODUCT_CATALOGUE: ProductCategory[] = [
   {
     slug: "cnc-turned-parts",
     name: "CNC Turned Parts",
-    image: "/images/header_images/CNC_Turned_Parts.png",
+    image: "/images/product_category_images/CNC_Turned_Parts.png",
     imageAlt: "CNC turned precision machined components",
     heroImage: "/images/products/categories/CNC Turned Parts.png",
     heroImageAlt: "Multi-axis CNC turned and precision machined brass, copper, aluminum and steel parts",
@@ -184,7 +184,7 @@ export const PRODUCT_CATALOGUE: ProductCategory[] = [
   {
     slug: "inserts",
     name: "Inserts",
-    image: "/images/product_images/brass_inserts.jpg",
+    image: "/images/product_category_images/inserts_final.png",
     imageAlt: "Brass and aluminium moulding inserts",
     heroImage: "/images/products/categories/inserts.png",
     heroImageAlt: "Brass and aluminium moulding inserts, threaded and knurled inserts",
@@ -221,7 +221,7 @@ export const PRODUCT_CATALOGUE: ProductCategory[] = [
   {
     slug: "stamping-parts",
     name: "Stamping Parts",
-    image: "/images/product_images/stamping_parts.jpg",
+    image: "/images/product_category_images/Stamping-parts-final.png",
     imageAlt: "Precision stamped brass, copper and steel components",
     heroImage: "/images/products/categories/Stamping-parts.png",
     heroImageAlt: "Precision stamped brass, copper and steel metal components",
@@ -258,7 +258,7 @@ export const PRODUCT_CATALOGUE: ProductCategory[] = [
   {
     slug: "fasteners-fixings",
     name: "Fasteners & Fixings",
-    image: "/images/product_images/brass_fasteners_fixings.jpg",
+    image: "/images/product_category_images/Fasteners-&-Fixings-final.png",
     imageAlt: "Brass nuts, bolts, anchors, washers and screws",
     heroImage: "/images/products/categories/Fasteners & Fixings.png",
     heroImageAlt: "Brass fasteners, nuts, bolts, anchors, precision washers and screws",
@@ -295,7 +295,7 @@ export const PRODUCT_CATALOGUE: ProductCategory[] = [
   {
     slug: "high-precision-components",
     name: "High Precision Components",
-    image: "/images/product_images/high_precision_components.jpg",
+    image: "/images/product_category_images/HIGH-PRECISION-Components-final.png",
     imageAlt: "High precision small machined brass and metal components",
     heroImage: "/images/products/categories/HIGH-PRECISION-Components.png",
     heroImageAlt: "High precision machined brass and metal components for automotive, medical and appliance applications",
@@ -332,7 +332,7 @@ export const PRODUCT_CATALOGUE: ProductCategory[] = [
   {
     slug: "copper-bronze-gunmetal",
     name: "Copper, Bronze & Gunmetal Components",
-    image: "/images/product_images/copper_bronze_gunmetal.jpg",
+    image: "/images/product_category_images/copper-bronze-gunmetal-components-final.png",
     imageAlt: "Copper, bronze and gunmetal machined components",
     heroImage: "/images/products/categories/copper-bronze-gunmetal-components.png",
     heroImageAlt: "Precision machined copper, bronze and gunmetal non-ferrous alloy components",
