@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Industries We Serve",
+  title: "Industries We Serve — Electrical, Automotive, Medical & More",
   description:
     "New Perfect Incorporation manufactures precision components for electrical, automotive, aerospace, medical, plumbing, sanitary, marine, fastener, and plastic moulding industries.",
   keywords: [
@@ -14,6 +14,13 @@ export const metadata: Metadata = {
     "marine fasteners copper",
     "B2B component manufacturing",
   ],
+  alternates: { canonical: "https://newperfectinc.com/industries" },
+  openGraph: {
+    title: "Industries We Serve — New Perfect Incorporation",
+    description:
+      "Precision components for electrical, automotive, medical, aerospace, plumbing and marine industries.",
+    url: "https://newperfectinc.com/industries",
+  },
 };
 
 /* ─── PRIMITIVES ─────────────────────────────────────────── */

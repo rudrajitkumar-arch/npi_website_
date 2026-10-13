@@ -5,7 +5,7 @@ import { Suspense } from "react";
 import ContactFormWrapper from "./ContactFormWrapper";
 
 export const metadata: Metadata = {
-  title: "Contact & Request a Quote",
+  title: "Contact Us & Request a Quote — RFQ Form",
   description:
     "Request a manufacturing quote from New Perfect Incorporation. Submit your technical drawings, material grades, and specifications for custom precision brass and copper components.",
   keywords: [
@@ -15,6 +15,13 @@ export const metadata: Metadata = {
     "Jamnagar brass factory contact",
     "custom manufacturing enquiry",
   ],
+  alternates: { canonical: "https://newperfectinc.com/contact" },
+  openGraph: {
+    title: "Contact & Request a Quote — New Perfect Incorporation",
+    description:
+      "Submit your technical drawings and specifications for a custom brass component manufacturing quote.",
+    url: "https://newperfectinc.com/contact",
+  },
 };
 
 /* ─── PRIMITIVES ─────────────────────────────────────────── */

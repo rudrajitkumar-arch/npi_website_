@@ -26,12 +26,33 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://newperfectinc.com"),
   title: {
-    default: "New Perfect Incorporation | Every Precision Components",
+    default: "New Perfect Incorporation | Precision Brass Components Manufacturer",
     template: "%s | New Perfect Incorporation",
   },
   description:
-    "ISO 9001:2015 certified manufacturer, exporter & supplier of Every Precision Components from Jamnagar, Gujarat, India",
+    "New Perfect Incorporation manufactures precision brass components, CNC-turned parts, fittings and custom metal components in Jamnagar, Gujarat, India.",
+  openGraph: {
+    siteName: "New Perfect Incorporation",
+    locale: "en_IN",
+    type: "website",
+    url: "https://newperfectinc.com",
+    images: [
+      {
+        url: "/images/company_logo/New Logo Final final.png",
+        width: 1200,
+        height: 630,
+        alt: "New Perfect Incorporation — Precision Brass Components",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "New Perfect Incorporation | Precision Brass Components Manufacturer",
+    description:
+      "New Perfect Incorporation manufactures precision brass components, CNC-turned parts, fittings and custom metal components in Jamnagar, Gujarat, India.",
+  },
   icons: {
     icon: [
       { url: "/images/company_logo/np-mark.png", type: "image/png" },
@@ -39,15 +60,26 @@ export const metadata: Metadata = {
     shortcut: "/images/company_logo/np-mark.png",
     apple: "/images/company_logo/np-mark.png",
   },
+  alternates: {
+    canonical: "https://newperfectinc.com",
+  },
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "New Perfect Incorporation",
+  url: "https://newperfectinc.com",
 };
 
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "New Perfect Incorporation",
-  url: "https://www.newperfectinc.com",
+  url: "https://newperfectinc.com",
+  logo: "https://newperfectinc.com/images/company_logo/New Logo Final final.png",
   description:
-    "ISO 9001:2015 certified manufacturer, exporter and supplier of precision brass and copper components.",
+    "ISO 9001:2015 certified manufacturer, exporter and supplier of precision brass and copper components from Jamnagar, Gujarat, India.",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Plot No. 4145, GIDC Phase 3, Dared",
@@ -72,6 +104,10 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}

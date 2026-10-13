@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Manufacturing Capabilities",
+  title: "Manufacturing Capabilities — CNC Turning, Plating & Engineering Support",
   description:
     "New Perfect Incorporation's full manufacturing capability — CNC turning, secondary operations, surface plating, in-house tooling, and engineering support for precision brass and copper components.",
   keywords: [
@@ -14,6 +14,13 @@ export const metadata: Metadata = {
     "custom screw machining India",
     "PPAP Level III documentation",
   ],
+  alternates: { canonical: "https://newperfectinc.com/capabilities" },
+  openGraph: {
+    title: "Manufacturing Capabilities — New Perfect Incorporation",
+    description:
+      "CNC turning, secondary operations, surface plating and engineering support for precision brass and copper components.",
+    url: "https://newperfectinc.com/capabilities",
+  },
 };
 
 /* ─── PRIMITIVES ─────────────────────────────────────────── */

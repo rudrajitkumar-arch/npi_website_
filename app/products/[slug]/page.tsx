@@ -32,6 +32,12 @@ export async function generateMetadata({
     title: cat.name,
     description: `${cat.description} Manufactured by New Perfect Incorporation, Jamnagar, Gujarat, India.`,
     keywords: [cat.name, ...cat.subProducts.map((s) => s.name), "manufacturer Jamnagar", "precision components India"],
+    alternates: { canonical: `https://newperfectinc.com/products/${slug}` },
+    openGraph: {
+      title: `${cat.name} | New Perfect Incorporation`,
+      description: `${cat.description} Manufactured by New Perfect Incorporation, Jamnagar, Gujarat, India.`,
+      url: `https://newperfectinc.com/products/${slug}`,
+    },
   };
 }
 

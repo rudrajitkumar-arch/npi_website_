@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "About Us — History, Leadership & Manufacturing Since 2007",
   description:
     "New Perfect Incorporation — ISO 9001:2015 certified precision components manufacturer in Jamnagar, Gujarat, since 2007. Learn about our history, leadership, and manufacturing capabilities.",
   keywords: [
@@ -13,6 +13,13 @@ export const metadata: Metadata = {
     "ISO 9001 certified brass factory",
     "precision machining Gujarat",
   ],
+  alternates: { canonical: "https://newperfectinc.com/about" },
+  openGraph: {
+    title: "About New Perfect Incorporation",
+    description:
+      "ISO 9001:2015 certified precision components manufacturer in Jamnagar, Gujarat, since 2007.",
+    url: "https://newperfectinc.com/about",
+  },
 };
 
 /* ─── PRIMITIVES ─────────────────────────────────────────── */

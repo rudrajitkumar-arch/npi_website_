@@ -4,7 +4,7 @@ import Image from "next/image";
 import QualityInAction from "@/components/QualityInAction";
 
 export const metadata: Metadata = {
-  title: "Quality & Certifications",
+  title: "Quality & Certifications — ISO 9001:2015, PPAP & RoHS",
   description:
     "ISO 9001:2015 certified quality management at New Perfect Incorporation — 100% visual inspection, calibrated metrology, PPAP Level III documentation, RoHS compliance, and controlled production processes.",
   keywords: [
@@ -15,6 +15,13 @@ export const metadata: Metadata = {
     "precision component metrology",
     "zero defect manufacturing India",
   ],
+  alternates: { canonical: "https://newperfectinc.com/quality" },
+  openGraph: {
+    title: "Quality & Certifications — New Perfect Incorporation",
+    description:
+      "ISO 9001:2015 certified, PPAP Level III, RoHS compliant precision brass manufacturing in Jamnagar.",
+    url: "https://newperfectinc.com/quality",
+  },
 };
 
 /* ─── PRIMITIVES ─────────────────────────────────────────── */

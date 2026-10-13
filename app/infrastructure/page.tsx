@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Infrastructure & Facility",
+  title: "Infrastructure & Facility — 50,000 sq.ft. Campus, Jamnagar",
   description:
     "Explore New Perfect Incorporation's 50,000 sq. ft. manufacturing campus in Jamnagar, Gujarat. Equipped with 110+ advanced machines, quality inspection labs, a tool room, and office facilities.",
   keywords: [
@@ -14,6 +14,13 @@ export const metadata: Metadata = {
     "production capacity copper",
     "ISO 9001 factory tour",
   ],
+  alternates: { canonical: "https://newperfectinc.com/infrastructure" },
+  openGraph: {
+    title: "Infrastructure & Facility — New Perfect Incorporation",
+    description:
+      "50,000 sq. ft. manufacturing campus with 110+ machines, quality labs and tool room in Jamnagar, Gujarat.",
+    url: "https://newperfectinc.com/infrastructure",
+  },
 };
 
 /* ─── PRIMITIVES ─────────────────────────────────────────── */

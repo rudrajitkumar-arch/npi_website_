@@ -6,9 +6,9 @@ import HomeQualityGallery from "@/components/HomeQualityGallery";
 import { PRODUCT_CATALOGUE } from "@/lib/products";
 
 export const metadata: Metadata = {
-  title: "New Perfect Incorporation | Precision Components Manufacturer – Jamnagar, India",
+  title: "New Perfect Incorporation | Precision Brass Components Manufacturer",
   description:
-    "ISO 9001:2015 certified manufacturer, exporter and supplier of precision brass, copper, and alloy components. CNC turned parts, fittings, fasteners, inserts, and custom components from Jamnagar, Gujarat.",
+    "New Perfect Incorporation manufactures precision brass components, CNC-turned parts, fittings and custom metal components in Jamnagar, Gujarat, India.",
   keywords: [
     "brass components manufacturer",
     "copper components",
@@ -17,6 +17,13 @@ export const metadata: Metadata = {
     "brass fittings exporter India",
     "ISO 9001 brass manufacturer",
   ],
+  alternates: { canonical: "https://newperfectinc.com" },
+  openGraph: {
+    title: "New Perfect Incorporation | Precision Brass Components Manufacturer",
+    description:
+      "New Perfect Incorporation manufactures precision brass components, CNC-turned parts, fittings and custom metal components in Jamnagar, Gujarat, India.",
+    url: "https://newperfectinc.com",
+  },
 };
 
 /* ─── reusable tiny primitives ─────────────────────────── */

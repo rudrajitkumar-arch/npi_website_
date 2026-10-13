@@ -12,7 +12,7 @@ import Image from "next/image";
 import { PRODUCT_CATALOGUE } from "@/lib/products";
 
 export const metadata: Metadata = {
-  title: "Products",
+  title: "Products — Brass Components, Fittings, Inserts & More",
   description:
     "Browse the complete product catalogue of New Perfect Incorporation — precision brass, copper, bronze and gunmetal components across 8 major categories. Manufacturer & exporter from Jamnagar, India.",
   keywords: [
@@ -25,6 +25,13 @@ export const metadata: Metadata = {
     "precision components India",
     "brass fasteners manufacturer",
   ],
+  alternates: { canonical: "https://newperfectinc.com/products" },
+  openGraph: {
+    title: "Products — New Perfect Incorporation",
+    description:
+      "Precision brass, copper, bronze and gunmetal components across 8 categories. Manufacturer & exporter, Jamnagar, India.",
+    url: "https://newperfectinc.com/products",
+  },
 };
 
 /* ─── PRIMITIVES ─────────────────────────────────────────── */
