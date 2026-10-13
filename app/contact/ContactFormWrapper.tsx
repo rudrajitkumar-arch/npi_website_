@@ -1,15 +1,16 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useState, useEffect, useRef } from "react";
+import { useSearchParams } from "next/navigation";
 
 const MAX_UPLOAD_BYTES = 10 * 1024 * 1024; // 10 MB
-const FORMSUBMIT_ENDPOINT =
-  "https://formsubmit.co/ajax/info@newperfectinc.com";
+const THANK_YOU_URL =
+  "https://rudrajitkumar-arch.github.io/npi_website_/contact/thank-you/";
 
 export default function ContactFormWrapper() {
   const searchParams = useSearchParams();
-  const router = useRouter();
+  const formRef = useRef<HTMLFormElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -22,112 +23,81 @@ export default function ContactFormWrapper() {
     quantity: "",
     finish: "",
     message: "",
-    drawings: [] as File[],
   });
 
+  const [drawings, setDrawings] = useState<File[]>([]);
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState<string | null>(null);
 
   useEffect(() => {
     const product = searchParams.get("product");
     if (product) setFormData((prev) => ({ ...prev, compType: product }));
   }, [searchParams]);
 
-  const totalSize = formData.drawings.reduce((sum, f) => sum + f.size, 0);
+  const totalSize = drawings.reduce((sum, f) => sum + f.size, 0);
   const isSizeExceeded = totalSize > MAX_UPLOAD_BYTES;
+
+  /** Sync `drawings` state back onto the real file input via DataTransfer */
+  const syncFilesToInput = (files: File[]) => {
+    if (!fileInputRef.current) return;
+    const dt = new DataTransfer();
+    files.forEach((f) => dt.items.add(f));
+    fileInputRef.current.files = dt.files;
+  };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selected = e.target.files ? Array.from(e.target.files) : [];
-    const combined = [...formData.drawings, ...selected];
+    const combined = [...drawings, ...selected];
     const size = combined.reduce((sum, f) => sum + f.size, 0);
     setUploadError(
       size > MAX_UPLOAD_BYTES
         ? "Total attachment size must not exceed 10 MB. Please remove some files and try again."
         : null
     );
-    setFormData({ ...formData, drawings: combined });
-    e.target.value = "";
+    setDrawings(combined);
+    syncFilesToInput(combined);
   };
 
   const removeFile = (index: number) => {
-    const updated = formData.drawings.filter((_, i) => i !== index);
+    const updated = drawings.filter((_, i) => i !== index);
     const size = updated.reduce((sum, f) => sum + f.size, 0);
     setUploadError(
       size > MAX_UPLOAD_BYTES
         ? "Total attachment size must not exceed 10 MB. Please remove some files and try again."
         : null
     );
-    setFormData({ ...formData, drawings: updated });
+    setDrawings(updated);
+    syncFilesToInput(updated);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
     if (isSizeExceeded) {
       setUploadError(
         "Total attachment size must not exceed 10 MB. Please remove some files and try again."
       );
       return;
     }
-
     setSubmitting(true);
-    setSubmitError(null);
-
-    try {
-      const data = new FormData();
-
-      // FormSubmit config fields
-      data.append("_subject", "New RFQ Enquiry — New Perfect Incorporation");
-      data.append("_template", "table");
-      data.append("_captcha", "true");
-
-      // Form fields — named clearly for readable email
-      data.append("Contact Name", formData.name);
-      data.append("Company Name", formData.company);
-      data.append("email", formData.email); // named 'email' → FormSubmit auto-sets Reply-To
-      data.append("Phone Number", formData.phone);
-      data.append("Industry Sector", formData.industry || "—");
-      data.append("Component Type", formData.compType || "—");
-      data.append("Material Grade", formData.material);
-      data.append("Quantity", formData.quantity);
-      data.append("Surface Finish / Plating", formData.finish || "—");
-      data.append("Message / Requirements", formData.message || "—");
-
-      // File attachments
-      formData.drawings.forEach((file) => {
-        data.append("attachment", file, file.name);
-      });
-
-      const res = await fetch(FORMSUBMIT_ENDPOINT, {
-        method: "POST",
-        headers: { Accept: "application/json" },
-        body: data,
-      });
-
-      const json = await res.json();
-
-      if (json.success === "true" || json.success === true) {
-        // Navigate to branded thank-you page
-        const base = process.env.NEXT_PUBLIC_BASE_PATH || "";
-        router.push(`${base}/contact/thank-you/`);
-      } else {
-        throw new Error(json.message || "Submission failed");
-      }
-    } catch {
-      setSubmitError(
-        "We couldn't send your enquiry right now. Please try again or email us directly at info@newperfectinc.com."
-      );
-    } finally {
-      setSubmitting(false);
-    }
+    // Native form submit — browser handles multipart/file encoding
+    formRef.current?.submit();
   };
 
   return (
     <form
+      ref={formRef}
       onSubmit={handleSubmit}
+      action="https://formsubmit.co/info@newperfectinc.com"
+      method="POST"
+      encType="multipart/form-data"
       className="bg-white border border-zinc-200/90 rounded-2xl p-5 sm:p-8 md:p-10 space-y-4 sm:space-y-6 shadow-xl relative overflow-hidden hover:border-[#1E6D95]/40 transition-all duration-300 h-full flex flex-col justify-between"
     >
+      {/* FormSubmit config — hidden fields */}
+      <input type="hidden" name="_subject" value="New RFQ Enquiry — New Perfect Incorporation" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_next" value={THANK_YOU_URL} />
+      <input type="hidden" name="_captcha" value="true" />
+
       <div className="absolute top-0 left-0 right-0 h-1 bg-[#1E6D95]" />
 
       <div className="border-b border-zinc-100 pb-4 mb-2">
@@ -149,6 +119,7 @@ export default function ContactFormWrapper() {
           </label>
           <input
             type="text"
+            name="Contact Name"
             required
             placeholder="e.g. Meet Patel"
             value={formData.name}
@@ -162,6 +133,7 @@ export default function ContactFormWrapper() {
           </label>
           <input
             type="text"
+            name="Company Name"
             required
             placeholder="e.g. Panasonic India"
             value={formData.company}
@@ -178,6 +150,7 @@ export default function ContactFormWrapper() {
           </label>
           <input
             type="email"
+            name="email"
             required
             placeholder="e.g. purchase@company.com"
             value={formData.email}
@@ -191,6 +164,7 @@ export default function ContactFormWrapper() {
           </label>
           <input
             type="tel"
+            name="Phone Number"
             required
             placeholder="e.g. +91 78179 42727"
             value={formData.phone}
@@ -207,6 +181,7 @@ export default function ContactFormWrapper() {
           </label>
           <input
             type="text"
+            name="Industry Sector"
             placeholder="e.g. Electrical / Automotive"
             value={formData.industry}
             onChange={(e) => setFormData({ ...formData, industry: e.target.value })}
@@ -219,6 +194,7 @@ export default function ContactFormWrapper() {
           </label>
           <input
             type="text"
+            name="Component Type"
             placeholder="e.g. Brass knurled insert"
             value={formData.compType}
             onChange={(e) => setFormData({ ...formData, compType: e.target.value })}
@@ -233,6 +209,7 @@ export default function ContactFormWrapper() {
             Material Grade Required
           </label>
           <select
+            name="Material Grade"
             value={formData.material}
             onChange={(e) => setFormData({ ...formData, material: e.target.value })}
             className="w-full border border-zinc-300 rounded-lg px-4 py-3 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-accent-gold/20 focus:border-accent-gold bg-zinc-50/50 focus:bg-white transition-all text-primary-dark shadow-sm cursor-pointer"
@@ -252,6 +229,7 @@ export default function ContactFormWrapper() {
           </label>
           <input
             type="text"
+            name="Quantity"
             required
             placeholder="e.g. 5,000 Pcs"
             value={formData.quantity}
@@ -267,6 +245,7 @@ export default function ContactFormWrapper() {
         </label>
         <input
           type="text"
+          name="Surface Finish / Plating"
           placeholder="e.g. Nickel plating / Buffing / Anodizing"
           value={formData.finish}
           onChange={(e) => setFormData({ ...formData, finish: e.target.value })}
@@ -281,7 +260,9 @@ export default function ContactFormWrapper() {
         </label>
         <div className="relative border-2 border-dashed border-[#1E6D95]/40 hover:border-[#1E6D95] bg-[#EAF3F7]/30 hover:bg-[#EAF3F7]/60 rounded-xl transition-all p-6 text-center cursor-pointer group shadow-inner">
           <input
+            ref={fileInputRef}
             type="file"
+            name="attachment"
             multiple
             accept=".pdf,.dwg,.dxf,.step,.stp,.jpg,.jpeg,.png"
             onChange={handleFileChange}
@@ -293,9 +274,9 @@ export default function ContactFormWrapper() {
             </svg>
           </div>
           <span className="text-xs font-black text-[#252A2D] uppercase tracking-wider block mb-1">
-            {formData.drawings.length === 0
+            {drawings.length === 0
               ? "Select Drawing Files"
-              : `${formData.drawings.length} file${formData.drawings.length > 1 ? "s" : ""} selected`}
+              : `${drawings.length} file${drawings.length > 1 ? "s" : ""} selected`}
           </span>
           <span className="text-[11px] text-zinc-400 block">
             Drag files here or click to browse. Maximum total attachment size: 10 MB.
@@ -303,9 +284,9 @@ export default function ContactFormWrapper() {
         </div>
 
         {/* File list */}
-        {formData.drawings.length > 0 && (
+        {drawings.length > 0 && (
           <ul className="mt-2 space-y-1">
-            {formData.drawings.map((f, i) => (
+            {drawings.map((f, i) => (
               <li
                 key={i}
                 className="flex items-center justify-between text-[11px] text-zinc-600 bg-zinc-50 border border-zinc-200 rounded-lg px-3 py-1.5"
@@ -327,7 +308,6 @@ export default function ContactFormWrapper() {
           </ul>
         )}
 
-        {/* Upload size error */}
         {uploadError && (
           <p className="mt-2 text-[11px] text-red-600 font-semibold flex items-start gap-1.5">
             <svg className="w-3.5 h-3.5 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -345,22 +325,13 @@ export default function ContactFormWrapper() {
         </label>
         <textarea
           rows={4}
+          name="Message / Requirements"
           placeholder="Describe critical dimensions, material requirements, and target timelines..."
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
           className="w-full border border-zinc-300 rounded-lg px-4 py-3 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#1E6D95]/20 focus:border-[#1E6D95] bg-zinc-50/50 focus:bg-white transition-all text-[#252A2D] shadow-sm resize-none"
         />
       </div>
-
-      {/* Submission error */}
-      {submitError && (
-        <p className="text-[11px] text-red-600 font-semibold flex items-start gap-1.5 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
-          <svg className="w-3.5 h-3.5 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
-          </svg>
-          {submitError}
-        </p>
-      )}
 
       <button
         type="submit"
