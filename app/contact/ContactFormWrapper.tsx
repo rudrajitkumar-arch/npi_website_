@@ -1,12 +1,15 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 
 const MAX_UPLOAD_BYTES = 10 * 1024 * 1024; // 10 MB
+const FORMSUBMIT_ENDPOINT =
+  "https://formsubmit.co/ajax/info@newperfectinc.com";
 
 export default function ContactFormWrapper() {
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -21,10 +24,11 @@ export default function ContactFormWrapper() {
     message: "",
     drawings: [] as File[],
   });
-  const [submitted, setSubmitted] = useState(false);
-  const [uploadError, setUploadError] = useState<string | null>(null);
 
-  // Prefill compType from ?product= query param (set by Enquire buttons on category pages)
+  const [uploadError, setUploadError] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
   useEffect(() => {
     const product = searchParams.get("product");
     if (product) setFormData((prev) => ({ ...prev, compType: product }));
@@ -37,15 +41,12 @@ export default function ContactFormWrapper() {
     const selected = e.target.files ? Array.from(e.target.files) : [];
     const combined = [...formData.drawings, ...selected];
     const size = combined.reduce((sum, f) => sum + f.size, 0);
-    if (size > MAX_UPLOAD_BYTES) {
-      setUploadError(
-        "Total attachment size must not exceed 10 MB. Please remove some files and try again."
-      );
-    } else {
-      setUploadError(null);
-    }
+    setUploadError(
+      size > MAX_UPLOAD_BYTES
+        ? "Total attachment size must not exceed 10 MB. Please remove some files and try again."
+        : null
+    );
     setFormData({ ...formData, drawings: combined });
-    // Reset input so same file can be re-added after removal
     e.target.value = "";
   };
 
@@ -60,62 +61,73 @@ export default function ContactFormWrapper() {
     setFormData({ ...formData, drawings: updated });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Recheck on submit
+
     if (isSizeExceeded) {
       setUploadError(
         "Total attachment size must not exceed 10 MB. Please remove some files and try again."
       );
       return;
     }
-    console.log("RFQ Submission Data:", formData);
-    setSubmitted(true);
+
+    setSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const data = new FormData();
+
+      // FormSubmit config fields
+      data.append("_subject", "New RFQ Enquiry — New Perfect Incorporation");
+      data.append("_template", "table");
+      data.append("_captcha", "true");
+
+      // Form fields — named clearly for readable email
+      data.append("Contact Name", formData.name);
+      data.append("Company Name", formData.company);
+      data.append("email", formData.email); // named 'email' → FormSubmit auto-sets Reply-To
+      data.append("Phone Number", formData.phone);
+      data.append("Industry Sector", formData.industry || "—");
+      data.append("Component Type", formData.compType || "—");
+      data.append("Material Grade", formData.material);
+      data.append("Quantity", formData.quantity);
+      data.append("Surface Finish / Plating", formData.finish || "—");
+      data.append("Message / Requirements", formData.message || "—");
+
+      // File attachments
+      formData.drawings.forEach((file) => {
+        data.append("attachment", file, file.name);
+      });
+
+      const res = await fetch(FORMSUBMIT_ENDPOINT, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: data,
+      });
+
+      const json = await res.json();
+
+      if (json.success === "true" || json.success === true) {
+        // Navigate to branded thank-you page
+        const base = process.env.NEXT_PUBLIC_BASE_PATH || "";
+        router.push(`${base}/contact/thank-you/`);
+      } else {
+        throw new Error(json.message || "Submission failed");
+      }
+    } catch {
+      setSubmitError(
+        "We couldn't send your enquiry right now. Please try again or email us directly at info@newperfectinc.com."
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
-  if (submitted) {
-    return (
-      <div className="bg-white border border-zinc-200 p-8 sm:p-12 text-center space-y-6 shadow-sm">
-        <div className="w-16 h-16 bg-green-50 text-green-600 rounded-full flex items-center justify-center border border-green-200 mx-auto">
-          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-          </svg>
-        </div>
-        <h3 className="text-xl sm:text-2xl font-serif font-black uppercase text-primary-dark tracking-wide">
-          Enquiry Sent Successfully
-        </h3>
-        <p className="text-sm text-zinc-500 max-w-md mx-auto leading-relaxed">
-          Thank you for contacting New Perfect Incorporation. Our sales and engineering team
-          will review your drawings and requirements and follow up within 24 business hours.
-        </p>
-        <button
-          onClick={() => {
-            setSubmitted(false);
-            setUploadError(null);
-            setFormData({
-              name: "",
-              company: "",
-              email: "",
-              phone: "",
-              industry: "",
-              compType: "",
-              material: "Brass IS 319 (Free Cutting)",
-              quantity: "",
-              finish: "",
-              message: "",
-              drawings: [],
-            });
-          }}
-          className="px-6 py-3 bg-primary-dark text-white text-xs font-black uppercase tracking-widest hover:bg-accent-gold transition-colors"
-        >
-          Send Another Enquiry
-        </button>
-      </div>
-    );
-  }
-
   return (
-    <form onSubmit={handleSubmit} className="bg-white border border-zinc-200/90 rounded-2xl p-5 sm:p-8 md:p-10 space-y-4 sm:space-y-6 shadow-xl relative overflow-hidden hover:border-[#1E6D95]/40 transition-all duration-300 h-full flex flex-col justify-between">
+    <form
+      onSubmit={handleSubmit}
+      className="bg-white border border-zinc-200/90 rounded-2xl p-5 sm:p-8 md:p-10 space-y-4 sm:space-y-6 shadow-xl relative overflow-hidden hover:border-[#1E6D95]/40 transition-all duration-300 h-full flex flex-col justify-between"
+    >
       <div className="absolute top-0 left-0 right-0 h-1 bg-[#1E6D95]" />
 
       <div className="border-b border-zinc-100 pb-4 mb-2">
@@ -290,11 +302,14 @@ export default function ContactFormWrapper() {
           </span>
         </div>
 
-        {/* File list with remove buttons */}
+        {/* File list */}
         {formData.drawings.length > 0 && (
           <ul className="mt-2 space-y-1">
             {formData.drawings.map((f, i) => (
-              <li key={i} className="flex items-center justify-between text-[11px] text-zinc-600 bg-zinc-50 border border-zinc-200 rounded-lg px-3 py-1.5">
+              <li
+                key={i}
+                className="flex items-center justify-between text-[11px] text-zinc-600 bg-zinc-50 border border-zinc-200 rounded-lg px-3 py-1.5"
+              >
                 <span className="truncate max-w-[75%]">{f.name}</span>
                 <span className="flex items-center gap-2 shrink-0">
                   <span className="text-zinc-400">{(f.size / 1024).toFixed(0)} KB</span>
@@ -312,7 +327,7 @@ export default function ContactFormWrapper() {
           </ul>
         )}
 
-        {/* Size error */}
+        {/* Upload size error */}
         {uploadError && (
           <p className="mt-2 text-[11px] text-red-600 font-semibold flex items-start gap-1.5">
             <svg className="w-3.5 h-3.5 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -323,7 +338,7 @@ export default function ContactFormWrapper() {
         )}
       </div>
 
-      {/* Message requirement details */}
+      {/* Message */}
       <div>
         <label className="block text-[10px] font-bold uppercase tracking-widest text-zinc-600 mb-2">
           Message / Requirement Details
@@ -337,18 +352,40 @@ export default function ContactFormWrapper() {
         />
       </div>
 
+      {/* Submission error */}
+      {submitError && (
+        <p className="text-[11px] text-red-600 font-semibold flex items-start gap-1.5 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
+          <svg className="w-3.5 h-3.5 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+          </svg>
+          {submitError}
+        </p>
+      )}
+
       <button
         type="submit"
-        disabled={isSizeExceeded}
+        disabled={isSizeExceeded || submitting}
         className="w-full bg-[#1E6D95] hover:bg-[#15516F] disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs sm:text-sm font-black uppercase tracking-widest py-4 rounded-xl shadow-lg hover:shadow-[#1E6D95]/20 transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer"
       >
-        <span>Send Enquiry</span>
-        <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-        </svg>
+        {submitting ? (
+          <>
+            <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
+            </svg>
+            <span>Sending…</span>
+          </>
+        ) : (
+          <>
+            <span>Send Enquiry</span>
+            <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </>
+        )}
       </button>
 
-      {/* Confidentiality & Engineering Review Reassurance */}
+      {/* Reassurance */}
       <div className="pt-2 border-t border-zinc-100/80 space-y-1.5 text-[11px] text-zinc-500">
         <div className="flex items-start sm:items-center gap-2">
           <svg className="w-3.5 h-3.5 text-accent-gold shrink-0 mt-0.5 sm:mt-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
