@@ -17,12 +17,12 @@ export const metadata: Metadata = {
     "brass fittings exporter India",
     "ISO 9001 brass manufacturer",
   ],
-  alternates: { canonical: "https://newperfectinc.com" },
+  alternates: { canonical: "https://www.newperfectinc.com" },
   openGraph: {
     title: "New Perfect Incorporation | Precision Brass Components Manufacturer",
     description:
       "New Perfect Incorporation manufactures precision brass components, CNC-turned parts, fittings and custom metal components in Jamnagar, Gujarat, India.",
-    url: "https://newperfectinc.com",
+    url: "https://www.newperfectinc.com",
   },
 };
 

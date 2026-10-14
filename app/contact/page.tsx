@@ -15,12 +15,12 @@ export const metadata: Metadata = {
     "Jamnagar brass factory contact",
     "custom manufacturing enquiry",
   ],
-  alternates: { canonical: "https://newperfectinc.com/contact" },
+  alternates: { canonical: "https://www.newperfectinc.com/contact" },
   openGraph: {
     title: "Contact & Request a Quote — New Perfect Incorporation",
     description:
       "Submit your technical drawings and specifications for a custom brass component manufacturing quote.",
-    url: "https://newperfectinc.com/contact",
+    url: "https://www.newperfectinc.com/contact",
   },
 };
 

@@ -14,12 +14,12 @@ export const metadata: Metadata = {
     "marine fasteners copper",
     "B2B component manufacturing",
   ],
-  alternates: { canonical: "https://newperfectinc.com/industries" },
+  alternates: { canonical: "https://www.newperfectinc.com/industries" },
   openGraph: {
     title: "Industries We Serve — New Perfect Incorporation",
     description:
       "Precision components for electrical, automotive, medical, aerospace, plumbing and marine industries.",
-    url: "https://newperfectinc.com/industries",
+    url: "https://www.newperfectinc.com/industries",
   },
 };
 

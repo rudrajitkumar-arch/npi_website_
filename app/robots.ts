@@ -9,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/contact/thank-you/"],
       },
     ],
-    sitemap: "https://newperfectinc.com/sitemap.xml",
-    host: "https://newperfectinc.com",
+    sitemap: "https://www.newperfectinc.com/sitemap.xml",
+    host: "https://www.newperfectinc.com",
   };
 }

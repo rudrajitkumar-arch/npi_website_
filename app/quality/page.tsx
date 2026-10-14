@@ -15,12 +15,12 @@ export const metadata: Metadata = {
     "precision component metrology",
     "zero defect manufacturing India",
   ],
-  alternates: { canonical: "https://newperfectinc.com/quality" },
+  alternates: { canonical: "https://www.newperfectinc.com/quality" },
   openGraph: {
     title: "Quality & Certifications — New Perfect Incorporation",
     description:
       "ISO 9001:2015 certified, PPAP Level III, RoHS compliant precision brass manufacturing in Jamnagar.",
-    url: "https://newperfectinc.com/quality",
+    url: "https://www.newperfectinc.com/quality",
   },
 };
 

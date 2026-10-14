@@ -25,12 +25,12 @@ export const metadata: Metadata = {
     "precision components India",
     "brass fasteners manufacturer",
   ],
-  alternates: { canonical: "https://newperfectinc.com/products" },
+  alternates: { canonical: "https://www.newperfectinc.com/products" },
   openGraph: {
     title: "Products — New Perfect Incorporation",
     description:
       "Precision brass, copper, bronze and gunmetal components across 8 categories. Manufacturer & exporter, Jamnagar, India.",
-    url: "https://newperfectinc.com/products",
+    url: "https://www.newperfectinc.com/products",
   },
 };
 

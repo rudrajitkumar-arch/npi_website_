@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 
 const MAX_UPLOAD_BYTES = 10 * 1024 * 1024; // 10 MB
 const THANK_YOU_URL =
-  "https://rudrajitkumar-arch.github.io/npi_website_/contact/thank-you/";
+  "https://www.newperfectinc.com/contact/thank-you/";
 
 export default function ContactFormWrapper() {
   const searchParams = useSearchParams();

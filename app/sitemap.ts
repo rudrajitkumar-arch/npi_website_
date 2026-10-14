@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { PRODUCT_CATALOGUE } from "@/lib/products";
 
-const BASE = "https://newperfectinc.com";
+const BASE = "https://www.newperfectinc.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [

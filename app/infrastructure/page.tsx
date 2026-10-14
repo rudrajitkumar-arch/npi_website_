@@ -14,12 +14,12 @@ export const metadata: Metadata = {
     "production capacity copper",
     "ISO 9001 factory tour",
   ],
-  alternates: { canonical: "https://newperfectinc.com/infrastructure" },
+  alternates: { canonical: "https://www.newperfectinc.com/infrastructure" },
   openGraph: {
     title: "Infrastructure & Facility — New Perfect Incorporation",
     description:
       "50,000 sq. ft. manufacturing campus with 110+ machines, quality labs and tool room in Jamnagar, Gujarat.",
-    url: "https://newperfectinc.com/infrastructure",
+    url: "https://www.newperfectinc.com/infrastructure",
   },
 };
 

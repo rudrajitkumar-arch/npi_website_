@@ -14,12 +14,12 @@ export const metadata: Metadata = {
     "custom screw machining India",
     "PPAP Level III documentation",
   ],
-  alternates: { canonical: "https://newperfectinc.com/capabilities" },
+  alternates: { canonical: "https://www.newperfectinc.com/capabilities" },
   openGraph: {
     title: "Manufacturing Capabilities — New Perfect Incorporation",
     description:
       "CNC turning, secondary operations, surface plating and engineering support for precision brass and copper components.",
-    url: "https://newperfectinc.com/capabilities",
+    url: "https://www.newperfectinc.com/capabilities",
   },
 };
 

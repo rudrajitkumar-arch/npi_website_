@@ -28,6 +28,14 @@ const nextConfig: NextConfig = {
     : {
         async redirects() {
           return [
+            // Non-www → www (preserves path + query string)
+            {
+              source: "/:path*",
+              has: [{ type: "host", value: "newperfectinc.com" }],
+              destination: "https://www.newperfectinc.com/:path*",
+              permanent: true,
+            },
+            // Legacy route
             {
               source: "/clients",
               destination: "/",

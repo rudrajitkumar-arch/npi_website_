@@ -13,12 +13,12 @@ export const metadata: Metadata = {
     "ISO 9001 certified brass factory",
     "precision machining Gujarat",
   ],
-  alternates: { canonical: "https://newperfectinc.com/about" },
+  alternates: { canonical: "https://www.newperfectinc.com/about" },
   openGraph: {
     title: "About New Perfect Incorporation",
     description:
       "ISO 9001:2015 certified precision components manufacturer in Jamnagar, Gujarat, since 2007.",
-    url: "https://newperfectinc.com/about",
+    url: "https://www.newperfectinc.com/about",
   },
 };
 
