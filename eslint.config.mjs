@@ -14,6 +14,11 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
   ]),
   {
+    files: [
+      "app/contact/ContactFormWrapper.tsx",
+      "components/Header.tsx",
+      "components/HomeQualityGallery.tsx",
+    ],
     rules: {
       "react-hooks/set-state-in-effect": "warn",
     },
