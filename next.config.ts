@@ -72,6 +72,7 @@ const nextConfig: NextConfig = {
             // ── Legacy: Industries ────────────────────────────────────
             { source: "/industries.php",  destination: "/industries/", permanent: true },
             { source: "/clients.php",     destination: "/industries/", permanent: true },
+            { source: "/clients",         destination: "/industries/", permanent: true },
 
             // ── Legacy: Contact ───────────────────────────────────────
             { source: "/contact.php",        destination: "/contact/", permanent: true },
@@ -87,7 +88,6 @@ const nextConfig: NextConfig = {
             // ── Legacy: Home ──────────────────────────────────────────
             { source: "/index.php",   destination: "/", permanent: true },
             { source: "/home.php",    destination: "/", permanent: true },
-            { source: "/clients",     destination: "/", permanent: true },
           ];
         },
       }),
