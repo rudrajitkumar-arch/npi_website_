@@ -182,13 +182,13 @@ export default async function CategoryPage({
 
               {/* Back link */}
               <div className="pt-2">
-                <a
-                  href="/products"
+                <Link
+                  href="/products/"
                   className="inline-flex items-center gap-2 text-[11px] font-mono font-bold uppercase tracking-widest text-zinc-500 hover:text-[#1E6D95] transition-colors"
                 >
                   <span className="rotate-180 inline-block">→</span>
                   Back to All Products
-                </a>
+                </Link>
               </div>
             </div>
 
