@@ -23,9 +23,44 @@ const nextConfig: NextConfig = {
   env: {
     NEXT_PUBLIC_BASE_PATH: basePath,
   },
+  poweredByHeader: false,
   ...(isGithubPages
     ? {}
     : {
+        async headers() {
+          return [
+            {
+              source: "/:path*",
+              headers: [
+                {
+                  key: "X-Content-Type-Options",
+                  value: "nosniff",
+                },
+                {
+                  key: "X-Frame-Options",
+                  value: "DENY",
+                },
+                {
+                  key: "Referrer-Policy",
+                  value: "strict-origin-when-cross-origin",
+                },
+                {
+                  key: "Permissions-Policy",
+                  value: "camera=(), microphone=(), geolocation=(), browsing-topics=()",
+                },
+                {
+                  key: "X-DNS-Prefetch-Control",
+                  value: "on",
+                },
+                {
+                  key: "Content-Security-Policy-Report-Only",
+                  value:
+                    "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://www.newperfectinc.com; font-src 'self' data:; connect-src 'self' https://formsubmit.co blob: data:; form-action 'self' https://formsubmit.co; frame-ancestors 'none'; object-src 'none'; base-uri 'self';",
+                },
+              ],
+            },
+          ];
+        },
         async redirects() {
           return [
             // ── Domain: non-www → www (preserves full path) ──────────

@@ -7,6 +7,24 @@ const MAX_UPLOAD_BYTES = 10 * 1024 * 1024; // 10 MB
 const THANK_YOU_URL =
   "https://www.newperfectinc.com/contact/thank-you/";
 
+const ALLOWED_EXTENSIONS = [
+  ".pdf",
+  ".dwg",
+  ".dxf",
+  ".step",
+  ".stp",
+  ".jpg",
+  ".jpeg",
+  ".png",
+];
+
+const isValidExtension = (fileName: string) => {
+  const dotIndex = fileName.lastIndexOf(".");
+  if (dotIndex === -1) return false;
+  const ext = fileName.slice(dotIndex).toLowerCase();
+  return ALLOWED_EXTENSIONS.includes(ext);
+};
+
 export default function ContactFormWrapper() {
   const searchParams = useSearchParams();
   const formRef = useRef<HTMLFormElement>(null);
@@ -47,6 +65,15 @@ export default function ContactFormWrapper() {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selected = e.target.files ? Array.from(e.target.files) : [];
+    const invalidFiles = selected.filter((f) => !isValidExtension(f.name));
+    if (invalidFiles.length > 0) {
+      setUploadError(
+        `Invalid file type (${invalidFiles.map((f) => f.name).join(", ")}). Only CAD drawings and documents (.pdf, .dwg, .dxf, .step, .stp, .jpg, .png) are permitted.`
+      );
+      if (e.target) e.target.value = "";
+      return;
+    }
+
     const combined = [...drawings, ...selected];
     const size = combined.reduce((sum, f) => sum + f.size, 0);
     setUploadError(
@@ -97,6 +124,7 @@ export default function ContactFormWrapper() {
       <input type="hidden" name="_template" value="table" />
       <input type="hidden" name="_next" value={THANK_YOU_URL} />
       <input type="hidden" name="_captcha" value="true" />
+      <input type="text" name="_honey" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
 
       <div className="absolute top-0 left-0 right-0 h-1 bg-[#1E6D95]" />
 
@@ -121,6 +149,7 @@ export default function ContactFormWrapper() {
             type="text"
             name="Contact Name"
             required
+            maxLength={100}
             placeholder="e.g. Meet Patel"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -135,6 +164,7 @@ export default function ContactFormWrapper() {
             type="text"
             name="Company Name"
             required
+            maxLength={120}
             placeholder="e.g. Panasonic India"
             value={formData.company}
             onChange={(e) => setFormData({ ...formData, company: e.target.value })}
@@ -152,6 +182,7 @@ export default function ContactFormWrapper() {
             type="email"
             name="email"
             required
+            maxLength={120}
             placeholder="e.g. purchase@company.com"
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -166,6 +197,7 @@ export default function ContactFormWrapper() {
             type="tel"
             name="Phone Number"
             required
+            maxLength={30}
             placeholder="e.g. +91 78179 42727"
             value={formData.phone}
             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -182,6 +214,7 @@ export default function ContactFormWrapper() {
           <input
             type="text"
             name="Industry Sector"
+            maxLength={100}
             placeholder="e.g. Electrical / Automotive"
             value={formData.industry}
             onChange={(e) => setFormData({ ...formData, industry: e.target.value })}
@@ -195,6 +228,7 @@ export default function ContactFormWrapper() {
           <input
             type="text"
             name="Component Type"
+            maxLength={120}
             placeholder="e.g. Brass knurled insert"
             value={formData.compType}
             onChange={(e) => setFormData({ ...formData, compType: e.target.value })}
@@ -231,6 +265,7 @@ export default function ContactFormWrapper() {
             type="text"
             name="Quantity"
             required
+            maxLength={60}
             placeholder="e.g. 5,000 Pcs"
             value={formData.quantity}
             onChange={(e) => setFormData({ ...formData, quantity: e.target.value })}
@@ -246,6 +281,7 @@ export default function ContactFormWrapper() {
         <input
           type="text"
           name="Surface Finish / Plating"
+          maxLength={120}
           placeholder="e.g. Nickel plating / Buffing / Anodizing"
           value={formData.finish}
           onChange={(e) => setFormData({ ...formData, finish: e.target.value })}
@@ -327,6 +363,7 @@ export default function ContactFormWrapper() {
           rows={4}
           name="Message / Requirements"
           placeholder="Describe critical dimensions, material requirements, and target timelines..."
+          maxLength={5000}
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
           className="w-full border border-zinc-300 rounded-lg px-4 py-3 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#1E6D95]/20 focus:border-[#1E6D95] bg-zinc-50/50 focus:bg-white transition-all text-[#252A2D] shadow-sm resize-none"
