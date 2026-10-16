@@ -142,19 +142,19 @@ const SERVICES = [
   {
     num: "01",
     label: "Precision Machining",
-    img: "/images/services/Precision_Machining.jpg",
+    img: "/images/services/Precision Machining.jpg",
     alt: "Precision machining components",
   },
   {
     num: "02",
     label: "Custom Screw Machining",
-    img: "/images/services/Custom_Screw_Machining.jpg",
+    img: "/images/services/Custom Screw Machining.jpg",
     alt: "Custom screw machining components",
   },
   {
     num: "03",
     label: "CNC Turning & Milling",
-    img: "/images/services/CNC_Turning_Milling.jpg",
+    img: "/images/services/CNC-Milling & Turning.jpg",
     alt: "CNC turning and milling components",
   },
   {
@@ -184,14 +184,15 @@ const SERVICES = [
   {
     num: "08",
     label: "Surface Cleaning & Plating",
-    img: "/images/services/Surface_Cleaning_Plating.png",
+    img: "/images/services/Surface Plating.jpg",
     alt: "Surface cleaning and plating",
   },
   {
     num: "09",
     label: "Light Assembly",
-    img: "/images/services/Light_Assembly.jpg",
+    img: "/images/services/light_assembly_1950x1300.png",
     alt: "Precision component assembly",
+    contain: true,
   },
   {
     num: "10",
@@ -426,14 +427,20 @@ export default function CapabilitiesPage() {
                 ].join(" ")}
               >
                 {/* Image — 4:3 fixed */}
-                <div className="relative w-full aspect-[4/3] overflow-hidden bg-zinc-100 shrink-0">
+                <div
+                  className={`relative w-full aspect-[4/3] overflow-hidden shrink-0 ${
+                    s.contain ? "bg-white" : "bg-zinc-100"
+                  }`}
+                >
                   <Image
                     src={s.img}
                     alt={s.alt}
                     fill
                     loading="lazy"
                     sizes="(max-width:640px) 50vw, (max-width:1024px) 33vw, 25vw"
-                    className="object-cover transition-transform duration-200 ease-out group-hover:scale-[1.02]"
+                    className={`${
+                      s.contain ? "object-contain p-2.5" : "object-cover"
+                    } transition-transform duration-200 ease-out group-hover:scale-[1.02]`}
                   />
                 </div>
                 {/* Text area — fixed min-height keeps all cards aligned */}
