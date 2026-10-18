@@ -17,18 +17,24 @@ import type { ProductCategory } from "@/lib/products";
 interface MegaMenuProps {
   isOpen: boolean;
   onClose: () => void;
+  currentPath?: string | null;
 }
 
 function CategoryColumn({
   category,
   catIndex,
   onClose,
+  currentPath,
 }: {
   category: ProductCategory;
   catIndex: number;
   onClose: () => void;
+  currentPath?: string | null;
 }) {
   const preview = category.subProducts.slice(0, 6);
+  const isCatActive = currentPath
+    ? currentPath.replace(/\/+$/, "") === `/products/${category.slug}`
+    : false;
 
   return (
     <div>
@@ -36,9 +42,16 @@ function CategoryColumn({
       <Link
         href={`/products/${category.slug}`}
         onClick={onClose}
+        aria-current={isCatActive ? "page" : undefined}
         className="mega-cat-title block mb-3 group/title"
       >
-        <span className="text-[11px] font-black uppercase tracking-[0.18em] text-[#1E6D95] font-mono leading-none group-hover/title:text-[#15516F] transition-colors duration-150">
+        <span
+          className={`text-[11px] font-black uppercase tracking-[0.18em] font-mono leading-none transition-colors duration-150 ${
+            isCatActive
+              ? "text-white underline decoration-[#1E6D95] decoration-2 underline-offset-4"
+              : "text-[#1E6D95] group-hover/title:text-[#15516F]"
+          }`}
+        >
           {category.name}
         </span>
       </Link>
@@ -66,7 +79,10 @@ function CategoryColumn({
       <Link
         href={`/products/${category.slug}`}
         onClick={onClose}
-        className="mt-3 inline-flex items-center gap-1.5 text-[10px] font-mono font-bold uppercase tracking-[0.15em] text-[#1E6D95] hover:text-white transition-colors duration-150"
+        aria-current={isCatActive ? "page" : undefined}
+        className={`mt-3 inline-flex items-center gap-1.5 text-[10px] font-mono font-bold uppercase tracking-[0.15em] transition-colors duration-150 ${
+          isCatActive ? "text-white underline" : "text-[#1E6D95] hover:text-white"
+        }`}
       >
         View all
         <span className="view-cat-arrow">→</span>
@@ -75,8 +91,12 @@ function CategoryColumn({
   );
 }
 
-export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
+export default function MegaMenu({ isOpen, onClose, currentPath }: MegaMenuProps) {
   if (!isOpen) return null;
+
+  const isAllProductsActive = currentPath
+    ? currentPath.replace(/\/+$/, "") === "/products"
+    : false;
 
   return (
     <div
@@ -99,7 +119,10 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
           <Link
             href="/products"
             onClick={onClose}
-            className="text-[9px] font-mono font-black uppercase tracking-[0.18em] text-zinc-400 hover:text-[#1E6D95] transition-colors duration-150 flex items-center gap-1"
+            aria-current={isAllProductsActive ? "page" : undefined}
+            className={`text-[9px] font-mono font-black uppercase tracking-[0.18em] transition-colors duration-150 flex items-center gap-1 ${
+              isAllProductsActive ? "text-[#1E6D95] underline underline-offset-4" : "text-zinc-400 hover:text-[#1E6D95]"
+            }`}
           >
             View all products <span className="view-cat-arrow">→</span>
           </Link>
@@ -119,6 +142,7 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                   category={category}
                   catIndex={catIdx}
                   onClose={onClose}
+                  currentPath={currentPath}
                 />
               ))}
             </div>

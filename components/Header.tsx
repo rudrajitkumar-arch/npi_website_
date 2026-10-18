@@ -31,10 +31,13 @@ const NAV_RIGHT = [
   { label: "Contact", href: "/contact" },
 ];
 
-const navLinkClass = (active: boolean) =>
-  `px-2 py-1.5 text-[10px] font-black uppercase tracking-widest transition-colors font-mono ${
-    active ? "text-[#1E6D95]" : "text-white/90 hover:text-[#1E6D95]"
-  }`;
+function isNavActive(href: string, currentPath: string | null): boolean {
+  if (!currentPath) return false;
+  const current = currentPath.replace(/\/+$/, "") || "/";
+  const target = href.replace(/\/+$/, "") || "/";
+  if (target === "/") return current === "/";
+  return current === target || current.startsWith(target + "/");
+}
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -111,8 +114,7 @@ export default function Header() {
 
   const closeMega = useCallback(() => setMegaOpen(false), []);
 
-  const isProductsActive =
-    pathname === "/products" || pathname.startsWith("/products/");
+  const isProductsActive = isNavActive("/products", pathname);
 
   const base = "fixed top-0 left-0 right-0 z-50 transition-all duration-400";
   const bg = scrolled
@@ -145,15 +147,27 @@ export default function Header() {
         {/* Desktop Nav */}
         <nav className="hidden xl:flex items-center gap-0.5" aria-label="Main navigation">
           {/* Left nav items */}
-          {NAV_LEFT.map((n) => (
-            <Link
-              key={n.href}
-              href={n.href}
-              className={navLinkClass(pathname === n.href)}
-            >
-              {n.label}
-            </Link>
-          ))}
+          {NAV_LEFT.map((n) => {
+            const active = isNavActive(n.href, pathname);
+            return (
+              <Link
+                key={n.href}
+                href={n.href}
+                aria-current={active ? "page" : undefined}
+                className={`relative px-2 py-1.5 text-[10px] font-black uppercase tracking-widest font-mono transition-colors ${
+                  active ? "text-[#1E6D95]" : "text-white/90 hover:text-[#1E6D95]"
+                }`}
+              >
+                {n.label}
+                {active && (
+                  <span
+                    className="absolute bottom-0 left-2 right-2 h-[2px] bg-[#1E6D95] rounded-full"
+                    aria-hidden="true"
+                  />
+                )}
+              </Link>
+            );
+          })}
 
           {/* PRODUCTS — mega menu trigger */}
           <div className="relative" onMouseEnter={handleMouseEnterProducts}>
@@ -161,8 +175,9 @@ export default function Header() {
               id="products-menu-btn"
               aria-haspopup="true"
               aria-expanded={megaOpen}
+              aria-current={isProductsActive ? "page" : undefined}
               onClick={() => setMegaOpen((v) => !v)}
-              className={`px-2 py-1.5 text-[10px] font-black uppercase tracking-widest transition-colors font-mono flex items-center gap-1 ${
+              className={`relative px-2 py-1.5 text-[10px] font-black uppercase tracking-widest transition-colors font-mono flex items-center gap-1 ${
                 isProductsActive || megaOpen
                   ? "text-[#1E6D95]"
                   : "text-white/90 hover:text-[#1E6D95]"
@@ -177,19 +192,37 @@ export default function Header() {
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
               </svg>
+              {isProductsActive && (
+                <span
+                  className="absolute bottom-0 left-2 right-2 h-[2px] bg-[#1E6D95] rounded-full"
+                  aria-hidden="true"
+                />
+              )}
             </button>
           </div>
 
           {/* Right nav items */}
-          {NAV_RIGHT.map((n) => (
-            <Link
-              key={n.href}
-              href={n.href}
-              className={navLinkClass(pathname === n.href)}
-            >
-              {n.label}
-            </Link>
-          ))}
+          {NAV_RIGHT.map((n) => {
+            const active = isNavActive(n.href, pathname);
+            return (
+              <Link
+                key={n.href}
+                href={n.href}
+                aria-current={active ? "page" : undefined}
+                className={`relative px-2 py-1.5 text-[10px] font-black uppercase tracking-widest font-mono transition-colors ${
+                  active ? "text-[#1E6D95]" : "text-white/90 hover:text-[#1E6D95]"
+                }`}
+              >
+                {n.label}
+                {active && (
+                  <span
+                    className="absolute bottom-0 left-2 right-2 h-[2px] bg-[#1E6D95] rounded-full"
+                    aria-hidden="true"
+                  />
+                )}
+              </Link>
+            );
+          })}
         </nav>
 
         {/* CTA */}
@@ -223,7 +256,7 @@ export default function Header() {
 
       {/* ── Mega Menu (desktop) ── */}
       <div onMouseEnter={handleMouseEnterMega}>
-        <MegaMenu isOpen={megaOpen} onClose={closeMega} />
+        <MegaMenu isOpen={megaOpen} onClose={closeMega} currentPath={pathname} />
       </div>
 
       {/* ── Mobile menu ── */}
@@ -231,34 +264,41 @@ export default function Header() {
         <div className="xl:hidden bg-[#252A2D] border-t border-white/10 overflow-y-auto max-h-[80vh]">
           <div className="px-4 py-4 space-y-1">
             {/* NAV_LEFT: Home, About, Capabilities */}
-            {NAV_LEFT.map((n) => (
-              <Link
-                key={n.href}
-                href={n.href}
-                onClick={() => setMobileOpen(false)}
-                className={`block px-3 py-2.5 text-sm font-bold uppercase tracking-widest font-mono ${
-                  pathname === n.href
-                    ? "text-[#1E6D95] bg-white/5"
-                    : "text-white/90 hover:text-[#1E6D95] hover:bg-white/5"
-                }`}
-              >
-                {n.label}
-              </Link>
-            ))}
+            {NAV_LEFT.map((n) => {
+              const active = isNavActive(n.href, pathname);
+              return (
+                <Link
+                  key={n.href}
+                  href={n.href}
+                  onClick={() => setMobileOpen(false)}
+                  aria-current={active ? "page" : undefined}
+                  className={`block px-3 py-2.5 text-sm font-bold uppercase tracking-widest font-mono transition-colors ${
+                    active
+                      ? "text-[#1E6D95] bg-white/5 border-l-2 border-[#1E6D95]"
+                      : "text-white/90 hover:text-[#1E6D95] hover:bg-white/5 border-l-2 border-transparent"
+                  }`}
+                >
+                  {n.label}
+                </Link>
+              );
+            })}
 
             {/* PRODUCTS accordion trigger & body — placed immediately after Capabilities */}
             <div>
               <button
                 className={`w-full flex items-center justify-between px-3 py-2.5 text-sm font-bold uppercase tracking-widest font-mono transition-colors ${
-                  isProductsActive || mobileProductsOpen
-                    ? "text-[#1E6D95]"
-                    : "text-white/90 hover:text-[#1E6D95]"
+                  isProductsActive
+                    ? "text-[#1E6D95] bg-white/5 border-l-2 border-[#1E6D95]"
+                    : mobileProductsOpen
+                    ? "text-[#1E6D95] border-l-2 border-transparent"
+                    : "text-white/90 hover:text-[#1E6D95] border-l-2 border-transparent"
                 }`}
                 onClick={() => {
                   setMobileProductsOpen((v) => !v);
                   if (mobileProductsOpen) setMobileCatOpen(null);
                 }}
                 aria-expanded={mobileProductsOpen}
+                aria-current={isProductsActive ? "page" : undefined}
               >
                 Products
                 <svg
@@ -275,81 +315,112 @@ export default function Header() {
               {mobileProductsOpen && (
                 <div className="animate-accordion-down mt-1 bg-[#1B2023] border border-white/[0.06]">
                   {/* All products link */}
-                  <Link
-                    href="/products"
-                    onClick={() => setMobileOpen(false)}
-                    className="flex items-center gap-2 px-4 py-2.5 text-[11px] font-mono font-bold uppercase tracking-widest text-[#1E6D95] hover:bg-white/5 border-b border-white/[0.06]"
-                  >
-                    View All Products
-                    <span className="view-cat-arrow">→</span>
-                  </Link>
+                  {(() => {
+                    const isAllProductsActive =
+                      isNavActive("/products", pathname) &&
+                      (pathname?.replace(/\/+$/, "") === "/products");
+                    return (
+                      <Link
+                        href="/products"
+                        onClick={() => setMobileOpen(false)}
+                        aria-current={isAllProductsActive ? "page" : undefined}
+                        className={`flex items-center gap-2 px-4 py-2.5 text-[11px] font-mono font-bold uppercase tracking-widest border-b border-white/[0.06] transition-colors ${
+                          isAllProductsActive
+                            ? "text-[#1E6D95] bg-white/5"
+                            : "text-[#1E6D95] hover:bg-white/5"
+                        }`}
+                      >
+                        View All Products
+                        <span className="view-cat-arrow">→</span>
+                      </Link>
+                    );
+                  })()}
 
                   {/* 8 categories with sub-accordion */}
-                  {PRODUCT_CATALOGUE.map((cat) => (
-                    <div key={cat.slug} className="border-b border-white/[0.04] last:border-0">
-                      <button
-                        className="w-full flex items-center justify-between px-4 py-3 text-[12px] font-bold uppercase tracking-wide font-mono text-white/80 hover:text-white hover:bg-white/5 transition-colors text-left"
-                        onClick={() =>
-                          setMobileCatOpen((prev) =>
-                            prev === cat.slug ? null : cat.slug
-                          )
-                        }
-                        aria-expanded={mobileCatOpen === cat.slug}
-                      >
-                        <span>{cat.name}</span>
-                        <span
-                          className={`text-[#1E6D95] transition-transform duration-200 inline-block ${
-                            mobileCatOpen === cat.slug ? "rotate-45" : ""
+                  {PRODUCT_CATALOGUE.map((cat) => {
+                    const isCatActive = pathname
+                      ? pathname.replace(/\/+$/, "") === `/products/${cat.slug}`
+                      : false;
+                    return (
+                      <div key={cat.slug} className="border-b border-white/[0.04] last:border-0">
+                        <button
+                          className={`w-full flex items-center justify-between px-4 py-3 text-[12px] font-bold uppercase tracking-wide font-mono transition-colors text-left ${
+                            isCatActive
+                              ? "text-[#1E6D95] bg-white/5"
+                              : "text-white/80 hover:text-white hover:bg-white/5"
                           }`}
+                          onClick={() =>
+                            setMobileCatOpen((prev) =>
+                              prev === cat.slug ? null : cat.slug
+                            )
+                          }
+                          aria-expanded={mobileCatOpen === cat.slug}
+                          aria-current={isCatActive ? "page" : undefined}
                         >
-                          +
-                        </span>
-                      </button>
+                          <span>{cat.name}</span>
+                          <span
+                            className={`text-[#1E6D95] transition-transform duration-200 inline-block ${
+                              mobileCatOpen === cat.slug ? "rotate-45" : ""
+                            }`}
+                          >
+                            +
+                          </span>
+                        </button>
 
-                      {/* Sub-products */}
-                      {mobileCatOpen === cat.slug && (
-                        <div className="animate-accordion-down pb-2 bg-[#161A1C]">
-                          {cat.subProducts.map((sub) => (
+                        {/* Sub-products */}
+                        {mobileCatOpen === cat.slug && (
+                          <div className="animate-accordion-down pb-2 bg-[#161A1C]">
+                            {cat.subProducts.map((sub) => (
+                              <Link
+                                key={sub.slug}
+                                href={`/products/${cat.slug}`}
+                                onClick={() => setMobileOpen(false)}
+                                className="flex items-start gap-2.5 px-6 py-2 text-[12px] text-zinc-400 hover:text-white transition-colors"
+                              >
+                                <span className="mt-[5px] w-1 h-1 rounded-full bg-[#1E6D95]/50 shrink-0" />
+                                {sub.name}
+                              </Link>
+                            ))}
                             <Link
-                              key={sub.slug}
                               href={`/products/${cat.slug}`}
                               onClick={() => setMobileOpen(false)}
-                              className="flex items-start gap-2.5 px-6 py-2 text-[12px] text-zinc-400 hover:text-white transition-colors"
+                              aria-current={isCatActive ? "page" : undefined}
+                              className={`flex items-center gap-1.5 px-6 py-2 mt-1 text-[10px] font-mono font-bold uppercase tracking-widest transition-colors ${
+                                isCatActive
+                                  ? "text-white underline"
+                                  : "text-[#1E6D95] hover:text-white"
+                              }`}
                             >
-                              <span className="mt-[5px] w-1 h-1 rounded-full bg-[#1E6D95]/50 shrink-0" />
-                              {sub.name}
+                              View category <span className="view-cat-arrow">→</span>
                             </Link>
-                          ))}
-                          <Link
-                            href={`/products/${cat.slug}`}
-                            onClick={() => setMobileOpen(false)}
-                            className="flex items-center gap-1.5 px-6 py-2 mt-1 text-[10px] font-mono font-bold uppercase tracking-widest text-[#1E6D95] hover:text-white transition-colors"
-                          >
-                            View category <span className="view-cat-arrow">→</span>
-                          </Link>
-                        </div>
-                      )}
-                    </div>
-                  ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               )}
             </div>
 
             {/* NAV_RIGHT: Quality, Industries, Infrastructure, Contact */}
-            {NAV_RIGHT.map((n) => (
-              <Link
-                key={n.href}
-                href={n.href}
-                onClick={() => setMobileOpen(false)}
-                className={`block px-3 py-2.5 text-sm font-bold uppercase tracking-widest font-mono ${
-                  pathname === n.href
-                    ? "text-[#1E6D95] bg-white/5"
-                    : "text-white/90 hover:text-[#1E6D95] hover:bg-white/5"
-                }`}
-              >
-                {n.label}
-              </Link>
-            ))}
+            {NAV_RIGHT.map((n) => {
+              const active = isNavActive(n.href, pathname);
+              return (
+                <Link
+                  key={n.href}
+                  href={n.href}
+                  onClick={() => setMobileOpen(false)}
+                  aria-current={active ? "page" : undefined}
+                  className={`block px-3 py-2.5 text-sm font-bold uppercase tracking-widest font-mono transition-colors ${
+                    active
+                      ? "text-[#1E6D95] bg-white/5 border-l-2 border-[#1E6D95]"
+                      : "text-white/90 hover:text-[#1E6D95] hover:bg-white/5 border-l-2 border-transparent"
+                  }`}
+                >
+                  {n.label}
+                </Link>
+              );
+            })}
 
             {/* CTA: Get Quote */}
             <div className="pt-3 border-t border-white/10">
