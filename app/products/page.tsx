@@ -84,15 +84,15 @@ function SectionHead({
 
 /* ─── SERVICES DATA ────────────────────────────────────────── */
 const SERVICES = [
-  { num: "01", label: "Precision Machining", img: "/images/services/Precision_Machining.jpg", alt: "Precision machining components" },
-  { num: "02", label: "Custom Screw Machining", img: "/images/services/Custom_Screw_Machining.jpg", alt: "Custom screw machining components" },
-  { num: "03", label: "CNC Turning & Milling", img: "/images/services/CNC_Turning_Milling.jpg", alt: "CNC turning and milling components" },
+  { num: "01", label: "Precision Machining", img: "/images/services/Precision Machining.jpg", alt: "Precision machining components" },
+  { num: "02", label: "Custom Screw Machining", img: "/images/services/Custom Screw Machining.jpg", alt: "Custom screw machining components" },
+  { num: "03", label: "CNC Turning & Milling", img: "/images/services/CNC-Milling & Turning.jpg", alt: "CNC turning and milling components" },
   { num: "04", label: "Forging + Machining", img: "/images/services/Forging_Machining.png", alt: "Forged and machined components" },
   { num: "05", label: "Stamping & Marking", img: "/images/services/Stamping_Marking.png", alt: "Metal stamping and marking" },
   { num: "06", label: "Brazing & Welding", img: "/images/services/Brazing_Welding.jpeg", alt: "Brazing and welding process" },
   { num: "07", label: "Annealing & Heat Treatment", img: "/images/services/Annealing_Heat_Treatment.jpg", alt: "Annealing and heat treatment" },
-  { num: "08", label: "Surface Cleaning & Plating", img: "/images/services/Surface_Cleaning_Plating.png", alt: "Surface cleaning and plating" },
-  { num: "09", label: "Light Assembly", img: "/images/services/Light_Assembly.jpg", alt: "Precision component assembly" },
+  { num: "08", label: "Surface Cleaning & Plating", img: "/images/services/Surface Plating.jpg", alt: "Surface cleaning and plating" },
+  { num: "09", label: "Light Assembly", img: "/images/services/light_assembly_1950x1300.png", alt: "Precision component assembly", contain: true },
   { num: "10", label: "Packaging & Labelling", img: "/images/services/Packaging_Labelling.png", alt: "Industrial component packaging and labelling" },
 ];
 
@@ -281,14 +281,20 @@ export default function ProductsPage() {
                   i === 9 ? "lg:col-start-3" : "",
                 ].join(" ")}
               >
-                <div className="relative w-full aspect-[4/3] overflow-hidden shrink-0">
+                <div
+                  className={`relative w-full aspect-[4/3] overflow-hidden shrink-0 ${
+                    s.contain ? "bg-white" : ""
+                  }`}
+                >
                   <Image
                     src={s.img}
                     alt={s.alt}
                     fill
                     loading="lazy"
                     sizes="(max-width:640px) 50vw, (max-width:1024px) 33vw, 25vw"
-                    className="object-cover transition-transform duration-200 ease-out group-hover:scale-[1.02]"
+                    className={`${
+                      s.contain ? "object-contain p-2.5" : "object-cover"
+                    } transition-transform duration-200 ease-out group-hover:scale-[1.02]`}
                   />
                 </div>
                 <div className="px-5 py-5 min-h-[90px] flex flex-col justify-center">
