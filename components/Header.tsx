@@ -169,14 +169,15 @@ export default function Header() {
             );
           })}
 
-          {/* PRODUCTS — mega menu trigger */}
+          {/* PRODUCTS — mega menu trigger & link to products page */}
           <div className="relative" onMouseEnter={handleMouseEnterProducts}>
-            <button
+            <Link
               id="products-menu-btn"
+              href="/products"
               aria-haspopup="true"
               aria-expanded={megaOpen}
               aria-current={isProductsActive ? "page" : undefined}
-              onClick={() => setMegaOpen((v) => !v)}
+              onClick={() => setMegaOpen(false)}
               className={`relative px-2 py-1.5 text-[10px] font-black uppercase tracking-widest transition-colors font-mono flex items-center gap-1 ${
                 isProductsActive || megaOpen
                   ? "text-[#1E6D95]"
@@ -198,7 +199,7 @@ export default function Header() {
                   aria-hidden="true"
                 />
               )}
-            </button>
+            </Link>
           </div>
 
           {/* Right nav items */}
